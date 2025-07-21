@@ -158,7 +158,7 @@ export const Navbar = () => {
               </NavbarMenuItem>
             ))}
             <Button className="bg-green-500 dark:bg-green-600 text-white mt-4">
-              <span className="bg-red-500 dark:bg-red-600 text-white px-2 py-1 rounded text-xs mr-2">NEW</span>
+              <span className="bg-red-400 dark:bg-red-500 text-white px-2 py-1 rounded text-xs mr-2">NEW</span>
               Shop Furnishings
             </Button>
           </div>
