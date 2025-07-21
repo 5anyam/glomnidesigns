@@ -21,10 +21,13 @@ import { ThemeSwitch } from "@/components/theme-switch";
 import { useState } from "react";
 import { PlaceholdersAndVanishInputDemo } from "./search";
 
-export const Navbar = () => {
-  const [activeDropdown, setActiveDropdown] = useState(null);
+// Define the type for dropdown values
+type DropdownType = 'design' | 'more' | null;
 
-  const handleMouseEnter = (dropdown) => {
+export const Navbar = () => {
+  const [activeDropdown, setActiveDropdown] = useState<DropdownType>(null);
+
+  const handleMouseEnter = (dropdown: Exclude<DropdownType, null>) => {
     setActiveDropdown(dropdown);
   };
 
@@ -117,14 +120,15 @@ export const Navbar = () => {
           justify="end"
         >
           <NavbarItem className="hidden sm:flex gap-2">
-          <PlaceholdersAndVanishInputDemo/>
+            <PlaceholdersAndVanishInputDemo/>
             <ThemeSwitch />
           </NavbarItem>
           <NavbarItem className="hidden lg:flex">
             <Button 
               className="bg-green-500 hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700 text-white px-4 py-2 rounded-md font-medium"
               size="sm"
-            > Talk To Expert
+            > 
+              Talk To Expert
             </Button>
           </NavbarItem>
         </NavbarContent>
