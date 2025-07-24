@@ -1,7 +1,5 @@
 import Link from "next/link";
 import React from "react";
-import { CallUs } from "./button-border";
-import { AnimatedTooltipPreview } from "./clients-stack";
 import { FlipWords } from "./ui/flip-words";
 
 export function FlipWordsDemo() {
