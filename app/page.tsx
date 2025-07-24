@@ -23,7 +23,8 @@ export default function Home() {
 </div>
 
     <BentoGridDemo/>
-    {/* <AppleCardsCarouselDemo/> */}
+    {/* 
+     */}
     <TimelineDemo/>
     <AnimatedTestimonialsDemo/>
 </>
