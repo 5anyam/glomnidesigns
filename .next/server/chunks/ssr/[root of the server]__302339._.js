@@ -196,8 +196,8 @@ __turbopack_esm__({
     "siteConfig": ()=>siteConfig
 });
 const siteConfig = {
-    name: "Proshala Tech",
-    description: "Make beautiful websites regardless of your design experience.",
+    name: "Glomni Designs",
+    description: "Discover thoughtfully crafted interiors that blend style and functionality—perfect for every space you call yours.",
     navItems: [
         {
             label: "Home",
