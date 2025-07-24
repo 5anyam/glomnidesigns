@@ -3,7 +3,6 @@ import Threedcardshome from "@/components/3dcard-data";
 import { AppleCardsCarouselDemo } from "@/components/apple-card";
 import { CarouselDemo } from "@/components/carousel-home";
 import { BentoGridDemo } from "@/components/design-idea";
-import { ExpandableCardDemo } from "@/components/expandable-portfolio";
 import { FlipWordsDemo } from "@/components/flip-words-home";
 import { AnimatedTestimonialsDemo } from "@/components/testimonials";
 import { TimelineDemo } from "@/components/timelinep-home";
