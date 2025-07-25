@@ -3,7 +3,6 @@ import Image from "next/image";
 import React from "react";
 import { Carousel, Card } from "@/components/ui/apple-cards-carousel";
 import Link from "next/link";
-import { FeaturesSectionDemo } from "./web-features";
 
 export function AppleCardsCarouselDemo() {
   const cards = data.map((card, index) => (
@@ -59,7 +58,6 @@ const data = [
         </div>
         <span className="absolute -bottom-0 left-[1.125rem] h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-emerald-400/0 via-emerald-400/90 to-emerald-400/0 transition-opacity duration-500 group-hover:opacity-40"></span>
       </button></Link></div>
-      <FeaturesSectionDemo/>
     </div>,
   },
   {
@@ -101,7 +99,6 @@ const data = [
         </button>
       </Link>
     </div>
-    <FeaturesSectionDemo />
   </div>
   ,
   },
@@ -144,7 +141,6 @@ const data = [
         </button>
       </Link>
     </div>
-    <FeaturesSectionDemo />
   </div>
   ,
   },
@@ -184,7 +180,7 @@ const data = [
         </div>
         <span className="absolute -bottom-0 left-[1.125rem] h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-emerald-400/0 via-emerald-400/90 to-emerald-400/0 transition-opacity duration-500 group-hover:opacity-40"></span>
       </button></Link></div>
-      <FeaturesSectionDemo/>
+    
     </div>,
   },
   {
@@ -226,7 +222,6 @@ const data = [
         </button>
       </Link>
     </div>
-    <FeaturesSectionDemo />
   </div>
   ,
   },
@@ -269,7 +264,6 @@ const data = [
         </button>
       </Link>
     </div>
-    <FeaturesSectionDemo />
   </div>
   ,
   },

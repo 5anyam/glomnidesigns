@@ -1,37 +1,67 @@
 const RUNTIME_PUBLIC_PATH = "server/chunks/ssr/[turbopack]_runtime.js";
-const OUTPUT_ROOT = ".next";
+const RELATIVE_ROOT_PATH = "..";
 const ASSET_PREFIX = "/_next/";
 /**
  * This file contains runtime types and functions that are shared between all
  * TurboPack ECMAScript runtimes.
  *
  * It will be prepended to the runtime code of each runtime.
- */ /* eslint-disable @next/next/no-assign-module-variable */ /// <reference path="./runtime-types.d.ts" />
-const REEXPORTED_OBJECTS = Symbol("reexported objects");
+ */ /* eslint-disable @typescript-eslint/no-unused-vars */ /// <reference path="./runtime-types.d.ts" />
+const REEXPORTED_OBJECTS = Symbol('reexported objects');
 const hasOwnProperty = Object.prototype.hasOwnProperty;
-const toStringTag = typeof Symbol !== "undefined" && Symbol.toStringTag;
-function defineProp(obj, name1, options) {
-    if (!hasOwnProperty.call(obj, name1)) Object.defineProperty(obj, name1, options);
+const toStringTag = typeof Symbol !== 'undefined' && Symbol.toStringTag;
+function defineProp(obj, name, options) {
+    if (!hasOwnProperty.call(obj, name)) Object.defineProperty(obj, name, options);
+}
+function getOverwrittenModule(moduleCache, id) {
+    let module = moduleCache[id];
+    if (!module) {
+        // This is invoked when a module is merged into another module, thus it wasn't invoked via
+        // instantiateModule and the cache entry wasn't created yet.
+        module = {
+            exports: {},
+            error: undefined,
+            loaded: false,
+            id,
+            namespaceObject: undefined
+        };
+        moduleCache[id] = module;
+    }
+    return module;
 }
 /**
  * Adds the getters to the exports object.
  */ function esm(exports, getters) {
-    defineProp(exports, "__esModule", {
+    defineProp(exports, '__esModule', {
         value: true
     });
     if (toStringTag) defineProp(exports, toStringTag, {
-        value: "Module"
+        value: 'Module'
     });
     for(const key in getters){
-        defineProp(exports, key, {
-            get: getters[key],
-            enumerable: true
-        });
+        const item = getters[key];
+        if (Array.isArray(item)) {
+            defineProp(exports, key, {
+                get: item[0],
+                set: item[1],
+                enumerable: true
+            });
+        } else {
+            defineProp(exports, key, {
+                get: item,
+                enumerable: true
+            });
+        }
     }
+    Object.seal(exports);
 }
 /**
  * Makes the module an ESM with exports
- */ function esmExport(module, exports, getters) {
+ */ function esmExport(module, exports, moduleCache, getters, id) {
+    if (id != null) {
+        module = getOverwrittenModule(moduleCache, id);
+        exports = module.exports;
+    }
     module.namespaceObject = module.exports;
     esm(exports, getters);
 }
@@ -41,7 +71,7 @@ function ensureDynamicExports(module, exports) {
         reexportedObjects = module[REEXPORTED_OBJECTS] = [];
         module.exports = module.namespaceObject = new Proxy(exports, {
             get (target, prop) {
-                if (hasOwnProperty.call(target, prop) || prop === "default" || prop === "__esModule") {
+                if (hasOwnProperty.call(target, prop) || prop === 'default' || prop === '__esModule') {
                     return Reflect.get(target, prop);
                 }
                 for (const obj of reexportedObjects){
@@ -54,7 +84,7 @@ function ensureDynamicExports(module, exports) {
                 const keys = Reflect.ownKeys(target);
                 for (const obj of reexportedObjects){
                     for (const key of Reflect.ownKeys(obj)){
-                        if (key !== "default" && !keys.includes(key)) keys.push(key);
+                        if (key !== 'default' && !keys.includes(key)) keys.push(key);
                     }
                 }
                 return keys;
@@ -64,16 +94,26 @@ function ensureDynamicExports(module, exports) {
 }
 /**
  * Dynamically exports properties from an object
- */ function dynamicExport(module, exports, object) {
+ */ function dynamicExport(module, exports, moduleCache, object, id) {
+    if (id != null) {
+        module = getOverwrittenModule(moduleCache, id);
+        exports = module.exports;
+    }
     ensureDynamicExports(module, exports);
-    if (typeof object === "object" && object !== null) {
+    if (typeof object === 'object' && object !== null) {
         module[REEXPORTED_OBJECTS].push(object);
     }
 }
-function exportValue(module, value) {
+function exportValue(module, moduleCache, value, id) {
+    if (id != null) {
+        module = getOverwrittenModule(moduleCache, id);
+    }
     module.exports = value;
 }
-function exportNamespace(module, namespace) {
+function exportNamespace(module, moduleCache, namespace, id) {
+    if (id != null) {
+        module = getOverwrittenModule(moduleCache, id);
+    }
     module.exports = module.namespaceObject = namespace;
 }
 function createGetter(obj, key) {
@@ -96,21 +136,21 @@ function createGetter(obj, key) {
  *   * `true`: will have the default property as default export
  */ function interopEsm(raw, ns, allowExportDefault) {
     const getters = Object.create(null);
-    for(let current = raw; (typeof current === "object" || typeof current === "function") && !LEAF_PROTOTYPES.includes(current); current = getProto(current)){
+    for(let current = raw; (typeof current === 'object' || typeof current === 'function') && !LEAF_PROTOTYPES.includes(current); current = getProto(current)){
         for (const key of Object.getOwnPropertyNames(current)){
             getters[key] = createGetter(raw, key);
         }
     }
     // this is not really correct
     // we should set the `default` getter if the imported module is a `.cjs file`
-    if (!(allowExportDefault && "default" in getters)) {
-        getters["default"] = ()=>raw;
+    if (!(allowExportDefault && 'default' in getters)) {
+        getters['default'] = ()=>raw;
     }
     esm(ns, getters);
     return ns;
 }
 function createNS(raw) {
-    if (typeof raw === "function") {
+    if (typeof raw === 'function') {
         return function(...args) {
             return raw.apply(this, args);
         };
@@ -129,8 +169,9 @@ function esmImport(sourceModule, id) {
 }
 // Add a simple runtime require so that environments without one can still pass
 // `typeof require` CommonJS checks so that exports are correctly registered.
-const runtimeRequire = typeof require === "function" ? require : function require1() {
-    throw new Error("Unexpected use of runtime require");
+const runtimeRequire = // @ts-ignore
+typeof require === 'function' ? require : function require1() {
+    throw new Error('Unexpected use of runtime require');
 };
 function commonJsRequire(sourceModule, id) {
     const module = getOrInstantiateModuleFromParent(id, sourceModule);
@@ -144,8 +185,8 @@ function commonJsRequire(sourceModule, id) {
         if (hasOwnProperty.call(map, id)) {
             return map[id].module();
         }
-        const e = new Error(`Cannot find module '${name}'`);
-        e.code = "MODULE_NOT_FOUND";
+        const e = new Error(`Cannot find module '${id}'`);
+        e.code = 'MODULE_NOT_FOUND';
         throw e;
     }
     moduleContext.keys = ()=>{
@@ -155,8 +196,8 @@ function commonJsRequire(sourceModule, id) {
         if (hasOwnProperty.call(map, id)) {
             return map[id].id();
         }
-        const e = new Error(`Cannot find module '${name}'`);
-        e.code = "MODULE_NOT_FOUND";
+        const e = new Error(`Cannot find module '${id}'`);
+        e.code = 'MODULE_NOT_FOUND';
         throw e;
     };
     moduleContext.import = async (id)=>{
@@ -167,10 +208,10 @@ function commonJsRequire(sourceModule, id) {
 /**
  * Returns the path of a chunk defined by its data.
  */ function getChunkPath(chunkData) {
-    return typeof chunkData === "string" ? chunkData : chunkData.path;
+    return typeof chunkData === 'string' ? chunkData : chunkData.path;
 }
 function isPromise(maybePromise) {
-    return maybePromise != null && typeof maybePromise === "object" && "then" in maybePromise && typeof maybePromise.then === "function";
+    return maybePromise != null && typeof maybePromise === 'object' && 'then' in maybePromise && typeof maybePromise.then === 'function';
 }
 function isAsyncModuleExt(obj) {
     return turbopackQueues in obj;
@@ -190,23 +231,23 @@ function createPromise() {
 }
 // everything below is adapted from webpack
 // https://github.com/webpack/webpack/blob/6be4065ade1e252c1d8dcba4af0f43e32af1bdc1/lib/runtime/AsyncModuleRuntimeModule.js#L13
-const turbopackQueues = Symbol("turbopack queues");
-const turbopackExports = Symbol("turbopack exports");
-const turbopackError = Symbol("turbopack error");
+const turbopackQueues = Symbol('turbopack queues');
+const turbopackExports = Symbol('turbopack exports');
+const turbopackError = Symbol('turbopack error');
 function resolveQueue(queue) {
-    if (queue && !queue.resolved) {
-        queue.resolved = true;
+    if (queue && queue.status !== 1) {
+        queue.status = 1;
         queue.forEach((fn)=>fn.queueCount--);
         queue.forEach((fn)=>fn.queueCount-- ? fn.queueCount++ : fn());
     }
 }
 function wrapDeps(deps) {
     return deps.map((dep)=>{
-        if (dep !== null && typeof dep === "object") {
+        if (dep !== null && typeof dep === 'object') {
             if (isAsyncModuleExt(dep)) return dep;
             if (isPromise(dep)) {
                 const queue = Object.assign([], {
-                    resolved: false
+                    status: 0
                 });
                 const obj = {
                     [turbopackExports]: {},
@@ -222,30 +263,39 @@ function wrapDeps(deps) {
                 return obj;
             }
         }
-        const ret = {
+        return {
             [turbopackExports]: dep,
             [turbopackQueues]: ()=>{}
         };
-        return ret;
     });
 }
 function asyncModule(module, body, hasAwait) {
     const queue = hasAwait ? Object.assign([], {
-        resolved: true
+        status: -1
     }) : undefined;
     const depQueues = new Set();
-    ensureDynamicExports(module, module.exports);
-    const exports = module.exports;
     const { resolve, reject, promise: rawPromise } = createPromise();
     const promise = Object.assign(rawPromise, {
-        [turbopackExports]: exports,
+        [turbopackExports]: module.exports,
         [turbopackQueues]: (fn)=>{
             queue && fn(queue);
             depQueues.forEach(fn);
-            promise["catch"](()=>{});
+            promise['catch'](()=>{});
         }
     });
-    module.exports = module.namespaceObject = promise;
+    const attributes = {
+        get () {
+            return promise;
+        },
+        set (v) {
+            // Calling `esmExport` leads to this.
+            if (v !== promise) {
+                promise[turbopackExports] = v;
+            }
+        }
+    };
+    Object.defineProperty(module, 'exports', attributes);
+    Object.defineProperty(module, 'namespaceObject', attributes);
     function handleAsyncDependencies(deps) {
         const currentDeps = wrapDeps(deps);
         const getResult = ()=>currentDeps.map((d)=>{
@@ -259,7 +309,7 @@ function asyncModule(module, body, hasAwait) {
         function fnQueue(q) {
             if (q !== queue && !depQueues.has(q)) {
                 depQueues.add(q);
-                if (q && !q.resolved) {
+                if (q && q.status === 0) {
                     fn.queueCount++;
                     q.push(fn);
                 }
@@ -272,13 +322,13 @@ function asyncModule(module, body, hasAwait) {
         if (err) {
             reject(promise[turbopackError] = err);
         } else {
-            resolve(exports);
+            resolve(promise[turbopackExports]);
         }
         resolveQueue(queue);
     }
     body(handleAsyncDependencies, asyncResult);
-    if (queue) {
-        queue.resolved = false;
+    if (queue && queue.status === -1) {
+        queue.status = 0;
     }
 }
 /**
@@ -291,12 +341,12 @@ function asyncModule(module, body, hasAwait) {
  * This is based on webpack's existing implementation:
  * https://github.com/webpack/webpack/blob/87660921808566ef3b8796f8df61bd79fc026108/lib/runtime/RelativeUrlRuntimeModule.js
  */ const relativeURL = function relativeURL(inputUrl) {
-    const realUrl = new URL(inputUrl, "x:/");
+    const realUrl = new URL(inputUrl, 'x:/');
     const values = {};
     for(const key in realUrl)values[key] = realUrl[key];
     values.href = inputUrl;
-    values.pathname = inputUrl.replace(/[?#].*/, "");
-    values.origin = values.protocol = "";
+    values.pathname = inputUrl.replace(/[?#].*/, '');
+    values.origin = values.protocol = '';
     values.toString = values.toJSON = (..._args)=>inputUrl;
     for(const key in values)Object.defineProperty(this, key, {
         enumerable: true,
@@ -305,7 +355,17 @@ function asyncModule(module, body, hasAwait) {
     });
 };
 relativeURL.prototype = URL.prototype;
-/// <reference path="../shared/runtime-utils.ts" />
+/**
+ * Utility function to ensure all variants of an enum are handled.
+ */ function invariant(never, computeMessage) {
+    throw new Error(`Invariant: ${computeMessage(never)}`);
+}
+/**
+ * A stub function to make `require` available but non-functional in ESM.
+ */ function requireStub(_moduleId) {
+    throw new Error('dynamic usage of require is not supported');
+}
+/* eslint-disable @typescript-eslint/no-unused-vars */ /// <reference path="../shared/runtime-utils.ts" />
 /// A 'base' utilities to support runtime can have externals.
 /// Currently this is for node.js / edge runtime both.
 /// If a fn requires node.js specific behavior, it should be placed in `node-external-utils` instead.
@@ -320,15 +380,15 @@ async function externalImport(id) {
         // compilation error.
         throw new Error(`Failed to load external module ${id}: ${err}`);
     }
-    if (raw && raw.__esModule && raw.default && "default" in raw.default) {
+    if (raw && raw.__esModule && raw.default && 'default' in raw.default) {
         return interopEsm(raw.default, createNS(raw), true);
     }
     return raw;
 }
-function externalRequire(id, esm = false) {
+function externalRequire(id, thunk, esm = false) {
     let raw;
     try {
-        raw = require(id);
+        raw = thunk();
     } catch (err) {
         // TODO(alexkirsz) This can happen when a client-side module tries to load
         // an external module we don't provide a shim for (e.g. querystring, url).
@@ -344,10 +404,10 @@ function externalRequire(id, esm = false) {
 externalRequire.resolve = (id, options)=>{
     return require.resolve(id, options);
 };
-const path = require("path");
-const relativePathToRuntimeRoot = path.relative(RUNTIME_PUBLIC_PATH, ".");
+/* eslint-disable @typescript-eslint/no-unused-vars */ const path = require('path');
+const relativePathToRuntimeRoot = path.relative(RUNTIME_PUBLIC_PATH, '.');
 // Compute the relative path to the `distDir`.
-const relativePathToDistRoot = path.relative(path.join(OUTPUT_ROOT, RUNTIME_PUBLIC_PATH), ".");
+const relativePathToDistRoot = path.join(relativePathToRuntimeRoot, RELATIVE_ROOT_PATH);
 const RUNTIME_ROOT = path.resolve(__filename, relativePathToRuntimeRoot);
 // Compute the absolute path to the root, by stripping distDir from the absolute path to this file.
 const ABSOLUTE_ROOT = path.resolve(__filename, relativePathToDistRoot);
@@ -364,15 +424,15 @@ const ABSOLUTE_ROOT = path.resolve(__filename, relativePathToDistRoot);
     }
     return ABSOLUTE_ROOT;
 }
-/// <reference path="../shared/runtime-utils.ts" />
+/* eslint-disable @typescript-eslint/no-unused-vars */ /// <reference path="../shared/runtime-utils.ts" />
 function readWebAssemblyAsResponse(path) {
-    const { createReadStream } = require("fs");
-    const { Readable } = require("stream");
+    const { createReadStream } = require('fs');
+    const { Readable } = require('stream');
     const stream = createReadStream(path);
     // @ts-ignore unfortunately there's a slight type mismatch with the stream.
     return new Response(Readable.toWeb(stream), {
         headers: {
-            "content-type": "application/wasm"
+            'content-type': 'application/wasm'
         }
     });
 }
@@ -385,12 +445,11 @@ async function instantiateWebAssemblyFromPath(path, importsObj) {
     const { instance } = await WebAssembly.instantiateStreaming(response, importsObj);
     return instance.exports;
 }
-/// <reference path="../shared/runtime-utils.ts" />
+/* eslint-disable @typescript-eslint/no-unused-vars */ /// <reference path="../shared/runtime-utils.ts" />
 /// <reference path="../shared-node/base-externals-utils.ts" />
 /// <reference path="../shared-node/node-externals-utils.ts" />
 /// <reference path="../shared-node/node-wasm-utils.ts" />
-let SourceType;
-(function(SourceType) {
+var SourceType = /*#__PURE__*/ function(SourceType) {
     /**
    * The module was instantiated because it was included in an evaluated chunk's
    * runtime.
@@ -398,16 +457,21 @@ let SourceType;
     /**
    * The module was instantiated because a parent module imported it.
    */ SourceType[SourceType["Parent"] = 1] = "Parent";
-})(SourceType || (SourceType = {}));
+    return SourceType;
+}(SourceType || {});
+process.env.TURBOPACK = '1';
 function stringifySourceInfo(source) {
     switch(source.type){
         case 0:
             return `runtime for chunk ${source.chunkPath}`;
         case 1:
             return `parent module ${source.parentId}`;
+        default:
+            invariant(source, (source)=>`Unknown source type: ${source?.type}`);
     }
 }
-const url = require("url");
+const url = require('url');
+const fs = require('fs/promises');
 const moduleFactories = Object.create(null);
 const moduleCache = Object.create(null);
 /**
@@ -416,25 +480,29 @@ const moduleCache = Object.create(null);
     return function resolvePathFromModule(moduleId) {
         const exported = resolver(moduleId);
         const exportedPath = exported?.default ?? exported;
-        if (typeof exportedPath !== "string") {
+        if (typeof exportedPath !== 'string') {
             return exported;
         }
         const strippedAssetPrefix = exportedPath.slice(ASSET_PREFIX.length);
-        const resolved = path.resolve(ABSOLUTE_ROOT, OUTPUT_ROOT, strippedAssetPrefix);
-        return url.pathToFileURL(resolved);
+        const resolved = path.resolve(RUNTIME_ROOT, strippedAssetPrefix);
+        return url.pathToFileURL(resolved).href;
     };
 }
 function loadChunk(chunkData, source) {
-    if (typeof chunkData === "string") {
+    if (typeof chunkData === 'string') {
         return loadChunkPath(chunkData, source);
     } else {
         return loadChunkPath(chunkData.path, source);
     }
 }
+const loadedChunks = new Set();
 function loadChunkPath(chunkPath, source) {
-    if (!chunkPath.endsWith(".js")) {
+    if (!isJs(chunkPath)) {
         // We only support loading JS chunks in Node.js.
         // This branch can be hit when trying to load a CSS chunk.
+        return;
+    }
+    if (loadedChunks.has(chunkPath)) {
         return;
     }
     try {
@@ -442,9 +510,18 @@ function loadChunkPath(chunkPath, source) {
         const chunkModules = require(resolved);
         for (const [moduleId, moduleFactory] of Object.entries(chunkModules)){
             if (!moduleFactories[moduleId]) {
-                moduleFactories[moduleId] = moduleFactory;
+                if (Array.isArray(moduleFactory)) {
+                    let [moduleFactoryFn, otherIds] = moduleFactory;
+                    moduleFactories[moduleId] = moduleFactoryFn;
+                    for (const otherModuleId of otherIds){
+                        moduleFactories[otherModuleId] = moduleFactoryFn;
+                    }
+                } else {
+                    moduleFactories[moduleId] = moduleFactory;
+                }
             }
         }
+        loadedChunks.add(chunkPath);
     } catch (e) {
         let errorMessage = `Failed to load chunk ${chunkPath}`;
         if (source) {
@@ -456,27 +533,73 @@ function loadChunkPath(chunkPath, source) {
     }
 }
 async function loadChunkAsync(source, chunkData) {
-    return new Promise((resolve, reject)=>{
-        try {
-            loadChunk(chunkData, source);
-        } catch (err) {
-            reject(err);
-            return;
+    const chunkPath = typeof chunkData === 'string' ? chunkData : chunkData.path;
+    if (!isJs(chunkPath)) {
+        // We only support loading JS chunks in Node.js.
+        // This branch can be hit when trying to load a CSS chunk.
+        return;
+    }
+    if (loadedChunks.has(chunkPath)) {
+        return;
+    }
+    const resolved = path.resolve(RUNTIME_ROOT, chunkPath);
+    try {
+        const contents = await fs.readFile(resolved, 'utf-8');
+        const localRequire = (id)=>{
+            let resolvedId = require.resolve(id, {
+                paths: [
+                    path.dirname(resolved)
+                ]
+            });
+            return require(resolvedId);
+        };
+        const module1 = {
+            exports: {}
+        };
+        (0, eval)('(function(module, exports, require, __dirname, __filename) {' + contents + '\n})' + '\n//# sourceURL=' + url.pathToFileURL(resolved))(module1, module1.exports, localRequire, path.dirname(resolved), resolved);
+        const chunkModules = module1.exports;
+        for (const [moduleId, moduleFactory] of Object.entries(chunkModules)){
+            if (!moduleFactories[moduleId]) {
+                if (Array.isArray(moduleFactory)) {
+                    let [moduleFactoryFn, otherIds] = moduleFactory;
+                    moduleFactories[moduleId] = moduleFactoryFn;
+                    for (const otherModuleId of otherIds){
+                        moduleFactories[otherModuleId] = moduleFactoryFn;
+                    }
+                } else {
+                    moduleFactories[moduleId] = moduleFactory;
+                }
+            }
         }
-        resolve();
-    });
+        loadedChunks.add(chunkPath);
+    } catch (e) {
+        let errorMessage = `Failed to load chunk ${chunkPath}`;
+        if (source) {
+            errorMessage += ` from ${stringifySourceInfo(source)}`;
+        }
+        throw new Error(errorMessage, {
+            cause: e
+        });
+    }
 }
-function loadWebAssembly(chunkPath, imports) {
+async function loadChunkAsyncByUrl(source, chunkUrl) {
+    const path1 = url.fileURLToPath(new URL(chunkUrl, RUNTIME_ROOT));
+    return loadChunkAsync(source, path1);
+}
+function loadWebAssembly(chunkPath, _edgeModule, imports) {
     const resolved = path.resolve(RUNTIME_ROOT, chunkPath);
     return instantiateWebAssemblyFromPath(resolved, imports);
 }
-function loadWebAssemblyModule(chunkPath) {
+function loadWebAssemblyModule(chunkPath, _edgeModule) {
     const resolved = path.resolve(RUNTIME_ROOT, chunkPath);
     return compileWebAssemblyFromPath(resolved);
 }
+function getWorkerBlobURL(_chunks) {
+    throw new Error('Worker blobs are not implemented yet for Node.js');
+}
 function instantiateModule(id, source) {
     const moduleFactory = moduleFactories[id];
-    if (typeof moduleFactory !== "function") {
+    if (typeof moduleFactory !== 'function') {
         // This can happen if modules incorrectly handle HMR disposes/updates,
         // e.g. when they keep a `setTimeout` around which still executes old code
         // and contains e.g. a `require("something")` call.
@@ -488,29 +611,16 @@ function instantiateModule(id, source) {
             case 1:
                 instantiationReason = `because it was required from module ${source.parentId}`;
                 break;
+            default:
+                invariant(source, (source)=>`Unknown source type: ${source?.type}`);
         }
         throw new Error(`Module ${id} was instantiated ${instantiationReason}, but the module factory is not available. It might have been deleted in an HMR update.`);
-    }
-    let parents;
-    switch(source.type){
-        case 0:
-            parents = [];
-            break;
-        case 1:
-            // No need to add this module as a child of the parent module here, this
-            // has already been taken care of in `getOrInstantiateModuleFromParent`.
-            parents = [
-                source.parentId
-            ];
-            break;
     }
     const module1 = {
         exports: {},
         error: undefined,
         loaded: false,
         id,
-        parents,
-        children: [],
         namespaceObject: undefined
     };
     moduleCache[id] = module1;
@@ -526,10 +636,10 @@ function instantiateModule(id, source) {
             y: externalImport,
             f: moduleContext,
             i: esmImport.bind(null, module1),
-            s: esmExport.bind(null, module1, module1.exports),
-            j: dynamicExport.bind(null, module1, module1.exports),
-            v: exportValue.bind(null, module1),
-            n: exportNamespace.bind(null, module1),
+            s: esmExport.bind(null, module1, module1.exports, moduleCache),
+            j: dynamicExport.bind(null, module1, module1.exports, moduleCache),
+            v: exportValue.bind(null, module1, moduleCache),
+            n: exportNamespace.bind(null, module1, moduleCache),
             m: module1,
             c: moduleCache,
             M: moduleFactories,
@@ -537,13 +647,17 @@ function instantiateModule(id, source) {
                 type: 1,
                 parentId: id
             }),
+            L: loadChunkAsyncByUrl.bind(null, {
+                type: 1,
+                parentId: id
+            }),
             w: loadWebAssembly,
             u: loadWebAssemblyModule,
-            g: globalThis,
             P: resolveAbsolutePath,
             U: relativeURL,
             R: createResolvePathFromModule(r),
-            __dirname: module1.id.replace(/(^|\/)[\/]+$/, "")
+            b: getWorkerBlobURL,
+            z: requireStub
         });
     } catch (error) {
         module1.error = error;
@@ -558,15 +672,10 @@ function instantiateModule(id, source) {
 }
 /**
  * Retrieves a module from the cache, or instantiate it if it is not cached.
- */ function getOrInstantiateModuleFromParent(id, sourceModule) {
+ */ // @ts-ignore
+function getOrInstantiateModuleFromParent(id, sourceModule) {
     const module1 = moduleCache[id];
-    if (sourceModule.children.indexOf(id) === -1) {
-        sourceModule.children.push(id);
-    }
     if (module1) {
-        if (module1.parents.indexOf(sourceModule.id) === -1) {
-            module1.parents.push(sourceModule.id);
-        }
         return module1;
     }
     return instantiateModule(id, {
@@ -584,7 +693,8 @@ function instantiateModule(id, source) {
 }
 /**
  * Retrieves a module from the cache, or instantiate it as a runtime module if it is not cached.
- */ function getOrInstantiateRuntimeModule(moduleId, chunkPath) {
+ */ // @ts-ignore TypeScript doesn't separate this module space from the browser runtime
+function getOrInstantiateRuntimeModule(moduleId, chunkPath) {
     const module1 = moduleCache[moduleId];
     if (module1) {
         if (module1.error) {
@@ -594,7 +704,16 @@ function instantiateModule(id, source) {
     }
     return instantiateRuntimeModule(moduleId, chunkPath);
 }
+const regexJsUrl = /\.js(?:\?[^#]*)?(?:#.*)?$/;
+/**
+ * Checks if a given path/URL ends with .js, optionally followed by ?query or #fragment.
+ */ function isJs(chunkUrlOrPath) {
+    return regexJsUrl.test(chunkUrlOrPath);
+}
 module.exports = {
     getOrInstantiateRuntimeModule,
     loadChunk
 };
+
+
+//# sourceMappingURL=%5Bturbopack%5D_runtime.js.map

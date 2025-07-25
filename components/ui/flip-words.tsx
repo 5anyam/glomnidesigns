@@ -1,6 +1,6 @@
 "use client";
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, LayoutGroup } from "framer-motion";
+import React, { useCallback, useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export const FlipWords = ({
@@ -30,11 +30,6 @@ export const FlipWords = ({
   }, [isAnimating, duration, startAnimation]);
 
   return (
-    <AnimatePresence
-      onExitComplete={() => {
-        setIsAnimating(false);
-      }}
-    >
       <motion.div
         initial={{
           opacity: 0,
@@ -93,6 +88,5 @@ export const FlipWords = ({
           </motion.span>
         ))}
       </motion.div>
-    </AnimatePresence>
   );
 };
