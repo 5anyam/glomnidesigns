@@ -40,10 +40,10 @@ const MobileBottomNav = () => {
   ];
 
   return (
-    <div className="block md:hidden w-full max-w-md mx-auto">
+    <>
       {/* Bottom Navigation */}
-      <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-md">
-        <div className="bg-white/95 backdrop-blur-md border-t border-gray-100 shadow-2xl mx-4 mb-4 rounded-2xl px-3 py-4">
+      <div className="fixed bottom-0 z-40 w-full">
+        <div className="bg-white/95 backdrop-blur-md border-t border-gray-100 shadow-2xl rounded-2xl px-2 py-2">
           <div className="flex items-center justify-between">
             {navItems.map((item) => {
               const IconComponent = item.icon;
@@ -64,7 +64,7 @@ const MobileBottomNav = () => {
                   {item.isSpecial ? (
                     // Special circular button for "LET'S BEGIN"
                     <div className="relative mb-2">
-                      <div className="w-12 h-12 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg transform -translate-y-1 hover:shadow-xl transition-all duration-300">
+                      <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg transform -translate-y-1 hover:shadow-xl transition-all duration-300">
                         <IconComponent 
                           className={`w-5 h-5 ${item.color} ${isActive ? 'animate-pulse' : ''}`} 
                         />
@@ -95,7 +95,7 @@ const MobileBottomNav = () => {
                     </div>
                   )}
                   
-                  <span className={`text-[10px] font-medium transition-colors duration-300 text-center leading-tight max-w-16 ${
+                  <span className={`text-[7px] font-medium transition-colors duration-300 text-center leading-tight max-w-16 ${
                     item.isSpecial 
                       ? isActive ? 'text-indigo-600' : 'text-slate-500'
                       : isActive 
@@ -110,7 +110,7 @@ const MobileBottomNav = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

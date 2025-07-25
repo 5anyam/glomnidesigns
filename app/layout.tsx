@@ -8,7 +8,6 @@ import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
 import Whatsapp from "@/components/Whatsapp";
-import Callbutton from "@/components/call-button";
 import MobileBottomNav from "@/components/bottom-nav";
 
 
@@ -52,7 +51,6 @@ export default function RootLayout({
             <Footer/>
             <MobileBottomNav/>
             <Whatsapp/>
-            <Callbutton/>
           </div>
         </Providers>
       </body>

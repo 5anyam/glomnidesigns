@@ -1377,12 +1377,11 @@ const MobileBottomNav = ()=>{
             color: 'text-slate-600'
         }
     ];
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "block md:hidden w-full max-w-md mx-auto",
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-md",
+            className: "fixed bottom-0 z-40 w-full",
             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "bg-white/95 backdrop-blur-md border-t border-gray-100 shadow-2xl mx-4 mb-4 rounded-2xl px-3 py-4",
+                className: "bg-white/95 backdrop-blur-md border-t border-gray-100 shadow-2xl rounded-2xl px-2 py-2",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "flex items-center justify-between",
                     children: navItems.map((item)=>{
@@ -1397,7 +1396,7 @@ const MobileBottomNav = ()=>{
                                     className: "relative mb-2",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "w-12 h-12 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg transform -translate-y-1 hover:shadow-xl transition-all duration-300",
+                                            className: "w-8 h-8 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg transform -translate-y-1 hover:shadow-xl transition-all duration-300",
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(IconComponent, {
                                                 className: "w-5 h-5 ".concat(item.color, " ").concat(isActive ? 'animate-pulse' : '')
                                             }, void 0, false, {
@@ -1454,7 +1453,7 @@ const MobileBottomNav = ()=>{
                                     columnNumber: 21
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                    className: "text-[10px] font-medium transition-colors duration-300 text-center leading-tight max-w-16 ".concat(item.isSpecial ? isActive ? 'text-indigo-600' : 'text-slate-500' : isActive ? 'text-indigo-600' : 'text-slate-500'),
+                                    className: "text-[7px] font-medium transition-colors duration-300 text-center leading-tight max-w-16 ".concat(item.isSpecial ? isActive ? 'text-indigo-600' : 'text-slate-500' : isActive ? 'text-indigo-600' : 'text-slate-500'),
                                     children: item.label
                                 }, void 0, false, {
                                     fileName: "[project]/components/bottom-nav.tsx",
@@ -1483,11 +1482,7 @@ const MobileBottomNav = ()=>{
             lineNumber: 45,
             columnNumber: 7
         }, ("TURBOPACK compile-time value", void 0))
-    }, void 0, false, {
-        fileName: "[project]/components/bottom-nav.tsx",
-        lineNumber: 43,
-        columnNumber: 5
-    }, ("TURBOPACK compile-time value", void 0));
+    }, void 0, false);
 };
 _s(MobileBottomNav, "/uz5jQszu+N2c8KPqhTb9lQ295M=");
 _c = MobileBottomNav;

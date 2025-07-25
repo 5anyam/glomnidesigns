@@ -4288,6 +4288,14 @@ img, video {
   font-size: 10px;
 }
 
+.text-\[5px\] {
+  font-size: 5px;
+}
+
+.text-\[7px\] {
+  font-size: 7px;
+}
+
 .font-bold {
   font-weight: 700;
 }
