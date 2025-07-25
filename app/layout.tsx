@@ -9,6 +9,7 @@ import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
 import Whatsapp from "@/components/Whatsapp";
 import Callbutton from "@/components/call-button";
+import MobileBottomNav from "@/components/bottom-nav";
 
 
 export const metadata: Metadata = {
@@ -49,6 +50,7 @@ export default function RootLayout({
               {children}
             </main>
             <Footer/>
+            <MobileBottomNav/>
             <Whatsapp/>
             <Callbutton/>
           </div>
