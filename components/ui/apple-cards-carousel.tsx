@@ -195,8 +195,8 @@ export const Card = ({
 
   return (
     <>
-     <AnimatePresence>
-  {open ? (
+     {open ? (
+  <AnimatePresence>
     <div className="fixed inset-0 h-screen z-50 overflow-auto">
       <motion.div
         initial={{ opacity: 0 }}
@@ -233,8 +233,8 @@ export const Card = ({
         <div className="py-10">{card.content}</div>
       </motion.div>
     </div>
-  ) : null}
-</AnimatePresence>
+  </AnimatePresence>
+) : null}
 
       <motion.button
         layoutId={layout ? `card-${card.title}` : undefined}
