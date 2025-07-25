@@ -21,7 +21,6 @@ export default function Home() {
     Discover thoughtfully crafted interiors that blend style and functionality—perfect for every space you call yours.
   </p>
 </div>
-
     <BentoGridDemo/>
     <AppleCardsCarouselDemo/>
     <TimelineDemo/>

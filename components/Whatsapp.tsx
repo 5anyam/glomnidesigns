@@ -4,7 +4,7 @@ import Link from 'next/link';
 function Whatsapp() {
     return (
         
-		<Link passHref href="https://api.whatsapp.com/send?phone=919999774046"><div className="z-40" style={{position: 'fixed', bottom: 30, right: 36, cursor: 'pointer'}}>
+		<Link passHref href="https://api.whatsapp.com/send?phone=919899989803"><div className="z-40" style={{position: 'fixed', bottom: 30, right: 36, cursor: 'pointer'}}>
         	<IconBrandWhatsapp target="_blank" style={{background: '#25d366',
 			 color: 'white', zIndex: 9, height: 50, width: 50,
 			 borderRadius: 9,
