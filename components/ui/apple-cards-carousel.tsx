@@ -12,7 +12,9 @@ import {
   IconX
 } from "@tabler/icons-react";
 import { cn } from "@/lib/utils";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
+import * as FramerMotion from "framer-motion";
+const { AnimatePresence } = FramerMotion;
 
 import Image, { ImageProps } from "next/image";
 
