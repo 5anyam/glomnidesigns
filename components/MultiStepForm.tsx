@@ -106,7 +106,6 @@ export default function MultiStepEstimateForm() {
           </h1>
           <p className="text-gray-600 text-sm sm:text-base">Get your personalized estimate in just a few steps</p>
         </div>
-
         {/* Main Form Container */}
         <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-2xl border border-white/20 p-6 sm:p-8 md:p-10">
           {/* Premium Stepper */}

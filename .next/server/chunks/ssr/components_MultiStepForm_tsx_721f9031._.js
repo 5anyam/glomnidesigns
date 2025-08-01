@@ -125,25 +125,25 @@ function MultiStepEstimateForm() {
                                                     children: idx + 1
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                    lineNumber: 117,
+                                                    lineNumber: 116,
                                                     columnNumber: 19
                                                 }, this),
                                                 idx < steps.length - 1 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                     className: `absolute top-4 sm:top-5 left-8 sm:left-10 w-full h-0.5 transition-all duration-300 ${idx < currentStep ? "bg-gradient-to-r from-indigo-500 to-purple-500" : "bg-gray-200"}`
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                    lineNumber: 125,
+                                                    lineNumber: 124,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, idx, true, {
                                             fileName: "[project]/components/MultiStepForm.tsx",
-                                            lineNumber: 116,
+                                            lineNumber: 115,
                                             columnNumber: 17
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                    lineNumber: 114,
+                                    lineNumber: 113,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -153,18 +153,18 @@ function MultiStepEstimateForm() {
                                             children: label
                                         }, label, false, {
                                             fileName: "[project]/components/MultiStepForm.tsx",
-                                            lineNumber: 134,
+                                            lineNumber: 133,
                                             columnNumber: 17
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                    lineNumber: 132,
+                                    lineNumber: 131,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/MultiStepForm.tsx",
-                            lineNumber: 113,
+                            lineNumber: 112,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -181,7 +181,7 @@ function MultiStepEstimateForm() {
                                                     children: "Which rooms need a makeover?"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                    lineNumber: 148,
+                                                    lineNumber: 147,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -189,13 +189,13 @@ function MultiStepEstimateForm() {
                                                     children: "Select the number of rooms for each type"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                    lineNumber: 151,
+                                                    lineNumber: 150,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/MultiStepForm.tsx",
-                                            lineNumber: 147,
+                                            lineNumber: 146,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -219,7 +219,7 @@ function MultiStepEstimateForm() {
                                                                         children: roomIcons[room]
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/MultiStepForm.tsx",
-                                                                        lineNumber: 159,
+                                                                        lineNumber: 158,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -227,13 +227,13 @@ function MultiStepEstimateForm() {
                                                                         children: room.replace(/([A-Z])/g, " $1")
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/MultiStepForm.tsx",
-                                                                        lineNumber: 160,
+                                                                        lineNumber: 159,
                                                                         columnNumber: 27
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/components/MultiStepForm.tsx",
-                                                                lineNumber: 158,
+                                                                lineNumber: 157,
                                                                 columnNumber: 25
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -246,7 +246,7 @@ function MultiStepEstimateForm() {
                                                                         children: "−"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/MultiStepForm.tsx",
-                                                                        lineNumber: 165,
+                                                                        lineNumber: 164,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -254,7 +254,7 @@ function MultiStepEstimateForm() {
                                                                         children: form[room]
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/MultiStepForm.tsx",
-                                                                        lineNumber: 172,
+                                                                        lineNumber: 171,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -264,35 +264,35 @@ function MultiStepEstimateForm() {
                                                                         children: "+"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/MultiStepForm.tsx",
-                                                                        lineNumber: 175,
+                                                                        lineNumber: 174,
                                                                         columnNumber: 27
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/components/MultiStepForm.tsx",
-                                                                lineNumber: 164,
+                                                                lineNumber: 163,
                                                                 columnNumber: 25
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/MultiStepForm.tsx",
-                                                        lineNumber: 157,
+                                                        lineNumber: 156,
                                                         columnNumber: 23
                                                     }, this)
                                                 }, room, false, {
                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                    lineNumber: 156,
+                                                    lineNumber: 155,
                                                     columnNumber: 21
                                                 }, this))
                                         }, void 0, false, {
                                             fileName: "[project]/components/MultiStepForm.tsx",
-                                            lineNumber: 154,
+                                            lineNumber: 153,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                    lineNumber: 146,
+                                    lineNumber: 145,
                                     columnNumber: 15
                                 }, this),
                                 currentStep === 1 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -306,7 +306,7 @@ function MultiStepEstimateForm() {
                                                     children: "Choose Your Design Package"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                    lineNumber: 193,
+                                                    lineNumber: 192,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -314,13 +314,13 @@ function MultiStepEstimateForm() {
                                                     children: "Select the level of luxury you desire"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                    lineNumber: 196,
+                                                    lineNumber: 195,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/MultiStepForm.tsx",
-                                            lineNumber: 192,
+                                            lineNumber: 191,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -341,7 +341,7 @@ function MultiStepEstimateForm() {
                                                             className: "sr-only"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/MultiStepForm.tsx",
-                                                            lineNumber: 202,
+                                                            lineNumber: 201,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -359,7 +359,7 @@ function MultiStepEstimateForm() {
                                                                                 ]
                                                                             }, void 0, true, {
                                                                                 fileName: "[project]/components/MultiStepForm.tsx",
-                                                                                lineNumber: 217,
+                                                                                lineNumber: 216,
                                                                                 columnNumber: 29
                                                                             }, this),
                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -371,13 +371,13 @@ function MultiStepEstimateForm() {
                                                                                 ]
                                                                             }, void 0, true, {
                                                                                 fileName: "[project]/components/MultiStepForm.tsx",
-                                                                                lineNumber: 218,
+                                                                                lineNumber: 217,
                                                                                 columnNumber: 29
                                                                             }, this)
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/components/MultiStepForm.tsx",
-                                                                        lineNumber: 216,
+                                                                        lineNumber: 215,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -386,40 +386,40 @@ function MultiStepEstimateForm() {
                                                                             className: "w-2 h-2 bg-white rounded-full mx-auto mt-1"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/components/MultiStepForm.tsx",
-                                                                            lineNumber: 230,
+                                                                            lineNumber: 229,
                                                                             columnNumber: 31
                                                                         }, this)
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/MultiStepForm.tsx",
-                                                                        lineNumber: 224,
+                                                                        lineNumber: 223,
                                                                         columnNumber: 27
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/components/MultiStepForm.tsx",
-                                                                lineNumber: 215,
+                                                                lineNumber: 214,
                                                                 columnNumber: 25
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/MultiStepForm.tsx",
-                                                            lineNumber: 210,
+                                                            lineNumber: 209,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, pkg, true, {
                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                    lineNumber: 201,
+                                                    lineNumber: 200,
                                                     columnNumber: 21
                                                 }, this))
                                         }, void 0, false, {
                                             fileName: "[project]/components/MultiStepForm.tsx",
-                                            lineNumber: 199,
+                                            lineNumber: 198,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                    lineNumber: 191,
+                                    lineNumber: 190,
                                     columnNumber: 15
                                 }, this),
                                 currentStep === 2 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -433,7 +433,7 @@ function MultiStepEstimateForm() {
                                                     children: "Additional Services"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                    lineNumber: 244,
+                                                    lineNumber: 243,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -441,13 +441,13 @@ function MultiStepEstimateForm() {
                                                     children: "Enhance your experience with premium add-ons"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                    lineNumber: 247,
+                                                    lineNumber: 246,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/MultiStepForm.tsx",
-                                            lineNumber: 243,
+                                            lineNumber: 242,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -465,7 +465,7 @@ function MultiStepEstimateForm() {
                                                             className: "w-6 h-6 text-indigo-600 rounded mt-1"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/MultiStepForm.tsx",
-                                                            lineNumber: 257,
+                                                            lineNumber: 256,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -476,7 +476,7 @@ function MultiStepEstimateForm() {
                                                                     children: "🪑 Furniture Selection Service"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                                    lineNumber: 265,
+                                                                    lineNumber: 264,
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -484,7 +484,7 @@ function MultiStepEstimateForm() {
                                                                     children: "Our experts will curate and source premium furniture pieces that perfectly complement your design"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                                    lineNumber: 266,
+                                                                    lineNumber: 265,
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -492,35 +492,35 @@ function MultiStepEstimateForm() {
                                                                     children: "+ ₹1,00,000"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                                    lineNumber: 269,
+                                                                    lineNumber: 268,
                                                                     columnNumber: 25
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/MultiStepForm.tsx",
-                                                            lineNumber: 264,
+                                                            lineNumber: 263,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                    lineNumber: 256,
+                                                    lineNumber: 255,
                                                     columnNumber: 21
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/MultiStepForm.tsx",
-                                                lineNumber: 251,
+                                                lineNumber: 250,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/MultiStepForm.tsx",
-                                            lineNumber: 250,
+                                            lineNumber: 249,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                    lineNumber: 242,
+                                    lineNumber: 241,
                                     columnNumber: 15
                                 }, this),
                                 currentStep === 3 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -534,7 +534,7 @@ function MultiStepEstimateForm() {
                                                     children: "Your Custom Estimate"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                    lineNumber: 280,
+                                                    lineNumber: 279,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -542,13 +542,13 @@ function MultiStepEstimateForm() {
                                                     children: "Here's your personalized interior design quote"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                    lineNumber: 283,
+                                                    lineNumber: 282,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/MultiStepForm.tsx",
-                                            lineNumber: 279,
+                                            lineNumber: 278,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -565,7 +565,7 @@ function MultiStepEstimateForm() {
                                                                     children: "Selected Rooms:"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                                    lineNumber: 289,
+                                                                    lineNumber: 288,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -585,18 +585,18 @@ function MultiStepEstimateForm() {
                                                                             ]
                                                                         }, room, true, {
                                                                             fileName: "[project]/components/MultiStepForm.tsx",
-                                                                            lineNumber: 293,
+                                                                            lineNumber: 292,
                                                                             columnNumber: 29
                                                                         }, this))
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                                    lineNumber: 290,
+                                                                    lineNumber: 289,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/MultiStepForm.tsx",
-                                                            lineNumber: 288,
+                                                            lineNumber: 287,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -607,7 +607,7 @@ function MultiStepEstimateForm() {
                                                                     children: "Design Package:"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                                    lineNumber: 302,
+                                                                    lineNumber: 301,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -615,13 +615,13 @@ function MultiStepEstimateForm() {
                                                                     children: form.packageType || "Not selected"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                                    lineNumber: 303,
+                                                                    lineNumber: 302,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/MultiStepForm.tsx",
-                                                            lineNumber: 301,
+                                                            lineNumber: 300,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -632,7 +632,7 @@ function MultiStepEstimateForm() {
                                                                     children: "Furniture Service:"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                                    lineNumber: 308,
+                                                                    lineNumber: 307,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -640,19 +640,19 @@ function MultiStepEstimateForm() {
                                                                     children: form.includeFurniture ? "Yes" : "No"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                                    lineNumber: 309,
+                                                                    lineNumber: 308,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/MultiStepForm.tsx",
-                                                            lineNumber: 307,
+                                                            lineNumber: 306,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                    lineNumber: 287,
+                                                    lineNumber: 286,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -665,7 +665,7 @@ function MultiStepEstimateForm() {
                                                                 children: "Total Estimate:"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/MultiStepForm.tsx",
-                                                                lineNumber: 315,
+                                                                lineNumber: 314,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -676,24 +676,24 @@ function MultiStepEstimateForm() {
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/components/MultiStepForm.tsx",
-                                                                lineNumber: 316,
+                                                                lineNumber: 315,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/MultiStepForm.tsx",
-                                                        lineNumber: 314,
+                                                        lineNumber: 313,
                                                         columnNumber: 21
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                    lineNumber: 313,
+                                                    lineNumber: 312,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/MultiStepForm.tsx",
-                                            lineNumber: 286,
+                                            lineNumber: 285,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -701,19 +701,19 @@ function MultiStepEstimateForm() {
                                             children: "🎨 Request Detailed Proposal"
                                         }, void 0, false, {
                                             fileName: "[project]/components/MultiStepForm.tsx",
-                                            lineNumber: 323,
+                                            lineNumber: 322,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                    lineNumber: 278,
+                                    lineNumber: 277,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/MultiStepForm.tsx",
-                            lineNumber: 144,
+                            lineNumber: 143,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -726,7 +726,7 @@ function MultiStepEstimateForm() {
                                     children: "← Previous"
                                 }, void 0, false, {
                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                    lineNumber: 332,
+                                    lineNumber: 331,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -736,19 +736,19 @@ function MultiStepEstimateForm() {
                                     children: "Next →"
                                 }, void 0, false, {
                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                    lineNumber: 339,
+                                    lineNumber: 338,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/MultiStepForm.tsx",
-                            lineNumber: 331,
+                            lineNumber: 330,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/MultiStepForm.tsx",
-                    lineNumber: 111,
+                    lineNumber: 110,
                     columnNumber: 9
                 }, this)
             ]
