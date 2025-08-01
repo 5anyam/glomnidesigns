@@ -90,7 +90,7 @@ export default async function DesignDetailPage({
     );
   }
 
-  return <></>;
+  return <ProductDetailPage />;
 }
 
 // Generate metadata for SEO
