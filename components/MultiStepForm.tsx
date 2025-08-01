@@ -97,17 +97,18 @@ export default function MultiStepEstimateForm() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 py-6 sm:py-12 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-gray-900 dark:via-slate-800 dark:to-gray-900 py-6 sm:py-12 px-4">
       <div className="max-w-2xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-2">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent mb-2">
             Interior Design Cost Calculator
           </h1>
-          <p className="text-gray-600 text-sm sm:text-base">Get your personalized estimate in just a few steps</p>
+          <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base">Get your personalized estimate in just a few steps</p>
         </div>
+
         {/* Main Form Container */}
-        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-2xl border border-white/20 p-6 sm:p-8 md:p-10">
+        <div className="bg-white/80 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl shadow-2xl border border-white/20 dark:border-gray-700/50 p-6 sm:p-8 md:p-10">
           {/* Premium Stepper */}
           <div className="mb-8 sm:mb-12">
             <div className="flex justify-between items-center mb-4">
@@ -115,14 +116,14 @@ export default function MultiStepEstimateForm() {
                 <div key={idx} className="flex-1 relative">
                   <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 ${
                     idx <= currentStep 
-                      ? "bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-lg scale-110" 
-                      : "bg-gray-200 text-gray-500"
+                      ? "bg-gradient-to-r from-indigo-500 to-purple-500 dark:from-blue-500 dark:to-purple-500 text-white shadow-lg dark:shadow-blue-500/25 scale-110" 
+                      : "bg-gray-200 dark:bg-gray-600 text-gray-500 dark:text-gray-400"
                   }`}>
                     {idx + 1}
                   </div>
                   {idx < steps.length - 1 && (
                     <div className={`absolute top-4 sm:top-5 left-8 sm:left-10 w-full h-0.5 transition-all duration-300 ${
-                      idx < currentStep ? "bg-gradient-to-r from-indigo-500 to-purple-500" : "bg-gray-200"
+                      idx < currentStep ? "bg-gradient-to-r from-indigo-500 to-purple-500 dark:from-blue-500 dark:to-purple-500" : "bg-gray-200 dark:bg-gray-600"
                     }`} />
                   )}
                 </div>
@@ -131,7 +132,7 @@ export default function MultiStepEstimateForm() {
             <div className="grid grid-cols-4 gap-1 sm:gap-2 text-xs sm:text-sm font-medium text-center">
               {steps.map((label, idx) => (
                 <div key={label} className={`transition-colors duration-300 ${
-                  idx <= currentStep ? "text-indigo-600" : "text-gray-400"
+                  idx <= currentStep ? "text-indigo-600 dark:text-blue-400" : "text-gray-400 dark:text-gray-500"
                 }`}>
                   {label}
                 </div>
@@ -144,36 +145,36 @@ export default function MultiStepEstimateForm() {
             {currentStep === 0 && (
               <div className="space-y-6">
                 <div className="text-center mb-8">
-                  <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2">
                     Which rooms need a makeover?
                   </h2>
-                  <p className="text-gray-600 text-sm sm:text-base">Select the number of rooms for each type</p>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base">Select the number of rooms for each type</p>
                 </div>
                 
                 <div className="grid gap-3">
                   {(["livingRoom", "kitchen", "bedroom", "bathroom", "dining"] as Room[]).map((room) => (
-                    <div key={room} className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg p-3 sm:p-4 hover:shadow-md transition-all duration-300">
+                    <div key={room} className="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-700/50 dark:to-gray-600/50 rounded-lg p-3 sm:p-4 hover:shadow-md dark:hover:shadow-blue-500/10 transition-all duration-300 border border-transparent dark:border-gray-600/30">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-2 sm:space-x-3">
                           <span className="text-lg sm:text-xl">{roomIcons[room]}</span>
-                          <span className="text-sm sm:text-lg font-semibold text-gray-800 capitalize">
+                          <span className="text-sm sm:text-lg font-semibold text-gray-800 dark:text-gray-100 capitalize">
                             {room.replace(/([A-Z])/g, " $1")}
                           </span>
                         </div>
                         <div className="flex items-center space-x-2">
                           <button
                             onClick={() => handleDecrement(room)}
-                            className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gradient-to-r from-red-400 to-red-500 text-white font-bold text-sm sm:text-lg hover:shadow-md active:scale-95 transition-all duration-200"
+                            className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gradient-to-r from-red-400 to-red-500 dark:from-red-500 dark:to-red-600 text-white font-bold text-sm sm:text-lg hover:shadow-md dark:hover:shadow-red-500/25 active:scale-95 transition-all duration-200"
                             aria-label={`Decrease ${room}`}
                           >
                             −
                           </button>
-                          <span className="w-8 sm:w-10 text-center text-sm sm:text-lg font-bold text-indigo-600 bg-indigo-50 rounded px-1 py-1">
+                          <span className="w-8 sm:w-10 text-center text-sm sm:text-lg font-bold text-indigo-600 dark:text-blue-400 bg-indigo-50 dark:bg-blue-900/30 rounded px-1 py-1 border border-transparent dark:border-blue-500/30">
                             {form[room]}
                           </span>
                           <button
                             onClick={() => handleIncrement(room)}
-                            className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gradient-to-r from-green-400 to-green-500 text-white font-bold text-sm sm:text-lg hover:shadow-md active:scale-95 transition-all duration-200"
+                            className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gradient-to-r from-green-400 to-green-500 dark:from-green-500 dark:to-green-600 text-white font-bold text-sm sm:text-lg hover:shadow-md dark:hover:shadow-green-500/25 active:scale-95 transition-all duration-200"
                             aria-label={`Increase ${room}`}
                           >
                             +
@@ -189,10 +190,10 @@ export default function MultiStepEstimateForm() {
             {currentStep === 1 && (
               <div className="space-y-6">
                 <div className="text-center mb-8">
-                  <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2">
                     Choose Your Design Package
                   </h2>
-                  <p className="text-gray-600 text-sm sm:text-base">Select the level of luxury you desire</p>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base">Select the level of luxury you desire</p>
                 </div>
 
                 <div className="grid gap-4">
@@ -208,13 +209,13 @@ export default function MultiStepEstimateForm() {
                       />
                       <div className={`p-6 rounded-xl border-2 transition-all duration-300 ${
                         form.packageType === pkg
-                          ? "border-indigo-500 bg-gradient-to-r from-indigo-50 to-purple-50 shadow-lg"
-                          : "border-gray-200 bg-white hover:border-gray-300"
+                          ? "border-indigo-500 dark:border-blue-500 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30 shadow-lg dark:shadow-blue-500/10"
+                          : "border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700/30 hover:border-gray-300 dark:hover:border-gray-500"
                       }`}>
                         <div className="flex items-center justify-between">
                           <div>
-                            <h3 className="text-lg font-bold text-gray-800 capitalize">{pkg} Package</h3>
-                            <p className="text-sm text-gray-600">
+                            <h3 className="text-lg font-bold text-gray-800 dark:text-gray-100 capitalize">{pkg} Package</h3>
+                            <p className="text-sm text-gray-600 dark:text-gray-300">
                               {pkg === "basic" && "Essential design elements"}
                               {pkg === "premium" && "Enhanced with premium finishes"}
                               {pkg === "luxury" && "Ultra-premium with custom details"}
@@ -222,8 +223,8 @@ export default function MultiStepEstimateForm() {
                           </div>
                           <div className={`w-6 h-6 rounded-full border-2 ${
                             form.packageType === pkg
-                              ? "border-indigo-500 bg-indigo-500"
-                              : "border-gray-300"
+                              ? "border-indigo-500 dark:border-blue-500 bg-indigo-500 dark:bg-blue-500"
+                              : "border-gray-300 dark:border-gray-500"
                           }`}>
                             {form.packageType === pkg && (
                               <div className="w-2 h-2 bg-white rounded-full mx-auto mt-1"></div>
@@ -240,17 +241,17 @@ export default function MultiStepEstimateForm() {
             {currentStep === 2 && (
               <div className="space-y-6">
                 <div className="text-center mb-8">
-                  <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2">
                     Additional Services
                   </h2>
-                  <p className="text-gray-600 text-sm sm:text-base">Enhance your experience with premium add-ons</p>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base">Enhance your experience with premium add-ons</p>
                 </div>
 
                 <label className="cursor-pointer block">
                   <div className={`p-6 rounded-xl border-2 transition-all duration-300 ${
                     form.includeFurniture
-                      ? "border-indigo-500 bg-gradient-to-r from-indigo-50 to-purple-50 shadow-lg"
-                      : "border-gray-200 bg-white hover:border-gray-300"
+                      ? "border-indigo-500 dark:border-blue-500 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30 shadow-lg dark:shadow-blue-500/10"
+                      : "border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700/30 hover:border-gray-300 dark:hover:border-gray-500"
                   }`}>
                     <div className="flex items-start space-x-4">
                       <input
@@ -258,14 +259,14 @@ export default function MultiStepEstimateForm() {
                         name="includeFurniture"
                         checked={!!form.includeFurniture}
                         onChange={handleChange}
-                        className="w-6 h-6 text-indigo-600 rounded mt-1"
+                        className="w-6 h-6 text-indigo-600 dark:text-blue-500 bg-gray-100 dark:bg-gray-700 border-gray-300 dark:border-gray-500 rounded focus:ring-indigo-500 dark:focus:ring-blue-500 mt-1"
                       />
                       <div className="flex-1">
-                        <h3 className="text-lg font-bold text-gray-800">🪑 Furniture Selection Service</h3>
-                        <p className="text-gray-600 text-sm mt-1">
+                        <h3 className="text-lg font-bold text-gray-800 dark:text-gray-100">🪑 Furniture Selection Service</h3>
+                        <p className="text-gray-600 dark:text-gray-300 text-sm mt-1">
                           Our experts will curate and source premium furniture pieces that perfectly complement your design
                         </p>
-                        <div className="text-indigo-600 font-semibold mt-2">+ ₹1,00,000</div>
+                        <div className="text-indigo-600 dark:text-blue-400 font-semibold mt-2">+ ₹1,00,000</div>
                       </div>
                     </div>
                   </div>
@@ -276,17 +277,17 @@ export default function MultiStepEstimateForm() {
             {currentStep === 3 && (
               <div className="space-y-6">
                 <div className="text-center mb-8">
-                  <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2">
                     Your Custom Estimate
                   </h2>
-                  <p className="text-gray-600 text-sm sm:text-base">Here's your personalized interior design quote</p>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base">Here's your personalized interior design quote</p>
                 </div>
 
-                <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-6 sm:p-8 space-y-4">
+                <div className="bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl p-6 sm:p-8 space-y-4 border border-transparent dark:border-blue-500/20">
                   <div className="grid gap-3 text-sm sm:text-base">
                     <div className="flex justify-between">
-                      <span className="font-medium text-gray-700">Selected Rooms:</span>
-                      <span className="text-gray-900">
+                      <span className="font-medium text-gray-700 dark:text-gray-300">Selected Rooms:</span>
+                      <span className="text-gray-900 dark:text-gray-100">
                         {(["livingRoom", "kitchen", "bedroom", "bathroom", "dining"] as Room[]).map(
                           (room, i) => (
                             <span key={room}>
@@ -298,28 +299,28 @@ export default function MultiStepEstimateForm() {
                       </span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="font-medium text-gray-700">Design Package:</span>
-                      <span className="text-gray-900 capitalize">
+                      <span className="font-medium text-gray-700 dark:text-gray-300">Design Package:</span>
+                      <span className="text-gray-900 dark:text-gray-100 capitalize">
                         {form.packageType || "Not selected"}
                       </span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="font-medium text-gray-700">Furniture Service:</span>
-                      <span className="text-gray-900">{form.includeFurniture ? "Yes" : "No"}</span>
+                      <span className="font-medium text-gray-700 dark:text-gray-300">Furniture Service:</span>
+                      <span className="text-gray-900 dark:text-gray-100">{form.includeFurniture ? "Yes" : "No"}</span>
                     </div>
                   </div>
                   
-                  <div className="border-t pt-4">
+                  <div className="border-t border-gray-200 dark:border-gray-600/50 pt-4">
                     <div className="flex justify-between items-center">
-                      <span className="text-xl sm:text-2xl font-bold text-gray-800">Total Estimate:</span>
-                      <span className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+                      <span className="text-xl sm:text-2xl font-bold text-gray-800 dark:text-gray-100">Total Estimate:</span>
+                      <span className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 dark:from-green-400 dark:to-emerald-400 bg-clip-text text-transparent">
                         ₹{calculateEstimate().toLocaleString()}
                       </span>
                     </div>
                   </div>
                 </div>
 
-                <button className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold py-4 px-8 rounded-xl text-lg hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-200">
+                <button className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-blue-600 dark:to-purple-600 text-white font-bold py-4 px-8 rounded-xl text-lg hover:shadow-2xl dark:hover:shadow-blue-500/25 hover:scale-105 active:scale-95 transition-all duration-200">
                   🎨 Request Detailed Proposal
                 </button>
               </div>
@@ -331,14 +332,14 @@ export default function MultiStepEstimateForm() {
             <button
               onClick={() => setCurrentStep((prev) => Math.max(prev - 1, 0))}
               disabled={currentStep === 0}
-              className="bg-gray-100 text-gray-700 font-semibold py-3 px-8 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-200 transition-all duration-200 w-full sm:w-auto"
+              className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-semibold py-3 px-8 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-200 dark:hover:bg-gray-600 transition-all duration-200 w-full sm:w-auto border border-transparent dark:border-gray-600/30"
             >
               ← Previous
             </button>
             <button
               onClick={() => setCurrentStep((prev) => Math.min(prev + 1, steps.length - 1))}
               disabled={currentStep === steps.length - 1}
-              className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold py-3 px-8 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-lg transition-all duration-200 w-full sm:w-auto"
+              className="bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-blue-600 dark:to-purple-600 text-white font-semibold py-3 px-8 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-lg dark:hover:shadow-blue-500/25 transition-all duration-200 w-full sm:w-auto"
             >
               Next →
             </button>

@@ -80,7 +80,7 @@ function MultiStepEstimateForm() {
         return base;
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 py-6 sm:py-12 px-4",
+        className: "min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-gray-900 dark:via-slate-800 dark:to-gray-900 py-6 sm:py-12 px-4",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "max-w-2xl mx-auto",
             children: [
@@ -88,7 +88,7 @@ function MultiStepEstimateForm() {
                     className: "text-center mb-8",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                            className: "text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-2",
+                            className: "text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent mb-2",
                             children: "Interior Design Cost Calculator"
                         }, void 0, false, {
                             fileName: "[project]/components/MultiStepForm.tsx",
@@ -96,7 +96,7 @@ function MultiStepEstimateForm() {
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                            className: "text-gray-600 text-sm sm:text-base",
+                            className: "text-gray-600 dark:text-gray-300 text-sm sm:text-base",
                             children: "Get your personalized estimate in just a few steps"
                         }, void 0, false, {
                             fileName: "[project]/components/MultiStepForm.tsx",
@@ -110,7 +110,7 @@ function MultiStepEstimateForm() {
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "bg-white/80 backdrop-blur-sm rounded-2xl shadow-2xl border border-white/20 p-6 sm:p-8 md:p-10",
+                    className: "bg-white/80 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl shadow-2xl border border-white/20 dark:border-gray-700/50 p-6 sm:p-8 md:p-10",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "mb-8 sm:mb-12",
@@ -121,50 +121,50 @@ function MultiStepEstimateForm() {
                                             className: "flex-1 relative",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: `w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 ${idx <= currentStep ? "bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-lg scale-110" : "bg-gray-200 text-gray-500"}`,
+                                                    className: `w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 ${idx <= currentStep ? "bg-gradient-to-r from-indigo-500 to-purple-500 dark:from-blue-500 dark:to-purple-500 text-white shadow-lg dark:shadow-blue-500/25 scale-110" : "bg-gray-200 dark:bg-gray-600 text-gray-500 dark:text-gray-400"}`,
                                                     children: idx + 1
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                    lineNumber: 116,
+                                                    lineNumber: 117,
                                                     columnNumber: 19
                                                 }, this),
                                                 idx < steps.length - 1 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: `absolute top-4 sm:top-5 left-8 sm:left-10 w-full h-0.5 transition-all duration-300 ${idx < currentStep ? "bg-gradient-to-r from-indigo-500 to-purple-500" : "bg-gray-200"}`
+                                                    className: `absolute top-4 sm:top-5 left-8 sm:left-10 w-full h-0.5 transition-all duration-300 ${idx < currentStep ? "bg-gradient-to-r from-indigo-500 to-purple-500 dark:from-blue-500 dark:to-purple-500" : "bg-gray-200 dark:bg-gray-600"}`
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                    lineNumber: 124,
+                                                    lineNumber: 125,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, idx, true, {
                                             fileName: "[project]/components/MultiStepForm.tsx",
-                                            lineNumber: 115,
+                                            lineNumber: 116,
                                             columnNumber: 17
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                    lineNumber: 113,
+                                    lineNumber: 114,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "grid grid-cols-4 gap-1 sm:gap-2 text-xs sm:text-sm font-medium text-center",
                                     children: steps.map((label, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: `transition-colors duration-300 ${idx <= currentStep ? "text-indigo-600" : "text-gray-400"}`,
+                                            className: `transition-colors duration-300 ${idx <= currentStep ? "text-indigo-600 dark:text-blue-400" : "text-gray-400 dark:text-gray-500"}`,
                                             children: label
                                         }, label, false, {
                                             fileName: "[project]/components/MultiStepForm.tsx",
-                                            lineNumber: 133,
+                                            lineNumber: 134,
                                             columnNumber: 17
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                    lineNumber: 131,
+                                    lineNumber: 132,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/MultiStepForm.tsx",
-                            lineNumber: 112,
+                            lineNumber: 113,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -177,25 +177,25 @@ function MultiStepEstimateForm() {
                                             className: "text-center mb-8",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                                    className: "text-xl sm:text-2xl font-bold text-gray-800 mb-2",
+                                                    className: "text-xl sm:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2",
                                                     children: "Which rooms need a makeover?"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                    lineNumber: 147,
+                                                    lineNumber: 148,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                    className: "text-gray-600 text-sm sm:text-base",
+                                                    className: "text-gray-600 dark:text-gray-300 text-sm sm:text-base",
                                                     children: "Select the number of rooms for each type"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                    lineNumber: 150,
+                                                    lineNumber: 151,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/MultiStepForm.tsx",
-                                            lineNumber: 146,
+                                            lineNumber: 147,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -207,7 +207,7 @@ function MultiStepEstimateForm() {
                                                 "bathroom",
                                                 "dining"
                                             ].map((room)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg p-3 sm:p-4 hover:shadow-md transition-all duration-300",
+                                                    className: "bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-700/50 dark:to-gray-600/50 rounded-lg p-3 sm:p-4 hover:shadow-md dark:hover:shadow-blue-500/10 transition-all duration-300 border border-transparent dark:border-gray-600/30",
                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                         className: "flex items-center justify-between",
                                                         children: [
@@ -219,21 +219,21 @@ function MultiStepEstimateForm() {
                                                                         children: roomIcons[room]
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/MultiStepForm.tsx",
-                                                                        lineNumber: 158,
+                                                                        lineNumber: 159,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                        className: "text-sm sm:text-lg font-semibold text-gray-800 capitalize",
+                                                                        className: "text-sm sm:text-lg font-semibold text-gray-800 dark:text-gray-100 capitalize",
                                                                         children: room.replace(/([A-Z])/g, " $1")
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/MultiStepForm.tsx",
-                                                                        lineNumber: 159,
+                                                                        lineNumber: 160,
                                                                         columnNumber: 27
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/components/MultiStepForm.tsx",
-                                                                lineNumber: 157,
+                                                                lineNumber: 158,
                                                                 columnNumber: 25
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -241,58 +241,58 @@ function MultiStepEstimateForm() {
                                                                 children: [
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                                                         onClick: ()=>handleDecrement(room),
-                                                                        className: "w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gradient-to-r from-red-400 to-red-500 text-white font-bold text-sm sm:text-lg hover:shadow-md active:scale-95 transition-all duration-200",
+                                                                        className: "w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gradient-to-r from-red-400 to-red-500 dark:from-red-500 dark:to-red-600 text-white font-bold text-sm sm:text-lg hover:shadow-md dark:hover:shadow-red-500/25 active:scale-95 transition-all duration-200",
                                                                         "aria-label": `Decrease ${room}`,
                                                                         children: "−"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/MultiStepForm.tsx",
-                                                                        lineNumber: 164,
+                                                                        lineNumber: 165,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                        className: "w-8 sm:w-10 text-center text-sm sm:text-lg font-bold text-indigo-600 bg-indigo-50 rounded px-1 py-1",
+                                                                        className: "w-8 sm:w-10 text-center text-sm sm:text-lg font-bold text-indigo-600 dark:text-blue-400 bg-indigo-50 dark:bg-blue-900/30 rounded px-1 py-1 border border-transparent dark:border-blue-500/30",
                                                                         children: form[room]
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/MultiStepForm.tsx",
-                                                                        lineNumber: 171,
+                                                                        lineNumber: 172,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                                                         onClick: ()=>handleIncrement(room),
-                                                                        className: "w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gradient-to-r from-green-400 to-green-500 text-white font-bold text-sm sm:text-lg hover:shadow-md active:scale-95 transition-all duration-200",
+                                                                        className: "w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gradient-to-r from-green-400 to-green-500 dark:from-green-500 dark:to-green-600 text-white font-bold text-sm sm:text-lg hover:shadow-md dark:hover:shadow-green-500/25 active:scale-95 transition-all duration-200",
                                                                         "aria-label": `Increase ${room}`,
                                                                         children: "+"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/MultiStepForm.tsx",
-                                                                        lineNumber: 174,
+                                                                        lineNumber: 175,
                                                                         columnNumber: 27
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/components/MultiStepForm.tsx",
-                                                                lineNumber: 163,
+                                                                lineNumber: 164,
                                                                 columnNumber: 25
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/MultiStepForm.tsx",
-                                                        lineNumber: 156,
+                                                        lineNumber: 157,
                                                         columnNumber: 23
                                                     }, this)
                                                 }, room, false, {
                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                    lineNumber: 155,
+                                                    lineNumber: 156,
                                                     columnNumber: 21
                                                 }, this))
                                         }, void 0, false, {
                                             fileName: "[project]/components/MultiStepForm.tsx",
-                                            lineNumber: 153,
+                                            lineNumber: 154,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                    lineNumber: 145,
+                                    lineNumber: 146,
                                     columnNumber: 15
                                 }, this),
                                 currentStep === 1 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -302,25 +302,25 @@ function MultiStepEstimateForm() {
                                             className: "text-center mb-8",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                                    className: "text-xl sm:text-2xl font-bold text-gray-800 mb-2",
+                                                    className: "text-xl sm:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2",
                                                     children: "Choose Your Design Package"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                    lineNumber: 192,
+                                                    lineNumber: 193,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                    className: "text-gray-600 text-sm sm:text-base",
+                                                    className: "text-gray-600 dark:text-gray-300 text-sm sm:text-base",
                                                     children: "Select the level of luxury you desire"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                    lineNumber: 195,
+                                                    lineNumber: 196,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/MultiStepForm.tsx",
-                                            lineNumber: 191,
+                                            lineNumber: 192,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -341,29 +341,29 @@ function MultiStepEstimateForm() {
                                                             className: "sr-only"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/MultiStepForm.tsx",
-                                                            lineNumber: 201,
+                                                            lineNumber: 202,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                            className: `p-6 rounded-xl border-2 transition-all duration-300 ${form.packageType === pkg ? "border-indigo-500 bg-gradient-to-r from-indigo-50 to-purple-50 shadow-lg" : "border-gray-200 bg-white hover:border-gray-300"}`,
+                                                            className: `p-6 rounded-xl border-2 transition-all duration-300 ${form.packageType === pkg ? "border-indigo-500 dark:border-blue-500 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30 shadow-lg dark:shadow-blue-500/10" : "border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700/30 hover:border-gray-300 dark:hover:border-gray-500"}`,
                                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                                 className: "flex items-center justify-between",
                                                                 children: [
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                                         children: [
                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                                                                className: "text-lg font-bold text-gray-800 capitalize",
+                                                                                className: "text-lg font-bold text-gray-800 dark:text-gray-100 capitalize",
                                                                                 children: [
                                                                                     pkg,
                                                                                     " Package"
                                                                                 ]
                                                                             }, void 0, true, {
                                                                                 fileName: "[project]/components/MultiStepForm.tsx",
-                                                                                lineNumber: 216,
+                                                                                lineNumber: 217,
                                                                                 columnNumber: 29
                                                                             }, this),
                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                                className: "text-sm text-gray-600",
+                                                                                className: "text-sm text-gray-600 dark:text-gray-300",
                                                                                 children: [
                                                                                     pkg === "basic" && "Essential design elements",
                                                                                     pkg === "premium" && "Enhanced with premium finishes",
@@ -371,55 +371,55 @@ function MultiStepEstimateForm() {
                                                                                 ]
                                                                             }, void 0, true, {
                                                                                 fileName: "[project]/components/MultiStepForm.tsx",
-                                                                                lineNumber: 217,
+                                                                                lineNumber: 218,
                                                                                 columnNumber: 29
                                                                             }, this)
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/components/MultiStepForm.tsx",
-                                                                        lineNumber: 215,
+                                                                        lineNumber: 216,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                        className: `w-6 h-6 rounded-full border-2 ${form.packageType === pkg ? "border-indigo-500 bg-indigo-500" : "border-gray-300"}`,
+                                                                        className: `w-6 h-6 rounded-full border-2 ${form.packageType === pkg ? "border-indigo-500 dark:border-blue-500 bg-indigo-500 dark:bg-blue-500" : "border-gray-300 dark:border-gray-500"}`,
                                                                         children: form.packageType === pkg && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                                             className: "w-2 h-2 bg-white rounded-full mx-auto mt-1"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/components/MultiStepForm.tsx",
-                                                                            lineNumber: 229,
+                                                                            lineNumber: 230,
                                                                             columnNumber: 31
                                                                         }, this)
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/MultiStepForm.tsx",
-                                                                        lineNumber: 223,
+                                                                        lineNumber: 224,
                                                                         columnNumber: 27
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/components/MultiStepForm.tsx",
-                                                                lineNumber: 214,
+                                                                lineNumber: 215,
                                                                 columnNumber: 25
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/MultiStepForm.tsx",
-                                                            lineNumber: 209,
+                                                            lineNumber: 210,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, pkg, true, {
                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                    lineNumber: 200,
+                                                    lineNumber: 201,
                                                     columnNumber: 21
                                                 }, this))
                                         }, void 0, false, {
                                             fileName: "[project]/components/MultiStepForm.tsx",
-                                            lineNumber: 198,
+                                            lineNumber: 199,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                    lineNumber: 190,
+                                    lineNumber: 191,
                                     columnNumber: 15
                                 }, this),
                                 currentStep === 2 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -429,31 +429,31 @@ function MultiStepEstimateForm() {
                                             className: "text-center mb-8",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                                    className: "text-xl sm:text-2xl font-bold text-gray-800 mb-2",
+                                                    className: "text-xl sm:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2",
                                                     children: "Additional Services"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                    lineNumber: 243,
+                                                    lineNumber: 244,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                    className: "text-gray-600 text-sm sm:text-base",
+                                                    className: "text-gray-600 dark:text-gray-300 text-sm sm:text-base",
                                                     children: "Enhance your experience with premium add-ons"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                    lineNumber: 246,
+                                                    lineNumber: 247,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/MultiStepForm.tsx",
-                                            lineNumber: 242,
+                                            lineNumber: 243,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
                                             className: "cursor-pointer block",
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: `p-6 rounded-xl border-2 transition-all duration-300 ${form.includeFurniture ? "border-indigo-500 bg-gradient-to-r from-indigo-50 to-purple-50 shadow-lg" : "border-gray-200 bg-white hover:border-gray-300"}`,
+                                                className: `p-6 rounded-xl border-2 transition-all duration-300 ${form.includeFurniture ? "border-indigo-500 dark:border-blue-500 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30 shadow-lg dark:shadow-blue-500/10" : "border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700/30 hover:border-gray-300 dark:hover:border-gray-500"}`,
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                     className: "flex items-start space-x-4",
                                                     children: [
@@ -462,65 +462,65 @@ function MultiStepEstimateForm() {
                                                             name: "includeFurniture",
                                                             checked: !!form.includeFurniture,
                                                             onChange: handleChange,
-                                                            className: "w-6 h-6 text-indigo-600 rounded mt-1"
+                                                            className: "w-6 h-6 text-indigo-600 dark:text-blue-500 bg-gray-100 dark:bg-gray-700 border-gray-300 dark:border-gray-500 rounded focus:ring-indigo-500 dark:focus:ring-blue-500 mt-1"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/MultiStepForm.tsx",
-                                                            lineNumber: 256,
+                                                            lineNumber: 257,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                             className: "flex-1",
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                                                    className: "text-lg font-bold text-gray-800",
+                                                                    className: "text-lg font-bold text-gray-800 dark:text-gray-100",
                                                                     children: "🪑 Furniture Selection Service"
-                                                                }, void 0, false, {
-                                                                    fileName: "[project]/components/MultiStepForm.tsx",
-                                                                    lineNumber: 264,
-                                                                    columnNumber: 25
-                                                                }, this),
-                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                    className: "text-gray-600 text-sm mt-1",
-                                                                    children: "Our experts will curate and source premium furniture pieces that perfectly complement your design"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/MultiStepForm.tsx",
                                                                     lineNumber: 265,
                                                                     columnNumber: 25
                                                                 }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                    className: "text-gray-600 dark:text-gray-300 text-sm mt-1",
+                                                                    children: "Our experts will curate and source premium furniture pieces that perfectly complement your design"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/components/MultiStepForm.tsx",
+                                                                    lineNumber: 266,
+                                                                    columnNumber: 25
+                                                                }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                    className: "text-indigo-600 font-semibold mt-2",
+                                                                    className: "text-indigo-600 dark:text-blue-400 font-semibold mt-2",
                                                                     children: "+ ₹1,00,000"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                                    lineNumber: 268,
+                                                                    lineNumber: 269,
                                                                     columnNumber: 25
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/MultiStepForm.tsx",
-                                                            lineNumber: 263,
+                                                            lineNumber: 264,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                    lineNumber: 255,
+                                                    lineNumber: 256,
                                                     columnNumber: 21
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/MultiStepForm.tsx",
-                                                lineNumber: 250,
+                                                lineNumber: 251,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/MultiStepForm.tsx",
-                                            lineNumber: 249,
+                                            lineNumber: 250,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                    lineNumber: 241,
+                                    lineNumber: 242,
                                     columnNumber: 15
                                 }, this),
                                 currentStep === 3 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -530,29 +530,29 @@ function MultiStepEstimateForm() {
                                             className: "text-center mb-8",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                                    className: "text-xl sm:text-2xl font-bold text-gray-800 mb-2",
+                                                    className: "text-xl sm:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2",
                                                     children: "Your Custom Estimate"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                    lineNumber: 279,
+                                                    lineNumber: 280,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                    className: "text-gray-600 text-sm sm:text-base",
+                                                    className: "text-gray-600 dark:text-gray-300 text-sm sm:text-base",
                                                     children: "Here's your personalized interior design quote"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                    lineNumber: 282,
+                                                    lineNumber: 283,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/MultiStepForm.tsx",
-                                            lineNumber: 278,
+                                            lineNumber: 279,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-6 sm:p-8 space-y-4",
+                                            className: "bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl p-6 sm:p-8 space-y-4 border border-transparent dark:border-blue-500/20",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                     className: "grid gap-3 text-sm sm:text-base",
@@ -561,15 +561,15 @@ function MultiStepEstimateForm() {
                                                             className: "flex justify-between",
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                    className: "font-medium text-gray-700",
+                                                                    className: "font-medium text-gray-700 dark:text-gray-300",
                                                                     children: "Selected Rooms:"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                                    lineNumber: 288,
+                                                                    lineNumber: 289,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                    className: "text-gray-900",
+                                                                    className: "text-gray-900 dark:text-gray-100",
                                                                     children: [
                                                                         "livingRoom",
                                                                         "kitchen",
@@ -585,135 +585,135 @@ function MultiStepEstimateForm() {
                                                                             ]
                                                                         }, room, true, {
                                                                             fileName: "[project]/components/MultiStepForm.tsx",
-                                                                            lineNumber: 292,
+                                                                            lineNumber: 293,
                                                                             columnNumber: 29
                                                                         }, this))
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                                    lineNumber: 289,
+                                                                    lineNumber: 290,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/MultiStepForm.tsx",
-                                                            lineNumber: 287,
+                                                            lineNumber: 288,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                             className: "flex justify-between",
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                    className: "font-medium text-gray-700",
+                                                                    className: "font-medium text-gray-700 dark:text-gray-300",
                                                                     children: "Design Package:"
-                                                                }, void 0, false, {
-                                                                    fileName: "[project]/components/MultiStepForm.tsx",
-                                                                    lineNumber: 301,
-                                                                    columnNumber: 23
-                                                                }, this),
-                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                    className: "text-gray-900 capitalize",
-                                                                    children: form.packageType || "Not selected"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/MultiStepForm.tsx",
                                                                     lineNumber: 302,
                                                                     columnNumber: 23
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                    className: "text-gray-900 dark:text-gray-100 capitalize",
+                                                                    children: form.packageType || "Not selected"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/components/MultiStepForm.tsx",
+                                                                    lineNumber: 303,
+                                                                    columnNumber: 23
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/MultiStepForm.tsx",
-                                                            lineNumber: 300,
+                                                            lineNumber: 301,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                             className: "flex justify-between",
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                    className: "font-medium text-gray-700",
+                                                                    className: "font-medium text-gray-700 dark:text-gray-300",
                                                                     children: "Furniture Service:"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                                    lineNumber: 307,
+                                                                    lineNumber: 308,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                    className: "text-gray-900",
+                                                                    className: "text-gray-900 dark:text-gray-100",
                                                                     children: form.includeFurniture ? "Yes" : "No"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                                    lineNumber: 308,
+                                                                    lineNumber: 309,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/MultiStepForm.tsx",
-                                                            lineNumber: 306,
+                                                            lineNumber: 307,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                    lineNumber: 286,
+                                                    lineNumber: 287,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "border-t pt-4",
+                                                    className: "border-t border-gray-200 dark:border-gray-600/50 pt-4",
                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                         className: "flex justify-between items-center",
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "text-xl sm:text-2xl font-bold text-gray-800",
+                                                                className: "text-xl sm:text-2xl font-bold text-gray-800 dark:text-gray-100",
                                                                 children: "Total Estimate:"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/MultiStepForm.tsx",
-                                                                lineNumber: 314,
+                                                                lineNumber: 315,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "text-2xl sm:text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent",
+                                                                className: "text-2xl sm:text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 dark:from-green-400 dark:to-emerald-400 bg-clip-text text-transparent",
                                                                 children: [
                                                                     "₹",
                                                                     calculateEstimate().toLocaleString()
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/components/MultiStepForm.tsx",
-                                                                lineNumber: 315,
+                                                                lineNumber: 316,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/MultiStepForm.tsx",
-                                                        lineNumber: 313,
+                                                        lineNumber: 314,
                                                         columnNumber: 21
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                                    lineNumber: 312,
+                                                    lineNumber: 313,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/MultiStepForm.tsx",
-                                            lineNumber: 285,
+                                            lineNumber: 286,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                            className: "w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold py-4 px-8 rounded-xl text-lg hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-200",
+                                            className: "w-full bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-blue-600 dark:to-purple-600 text-white font-bold py-4 px-8 rounded-xl text-lg hover:shadow-2xl dark:hover:shadow-blue-500/25 hover:scale-105 active:scale-95 transition-all duration-200",
                                             children: "🎨 Request Detailed Proposal"
                                         }, void 0, false, {
                                             fileName: "[project]/components/MultiStepForm.tsx",
-                                            lineNumber: 322,
+                                            lineNumber: 323,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                    lineNumber: 277,
+                                    lineNumber: 278,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/MultiStepForm.tsx",
-                            lineNumber: 143,
+                            lineNumber: 144,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -722,33 +722,33 @@ function MultiStepEstimateForm() {
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                     onClick: ()=>setCurrentStep((prev)=>Math.max(prev - 1, 0)),
                                     disabled: currentStep === 0,
-                                    className: "bg-gray-100 text-gray-700 font-semibold py-3 px-8 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-200 transition-all duration-200 w-full sm:w-auto",
+                                    className: "bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-semibold py-3 px-8 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-200 dark:hover:bg-gray-600 transition-all duration-200 w-full sm:w-auto border border-transparent dark:border-gray-600/30",
                                     children: "← Previous"
                                 }, void 0, false, {
                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                    lineNumber: 331,
+                                    lineNumber: 332,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                     onClick: ()=>setCurrentStep((prev)=>Math.min(prev + 1, steps.length - 1)),
                                     disabled: currentStep === steps.length - 1,
-                                    className: "bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold py-3 px-8 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-lg transition-all duration-200 w-full sm:w-auto",
+                                    className: "bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-blue-600 dark:to-purple-600 text-white font-semibold py-3 px-8 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-lg dark:hover:shadow-blue-500/25 transition-all duration-200 w-full sm:w-auto",
                                     children: "Next →"
                                 }, void 0, false, {
                                     fileName: "[project]/components/MultiStepForm.tsx",
-                                    lineNumber: 338,
+                                    lineNumber: 339,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/MultiStepForm.tsx",
-                            lineNumber: 330,
+                            lineNumber: 331,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/MultiStepForm.tsx",
-                    lineNumber: 110,
+                    lineNumber: 111,
                     columnNumber: 9
                 }, this)
             ]

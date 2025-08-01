@@ -1,6 +1,7 @@
 // app/page.tsx
 
 import { ThreeDCard } from "../components/3d-card-section";
+import { ExampleWithModalButton } from "./universalmodal";
 
 export default function Threedcardshome() {
   const cards = [
@@ -42,6 +43,9 @@ export default function Threedcardshome() {
             link={card.link}
           />
         ))}
+      </div>
+      <div className="flex justify-center m-2">
+        <ExampleWithModalButton/>
       </div>
     </div>
   );
