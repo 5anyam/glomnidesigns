@@ -151,30 +151,30 @@ export default function MultiStepEstimateForm() {
                   <p className="text-gray-600 text-sm sm:text-base">Select the number of rooms for each type</p>
                 </div>
                 
-                <div className="grid gap-4">
+                <div className="grid gap-3">
                   {(["livingRoom", "kitchen", "bedroom", "bathroom", "dining"] as Room[]).map((room) => (
-                    <div key={room} className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl p-4 sm:p-6 hover:shadow-md transition-all duration-300">
-                      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-3 sm:space-y-0">
-                        <div className="flex items-center space-x-3">
-                          <span className="text-2xl">{roomIcons[room]}</span>
-                          <span className="text-lg sm:text-xl font-semibold text-gray-800 capitalize">
+                    <div key={room} className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg p-3 sm:p-4 hover:shadow-md transition-all duration-300">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-2 sm:space-x-3">
+                          <span className="text-lg sm:text-xl">{roomIcons[room]}</span>
+                          <span className="text-sm sm:text-lg font-semibold text-gray-800 capitalize">
                             {room.replace(/([A-Z])/g, " $1")}
                           </span>
                         </div>
-                        <div className="flex items-center justify-center sm:justify-end space-x-4">
+                        <div className="flex items-center space-x-2">
                           <button
                             onClick={() => handleDecrement(room)}
-                            className="w-10 h-10 rounded-full bg-gradient-to-r from-red-400 to-red-500 text-white font-bold text-xl hover:shadow-lg active:scale-95 transition-all duration-200"
+                            className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gradient-to-r from-red-400 to-red-500 text-white font-bold text-sm sm:text-lg hover:shadow-md active:scale-95 transition-all duration-200"
                             aria-label={`Decrease ${room}`}
                           >
                             −
                           </button>
-                          <span className="w-12 text-center text-xl font-bold text-indigo-600 bg-indigo-50 rounded-lg py-2">
+                          <span className="w-8 sm:w-10 text-center text-sm sm:text-lg font-bold text-indigo-600 bg-indigo-50 rounded px-1 py-1">
                             {form[room]}
                           </span>
                           <button
                             onClick={() => handleIncrement(room)}
-                            className="w-10 h-10 rounded-full bg-gradient-to-r from-green-400 to-green-500 text-white font-bold text-xl hover:shadow-lg active:scale-95 transition-all duration-200"
+                            className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gradient-to-r from-green-400 to-green-500 text-white font-bold text-sm sm:text-lg hover:shadow-md active:scale-95 transition-all duration-200"
                             aria-label={`Increase ${room}`}
                           >
                             +
@@ -312,7 +312,7 @@ export default function MultiStepEstimateForm() {
                   
                   <div className="border-t pt-4">
                     <div className="flex justify-between items-center">
-                      <span className="text-xl sm:text-2xl font-bold text-gray-800">Total Investment:</span>
+                      <span className="text-xl sm:text-2xl font-bold text-gray-800">Total Estimate:</span>
                       <span className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
                         ₹{calculateEstimate().toLocaleString()}
                       </span>

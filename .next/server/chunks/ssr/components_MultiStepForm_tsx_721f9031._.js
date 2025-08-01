@@ -199,7 +199,7 @@ function MultiStepEstimateForm() {
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "grid gap-4",
+                                            className: "grid gap-3",
                                             children: [
                                                 "livingRoom",
                                                 "kitchen",
@@ -207,15 +207,15 @@ function MultiStepEstimateForm() {
                                                 "bathroom",
                                                 "dining"
                                             ].map((room)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl p-4 sm:p-6 hover:shadow-md transition-all duration-300",
+                                                    className: "bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg p-3 sm:p-4 hover:shadow-md transition-all duration-300",
                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-3 sm:space-y-0",
+                                                        className: "flex items-center justify-between",
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                className: "flex items-center space-x-3",
+                                                                className: "flex items-center space-x-2 sm:space-x-3",
                                                                 children: [
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                        className: "text-2xl",
+                                                                        className: "text-lg sm:text-xl",
                                                                         children: roomIcons[room]
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/MultiStepForm.tsx",
@@ -223,7 +223,7 @@ function MultiStepEstimateForm() {
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                        className: "text-lg sm:text-xl font-semibold text-gray-800 capitalize",
+                                                                        className: "text-sm sm:text-lg font-semibold text-gray-800 capitalize",
                                                                         children: room.replace(/([A-Z])/g, " $1")
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/MultiStepForm.tsx",
@@ -237,11 +237,11 @@ function MultiStepEstimateForm() {
                                                                 columnNumber: 25
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                className: "flex items-center justify-center sm:justify-end space-x-4",
+                                                                className: "flex items-center space-x-2",
                                                                 children: [
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                                                         onClick: ()=>handleDecrement(room),
-                                                                        className: "w-10 h-10 rounded-full bg-gradient-to-r from-red-400 to-red-500 text-white font-bold text-xl hover:shadow-lg active:scale-95 transition-all duration-200",
+                                                                        className: "w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gradient-to-r from-red-400 to-red-500 text-white font-bold text-sm sm:text-lg hover:shadow-md active:scale-95 transition-all duration-200",
                                                                         "aria-label": `Decrease ${room}`,
                                                                         children: "−"
                                                                     }, void 0, false, {
@@ -250,7 +250,7 @@ function MultiStepEstimateForm() {
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                        className: "w-12 text-center text-xl font-bold text-indigo-600 bg-indigo-50 rounded-lg py-2",
+                                                                        className: "w-8 sm:w-10 text-center text-sm sm:text-lg font-bold text-indigo-600 bg-indigo-50 rounded px-1 py-1",
                                                                         children: form[room]
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/MultiStepForm.tsx",
@@ -259,7 +259,7 @@ function MultiStepEstimateForm() {
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                                                         onClick: ()=>handleIncrement(room),
-                                                                        className: "w-10 h-10 rounded-full bg-gradient-to-r from-green-400 to-green-500 text-white font-bold text-xl hover:shadow-lg active:scale-95 transition-all duration-200",
+                                                                        className: "w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gradient-to-r from-green-400 to-green-500 text-white font-bold text-sm sm:text-lg hover:shadow-md active:scale-95 transition-all duration-200",
                                                                         "aria-label": `Increase ${room}`,
                                                                         children: "+"
                                                                     }, void 0, false, {
@@ -662,7 +662,7 @@ function MultiStepEstimateForm() {
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                 className: "text-xl sm:text-2xl font-bold text-gray-800",
-                                                                children: "Total Investment:"
+                                                                children: "Total Estimate:"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/MultiStepForm.tsx",
                                                                 lineNumber: 315,
