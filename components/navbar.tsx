@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { PlaceholdersAndVanishInputDemo } from "./search";
+import { NavbarModal } from "./navmodal";
 
 // Define the type for dropdown values
 type DropdownType = 'design' | 'more' | null;
@@ -127,9 +128,7 @@ export const Navbar = () => {
             <ThemeSwitch />
 
             {/* CTA Button - Hidden on mobile */}
-            <button className="hidden lg:flex items-center px-4 py-2 bg-green-500 hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700 text-white rounded-lg font-medium transition-colors">
-              Talk To Expert
-            </button>
+            <NavbarModal/>
 
             {/* Mobile menu button */}
             <button
