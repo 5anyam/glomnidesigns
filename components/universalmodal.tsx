@@ -87,7 +87,7 @@ const ExampleWithModalButton: React.FC = () => {
           
           {/* Submit Button */}
           <button
-            className="mt-6 w-full flex items-center justify-center gap-2 px-6 py-3 bg-[#00F0FF] text-[#242878] font-bold rounded-full shadow hover:bg-[#3a3ad9] hover:text-white transition"
+            className="mt-6 w-full flex items-center justify-center gap-2 px-6 py-3 bg-green-500 text-white font-bold rounded-full shadow hover:bg-green-600 hover:text-white transition"
             type="submit"
           >
             Get a Callback <ArrowRight className="w-5 h-5 ml-1" />

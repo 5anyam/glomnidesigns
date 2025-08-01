@@ -3639,6 +3639,11 @@ img, video {
   background-color: rgba(31, 41, 55, .9);
 }
 
+.bg-green-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgba(22, 163, 74, var(--tw-bg-opacity));
+}
+
 .bg-opacity-70 {
   --tw-bg-opacity: .7;
 }
@@ -7644,6 +7649,11 @@ img, video {
 .hover\:bg-gray-600:hover {
   --tw-bg-opacity: 1;
   background-color: rgba(75, 85, 99, var(--tw-bg-opacity));
+}
+
+.hover\:bg-green-700:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgba(21, 128, 61, var(--tw-bg-opacity));
 }
 
 .hover\:from-blue-700:hover {

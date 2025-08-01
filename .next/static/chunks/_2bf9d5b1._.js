@@ -996,7 +996,7 @@ const NavbarModal = ()=>{
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                className: "px-3 py-2 rounded-full bg-blue-600 text-white font-bold shadow hover:bg-blue-700 hover:text-white transition",
+                className: "px-3 py-2 rounded-full bg-green-600 text-white font-bold shadow hover:bg-green-700 hover:text-white transition",
                 onClick: ()=>setOpen(true),
                 children: "Get Started"
             }, void 0, false, {
@@ -1137,7 +1137,7 @@ const NavbarModal = ()=>{
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                className: "mt-6 w-full flex items-center justify-center gap-2 px-6 py-3 bg-[#00F0FF] text-[#242878] font-bold rounded-full shadow hover:bg-[#3a3ad9] hover:text-white transition",
+                                className: "mt-6 w-full flex items-center justify-center gap-2 px-6 py-3 bg-green-500 text-white font-bold rounded-full shadow hover:bg-green-700 hover:text-white transition",
                                 type: "submit",
                                 children: [
                                     "Get a Callback ",
