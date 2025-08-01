@@ -944,7 +944,7 @@ function AppleCardsCarouselDemo() {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
                 className: "max-w-7xl pl-4 mx-auto text-xl md:text-5xl font-bold text-neutral-800 dark:text-neutral-200 font-sans",
-                children: "Take a look at our services."
+                children: "Take a look at our Work."
             }, void 0, false, {
                 fileName: "[project]/components/apple-card.tsx",
                 lineNumber: 14,
