@@ -1,105 +1,129 @@
-// lib/types.ts
-type YoastHeadJson = {
-  meta_description?: string;
-  meta_keywords?: string;
-  og_image?: { url: string }[];
-};
+// types/product.ts
+export interface Feature {
+  icon: string;
+  title: string;
+}
 
-export type Post = {
+export interface Colors {
+  baseUnit: string;
+  wallUnit: string;
+}
+
+export interface ProjectReference {
+  title: string;
+  image: string;
+}
+
+export interface ProductDetails {
+  layout: string;
+  dimensions: string;
+  style: string;
+  colors: Colors;
+  shutterFinish: string;
+  countertopMaterial: string;
+  storageFeatures: string[];
+}
+
+
+
+export interface ProductData {
   id: number;
-  title: {
-    rendered: string;
-  };
-  slug: string;
-  date: string;
-  modified: string;
-  content: {
-    rendered: string;
-  };
-  type: string;
-  status: string;
-  excerpt: {
-    rendered: string;
-  };
-  author: number;
-  categories: number[];
-  featured_media: number;
-  yoast_head_json?: YoastHeadJson;
+  title: string;
+  slug?: string;
+  images: string[];
+  features: Feature[];
+  details: ProductDetails;
+  previousProject: ProjectReference | null;
+  nextProject: ProjectReference | null;
+  description?: string;
+  priceRange?: string;
+  roomType?: 'kitchen' | 'bedroom' | 'living-room' | 'bathroom' | 'office' | 'dining-room';
+}
 
-  // Optional embed support for featured media and categories
-  _embedded?: {
-    "wp:featuredmedia"?: Array<{
-      source_url: string;
-      alt_text?: string;
-    }>;
-    "wp:term"?: Array<
-      Array<{
-        id: number;
-        name: string;
-        slug: string;
-        taxonomy: string;
-      }>
-    >;
-  };
-};
-
-// Yoast SEO + Open Graph data
-export interface ExtendedPost extends Post {
-  yoast_head_json: {
-    title: string;
-    robots: {
-      index: string;
-      follow: string;
-      "max-snippet": string;
-      "max-image-preview": string;
-      "max-video-preview": string;
-    };
-    canonical: string;
-    og_locale: string;
-    og_type: string;
-    og_title: string;
-    og_description: string;
-    og_url: string;
-    og_site_name: string;
-    article_author: string;
-    article_published_time: string;
-    article_modified_time: string;
-    og_image: {
-      width: number;
-      height: number;
-      url: string;
-      type: string;
-    }[];
-    author: string;
-    twitter_card: string;
-    twitter_creator: string;
-    twitter_misc: {
-      "Written by": string;
-      "Est. reading time": string;
-    };
-    thumbnail_url: string;
+// Strapi API response types
+export interface StrapiImage {
+  id: number;
+  attributes: {
+    name: string;
+    url: string;
+    width: number;
+    height: number;
+    alternativeText?: string;
   };
 }
 
-export type PostsResponse = {
-  posts: Post[];
-  totalPages: number;
-};
+export interface StrapiImageResponse {
+  data: StrapiImage[];
+}
 
-export type Category = {
-  id: number;
-  count: number;
-  description: string;
-  link: string;
-  name: string;
-  slug: string;
-  taxonomy: "category";
-  parent: number;
-};
+export interface StrapiSingleImageResponse {
+  data: StrapiImage;
+}
 
-export type Author = {
-  id: number;
-  name: string;
+export interface StrapiDesignAttributes {
+  title: string;
   slug: string;
-  link: string;
-};
+  layout: string;
+  dimensions: string;
+  style: string;
+  colors: Colors;
+  shutter_finish: string;
+  countertop_material: string;
+  storage_features: string[];
+  features: Feature[];
+  description?: string;
+  price_range?: string;
+  room_type?: string;
+  images: StrapiImageResponse;
+  featured_image?: StrapiSingleImageResponse;
+  previous_project?: {
+    data: {
+      id: number;
+      attributes: {
+        title: string;
+        slug: string;
+        featured_image?: StrapiSingleImageResponse;
+      };
+    };
+  };
+  next_project?: {
+    data: {
+      id: number;
+      attributes: {
+        title: string;
+        slug: string;
+        featured_image?: StrapiSingleImageResponse;
+      };
+    };
+  };
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+}
+
+export interface StrapiDesignResponse {
+  id: number;
+  attributes: StrapiDesignAttributes;
+}
+
+export interface StrapiApiResponse<T> {
+  data: T;
+  meta: {
+    pagination?: {
+      page: number;
+      pageSize: number;
+      pageCount: number;
+      total: number;
+    };
+  };
+}
+
+// Props interfaces
+export interface ProductDetailPageProps {
+  productData: ProductData;
+}
+
+export interface DesignPageProps {
+  productData: ProductData;
+  error?: string;
+}

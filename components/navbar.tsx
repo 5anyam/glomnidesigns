@@ -33,6 +33,7 @@ export const Navbar = () => {
   const moreItems = [
     { label: "About Us", href: "/about" },
     { label: "Careers", href: "/careers" },
+    { label: "Get Estimate", href: "/cost-estimate"},
     { label: "Contact", href: "/contact" }
   ];
 
