@@ -4633,6 +4633,10 @@ img, video {
   font-weight: 600;
 }
 
+.font-black {
+  font-weight: 900;
+}
+
 .capitalize {
   text-transform: capitalize;
 }

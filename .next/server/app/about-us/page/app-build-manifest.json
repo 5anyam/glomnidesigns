@@ -1,6 +1,6 @@
 {
   "pages": {
-    "/_not-found/page": [
+    "/about-us/page": [
       "static/chunks/[root-of-the-server]__e2ab1137._.css",
       "static/chunks/_2bf9d5b1._.js",
       "static/chunks/node_modules_next_b3198c5d._.js",
@@ -13,6 +13,7 @@
       "static/chunks/app_layout_tsx_58a9c777._.js",
       "static/chunks/app_error_tsx_1c4448c8._.js",
       "static/chunks/app_error_tsx_583aab5b._.js",
+      "static/chunks/node_modules_next_dist_client_components_builtin_global-error_583aab5b.js",
       "static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_b7a1b65d._.js",
       "static/chunks/node_modules_next_dist_compiled_react-dom_1f56dc06._.js",
       "static/chunks/node_modules_next_dist_compiled_next-devtools_index_d575f738.js",

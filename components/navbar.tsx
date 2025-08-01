@@ -127,6 +127,14 @@ export const Navbar = () => {
             {/* Theme Switch */}
             <ThemeSwitch />
 
+            <Link
+              href="/home-decor"
+              className="block bg-green-600 p-2 rounded-full font-bold text-white dark:text-white hover:text-white dark:hover:text-gray-300 transition-colors"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Home Decor
+            </Link>
+
             {/* CTA Button - Hidden on mobile */}
             <NavbarModal/>
 
