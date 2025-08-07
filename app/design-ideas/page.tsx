@@ -1,7 +1,7 @@
 "use client"
 // pages/design-ideas.tsx
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Search, Filter, Grid, List, Heart, MapPin, Clock } from 'lucide-react';
 import { designAPI, categoryAPI, Design, Category } from '../../lib/api';
 import Image from 'next/image';
@@ -194,7 +194,7 @@ const DesignIdeasPage = () => {
           </div>
 
           {/* Mobile Filters */}
-          <AnimatePresence>
+          <div>
             {showFilters && (
               <motion.div
                 initial={{ height: 0, opacity: 0 }}
@@ -231,7 +231,7 @@ const DesignIdeasPage = () => {
                 </div>
               </motion.div>
             )}
-          </AnimatePresence>
+          </div>
         </div>
       </div>
 
