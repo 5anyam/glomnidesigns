@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import {
   ArrowLeft, Heart, Share2, MapPin, Clock, Maximize2, Palette, Star,
   ChevronLeft, ChevronRight, X, Eye, Bookmark, Download, Phone, Mail,
@@ -576,7 +576,7 @@ export default function DesignDetailClient({ slug }: { slug: string }) {
               </div>
 
               {/* Related Designs */}
-              <AnimatePresence mode="wait">
+              <div>
                 {activeTab === 'designs' && relatedDesigns.length > 0 && (
                   <motion.div
                     key="designs"
@@ -614,7 +614,7 @@ export default function DesignDetailClient({ slug }: { slug: string }) {
                     ))}
                   </motion.div>
                 )}
-              </AnimatePresence>
+              </div>
 
               {/* View All Button */}
               <div className="text-center mt-12">
@@ -631,7 +631,7 @@ export default function DesignDetailClient({ slug }: { slug: string }) {
         </div>
 
         {/* Premium Lightbox Gallery */}
-        <AnimatePresence>
+        <div>
           {showGallery && (
             <motion.div
               initial={{ opacity: 0 }}
@@ -686,7 +686,7 @@ export default function DesignDetailClient({ slug }: { slug: string }) {
               </div>
             </motion.div>
           )}
-        </AnimatePresence>
+        </div>
 
         {/* Premium Contact Form Modal */}
         <PremiumContactFormModal
@@ -862,7 +862,7 @@ const PremiumContactFormModal: React.FC<PremiumContactFormModalProps> = ({ isOpe
   if (!isOpen) return null;
 
   return (
-    <AnimatePresence>
+    <div>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -1002,6 +1002,6 @@ const PremiumContactFormModal: React.FC<PremiumContactFormModalProps> = ({ isOpe
           </form>
         </motion.div>
       </motion.div>
-    </AnimatePresence>
+    </div>
   );
 };
