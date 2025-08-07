@@ -49,7 +49,10 @@ export default function DesignDetailClient({ slug }: { slug: string }) {
       if (foundDesign) {
         setDesign(foundDesign);
         
-        // Fetch related designs and portfolios
+        // ✅ Store foundDesign.id in a variable to ensure type safety
+        const currentDesignId = foundDesign.id;
+        
+        // Related designs by category
         if (foundDesign.categories && foundDesign.categories.length > 0) {
           const categorySlug = foundDesign.categories[0].slug;
           const [designsResult, portfoliosResult] = await Promise.all([
@@ -57,13 +60,15 @@ export default function DesignDetailClient({ slug }: { slug: string }) {
             portfolioAPI.getPortfolios()
           ]);
           
-          const filteredDesigns = designsResult.data?.filter((d: Design) => d.id !== foundDesign.id) || [];
+          // ✅ Use the stored ID to avoid null access
+          const filteredDesigns = designsResult.data?.filter((d: Design) => d.id !== currentDesignId) || [];
           setRelatedDesigns(filteredDesigns.slice(0, 8));
           setRelatedPortfolios(portfoliosResult.data?.slice(0, 6) || []);
         }
       } else {
         router.push('/404');
       }
+      
     } catch (error) {
       console.error('Error fetching design:', error);
       router.push('/404');
