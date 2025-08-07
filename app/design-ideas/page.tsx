@@ -1,7 +1,7 @@
 "use client"
 // pages/design-ideas.tsx
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Search, Filter, Grid, List, Heart, MapPin, Clock, Eye, Calculator, Star, X, Menu } from 'lucide-react';
 import { designAPI, categoryAPI, Design, Category } from '../../lib/api';
 import Image from 'next/image';
@@ -209,7 +209,7 @@ const DesignIdeasPage = () => {
           </div>
 
           {/* 📱 Mobile Filters Dropdown */}
-          <AnimatePresence>
+          <div>
             {showFilters && (
               <motion.div
                 initial={{ height: 0, opacity: 0 }}
@@ -271,7 +271,7 @@ const DesignIdeasPage = () => {
                 </div>
               </motion.div>
             )}
-          </AnimatePresence>
+          </div>
         </div>
       </div>
 
@@ -668,7 +668,7 @@ const MobileQuoteModal: React.FC<MobileQuoteModalProps> = ({ isOpen, onClose, de
   if (!isOpen) return null;
 
   return (
-    <AnimatePresence>
+    <div>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -815,7 +815,7 @@ const MobileQuoteModal: React.FC<MobileQuoteModalProps> = ({ isOpen, onClose, de
           </form>
         </motion.div>
       </motion.div>
-    </AnimatePresence>
+    </div>
   );
 };
 
