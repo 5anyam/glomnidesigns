@@ -1,7 +1,7 @@
 "use client"
 // pages/portfolios.tsx
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Search, Filter, Eye, MapPin, Maximize2, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { portfolioAPI, Portfolio } from '../../lib/api';
 import Image from 'next/image';
@@ -210,7 +210,7 @@ const PortfoliosPage = () => {
           </div>
 
           {/* Mobile Filters */}
-          <AnimatePresence>
+          <div>
             {showFilters && (
               <motion.div
                 initial={{ height: 0, opacity: 0 }}
@@ -247,7 +247,7 @@ const PortfoliosPage = () => {
                 </div>
               </motion.div>
             )}
-          </AnimatePresence>
+          </div>
         </div>
       </div>
 
@@ -284,7 +284,7 @@ const PortfoliosPage = () => {
       </div>
 
       {/* Lightbox */}
-      <AnimatePresence>
+      <div>
         {lightboxImage && (
           <motion.div
             initial={{ opacity: 0 }}
@@ -341,7 +341,7 @@ const PortfoliosPage = () => {
             </div>
           </motion.div>
         )}
-      </AnimatePresence>
+      </div>
     </div>
   );
 };
