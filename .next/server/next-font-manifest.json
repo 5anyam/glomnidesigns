@@ -4,10 +4,6 @@
       "static/media/06ba6ef833b337bc-s.p.0faac26c.woff2",
       "static/media/d6a3bca80e8ab876-s.p.1b3fc2df.woff2"
     ],
-    "[project]/app/about-us/page": [
-      "static/media/06ba6ef833b337bc-s.p.0faac26c.woff2",
-      "static/media/d6a3bca80e8ab876-s.p.1b3fc2df.woff2"
-    ],
     "[project]/app/contact/page": [
       "static/media/06ba6ef833b337bc-s.p.0faac26c.woff2",
       "static/media/d6a3bca80e8ab876-s.p.1b3fc2df.woff2"
@@ -16,7 +12,19 @@
       "static/media/06ba6ef833b337bc-s.p.0faac26c.woff2",
       "static/media/d6a3bca80e8ab876-s.p.1b3fc2df.woff2"
     ],
+    "[project]/app/design-ideas/[slug]/page": [
+      "static/media/06ba6ef833b337bc-s.p.0faac26c.woff2",
+      "static/media/d6a3bca80e8ab876-s.p.1b3fc2df.woff2"
+    ],
+    "[project]/app/design-ideas/page": [
+      "static/media/06ba6ef833b337bc-s.p.0faac26c.woff2",
+      "static/media/d6a3bca80e8ab876-s.p.1b3fc2df.woff2"
+    ],
     "[project]/app/page": [
+      "static/media/06ba6ef833b337bc-s.p.0faac26c.woff2",
+      "static/media/d6a3bca80e8ab876-s.p.1b3fc2df.woff2"
+    ],
+    "[project]/app/portfolio/page": [
       "static/media/06ba6ef833b337bc-s.p.0faac26c.woff2",
       "static/media/d6a3bca80e8ab876-s.p.1b3fc2df.woff2"
     ]

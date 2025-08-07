@@ -43,7 +43,7 @@ const MobileBottomNav = () => {
     <>
       {/* Bottom Navigation */}
       <div className="block md:hidden fixed bottom-0 z-40 w-full">
-        <div className="bg-white/95 backdrop-blur-md border-t border-gray-100 shadow-2xl rounded-2xl px-2 py-2">
+        <div className="bg-white/95 backdrop-blur-md dark:bg-black rounded-2xl px-1 py-1">
           <div className="flex items-center justify-between">
             {navItems.map((item) => {
               const IconComponent = item.icon;

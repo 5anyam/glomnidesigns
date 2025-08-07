@@ -2359,7 +2359,7 @@ function FlipWordsDemo() {
                         lineNumber: 11,
                         columnNumber: 34
                     }, this),
-                    " vision into reality."
+                    "vision into reality."
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/flip-words-home.tsx",

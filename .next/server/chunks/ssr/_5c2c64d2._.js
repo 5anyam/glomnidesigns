@@ -470,7 +470,7 @@ const ExampleWithModalButton = ()=>{
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                className: "mt-6 w-full flex items-center justify-center gap-2 px-6 py-3 bg-[#00F0FF] text-[#242878] font-bold rounded-full shadow hover:bg-[#3a3ad9] hover:text-white transition",
+                                className: "mt-6 w-full flex items-center justify-center gap-2 px-6 py-3 bg-green-500 text-white font-bold rounded-full shadow hover:bg-green-600 hover:text-white transition",
                                 type: "submit",
                                 children: [
                                     "Get a Callback ",
@@ -1011,7 +1011,7 @@ function AppleCardsCarouselDemo() {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
                 className: "max-w-7xl pl-4 mx-auto text-xl md:text-5xl font-bold text-neutral-800 dark:text-neutral-200 font-sans",
-                children: "Take a look at our services."
+                children: "Take a look at our Work."
             }, void 0, false, {
                 fileName: "[project]/components/apple-card.tsx",
                 lineNumber: 14,
@@ -2426,7 +2426,7 @@ function FlipWordsDemo() {
                         lineNumber: 11,
                         columnNumber: 34
                     }, this),
-                    " vision into reality."
+                    "vision into reality."
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/flip-words-home.tsx",

@@ -24,18 +24,46 @@ export const Navbar = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  const designItems = [
-    { label: "Living Room", href: "/living-room" },
-    { label: "Bedroom", href: "/bedroom" },
-    { label: "Kitchen", href: "/kitchen" },
-    { label: "Bathroom", href: "/bathroom" }
+  // Updated design categories with proper structure
+  const designCategories = [
+    {
+      title: "Home Interior",
+      items: [
+        { label: "Living Room", href: "/design-ideas?category=living-room" },
+        { label: "Bedroom", href: "/design-ideas?category=bedroom" },
+        { label: "Kitchen", href: "/design-ideas?category=kitchen" },
+        { label: "Bathroom", href: "/design-ideas?category=bathroom" },
+        { label: "Dining Room", href: "/design-ideas?category=dining-room" }
+      ]
+    },
+    {
+      title: "Office Spaces",
+      items: [
+        { label: "Corporate Office", href: "/design-ideas?category=corporate-office" },
+        { label: "Home Office", href: "/design-ideas?category=home-office" },
+        { label: "Meeting Rooms", href: "/design-ideas?category=meeting-rooms" },
+        { label: "Reception Area", href: "/design-ideas?category=reception-area" },
+        { label: "Co-working Space", href: "/design-ideas?category=coworking-space" }
+      ]
+    },
+    {
+      title: "Data Centers",
+      items: [
+        { label: "Server Rooms", href: "/design-ideas?category=server-rooms" },
+        { label: "Control Centers", href: "/design-ideas?category=control-centers" },
+        { label: "Network Operations", href: "/design-ideas?category=network-operations" },
+        { label: "Cloud Infrastructure", href: "/design-ideas?category=cloud-infrastructure" },
+        { label: "Security Centers", href: "/design-ideas?category=security-centers" }
+      ]
+    }
   ];
 
   const moreItems = [
-    { label: "About Us", href: "/about" },
+    { label: "About Us", href: "/about-us" },
     { label: "Careers", href: "/careers" },
     { label: "Get Estimate", href: "/cost-estimate"},
-    { label: "Contact", href: "/contact" }
+    { label: "Contact", href: "/contact" },
+    { label: "Home Decor", href: "/home-decor" },
   ];
 
   return (
@@ -54,29 +82,57 @@ export const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-8">
-            {/* Design Ideas Dropdown */}
+            {/* Design Ideas Dropdown with Categories */}
             <div 
               className="relative"
               onMouseEnter={() => handleMouseEnter('design')}
               onMouseLeave={handleMouseLeave}
             >
-              <button className="flex items-center gap-1 px-3 py-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium transition-colors">
+              <Link 
+                href="/design-ideas"
+                className="flex items-center gap-1 px-3 py-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium transition-colors"
+              >
                 Design Ideas
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
-              </button>
+              </Link>
+              
               {activeDropdown === 'design' && (
-                <div className="absolute top-full left-0 mt-1 w-48 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg py-2">
-                  {designItems.map((item) => (
+                <div className="absolute top-full left-0 mt-1 w-96 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-xl py-4">
+                  <div className="grid grid-cols-3 gap-4 px-4">
+                    {designCategories.map((category) => (
+                      <div key={category.title} className="space-y-2">
+                        <h3 className="font-semibold text-gray-900 dark:text-white text-sm border-b border-gray-200 dark:border-gray-600 pb-1">
+                          {category.title}
+                        </h3>
+                        <div className="space-y-1">
+                          {category.items.map((item) => (
+                            <Link
+                              key={item.label}
+                              href={item.href}
+                              className="block px-2 py-1 text-xs text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700 rounded transition-colors"
+                            >
+                              {item.label}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  {/* View All Link */}
+                  <div className="border-t border-gray-200 dark:border-gray-600 mt-4 pt-3 px-4">
                     <Link
-                      key={item.label}
-                      href={item.href}
-                      className="block px-4 py-2 text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                      href="/design-ideas"
+                      className="inline-flex items-center gap-2 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors"
                     >
-                      {item.label}
+                      <span>View All Design Ideas</span>
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
                     </Link>
-                  ))}
+                  </div>
                 </div>
               )}
             </div>
@@ -127,16 +183,6 @@ export const Navbar = () => {
             {/* Theme Switch */}
             <ThemeSwitch />
 
-            <Link
-              href="/home-decor"
-              className="block bg-green-600 p-2 rounded-full font-bold text-white dark:text-white hover:text-white dark:hover:text-gray-300 transition-colors"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Home Decor
-            </Link>
-
-            {/* CTA Button - Hidden on mobile */}
-            <NavbarModal/>
 
             {/* Mobile menu button */}
             <button
@@ -164,19 +210,38 @@ export const Navbar = () => {
               <PlaceholdersAndVanishInputDemo />
             </div>
 
-            {/* Design Ideas */}
+            {/* Design Ideas - Mobile Categories */}
             <div>
-              <div className="font-medium text-gray-900 dark:text-white mb-2">Design Ideas</div>
-              <div className="pl-4 space-y-2">
-                {designItems.map((item) => (
-                  <Link
-                    key={item.label}
-                    href={item.href}
-                    className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
+              <Link 
+                href="/design-ideas"
+                className="font-medium text-gray-900 dark:text-white mb-2 hover:text-gray-600 dark:hover:text-gray-300 transition-colors flex items-center justify-between"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Design Ideas
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+              
+              <div className="pl-4 space-y-3">
+                {designCategories.map((category) => (
+                  <div key={category.title} className="space-y-2">
+                    <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-400">
+                      {category.title}
+                    </h4>
+                    <div className="pl-2 space-y-1">
+                      {category.items.slice(0, 3).map((item) => (
+                        <Link
+                          key={item.label}
+                          href={item.href}
+                          className="block text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
                 ))}
               </div>
             </div>

@@ -32,7 +32,7 @@ import {
   
       // Build request URL
       const queryString = new URLSearchParams(urlParamsObject).toString();
-      const requestUrl = `${process.env.STRAPI_URL || "http://localhost:1337"}/api${path}${
+      const requestUrl = `${process.env.STRAPI_URL || "https://elegant-charity-710d3644d3.strapiapp.com"}/api${path}${
         queryString ? `?${queryString}` : ""
       }`;
   
