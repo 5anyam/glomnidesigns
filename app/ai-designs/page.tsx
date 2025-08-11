@@ -1,6 +1,6 @@
 "use client"
 import { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { 
   Upload, 
   Camera, 
@@ -562,7 +562,7 @@ export default function AIInteriorDesignPage() {
                 )}
 
                 {/* Generated Image */}
-                <AnimatePresence>
+                <div>
                   {generatedImage && (
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
@@ -585,7 +585,7 @@ export default function AIInteriorDesignPage() {
                       </div>
                     </motion.div>
                   )}
-                </AnimatePresence>
+                </div>
 
                 {/* Enhanced Processing Animation */}
                 {isProcessing && (
