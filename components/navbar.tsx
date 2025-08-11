@@ -144,6 +144,12 @@ export const Navbar = () => {
             >
               Portfolio
             </Link>
+            <Link
+              href="/ai-designs"
+              className="px-3 py-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium transition-colors"
+            >
+              Generate AI Designs
+            </Link>
 
             {/* More Dropdown */}
             <div 
