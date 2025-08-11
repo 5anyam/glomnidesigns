@@ -1,275 +1,351 @@
 "use client"
-// pages/portfolios.tsx
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Search, Filter, Eye, MapPin, Maximize2, X, ChevronLeft, ChevronRight } from 'lucide-react';
-import { portfolioAPI, Portfolio } from '../../lib/api';
+import { Search, Filter, Eye, MapPin, Home, X, ChevronLeft, ChevronRight, Star } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const PortfoliosPage = () => {
-  const [portfolios, setPortfolios] = useState<Portfolio[]>([]);
-  const [filteredPortfolios, setFilteredPortfolios] = useState<Portfolio[]>([]);
+// Simple Portfolio Interface
+interface SimplePortfolio {
+  id: number;
+  name?: string;
+  title?: string;
+  description?: string;
+  location?: string;
+  area?: string;
+  area_size?: number;
+  slug?: string;
+  featured_image?: { url: string; alternativeText?: string };
+  images?: Array<{ url: string; alternativeText?: string }>;
+  project_type?: string;
+  client_name?: string;
+  completion_time?: string;
+}
+
+// Simple API Functions
+const portfolioService = {
+  async fetchAll() {
+    try {
+      const response = await fetch('https://elegant-charity-710d3644d3.strapiapp.com/api/portfolios?populate=*');
+      const result = await response.json();
+      
+      // Handle different response formats
+      const data = result.data || result || [];
+      
+      return {
+        success: true,
+        portfolios: Array.isArray(data) ? data : []
+      };
+    } catch (error) {
+      console.error('Portfolio fetch error:', error);
+      return {
+        success: false,
+        portfolios: [],
+        error: 'Failed to load portfolios'
+      };
+    }
+  }
+};
+
+export default function ModernPortfolioPage() {
+  const [portfolios, setPortfolios] = useState<SimplePortfolio[]>([]);
+  const [filteredPortfolios, setFilteredPortfolios] = useState<SimplePortfolio[]>([]);
   const [loading, setLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedArea, setSelectedArea] = useState<string>('all');
-  const [selectedLocation, setSelectedLocation] = useState<string>('all');
+  const [error, setError] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [locationFilter, setLocationFilter] = useState('all');
+  const [areaFilter, setAreaFilter] = useState('all');
   const [showFilters, setShowFilters] = useState(false);
-  const [lightboxImage, setLightboxImage] = useState<string | null>(null);
+  
+  // Lightbox states
+  const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxImages, setLightboxImages] = useState<string[]>([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Extract unique areas and locations for filters
-  const [uniqueAreas, setUniqueAreas] = useState<string[]>([]);
-  const [uniqueLocations, setUniqueLocations] = useState<string[]>([]);
+  // Filter options
+  const [locations, setLocations] = useState<string[]>([]);
+  const [areas, setAreas] = useState<string[]>([]);
 
+  // Load portfolios on mount
   useEffect(() => {
-    fetchPortfolios();
+    loadPortfolios();
   }, []);
 
+  // Apply filters when data or filters change
   useEffect(() => {
-    filterPortfolios();
-    extractUniqueValues();
-  }, [portfolios, searchTerm, selectedArea, selectedLocation]);
+    applyAllFilters();
+    extractFilterOptions();
+  }, [portfolios, searchQuery, locationFilter, areaFilter]);
 
-  const fetchPortfolios = async () => {
-    try {
-      setLoading(true);
-      const data = await portfolioAPI.getPortfolios();
-      setPortfolios(data.data || []);
-    } catch (error) {
-      console.error('Error fetching portfolios:', error);
-    } finally {
-      setLoading(false);
+  const loadPortfolios = async () => {
+    setLoading(true);
+    setError('');
+
+    const result = await portfolioService.fetchAll();
+    
+    if (result.success) {
+      setPortfolios(result.portfolios);
+      console.log('✅ Loaded portfolios:', result.portfolios.length);
+    } else {
+      setError(result.error || 'Unable to load portfolios');
     }
-  };
-  
-  const extractUniqueValues = () => {
-    const areas = portfolios
-      .map(p => p.area)
-      .filter((a): a is string => !!a);          // only strings
-  
-    const locations = portfolios
-      .map(p => p.location)
-      .filter((l): l is string => !!l);
-  
-    // deduplicate WITHOUT Set iteration
-    const uniq = <T,>(arr: T[]) =>
-      arr.filter((v, i) => arr.indexOf(v) === i);
-  
-    setUniqueAreas(uniq(areas));
-    setUniqueLocations(uniq(locations));
+
+    setLoading(false);
   };
 
-  const filterPortfolios = () => {
-    let filtered = portfolios;
+  const extractFilterOptions = () => {
+    // Extract unique locations
+    const uniqueLocations = portfolios
+      .map(p => p.location)
+      .filter((loc): loc is string => Boolean(loc?.trim()))
+      .filter((loc, index, arr) => arr.indexOf(loc) === index)
+      .sort();
+
+    // Extract unique areas
+    const uniqueAreas = portfolios
+      .map(p => p.area || (p.area_size ? `${p.area_size} sq ft` : ''))
+      .filter((area): area is string => Boolean(area?.trim()))
+      .filter((area, index, arr) => arr.indexOf(area) === index)
+      .sort();
+
+    setLocations(uniqueLocations);
+    setAreas(uniqueAreas);
+  };
+
+  const applyAllFilters = () => {
+    let filtered = [...portfolios];
 
     // Search filter
-    if (searchTerm) {
-      filtered = filtered.filter(portfolio =>
-        portfolio.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        portfolio.description?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        portfolio.location?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        portfolio.area?.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    }
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase();
+      filtered = filtered.filter(portfolio => {
+        const name = (portfolio.name || portfolio.title || '').toLowerCase();
+        const description = (portfolio.description || '').toLowerCase();
+        const location = (portfolio.location || '').toLowerCase();
+        const area = (portfolio.area || '').toLowerCase();
+        const client = (portfolio.client_name || '').toLowerCase();
 
-    // Area filter
-    if (selectedArea !== 'all') {
-      filtered = filtered.filter(portfolio => portfolio.area === selectedArea);
+        return name.includes(query) || 
+               description.includes(query) || 
+               location.includes(query) || 
+               area.includes(query) ||
+               client.includes(query);
+      });
     }
 
     // Location filter
-    if (selectedLocation !== 'all') {
-      filtered = filtered.filter(portfolio => portfolio.location === selectedLocation);
+    if (locationFilter !== 'all') {
+      filtered = filtered.filter(portfolio => portfolio.location === locationFilter);
+    }
+
+    // Area filter
+    if (areaFilter !== 'all') {
+      filtered = filtered.filter(portfolio => 
+        portfolio.area === areaFilter || 
+        (portfolio.area_size && `${portfolio.area_size} sq ft` === areaFilter)
+      );
     }
 
     setFilteredPortfolios(filtered);
   };
 
-  const getImageUrl = (imageUrl: string) => {
-    if (imageUrl.startsWith('http')) return imageUrl;
-    return `${process.env.NEXT_PUBLIC_API_URL?.replace('/api', '') || 'https://elegant-charity-710d3644d3.strapiapp.com'}${imageUrl}`;
+  const getImageUrl = (url: string) => {
+    if (!url) return '/placeholder-portfolio.jpg';
+    if (url.startsWith('http')) return url;
+    const baseUrl = process.env.NEXT_PUBLIC_API_URL?.replace('/api', '') || 'https://elegant-charity-710d3644d3.strapiapp.com';
+    return `${baseUrl}${url}`;
   };
 
   const openLightbox = (imageUrl: string, allImages: string[]) => {
-    const fullImages = allImages.map(img => getImageUrl(img));
-    setLightboxImages(fullImages);
-    setCurrentImageIndex(fullImages.indexOf(getImageUrl(imageUrl)));
-    setLightboxImage(getImageUrl(imageUrl));
+    const fullImageUrls = allImages.map(img => getImageUrl(img));
+    setLightboxImages(fullImageUrls);
+    const index = fullImageUrls.findIndex(img => img === getImageUrl(imageUrl));
+    setCurrentImageIndex(index >= 0 ? index : 0);
+    setLightboxOpen(true);
+    document.body.style.overflow = 'hidden';
   };
 
   const closeLightbox = () => {
-    setLightboxImage(null);
+    setLightboxOpen(false);
     setLightboxImages([]);
     setCurrentImageIndex(0);
+    document.body.style.overflow = 'unset';
   };
 
-  const nextImage = () => {
+  const nextLightboxImage = () => {
     if (currentImageIndex < lightboxImages.length - 1) {
-      const newIndex = currentImageIndex + 1;
-      setCurrentImageIndex(newIndex);
-      setLightboxImage(lightboxImages[newIndex]);
+      setCurrentImageIndex(currentImageIndex + 1);
     }
   };
 
-  const prevImage = () => {
+  const prevLightboxImage = () => {
     if (currentImageIndex > 0) {
-      const newIndex = currentImageIndex - 1;
-      setCurrentImageIndex(newIndex);
-      setLightboxImage(lightboxImages[newIndex]);
+      setCurrentImageIndex(currentImageIndex - 1);
     }
   };
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600"></div>
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin w-16 h-16 border-4 border-purple-600 border-t-transparent rounded-full mb-6"></div>
+          <h3 className="text-xl font-bold text-gray-900 mb-2">Loading Portfolio</h3>
+          <p className="text-gray-600">Fetching stunning projects...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="text-center max-w-md">
+          <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mb-6 mx-auto">
+            <X className="w-10 h-10 text-red-500" />
+          </div>
+          <h3 className="text-2xl font-bold text-gray-900 mb-4">Portfolio Unavailable</h3>
+          <p className="text-gray-600 mb-6">{error}</p>
+          <button 
+            onClick={loadPortfolios}
+            className="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 font-semibold"
+          >
+            Reload Portfolio
+          </button>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div className="min-h-screen bg-white">
+      {/* Header Section */}
+      <div className="bg-gradient-to-br from-purple-600 via-indigo-600 to-blue-600 text-white">
+        <div className="max-w-7xl mx-auto px-4 py-20">
           <div className="text-center">
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4"
-            >
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">
               Our Portfolio
-            </motion.h1>
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-lg sm:text-xl text-purple-100 max-w-2xl mx-auto"
-            >
-              Explore our collection of stunning interior projects and get inspired for your next space
-            </motion.p>
+            </h1>
+            <p className="text-xl text-purple-100 max-w-3xl mx-auto leading-relaxed">
+              Discover {portfolios.length} exceptional interior design projects showcasing our expertise and creativity
+            </p>
+            <div className="mt-8 inline-flex items-center gap-2 bg-white/10 px-6 py-3 rounded-full">
+              <Star className="w-5 h-5 text-yellow-400 fill-current" />
+              <span className="font-semibold">Premium Interior Designs</span>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Search and Filters */}
-      <div className="bg-white shadow-sm sticky top-0 z-30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex flex-col lg:flex-row gap-4">
-            {/* Search Bar */}
-            <div className="flex-1 relative">
-              <Search className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+      {/* Search & Filter Section */}
+      <div className="bg-white shadow-md sticky top-0 z-30 border-b">
+        <div className="max-w-7xl mx-auto px-4 py-6">
+          {/* Search Bar */}
+          <div className="mb-6">
+            <div className="relative max-w-2xl mx-auto">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
               <input
                 type="text"
-                placeholder="Search portfolios, locations, areas..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                placeholder="Search projects, locations, clients..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-12 pr-4 py-4 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-gray-900 placeholder-gray-500 text-lg"
               />
             </div>
+          </div>
 
-            {/* Filter Toggle (Mobile) */}
+          {/* Filters */}
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <button
               onClick={() => setShowFilters(!showFilters)}
-              className="lg:hidden flex items-center justify-center gap-2 px-4 py-2.5 border border-gray-300 rounded-lg hover:bg-gray-50"
+              className="md:hidden flex items-center gap-2 px-6 py-3 border-2 border-gray-300 rounded-lg hover:bg-gray-50"
             >
-              <Filter size={20} />
+              <Filter className="w-5 h-5" />
               Filters
             </button>
 
-            {/* Desktop Filters */}
-            <div className="hidden lg:flex items-center gap-4">
+            <div className="hidden md:flex items-center gap-4">
               <select
-                value={selectedArea}
-                onChange={(e) => setSelectedArea(e.target.value)}
-                className="px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                value={locationFilter}
+                onChange={(e) => setLocationFilter(e.target.value)}
+                className="px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 min-w-48"
               >
-                <option value="all">All Areas</option>
-                {uniqueAreas.map(area => (
-                  <option key={area} value={area}>
-                    {area}
-                  </option>
+                <option value="all">All Locations</option>
+                {locations.map(location => (
+                  <option key={location} value={location}>{location}</option>
                 ))}
               </select>
 
               <select
-                value={selectedLocation}
-                onChange={(e) => setSelectedLocation(e.target.value)}
-                className="px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                value={areaFilter}
+                onChange={(e) => setAreaFilter(e.target.value)}
+                className="px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 min-w-40"
               >
-                <option value="all">All Locations</option>
-                {uniqueLocations.map(location => (
-                  <option key={location} value={location}>
-                    {location}
-                  </option>
+                <option value="all">All Areas</option>
+                {areas.map(area => (
+                  <option key={area} value={area}>{area}</option>
                 ))}
               </select>
+            </div>
+
+            <div className="text-gray-700 font-semibold">
+              <span className="text-purple-600">{filteredPortfolios.length}</span> project{filteredPortfolios.length !== 1 ? 's' : ''} found
             </div>
           </div>
 
           {/* Mobile Filters */}
-          <div>
-            {showFilters && (
-              <motion.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: 'auto', opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                className="lg:hidden mt-4 pt-4 border-t"
-              >
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <select
-                    value={selectedArea}
-                    onChange={(e) => setSelectedArea(e.target.value)}
-                    className="px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                  >
-                    <option value="all">All Areas</option>
-                    {uniqueAreas.map(area => (
-                      <option key={area} value={area}>
-                        {area}
-                      </option>
-                    ))}
-                  </select>
+          {showFilters && (
+            <div className="md:hidden mt-6 pt-6 border-t border-gray-200">
+              <div className="grid grid-cols-1 gap-4">
+                <select
+                  value={locationFilter}
+                  onChange={(e) => setLocationFilter(e.target.value)}
+                  className="px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500"
+                >
+                  <option value="all">All Locations</option>
+                  {locations.map(location => (
+                    <option key={location} value={location}>{location}</option>
+                  ))}
+                </select>
 
-                  <select
-                    value={selectedLocation}
-                    onChange={(e) => setSelectedLocation(e.target.value)}
-                    className="px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                  >
-                    <option value="all">All Locations</option>
-                    {uniqueLocations.map(location => (
-                      <option key={location} value={location}>
-                        {location}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </motion.div>
-            )}
-          </div>
+                <select
+                  value={areaFilter}
+                  onChange={(e) => setAreaFilter(e.target.value)}
+                  className="px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500"
+                >
+                  <option value="all">All Areas</option>
+                  {areas.map(area => (
+                    <option key={area} value={area}>{area}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
-      {/* Results Count */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-        <p className="text-gray-600">
-          Showing {filteredPortfolios.length} portfolio{filteredPortfolios.length !== 1 ? 's' : ''}
-        </p>
-      </div>
-
-      {/* Portfolios Masonry Grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+      {/* Portfolio Grid */}
+      <div className="max-w-7xl mx-auto px-4 py-12">
         {filteredPortfolios.length === 0 ? (
-          <div className="text-center py-12">
-            <div className="w-24 h-24 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
-              <Search className="w-8 h-8 text-gray-400" />
+          <div className="text-center py-20">
+            <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <Search className="w-12 h-12 text-gray-400" />
             </div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">No portfolios found</h3>
-            <p className="text-gray-600">Try adjusting your search or filters</p>
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">No Projects Found</h3>
+            <p className="text-gray-600 text-lg">Try adjusting your search or filters to find more projects</p>
+            {(searchQuery || locationFilter !== 'all' || areaFilter !== 'all') && (
+              <button
+                onClick={() => {
+                  setSearchQuery('');
+                  setLocationFilter('all');
+                  setAreaFilter('all');
+                }}
+                className="mt-6 px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 font-semibold"
+              >
+                Clear All Filters
+              </button>
+            )}
           </div>
         ) : (
-          <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {filteredPortfolios.map((portfolio, index) => (
               <PortfolioCard
                 key={portfolio.id}
@@ -284,71 +360,59 @@ const PortfoliosPage = () => {
       </div>
 
       {/* Lightbox */}
-      <div>
-        {lightboxImage && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
-            onClick={closeLightbox}
-          >
-            <div className="relative max-w-4xl max-h-full" onClick={(e) => e.stopPropagation()}>
-              {/* Close Button */}
-              <button
-                onClick={closeLightbox}
-                className="absolute -top-12 right-0 text-white hover:text-gray-300 z-10"
-              >
-                <X size={24} />
-              </button>
+      {lightboxOpen && lightboxImages.length > 0 && (
+        <div
+          className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4"
+          onClick={closeLightbox}
+        >
+          <div className="relative max-w-6xl max-h-full" onClick={(e) => e.stopPropagation()}>
+            <button
+              onClick={closeLightbox}
+              className="absolute -top-16 right-0 text-white hover:text-gray-300 p-2 bg-white/10 rounded-full"
+            >
+              <X size={24} />
+            </button>
 
-              {/* Navigation Buttons */}
-              {lightboxImages.length > 1 && (
-                <>
-                  <button
-                    onClick={prevImage}
-                    disabled={currentImageIndex === 0}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 disabled:opacity-50 disabled:cursor-not-allowed z-10"
-                  >
-                    <ChevronLeft size={32} />
-                  </button>
-                  <button
-                    onClick={nextImage}
-                    disabled={currentImageIndex === lightboxImages.length - 1}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 disabled:opacity-50 disabled:cursor-not-allowed z-10"
-                  >
-                    <ChevronRight size={32} />
-                  </button>
-                </>
-              )}
+            {lightboxImages.length > 1 && (
+              <>
+                <button
+                  onClick={prevLightboxImage}
+                  disabled={currentImageIndex === 0}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 disabled:opacity-50 p-3 bg-white/10 rounded-full"
+                >
+                  <ChevronLeft size={32} />
+                </button>
+                <button
+                  onClick={nextLightboxImage}
+                  disabled={currentImageIndex === lightboxImages.length - 1}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 disabled:opacity-50 p-3 bg-white/10 rounded-full"
+                >
+                  <ChevronRight size={32} />
+                </button>
+              </>
+            )}
 
-              {/* Image */}
-              <motion.img
-                key={lightboxImage}
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                src={lightboxImage}
-                alt="Portfolio image"
-                className="max-w-full max-h-full object-contain rounded-lg"
-              />
+            <img
+              src={lightboxImages[currentImageIndex]}
+              alt="Portfolio image"
+              className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+            />
 
-              {/* Image Counter */}
-              {lightboxImages.length > 1 && (
-                <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 text-white text-sm">
-                  {currentImageIndex + 1} / {lightboxImages.length}
-                </div>
-              )}
-            </div>
-          </motion.div>
-        )}
-      </div>
+            {lightboxImages.length > 1 && (
+              <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 text-white bg-white/10 px-4 py-2 rounded-full">
+                {currentImageIndex + 1} / {lightboxImages.length}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
-};
+}
 
 // Portfolio Card Component
 interface PortfolioCardProps {
-  portfolio: Portfolio;
+  portfolio: SimplePortfolio;
   getImageUrl: (url: string) => string;
   onImageClick: (imageUrl: string, allImages: string[]) => void;
   index: number;
@@ -360,121 +424,96 @@ const PortfolioCard: React.FC<PortfolioCardProps> = ({
   onImageClick,
   index
 }) => {
+  // Get images
   const images = portfolio.images || [];
   const featuredImage = portfolio.featured_image;
   const mainImage = featuredImage || images[0];
   
-  // Get all image URLs for lightbox
-  const allImageUrls = images.map(img => img.url);
-  if (featuredImage && !allImageUrls.includes(featuredImage.url)) {
-    allImageUrls.unshift(featuredImage.url);
-  }
+  // Get all image URLs
+  const allImageUrls: string[] = [];
+  if (featuredImage?.url) allImageUrls.push(featuredImage.url);
+  images.forEach(img => {
+    if (img?.url && !allImageUrls.includes(img.url)) {
+      allImageUrls.push(img.url);
+    }
+  });
 
-  const getRandomHeight = () => {
-    const heights = ['h-64', 'h-80', 'h-96', 'h-72'];
-    return heights[index % heights.length];
-  };
+  const projectName = portfolio.name || portfolio.title || `Project ${portfolio.id}`;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.1 }}
-      className="break-inside-avoid mb-6 bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-lg transition-all duration-300 group"
-    >
+    <div className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300 group">
       {/* Main Image */}
-      {mainImage && (
-        <div className="relative cursor-pointer" onClick={() => onImageClick(mainImage.url, allImageUrls)}>
-          <div className={`relative ${getRandomHeight()} bg-gray-100`}>
-            <Image
-              src={getImageUrl(mainImage.url)}
-              alt={portfolio.name}
-              fill
-              className="object-cover group-hover:scale-105 transition-transform duration-300"
-            />
-            
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
-              <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="bg-white/90 p-3 rounded-full">
-                  <Eye size={20} className="text-gray-800" />
-                </div>
+      {mainImage?.url && (
+        <div 
+          className="relative aspect-[4/3] bg-gray-100 cursor-pointer overflow-hidden" 
+          onClick={() => onImageClick(mainImage.url, allImageUrls)}
+        >
+          <Image
+            src={getImageUrl(mainImage.url)}
+            alt={projectName}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-300"
+          />
+          
+          {/* Hover Overlay */}
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
+            <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="bg-white/90 p-4 rounded-full shadow-lg">
+                <Eye size={24} className="text-gray-800" />
               </div>
             </div>
-
-            {/* Image Count Badge */}
-            {images.length > 1 && (
-              <div className="absolute top-3 right-3 bg-black/70 text-white px-2 py-1 rounded-full text-xs">
-                +{images.length - 1}
-              </div>
-            )}
           </div>
+
+          {/* Image Count */}
+          {allImageUrls.length > 1 && (
+            <div className="absolute top-3 right-3 bg-black/70 text-white px-3 py-1.5 rounded-full text-sm font-medium">
+              +{allImageUrls.length - 1}
+            </div>
+          )}
         </div>
       )}
 
       {/* Content */}
-      <div className="p-4">
-        <h3 className="font-bold text-lg text-gray-900 mb-2">
-          {portfolio.name}
+      <div className="p-6">
+        <h3 className="font-bold text-xl text-gray-900 mb-3 line-clamp-2">
+          {projectName}
         </h3>
 
         {portfolio.description && (
-          <p className="text-gray-600 text-sm mb-3 line-clamp-3">
+          <p className="text-gray-600 mb-4 line-clamp-3 leading-relaxed">
             {portfolio.description}
           </p>
         )}
 
-        <div className="flex flex-wrap items-center gap-3 text-sm text-gray-500 mb-3">
-          {portfolio.location && (
-            <div className="flex items-center gap-1">
-              <MapPin size={14} />
-              {portfolio.location}
+        {/* Details */}
+        <div className="space-y-2 text-sm text-gray-500 mb-4">
+          {portfolio.client_name && (
+            <div className="flex items-center gap-2">
+              <Home className="w-4 h-4 text-purple-500" />
+              <span className="font-medium">{portfolio.client_name}</span>
             </div>
           )}
-          {portfolio.area && (
-            <div className="flex items-center gap-1">
-              <Maximize2 size={14} />
-              {portfolio.area}
+          {portfolio.location && (
+            <div className="flex items-center gap-2">
+              <MapPin className="w-4 h-4 text-blue-500" />
+              <span className="font-medium">{portfolio.location}</span>
+            </div>
+          )}
+          {(portfolio.area || portfolio.area_size) && (
+            <div className="flex items-center gap-2">
+              <span className="font-medium">📐 {portfolio.area || `${portfolio.area_size} sq ft`}</span>
             </div>
           )}
         </div>
 
-        {/* Gallery Preview */}
-        {images.length > 1 && (
-          <div className="grid grid-cols-3 gap-2 mb-3">
-            {images.slice(1, 4).map((image, idx) => (
-              <div
-                key={image.id}
-                className="relative aspect-square bg-gray-100 rounded-md overflow-hidden cursor-pointer"
-                onClick={() => onImageClick(image.url, allImageUrls)}
-              >
-                <Image
-                  src={getImageUrl(image.url)}
-                  alt={`${portfolio.name} ${idx + 2}`}
-                  fill
-                  className="object-cover hover:scale-110 transition-transform duration-200"
-                />
-                {idx === 2 && images.length > 4 && (
-                  <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
-                    <span className="text-white font-semibold text-sm">
-                      +{images.length - 4}
-                    </span>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        )}
-
+        {/* View Project Button */}
         <Link
-          href={`/portfolio/${portfolio.slug}`}
-          className="block w-full text-center px-4 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-lg hover:from-purple-700 hover:to-indigo-700 transition-all duration-200 transform hover:scale-105"
+          href={`/portfolio/${portfolio.slug || portfolio.id}`}
+          className="block w-full text-center px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-xl hover:from-purple-700 hover:to-indigo-700 transition-all duration-200 hover:scale-105 shadow-lg"
         >
-          View Project
+          View Full Project
         </Link>
       </div>
-    </motion.div>
+    </div>
   );
 };
-
-export default PortfoliosPage;

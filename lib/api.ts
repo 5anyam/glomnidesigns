@@ -1,4 +1,4 @@
-// lib/api.ts
+// lib/api.ts - Completely New Approach
 import axios from 'axios';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://elegant-charity-710d3644d3.strapiapp.com/api';
@@ -8,133 +8,101 @@ const api = axios.create({
   timeout: 10000,
 });
 
-// Types
+// Simple Types
 export interface Design {
   id: number;
   title: string;
   description?: string;
-  tags: string;
-  images?: Array<{
-    id: number;
-    url: string;
-    alternativeText?: string;
-    width?: number;
-    height?: number;
-  }>;
-  featured_image?: {
-    id: number;
-    url: string;
-    alternativeText?: string;
-    width?: number;
-    height?: number;
-  };
+  tags?: string | string[];
+  featured_image?: { url: string; alternativeText?: string };
+  images?: Array<{ url: string; alternativeText?: string }>;
   price_range?: string;
-  style?: 'modern' | 'traditional' | 'contemporary' | 'minimalist' | 'luxury';
+  style?: string;
   area_size?: number;
   location?: string;
   completion_time?: string;
   is_featured?: boolean;
   slug: string;
-  categories?: Array<{
-    id: number;
-    name: string;
-    slug: string;
-    type: 'home_interior' | 'office_interior';
-  }>;
+  categories?: Array<{ id: number; name: string; slug: string }>;
 }
 
 export interface Category {
   id: number;
   name: string;
   slug: string;
-  type: 'home_interior' | 'office_interior';
-  description?: string;
-  image?: {
-    url: string;
-    alternativeText?: string;
-  };
+  type?: string;
 }
 
-export interface Portfolio {
-  id: number;
-  name: string;
-  slug: string;
-  description?: string;
-  area?: string;
-  location?: string;
-  images?: Array<{
-    id: number;
-    url: string;
-    alternativeText?: string;
-  }>;
-  featured_image?: {
-    id: number;
-    url: string;
-    alternativeText?: string;
-  };
-}
-
-// API Functions
+// Simple API Functions
 export const designAPI = {
   // Get all designs
-  getDesigns: async (params?: any) => {
-    const response = await api.get('/designs', { params });
-    return response.data;
+  async getAll() {
+    try {
+      const { data } = await api.get('/designs?populate=*');
+      return { success: true, data: data.data || data || [] };
+    } catch (error) {
+      console.error('API Error:', error);
+      return { success: false, data: [], error: 'Failed to fetch designs' };
+    }
   },
 
-  // Get featured designs
-  getFeaturedDesigns: async () => {
-    const response = await api.get('/designs/featured');
-    return response.data;
+  // Get design by slug
+  async getBySlug(slug: string) {
+    try {
+      const { data } = await api.get(`/designs?filters[slug][$eq]=${slug}&populate=*`);
+      const designs = data.data || data || [];
+      const design = designs.find((d: Design) => d.slug === slug) || designs[0] || null;
+      return { success: true, data: design };
+    } catch (error) {
+      console.error('API Error:', error);
+      return { success: false, data: null, error: 'Design not found' };
+    }
   },
 
   // Get designs by category
-  getDesignsByCategory: async (categorySlug: string) => {
-    const response = await api.get(`/designs/category/${categorySlug}`);
-    return response.data;
+  async getByCategory(categorySlug: string) {
+    try {
+      const { data } = await api.get(`/designs?filters[categories][slug][$eq]=${categorySlug}&populate=*`);
+      return { success: true, data: data.data || data || [] };
+    } catch (error) {
+      console.error('API Error:', error);
+      return { success: false, data: [], error: 'Failed to fetch category designs' };
+    }
   },
 
   // Search designs
-  searchDesigns: async (params: any) => {
-    const response = await api.get('/designs/search', { params });
-    return response.data;
-  },
-
-  // Get single design
-  getDesign: async (id: number) => {
-    const response = await api.get(`/designs/${id}`);
-    return response.data;
-  },
-  getDesignBySlug: async (slug: string) => {
-    const response = await api.get(`/designs/slug/${slug}`);
-    return response.data;
+  async search(query: string) {
+    try {
+      const { data } = await api.get(`/designs?filters[title][$containsi]=${query}&populate=*`);
+      return { success: true, data: data.data || data || [] };
+    } catch (error) {
+      console.error('API Error:', error);
+      return { success: false, data: [], error: 'Search failed' };
+    }
   }
 };
 
 export const categoryAPI = {
-  // Get all categories
-  getCategories: async () => {
-    const response = await api.get('/categories');
-    return response.data;
-  },
-
-  // Get categories by type
-  getCategoriesByType: async (type: 'home_interior' | 'office_interior') => {
-    const response = await api.get(`/categories/type/${type}`);
-    return response.data;
-  },
+  async getAll() {
+    try {
+      const { data } = await api.get('/categories?populate=*');
+      return { success: true, data: data.data || data || [] };
+    } catch (error) {
+      console.error('API Error:', error);
+      return { success: false, data: [], error: 'Failed to fetch categories' };
+    }
+  }
 };
 
+// Simple Portfolio API
 export const portfolioAPI = {
-  // Get all portfolios
-  getPortfolios: async () => {
-    const response = await api.get('/portfolios');
-    return response.data;
-  },
-
-  // Search portfolios
-  searchPortfolios: async (params: any) => {
-    const response = await api.get('/portfolios/search', { params });
-    return response.data;
-  },
+  async getAll() {
+    try {
+      const { data } = await api.get('/portfolios?populate=*');
+      return { success: true, data: data.data || data || [] };
+    } catch (error) {
+      console.error('API Error:', error);
+      return { success: false, data: [], error: 'Failed to fetch portfolios' };
+    }
+  }
 };

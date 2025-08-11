@@ -7,7 +7,9 @@ var { k: __turbopack_refresh__, m: module } = __turbopack_context__;
 {
 // lib/api.ts
 __turbopack_context__.s({
+    "apiUtils": ()=>apiUtils,
     "categoryAPI": ()=>categoryAPI,
+    "default": ()=>__TURBOPACK__default__export__,
     "designAPI": ()=>designAPI,
     "portfolioAPI": ()=>portfolioAPI
 });
@@ -15,71 +17,435 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/axios/lib/axios.js [app-client] (ecmascript)");
 ;
 const API_BASE_URL = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].env.NEXT_PUBLIC_API_URL || 'https://elegant-charity-710d3644d3.strapiapp.com/api';
+// ✅ Enhanced axios instance with proper config
 const api = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].create({
     baseURL: API_BASE_URL,
-    timeout: 10000
+    timeout: 5000,
+    headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+    }
 });
+// ✅ Request interceptor for debugging
+api.interceptors.request.use((config)=>{
+    var _config_method;
+    console.log("🚀 API Request: ".concat((_config_method = config.method) === null || _config_method === void 0 ? void 0 : _config_method.toUpperCase(), " ").concat(config.url));
+    return config;
+}, (error)=>{
+    console.error('❌ Request Error:', error);
+    return Promise.reject(error);
+});
+// ✅ Response interceptor for better error handling
+api.interceptors.response.use((response)=>{
+    console.log("✅ API Response: ".concat(response.status, " - ").concat(response.config.url));
+    return response;
+}, (error)=>{
+    var _error_response, _error_response1;
+    if (error.code === 'ECONNABORTED') {
+        var _error_config;
+        console.error('⏱️ Request timeout:', (_error_config = error.config) === null || _error_config === void 0 ? void 0 : _error_config.url);
+    } else if (((_error_response = error.response) === null || _error_response === void 0 ? void 0 : _error_response.status) === 404) {
+        var _error_config1;
+        console.error('🔍 Resource not found:', (_error_config1 = error.config) === null || _error_config1 === void 0 ? void 0 : _error_config1.url);
+    } else if (((_error_response1 = error.response) === null || _error_response1 === void 0 ? void 0 : _error_response1.status) >= 500) {
+        var _error_response2;
+        console.error('🔥 Server error:', (_error_response2 = error.response) === null || _error_response2 === void 0 ? void 0 : _error_response2.status);
+    } else {
+        console.error('❌ API Error:', error.message);
+    }
+    return Promise.reject(error);
+});
+// ✅ Enhanced API Functions with better error handling and retry logic
+const withRetry = async function(apiCall) {
+    let retries = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : 2;
+    try {
+        return await apiCall();
+    } catch (error) {
+        if (retries > 0 && error.code === 'ECONNABORTED') {
+            console.log("🔄 Retrying API call... (".concat(retries, " attempts left)"));
+            await new Promise((resolve)=>setTimeout(resolve, 1000)); // Wait 1 second
+            return withRetry(apiCall, retries - 1);
+        }
+        throw error;
+    }
+};
 const designAPI = {
-    // Get all designs
+    // ✅ Enhanced get all designs with better error handling
     getDesigns: async (params)=>{
-        const response = await api.get('/designs', {
-            params
+        return withRetry(async ()=>{
+            try {
+                var _response_data;
+                const response = await api.get('/designs', {
+                    params: {
+                        populate: [
+                            'categories',
+                            'featured_image',
+                            'images'
+                        ],
+                        ...params
+                    }
+                });
+                // ✅ Handle both Strapi and custom API responses
+                if ((_response_data = response.data) === null || _response_data === void 0 ? void 0 : _response_data.data) {
+                    return response.data; // Strapi format
+                } else if (Array.isArray(response.data)) {
+                    return {
+                        data: response.data
+                    }; // Direct array format
+                } else {
+                    return {
+                        data: []
+                    }; // Empty fallback
+                }
+            } catch (error) {
+                console.error('🔥 Error fetching designs:', error);
+                // ✅ Return empty data instead of throwing
+                return {
+                    data: []
+                };
+            }
         });
-        return response.data;
     },
-    // Get featured designs
+    // ✅ Enhanced featured designs
     getFeaturedDesigns: async ()=>{
-        const response = await api.get('/designs/featured');
-        return response.data;
-    },
-    // Get designs by category
-    getDesignsByCategory: async (categorySlug)=>{
-        const response = await api.get("/designs/category/".concat(categorySlug));
-        return response.data;
-    },
-    // Search designs
-    searchDesigns: async (params)=>{
-        const response = await api.get('/designs/search', {
-            params
+        return withRetry(async ()=>{
+            try {
+                var _response_data;
+                const response = await api.get('/designs', {
+                    params: {
+                        'filters[is_featured][$eq]': true,
+                        populate: [
+                            'categories',
+                            'featured_image',
+                            'images'
+                        ]
+                    }
+                });
+                if ((_response_data = response.data) === null || _response_data === void 0 ? void 0 : _response_data.data) {
+                    return response.data;
+                } else if (Array.isArray(response.data)) {
+                    return {
+                        data: response.data
+                    };
+                } else {
+                    return {
+                        data: []
+                    };
+                }
+            } catch (error) {
+                console.error('🔥 Error fetching featured designs:', error);
+                return {
+                    data: []
+                };
+            }
         });
-        return response.data;
     },
-    // Get single design
+    // ✅ Enhanced category designs
+    getDesignsByCategory: async (categorySlug)=>{
+        return withRetry(async ()=>{
+            try {
+                var _response_data;
+                const response = await api.get('/designs', {
+                    params: {
+                        'filters[categories][slug][$eq]': categorySlug,
+                        populate: [
+                            'categories',
+                            'featured_image',
+                            'images'
+                        ]
+                    }
+                });
+                if ((_response_data = response.data) === null || _response_data === void 0 ? void 0 : _response_data.data) {
+                    return response.data;
+                } else if (Array.isArray(response.data)) {
+                    return {
+                        data: response.data
+                    };
+                } else {
+                    return {
+                        data: []
+                    };
+                }
+            } catch (error) {
+                console.error('🔥 Error fetching designs by category:', error);
+                return {
+                    data: []
+                };
+            }
+        });
+    },
+    // ✅ Enhanced search
+    searchDesigns: async (params)=>{
+        return withRetry(async ()=>{
+            try {
+                var _response_data;
+                const response = await api.get('/designs', {
+                    params: {
+                        populate: [
+                            'categories',
+                            'featured_image',
+                            'images'
+                        ],
+                        ...params
+                    }
+                });
+                if ((_response_data = response.data) === null || _response_data === void 0 ? void 0 : _response_data.data) {
+                    return response.data;
+                } else if (Array.isArray(response.data)) {
+                    return {
+                        data: response.data
+                    };
+                } else {
+                    return {
+                        data: []
+                    };
+                }
+            } catch (error) {
+                console.error('🔥 Error searching designs:', error);
+                return {
+                    data: []
+                };
+            }
+        });
+    },
+    // ✅ Enhanced single design
     getDesign: async (id)=>{
-        const response = await api.get("/designs/".concat(id));
-        return response.data;
+        return withRetry(async ()=>{
+            try {
+                var _response_data;
+                const response = await api.get("/designs/".concat(id), {
+                    params: {
+                        populate: [
+                            'categories',
+                            'featured_image',
+                            'images'
+                        ]
+                    }
+                });
+                if ((_response_data = response.data) === null || _response_data === void 0 ? void 0 : _response_data.data) {
+                    return {
+                        data: response.data
+                    };
+                } else if (response.data) {
+                    return {
+                        data: response.data
+                    };
+                } else {
+                    return {
+                        data: null
+                    };
+                }
+            } catch (error) {
+                console.error('🔥 Error fetching single design:', error);
+                return {
+                    data: null
+                };
+            }
+        });
     },
+    // ✅ Enhanced design by slug
     getDesignBySlug: async (slug)=>{
-        const response = await api.get("/designs/slug/".concat(slug));
-        return response.data;
+        return withRetry(async ()=>{
+            try {
+                var _response_data;
+                const response = await api.get('/designs', {
+                    params: {
+                        'filters[slug][$eq]': slug,
+                        populate: [
+                            'categories',
+                            'featured_image',
+                            'images'
+                        ]
+                    }
+                });
+                if (((_response_data = response.data) === null || _response_data === void 0 ? void 0 : _response_data.data) && response.data.data.length > 0) {
+                    return {
+                        data: response.data.data[0]
+                    };
+                } else if (Array.isArray(response.data) && response.data.length > 0) {
+                    return {
+                        data: response.data[0]
+                    };
+                } else {
+                    return {
+                        data: null
+                    };
+                }
+            } catch (error) {
+                console.error('🔥 Error fetching design by slug:', error);
+                return {
+                    data: null
+                };
+            }
+        });
     }
 };
 const categoryAPI = {
-    // Get all categories
+    // ✅ Enhanced categories
     getCategories: async ()=>{
-        const response = await api.get('/categories');
-        return response.data;
+        return withRetry(async ()=>{
+            try {
+                var _response_data;
+                const response = await api.get('/categories', {
+                    params: {
+                        populate: [
+                            'image'
+                        ]
+                    }
+                });
+                if ((_response_data = response.data) === null || _response_data === void 0 ? void 0 : _response_data.data) {
+                    return response.data;
+                } else if (Array.isArray(response.data)) {
+                    return {
+                        data: response.data
+                    };
+                } else {
+                    return {
+                        data: []
+                    };
+                }
+            } catch (error) {
+                console.error('🔥 Error fetching categories:', error);
+                return {
+                    data: []
+                };
+            }
+        });
     },
-    // Get categories by type
+    // ✅ Enhanced categories by type
     getCategoriesByType: async (type)=>{
-        const response = await api.get("/categories/type/".concat(type));
-        return response.data;
+        return withRetry(async ()=>{
+            try {
+                var _response_data;
+                const response = await api.get('/categories', {
+                    params: {
+                        'filters[type][$eq]': type,
+                        populate: [
+                            'image'
+                        ]
+                    }
+                });
+                if ((_response_data = response.data) === null || _response_data === void 0 ? void 0 : _response_data.data) {
+                    return response.data;
+                } else if (Array.isArray(response.data)) {
+                    return {
+                        data: response.data
+                    };
+                } else {
+                    return {
+                        data: []
+                    };
+                }
+            } catch (error) {
+                console.error('🔥 Error fetching categories by type:', error);
+                return {
+                    data: []
+                };
+            }
+        });
     }
 };
 const portfolioAPI = {
-    // Get all portfolios
+    // ✅ Enhanced portfolios
     getPortfolios: async ()=>{
-        const response = await api.get('/portfolios');
-        return response.data;
-    },
-    // Search portfolios
-    searchPortfolios: async (params)=>{
-        const response = await api.get('/portfolios/search', {
-            params
+        return withRetry(async ()=>{
+            try {
+                var _response_data;
+                const response = await api.get('/portfolios', {
+                    params: {
+                        populate: [
+                            'images',
+                            'featured_image'
+                        ]
+                    }
+                });
+                if ((_response_data = response.data) === null || _response_data === void 0 ? void 0 : _response_data.data) {
+                    return response.data;
+                } else if (Array.isArray(response.data)) {
+                    return {
+                        data: response.data
+                    };
+                } else {
+                    return {
+                        data: []
+                    };
+                }
+            } catch (error) {
+                console.error('🔥 Error fetching portfolios:', error);
+                return {
+                    data: []
+                };
+            }
         });
-        return response.data;
+    },
+    // ✅ Enhanced search portfolios
+    searchPortfolios: async (params)=>{
+        return withRetry(async ()=>{
+            try {
+                var _response_data;
+                const response = await api.get('/portfolios', {
+                    params: {
+                        populate: [
+                            'images',
+                            'featured_image'
+                        ],
+                        ...params
+                    }
+                });
+                if ((_response_data = response.data) === null || _response_data === void 0 ? void 0 : _response_data.data) {
+                    return response.data;
+                } else if (Array.isArray(response.data)) {
+                    return {
+                        data: response.data
+                    };
+                } else {
+                    return {
+                        data: []
+                    };
+                }
+            } catch (error) {
+                console.error('🔥 Error searching portfolios:', error);
+                return {
+                    data: []
+                };
+            }
+        });
     }
 };
+const apiUtils = {
+    // Test API connection
+    testConnection: async ()=>{
+        try {
+            const response = await api.get('/');
+            return response.status === 200;
+        } catch (error) {
+            console.error('API connection test failed:', error);
+            return false;
+        }
+    },
+    // Get API health status
+    getHealthStatus: async ()=>{
+        try {
+            const [designsResponse, categoriesResponse] = await Promise.allSettled([
+                designAPI.getDesigns(),
+                categoryAPI.getCategories()
+            ]);
+            return {
+                designs: designsResponse.status === 'fulfilled',
+                categories: categoriesResponse.status === 'fulfilled',
+                baseURL: API_BASE_URL
+            };
+        } catch (error) {
+            return {
+                designs: false,
+                categories: false,
+                baseURL: API_BASE_URL,
+                error: error
+            };
+        }
+    }
+};
+const __TURBOPACK__default__export__ = api;
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(module, globalThis.$RefreshHelpers$);
 }
@@ -97,7 +463,6 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 // pages/portfolios.tsx
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/render/components/motion/proxy.mjs [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/components/AnimatePresence/index.mjs [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$search$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Search$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/search.js [app-client] (ecmascript) <export default as Search>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$funnel$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Filter$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/funnel.js [app-client] (ecmascript) <export default as Filter>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$eye$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Eye$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/eye.js [app-client] (ecmascript) <export default as Eye>");
@@ -416,7 +781,7 @@ const PortfoliosPage = ()=>{
                             lineNumber: 160,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AnimatePresence"], {
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             children: showFilters && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
                                 initial: {
                                     height: 0,
@@ -597,7 +962,7 @@ const PortfoliosPage = ()=>{
                 lineNumber: 262,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AnimatePresence"], {
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 children: lightboxImage && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
                     initial: {
                         opacity: 0
