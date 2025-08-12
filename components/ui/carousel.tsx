@@ -1,6 +1,7 @@
 "use client";
 import { IconArrowNarrowRight } from "@tabler/icons-react";
 import { useState, useRef, useId, useEffect } from "react";
+import { BackgroundBeamsWithCollision } from "./background-beams-with-collision";
 
 interface SlideData {
   title: string;
@@ -14,6 +15,77 @@ interface SlideProps {
   current: number;
   handleSlideClick: (index: number) => void;
 }
+
+// Enhanced Star component for professional background
+const Star = ({ delay, size }: { delay: number; size: number }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsVisible(prev => !prev);
+    }, 3000 + delay * 150);
+    
+    setTimeout(() => setIsVisible(Math.random() > 0.5), delay * 100);
+    
+    return () => clearInterval(interval);
+  }, [delay]);
+
+  return (
+    <div
+      className={`absolute rounded-full transition-all duration-1000 ease-in-out ${
+        isVisible ? 'opacity-70 scale-110' : 'opacity-20 scale-90'
+      }`}
+      style={{
+        left: `${Math.random() * 100}%`,
+        top: `${Math.random() * 100}%`,
+        width: `${size}px`,
+        height: `${size}px`,
+        background: `radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(192,192,192,0.4) 50%, rgba(128,128,128,0.1) 100%)`,
+        boxShadow: `0 0 ${size * 2}px rgba(255,255,255,0.3), 0 0 ${size}px rgba(192,192,192,0.2)`,
+      }}
+    />
+  );
+};
+
+// Professional animated background
+const ProfessionalBackground = () => {
+  const stars = Array.from({ length: 35 }, (_, i) => ({
+    id: i,
+    size: Math.random() * 3 + 1, // 1-4px stars
+    delay: i
+  }));
+  
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {/* Gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-black to-slate-800" />
+      
+      {/* Subtle grid overlay */}
+      <div 
+        className="absolute inset-0 opacity-5"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
+          `,
+          backgroundSize: '50px 50px'
+        }}
+      />
+      
+      {/* Animated stars */}
+      {stars.map((star) => (
+        <Star key={star.id} delay={star.delay} size={star.size} />
+      ))}
+      
+      {/* Subtle light rays */}
+      <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-white/10 to-transparent opacity-30" />
+      <div className="absolute top-0 right-1/3 w-px h-full bg-gradient-to-b from-transparent via-white/5 to-transparent opacity-20" />
+      
+      {/* Ambient glow */}
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl" />
+    </div>
+  );
+};
 
 const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
   const slideRef = useRef<HTMLLIElement>(null);
@@ -82,7 +154,7 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
         }}
       >
         <div
-          className="absolute top-0 left-0 w-full h-full bg-[#1D1F2F] rounded-[1%] overflow-hidden transition-all duration-150 ease-out"
+          className="absolute top-0 left-0 w-full h-full bg-[#1D1F2F] rounded-[1%] overflow-hidden transition-all duration-150 ease-out shadow-2xl"
           style={{
             transform:
               current === index
@@ -111,11 +183,11 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
             current === index ? "opacity-100 visible" : "opacity-0 invisible"
           }`}
         >
-          <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold  relative">
+          <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold relative">
             {title}
           </h2>
           <div className="flex justify-center">
-            <button className="mt-6  px-4 py-2 w-fit mx-auto sm:text-sm text-black bg-white h-12 border border-transparent text-xs flex justify-center items-center rounded-2xl hover:shadow-lg transition duration-200 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
+            <button className="mt-6 px-4 py-2 w-fit mx-auto sm:text-sm text-black bg-white h-12 border border-transparent text-xs flex justify-center items-center rounded-2xl hover:shadow-lg transition duration-200 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
               {button}
             </button>
           </div>
@@ -138,13 +210,13 @@ const CarouselControl = ({
 }: CarouselControlProps) => {
   return (
     <button
-      className={`w-10 h-10 flex items-center mx-2 justify-center bg-neutral-200 dark:bg-neutral-800 border-3 border-transparent rounded-full focus:border-[#6D64F7] focus:outline-none hover:-translate-y-0.5 active:translate-y-0.5 transition duration-200 ${
+      className={`w-10 h-10 flex items-center mx-2 justify-center bg-white/10 backdrop-blur-sm border border-white/20 rounded-full focus:border-white/40 focus:outline-none hover:-translate-y-0.5 active:translate-y-0.5 transition duration-200 ${
         type === "previous" ? "rotate-180" : ""
       }`}
       title={title}
       onClick={handleClick}
     >
-      <IconArrowNarrowRight className="text-neutral-600 dark:text-neutral-200" />
+      <IconArrowNarrowRight className="text-white" />
     </button>
   );
 };
@@ -176,7 +248,7 @@ export function Carouselcard({ slides }: CarouselProps) {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % slides.length);
-    }, 4000); // Auto-slide every 4 seconds
+    }, 4000);
 
     return () => clearInterval(interval);
   }, [slides.length]);
@@ -184,40 +256,47 @@ export function Carouselcard({ slides }: CarouselProps) {
   const id = useId();
 
   return (
-    <div
-      className="relative w-[70vmin] h-[70vmin] mx-auto"
-      aria-labelledby={`carousel-heading-${id}`}
-    >
-      <ul
-        className="absolute flex mx-[-4vmin] transition-transform duration-1000 ease-in-out"
-        style={{
-          transform: `translateX(-${current * (100 / slides.length)}%)`,
-        }}
+    <BackgroundBeamsWithCollision >
+    <div className="relative w-full py-20 min-h-[80vh] flex items-center justify-center overflow-hidden">
+      {/* Professional Animated Background */}
+      
+      
+      <div
+        className="relative w-[70vmin] h-[70vmin] mx-auto z-10"
+        aria-labelledby={`carousel-heading-${id}`}
       >
-        {slides.map((slide, index) => (
-          <Slide
-            key={index}
-            slide={slide}
-            index={index}
-            current={current}
-            handleSlideClick={handleSlideClick}
+        <ul
+          className="absolute flex mx-[-4vmin] transition-transform duration-1000 ease-in-out"
+          style={{
+            transform: `translateX(-${current * (100 / slides.length)}%)`,
+          }}
+        >
+          {slides.map((slide, index) => (
+            <Slide
+              key={index}
+              slide={slide}
+              index={index}
+              current={current}
+              handleSlideClick={handleSlideClick}
+            />
+          ))}
+        </ul>
+
+        <div className="absolute flex justify-center w-full top-[calc(100%+1rem)]">
+          <CarouselControl
+            type="previous"
+            title="Go to previous slide"
+            handleClick={handlePreviousClick}
           />
-        ))}
-      </ul>
 
-      <div className="absolute flex justify-center w-full top-[calc(100%+1rem)]">
-        <CarouselControl
-          type="previous"
-          title="Go to previous slide"
-          handleClick={handlePreviousClick}
-        />
-
-        <CarouselControl
-          type="next"
-          title="Go to next slide"
-          handleClick={handleNextClick}
-        />
+          <CarouselControl
+            type="next"
+            title="Go to next slide"
+            handleClick={handleNextClick}
+          />
+        </div>
       </div>
     </div>
+    </BackgroundBeamsWithCollision>
   );
 }

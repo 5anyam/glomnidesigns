@@ -1,7 +1,7 @@
 "use client"
 // app/page.tsx
 import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, ExternalLink, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -121,13 +121,13 @@ export default function Threedcardshome() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
+    <div className="container mx-auto px-4 py-8 bg-black min-h-screen">
       {/* Header */}
       <div className="text-center mb-12">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4"
+          className="text-3xl md:text-4xl font-bold text-white mb-4"
         >
           Our Premium Services
         </motion.h2>
@@ -135,7 +135,7 @@ export default function Threedcardshome() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="text-gray-600 dark:text-gray-300 text-lg max-w-2xl mx-auto"
+          className="text-gray-300 text-lg max-w-2xl mx-auto"
         >
           Discover our comprehensive range of interior design and construction services
         </motion.p>
@@ -149,18 +149,18 @@ export default function Threedcardshome() {
             onClick={prevSlide}
             onMouseEnter={() => setIsAutoPlaying(false)}
             onMouseLeave={() => setIsAutoPlaying(true)}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-full p-3 shadow-lg hover:bg-white dark:hover:bg-gray-800 transition-all duration-200 group"
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-gray-800/90 backdrop-blur-sm border border-gray-700 rounded-full p-3 shadow-lg hover:bg-gray-700 transition-all duration-200 group"
           >
-            <ChevronLeft className="w-6 h-6 text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />
+            <ChevronLeft className="w-6 h-6 text-gray-300 group-hover:text-blue-400 transition-colors" />
           </button>
           
           <button
             onClick={nextSlide}
             onMouseEnter={() => setIsAutoPlaying(false)}
             onMouseLeave={() => setIsAutoPlaying(true)}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-full p-3 shadow-lg hover:bg-white dark:hover:bg-gray-800 transition-all duration-200 group"
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-gray-800/90 backdrop-blur-sm border border-gray-700 rounded-full p-3 shadow-lg hover:bg-gray-700 transition-all duration-200 group"
           >
-            <ChevronRight className="w-6 h-6 text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />
+            <ChevronRight className="w-6 h-6 text-gray-300 group-hover:text-blue-400 transition-colors" />
           </button>
         </div>
 
@@ -198,14 +198,12 @@ export default function Threedcardshome() {
               onClick={() => goToSlide(index)}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
                 currentSlide === index
-                  ? 'bg-blue-600 dark:bg-blue-400 w-8'
-                  : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
+                  ? 'bg-blue-400 w-8'
+                  : 'bg-gray-600 hover:bg-gray-500'
               }`}
             />
           ))}
         </div>
-
-        {/* ✅ REMOVED: Auto-play toggle button section */}
       </div>
 
       {/* CTA Button */}
@@ -216,7 +214,7 @@ export default function Threedcardshome() {
   );
 }
 
-// Carousel Card Component with Added Padding
+// Carousel Card Component with Dark Theme
 interface CarouselCardProps {
   card: {
     title: string;
@@ -233,7 +231,7 @@ interface CarouselCardProps {
 const CarouselCard: React.FC<CarouselCardProps> = ({ card, index, slidesToShow }) => {
   return (
     <div 
-      className="px-3 pb-8"  // ✅ ADDED: pb-8 for padding bottom
+      className="px-3 pb-8"
       style={{ minWidth: `${100 / slidesToShow}%` }}
     >
       <motion.div
@@ -241,7 +239,7 @@ const CarouselCard: React.FC<CarouselCardProps> = ({ card, index, slidesToShow }
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: index * 0.1 }}
         whileHover={{ y: -8, scale: 1.02 }}
-        className="group relative bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-2xl overflow-hidden shadow-lg border border-gray-200/50 dark:border-gray-700/50 hover:shadow-2xl transition-all duration-300"
+        className="group relative bg-gray-800/80 backdrop-blur-sm rounded-2xl overflow-hidden shadow-xl border border-gray-700/50 hover:shadow-2xl hover:border-gray-600 transition-all duration-300"
       >
         {/* Image Section */}
         <div className="relative h-48 lg:h-56 overflow-hidden">
@@ -253,18 +251,18 @@ const CarouselCard: React.FC<CarouselCardProps> = ({ card, index, slidesToShow }
           />
           
           {/* Gradient Overlay */}
-          <div className={`absolute inset-0 bg-gradient-to-br ${card.gradient} opacity-20 group-hover:opacity-30 transition-opacity duration-300`} />
+          <div className={`absolute inset-0 bg-gradient-to-br ${card.gradient} opacity-30 group-hover:opacity-40 transition-opacity duration-300`} />
           
           {/* Icon Badge */}
-          <div className="absolute top-4 left-4 w-12 h-12 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg border border-white/50 dark:border-gray-700/50">
+          <div className="absolute top-4 left-4 w-12 h-12 bg-gray-900/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg border border-gray-700/50">
             <span className="text-2xl">{card.icon}</span>
           </div>
 
           {/* Hover Overlay */}
-          <div className="absolute inset-0 bg-black/40 dark:bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+          <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
             <Link
               href={card.link}
-              className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm text-gray-800 dark:text-white px-4 py-2 rounded-full hover:bg-white dark:hover:bg-gray-800 transition-all duration-200 flex items-center gap-2 shadow-lg font-semibold"
+              className="bg-gray-800/90 backdrop-blur-sm text-white px-4 py-2 rounded-full hover:bg-gray-700 transition-all duration-200 flex items-center gap-2 shadow-lg font-semibold border border-gray-600"
             >
               <span>Explore</span>
               <ExternalLink size={16} />
@@ -274,17 +272,17 @@ const CarouselCard: React.FC<CarouselCardProps> = ({ card, index, slidesToShow }
 
         {/* Content Section */}
         <div className="p-6">
-          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+          <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">
             {card.title}
           </h3>
           
-          <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-4 line-clamp-3">
+          <p className="text-gray-300 text-sm leading-relaxed mb-4 line-clamp-3">
             {card.description}
           </p>
 
           <Link
             href={card.link}
-            className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-semibold text-sm group-hover:gap-3 transition-all duration-200"
+            className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-semibold text-sm group-hover:gap-3 transition-all duration-200"
           >
             Learn More
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-200" />
@@ -292,7 +290,7 @@ const CarouselCard: React.FC<CarouselCardProps> = ({ card, index, slidesToShow }
         </div>
 
         {/* Premium Badge */}
-        <div className="absolute top-4 right-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <div className="absolute top-4 right-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-3 py-1 rounded-full text-xs font-bold shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           Premium
         </div>
       </motion.div>

@@ -7,7 +7,7 @@ export function FlipWordsDemo() {
 
   return (
     <div className="h-full flex flex-col justify-center items-center px-4">
-      <div className="text-base mt-6 text-center md:text-4xl mx-auto font-bold text-black dark:text-white">
+      <div className="text-base mt-6 text-center md:text-4xl mx-auto font-bold text-white">
       Dedicated to transform your<FlipWords words={words} />vision into reality.
       </div>
       <div>

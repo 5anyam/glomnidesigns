@@ -67,16 +67,16 @@ export const Navbar = () => {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
+    <nav className="sticky top-0 z-50 bg-gray-900 backdrop-blur-md border-b border-gray-700">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center">
             <Link href="/" className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-red-500 dark:bg-red-600 rounded-full flex items-center justify-center">
+              <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
                 <span className="text-white font-bold text-sm">G</span>
               </div>
-              <h1 className="font-bold text-xl text-gray-900 dark:text-white">Glomni Designs</h1>
+              <h1 className="font-bold text-xl text-white">Glomni Designs</h1>
             </Link>
           </div>
 
@@ -90,7 +90,7 @@ export const Navbar = () => {
             >
               <Link 
                 href="/design-ideas"
-                className="flex items-center gap-1 px-3 py-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium transition-colors"
+                className="flex items-center gap-1 px-3 py-2 text-gray-300 hover:text-white font-medium transition-colors"
               >
                 Design Ideas
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -99,11 +99,11 @@ export const Navbar = () => {
               </Link>
               
               {activeDropdown === 'design' && (
-                <div className="absolute top-full left-0 mt-1 w-96 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-xl py-4">
+                <div className="absolute top-full left-0 mt-1 w-96 bg-gray-800 border border-gray-700 rounded-lg shadow-xl py-4">
                   <div className="grid grid-cols-3 gap-4 px-4">
                     {designCategories.map((category) => (
                       <div key={category.title} className="space-y-2">
-                        <h3 className="font-semibold text-gray-900 dark:text-white text-sm border-b border-gray-200 dark:border-gray-600 pb-1">
+                        <h3 className="font-semibold text-white text-sm border-b border-gray-600 pb-1">
                           {category.title}
                         </h3>
                         <div className="space-y-1">
@@ -111,7 +111,7 @@ export const Navbar = () => {
                             <Link
                               key={item.label}
                               href={item.href}
-                              className="block px-2 py-1 text-xs text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700 rounded transition-colors"
+                              className="block px-2 py-1 text-xs text-gray-300 hover:text-white hover:bg-gray-700 rounded transition-colors"
                             >
                               {item.label}
                             </Link>
@@ -122,10 +122,10 @@ export const Navbar = () => {
                   </div>
                   
                   {/* View All Link */}
-                  <div className="border-t border-gray-200 dark:border-gray-600 mt-4 pt-3 px-4">
+                  <div className="border-t border-gray-600 mt-4 pt-3 px-4">
                     <Link
                       href="/design-ideas"
-                      className="inline-flex items-center gap-2 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors"
+                      className="inline-flex items-center gap-2 text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors"
                     >
                       <span>View All Design Ideas</span>
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -140,16 +140,25 @@ export const Navbar = () => {
             {/* Portfolio Link */}
             <Link
               href="/portfolio"
-              className="px-3 py-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium transition-colors"
+              className="px-3 py-2 text-gray-300 hover:text-white font-medium transition-colors"
             >
               Portfolio
             </Link>
-            <Link
-              href="/ai-designs"
-              className="px-3 py-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium transition-colors"
-            >
-              Generate AI Designs
-            </Link>
+
+            {/* Generate AI Designs with Offer Sticker */}
+            <div className="relative">
+              <Link
+                href="/ai-designs"
+                className="px-3 py-2 text-gray-300 hover:text-white font-medium transition-colors relative"
+              >
+                Generate AI Designs
+                {/* Animated Offer Sticker */}
+                <div className="absolute -top-2 -right-2 bg-gradient-to-r from-yellow-400 to-orange-500 text-black text-xs font-bold px-2 py-1 rounded-full shadow-lg animate-pulse">
+                  <span className="relative text-[.5rem] z-10">NEW</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-yellow-300 to-orange-400 rounded-full animate-ping opacity-75"></div>
+                </div>
+              </Link>
+            </div>
 
             {/* More Dropdown */}
             <div 
@@ -157,19 +166,19 @@ export const Navbar = () => {
               onMouseEnter={() => handleMouseEnter('more')}
               onMouseLeave={handleMouseLeave}
             >
-              <button className="flex items-center gap-1 px-3 py-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium transition-colors">
+              <button className="flex items-center gap-1 px-3 py-2 text-gray-300 hover:text-white font-medium transition-colors">
                 More
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
               {activeDropdown === 'more' && (
-                <div className="absolute top-full left-0 mt-1 w-48 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg py-2">
+                <div className="absolute top-full left-0 mt-1 w-48 bg-gray-800 border border-gray-700 rounded-lg shadow-lg py-2">
                   {moreItems.map((item) => (
                     <Link
                       key={item.label}
                       href={item.href}
-                      className="block px-4 py-2 text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                      className="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-gray-700 transition-colors"
                     >
                       {item.label}
                     </Link>
@@ -189,11 +198,10 @@ export const Navbar = () => {
             {/* Theme Switch */}
             <ThemeSwitch />
 
-
             {/* Mobile menu button */}
             <button
               onClick={toggleMobileMenu}
-              className="lg:hidden p-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+              className="lg:hidden p-2 text-gray-300 hover:text-white"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 {isMobileMenuOpen ? (
@@ -209,7 +217,7 @@ export const Navbar = () => {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
+        <div className="lg:hidden bg-gray-800 border-t border-gray-700">
           <div className="px-4 py-4 space-y-4">
             {/* Search on mobile */}
             <div className="sm:hidden">
@@ -220,7 +228,7 @@ export const Navbar = () => {
             <div>
               <Link 
                 href="/design-ideas"
-                className="font-medium text-gray-900 dark:text-white mb-2 hover:text-gray-600 dark:hover:text-gray-300 transition-colors flex items-center justify-between"
+                className="font-medium text-white mb-2 hover:text-gray-300 transition-colors flex items-center justify-between"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Design Ideas
@@ -232,7 +240,7 @@ export const Navbar = () => {
               <div className="pl-4 space-y-3">
                 {designCategories.map((category) => (
                   <div key={category.title} className="space-y-2">
-                    <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-400">
+                    <h4 className="text-sm font-semibold text-gray-400">
                       {category.title}
                     </h4>
                     <div className="pl-2 space-y-1">
@@ -240,7 +248,7 @@ export const Navbar = () => {
                         <Link
                           key={item.label}
                           href={item.href}
-                          className="block text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+                          className="block text-sm text-gray-300 hover:text-white transition-colors"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           {item.label}
@@ -255,21 +263,36 @@ export const Navbar = () => {
             {/* Portfolio */}
             <Link
               href="/portfolio"
-              className="block font-medium text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+              className="block font-medium text-white hover:text-gray-300 transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Portfolio
             </Link>
 
+            {/* Generate AI Designs with Mobile Sticker */}
+            <div className="relative">
+              <Link
+                href="/ai-designs"
+                className="block font-medium text-white hover:text-gray-300 transition-colors relative"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Generate AI Designs
+                {/* Mobile Offer Sticker */}
+                <span className="absolute -top-1 -right-1 bg-gradient-to-r from-yellow-400 to-orange-500 text-black text-xs font-bold px-2 py-1 rounded-full shadow-lg animate-pulse">
+                  NEW
+                </span>
+              </Link>
+            </div>
+
             {/* More Items */}
             <div>
-              <div className="font-medium text-gray-900 dark:text-white mb-2">More</div>
+              <div className="font-medium text-white mb-2">More</div>
               <div className="pl-4 space-y-2">
                 {moreItems.map((item) => (
                   <Link
                     key={item.label}
                     href={item.href}
-                    className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+                    className="block text-gray-300 hover:text-white transition-colors"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {item.label}
@@ -279,8 +302,8 @@ export const Navbar = () => {
             </div>
 
             {/* CTA Button on mobile */}
-            <button className="w-full mt-4 px-4 py-3 bg-green-500 hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700 text-white rounded-lg font-medium transition-colors">
-              <span className="bg-red-400 dark:bg-red-500 text-white px-2 py-1 rounded text-xs mr-2">NEW</span>
+            <button className="w-full mt-4 px-4 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition-colors">
+              <span className="bg-red-500 text-white px-2 py-1 rounded text-xs mr-2">NEW</span>
               Talk To Expert
             </button>
           </div>

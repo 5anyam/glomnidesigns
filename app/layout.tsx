@@ -3,7 +3,7 @@ import { Metadata, Viewport } from "next";
 import clsx from "clsx";
 
 import { Providers } from "./providers";
-import { Footer } from "@/components/footer";
+import Footer from "@/components/footer";
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
@@ -38,7 +38,7 @@ export default function RootLayout({
       <head />
       <body
         className={clsx(
-          "bg-background font-sans antialiased",
+          "bg-black font-sans antialiased",
           fontSans.variable,
         )}
       >

@@ -34,7 +34,7 @@ export default function AIInteriorDesignPage() {
   // ✅ API Status Management
   const [apiStatus, setApiStatus] = useState<'checking' | 'working' | 'error'>('checking');
   const [tokenUsage, setTokenUsage] = useState({ vision: 0, images: 0 });
-  const [analysisPrompt, setAnalysisPrompt] = useState('');
+ // const [analysisPrompt, setAnalysisPrompt] = useState('');
 
   const designStyles = [
     { id: 'modern', name: 'Modern Minimalist', description: 'Clean lines, neutral colors' },
@@ -93,7 +93,7 @@ export default function AIInteriorDesignPage() {
         setUploadedImage(e.target?.result as string);
         setError('');
         setGeneratedImage(null);
-        setAnalysisPrompt('');
+        //setAnalysisPrompt('');
       };
       reader.readAsDataURL(file);
     }
@@ -155,7 +155,7 @@ export default function AIInteriorDesignPage() {
       
       if (data.success) {
         setGeneratedImage(data.generatedImage);
-        setAnalysisPrompt(data.analysisPrompt || '');
+        //setAnalysisPrompt(data.analysisPrompt || '');
         
         // Track token usage for monitoring
         if (data.apiUsage) {
@@ -184,7 +184,7 @@ export default function AIInteriorDesignPage() {
     const styleDesc = designStyles.find(s => s.id === designStyle)?.description || '';
     const roomName = roomTypes.find(r => r.id === roomType)?.name || '';
     
-    return `Transform this ${roomName.toLowerCase()} into a beautiful ${designStyle} design with ${styleDesc.toLowerCase()}. Add modern furniture, proper lighting, and decorative elements that match the style. Make it look professional and inviting.`;
+    return `Keep the original layout, walls, windows, doors, and architectural structure of this ${roomName.toLowerCase()} exactly as they are. DO NOT change the room's basic layout, wall positions, or architectural elements. Instead, thoughtfully ADD ${designStyle} style furniture, decor, and accessories that complement the existing space. Focus on: furniture placement that fits naturally, ${styleDesc.toLowerCase()}, appropriate lighting fixtures, decorative elements, color coordination with existing elements, and professional interior styling. Maintain the room's original proportions and structural integrity while enhancing it with beautiful ${designStyle} design elements.`;
   };
 
   const downloadImage = () => {
@@ -201,7 +201,7 @@ export default function AIInteriorDesignPage() {
     setGeneratedImage(null);
     setError('');
     setDesignPrompt('');
-    setAnalysisPrompt('');
+    //setAnalysisPrompt('');
     if (fileInputRef.current) {
       fileInputRef.current.value = '';
     }
@@ -221,7 +221,7 @@ export default function AIInteriorDesignPage() {
               <div className="p-3 bg-white/20 rounded-full">
                 <Wand2 className="w-8 h-8" />
               </div>
-              <h1 className="text-5xl font-bold">AI Interior Designer</h1>
+              <h1 className="text-5xl font-bold">Generate AI Designs</h1>
             </motion.div>
             
             <motion.p
@@ -546,7 +546,7 @@ export default function AIInteriorDesignPage() {
                   </div>
                 )}
 
-                {/* ✅ AI Analysis Display */}
+                {/* ✅ AI Analysis Display
                 {analysisPrompt && (
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -559,7 +559,7 @@ export default function AIInteriorDesignPage() {
                     </h4>
                     <p className="text-blue-700 text-sm leading-relaxed">{analysisPrompt}</p>
                   </motion.div>
-                )}
+                )} */}
 
                 {/* Generated Image */}
                 <div>
