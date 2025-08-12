@@ -10,26 +10,31 @@ const MobileBottomNav = () => {
       id: 'home',
       icon: Home,
       label: 'HOME',
-      color: 'text-slate-600'
+      color: 'text-slate-600',
+      link: 'https://www.glomnidesigns.com/'
     },
     {
       id: 'design',
       icon: Image,
       label: 'DESIGN IDEAS',
-      color: 'text-slate-600'
+      color: 'text-slate-600',
+      link: 'https://www.glomnidesigns.com/design-ideas'
     },
     {
       id: 'begin',
       icon: RefreshCw,
-      label: "LET'S BEGIN",
+      label: "AI Designs",
       color: 'text-white',
-      isSpecial: true
+      isSpecial: true,
+      link: 'https://www.glomnidesigns.com/ai-designs'
+
     },
     {
       id: 'estimate',
       icon: Calculator,
       label: 'GET ESTIMATE',
-      color: 'text-slate-600'
+      color: 'text-slate-600',
+      link: 'https://www.glomnidesigns.com/get-estimate'
     },
     {
       id: 'more',
