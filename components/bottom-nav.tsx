@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react';
-import { Home, Image, RefreshCw, Calculator, Menu } from 'lucide-react';
+import { Home, Image, RefreshCw, Calculator, Menu, Link } from 'lucide-react';
 
 const MobileBottomNav = () => {
   const [activeTab, setActiveTab] = useState('home');
@@ -45,7 +45,7 @@ const MobileBottomNav = () => {
   ];
 
   return (
-    <>
+<>
       {/* Bottom Navigation */}
       <div className="block md:hidden fixed bottom-0 z-40 w-full">
         <div className="bg-white/95 backdrop-blur-md dark:bg-black rounded-2xl px-1 py-1">
@@ -54,7 +54,7 @@ const MobileBottomNav = () => {
               const IconComponent = item.icon;
               const isActive = activeTab === item.id;
               return (
-                <button
+                <Link href={item.link}> <button
                   key={item.id}
                   onClick={() => setActiveTab(item.id)}
                   className={`flex flex-col items-center justify-center min-w-0 flex-1 py-2 px-2 transition-all duration-300 ${
@@ -108,7 +108,7 @@ const MobileBottomNav = () => {
                   }`}>
                     {item.label}
                   </span>
-                </button>
+                </button></Link>
               );
             })}
           </div>
