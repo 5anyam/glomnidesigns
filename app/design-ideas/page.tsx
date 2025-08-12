@@ -86,19 +86,19 @@ export default function NewDesignIdeasPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-black">
       {/* Header */}
-      <div className="bg-white shadow-sm border-b">
+      <div className="bg-black shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 py-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">Premium Designs</h1>
-          <p className="text-gray-600 text-lg">
+          <h1 className="text-4xl font-bold text-white mb-2">Premium Designs</h1>
+          <p className="text-white text-lg">
             Found {filteredDesigns.length} beautiful designs for your space
           </p>
         </div>
       </div>
 
       {/* Filters */}
-      <div className="bg-gray-50 border-b">
+      <div className="bg-black border-b">
         <div className="max-w-7xl mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
             {/* Search */}
@@ -126,16 +126,16 @@ export default function NewDesignIdeasPage() {
             </select>
 
             {/* View Toggle */}
-            <div className="flex bg-gray-100 rounded-lg p-1">
+            <div className="flex bg-black rounded-lg p-1">
               <button
                 onClick={() => setViewMode('grid')}
-                className={`p-2 rounded ${viewMode === 'grid' ? 'bg-white shadow' : ''}`}
+                className={`p-2 rounded ${viewMode === 'grid' ? 'bg-black shadow' : ''}`}
               >
                 <Grid className="w-5 h-5" />
               </button>
               <button
                 onClick={() => setViewMode('list')}
-                className={`p-2 rounded ${viewMode === 'list' ? 'bg-white shadow' : ''}`}
+                className={`p-2 rounded ${viewMode === 'list' ? 'bg-black shadow' : ''}`}
               >
                 <List className="w-5 h-5" />
               </button>
@@ -188,9 +188,9 @@ function DesignCard({
 
   if (viewMode === 'list') {
     return (
-      <div className="bg-white rounded-lg shadow-md border overflow-hidden hover:shadow-lg transition-shadow">
+      <div className="bg-black rounded-lg shadow-md border overflow-hidden hover:shadow-lg transition-shadow">
         <div className="flex">
-          <div className="relative w-64 h-48 bg-gray-200 flex-shrink-0">
+          <div className="relative w-64 h-48 bg-black flex-shrink-0">
             {imageUrl ? (
               <Image
                 src={getImageUrl(imageUrl)}
@@ -200,7 +200,7 @@ function DesignCard({
               />
             ) : (
               <div className="w-full h-full flex items-center justify-center">
-                <Eye className="w-12 h-12 text-gray-400" />
+                <Eye className="w-12 h-12 text-white" />
               </div>
             )}
           </div>
@@ -242,7 +242,7 @@ function DesignCard({
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-md border overflow-hidden hover:shadow-lg transition-shadow">
+    <div className="bg-black rounded-lg shadow-md border overflow-hidden hover:shadow-lg transition-shadow">
       <div className="relative aspect-[4/3] bg-gray-200">
         {imageUrl ? (
           <Image
@@ -262,13 +262,13 @@ function DesignCard({
             Featured
           </div>
         )}
-        <button className="absolute top-3 right-3 p-2 bg-white/80 rounded-full hover:bg-white">
+        <button className="absolute top-3 right-3 p-2 bg-black rounded-full">
           <Heart className="w-4 h-4 text-gray-600" />
         </button>
       </div>
       
       <div className="p-4">
-        <h3 className="font-bold text-gray-900 mb-2 line-clamp-2">{design.title}</h3>
+        <h3 className="font-bold text-white mb-2 line-clamp-2">{design.title}</h3>
         
         {design.categories && design.categories.length > 0 && (
           <div className="flex flex-wrap gap-1 mb-3">
@@ -279,7 +279,6 @@ function DesignCard({
             ))}
           </div>
         )}
-
         <div className="flex items-center gap-3 text-xs text-gray-500 mb-3">
           {design.location && (
             <div className="flex items-center gap-1">

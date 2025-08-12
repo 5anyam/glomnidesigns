@@ -30,6 +30,8 @@ export interface Category {
   id: number;
   name: string;
   slug: string;
+  description: string;
+  image?: {url: string;};
   type?: string;
 }
 
@@ -38,7 +40,7 @@ export const designAPI = {
   // Get all designs
   async getAll() {
     try {
-      const { data } = await api.get('/designs?populate=*');
+      const { data } = await api.get('/design-ideas?populate=*');
       return { success: true, data: data.data || data || [] };
     } catch (error) {
       console.error('API Error:', error);

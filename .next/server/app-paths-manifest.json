@@ -3,6 +3,7 @@
   "/ai-designs/page": "app/ai-designs/page.js",
   "/api/generate-interior-design/route": "app/api/generate-interior-design/route.js",
   "/api/test-openai/route": "app/api/test-openai/route.js",
+  "/categories/page": "app/categories/page.js",
   "/design-ideas/[slug]/page": "app/design-ideas/[slug]/page.js",
   "/design-ideas/page": "app/design-ideas/page.js",
   "/page": "app/page.js",
