@@ -20,7 +20,7 @@ export default function Home() {
     Inspiring Design Ideas for Homes & Offices
   </h2>
   <p className="text-center text-neutral-300 text-sm md:text-base">
-    Discover thoughtfully crafted interiors that blend style and functionality—perfect for every space you call yours.
+    Discover thoughtfully crafted interiors that blend style and functionality perfect for every space you call yours.
   </p>
 </div>
     <BentoGridDemo/>

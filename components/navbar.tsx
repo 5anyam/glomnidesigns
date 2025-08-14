@@ -195,8 +195,8 @@ export const Navbar = () => {
               <PlaceholdersAndVanishInputDemo />
             </div>
 
-            {/* Theme Switch */}
-            <ThemeSwitch />
+            {/* Theme Switch
+            <ThemeSwitch /> */}
 
             {/* Mobile menu button */}
             <button

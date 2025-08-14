@@ -12,14 +12,14 @@ const MobileBottomNav = () => {
       icon: Home,
       label: 'HOME',
       color: 'text-slate-600',
-      link: 'https://www.glomnidesigns.com/'
+      link: '/'
     },
     {
       id: 'design',
       icon: Image,
       label: 'DESIGN IDEAS',
       color: 'text-slate-600',
-      link: 'https://www.glomnidesigns.com/design-ideas'
+      link: '/design-ideas'
     },
     {
       id: 'begin',
@@ -27,14 +27,14 @@ const MobileBottomNav = () => {
       label: "AI Designs",
       color: 'text-white',
       isSpecial: true,
-      link: 'https://www.glomnidesigns.com/ai-designs'
+      link: '/ai-designs'
     },
     {
       id: 'estimate',
       icon: Calculator,
       label: 'GET ESTIMATE',
       color: 'text-slate-600',
-      link: 'https://www.glomnidesigns.com/get-estimate'
+      link: '/get-estimate'
     },
     {
       id: 'more',
