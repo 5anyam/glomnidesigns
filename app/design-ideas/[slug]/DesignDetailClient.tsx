@@ -108,7 +108,7 @@ export default function NewDesignDetail({ slug }: { slug: string }) {
             {imageUrl ? (
               <Image
                 src={getImageUrl(imageUrl)}
-                alt={design.title}
+                alt={design.name}
                 fill
                 className="object-cover"
               />
@@ -129,7 +129,7 @@ export default function NewDesignDetail({ slug }: { slug: string }) {
           {/* Details */}
           <div className="space-y-6">
             <div>
-              <h1 className="text-4xl font-bold text-white mb-4">{design.title}</h1>
+              <h1 className="text-4xl font-bold text-white mb-4">{design.name}</h1>
               
               {design.categories && design.categories.length > 0 && (
                 <div className="flex flex-wrap gap-2 mb-4">
@@ -220,7 +220,7 @@ export default function NewDesignDetail({ slug }: { slug: string }) {
                         {relatedImageUrl ? (
                           <Image
                             src={getImageUrl(relatedImageUrl)}
-                            alt={related.title}
+                            alt={related.name}
                             fill
                             className="object-cover"
                           />
@@ -231,7 +231,7 @@ export default function NewDesignDetail({ slug }: { slug: string }) {
                         )}
                       </div>
                       <div className="p-4">
-                        <h3 className="font-bold text-white line-clamp-2">{related.title}</h3>
+                        <h3 className="font-bold text-white line-clamp-2">{related.name}</h3>
                         {related.price_range && (
                           <p className="text-green-600 font-bold mt-2">{related.price_range}</p>
                         )}

@@ -428,7 +428,7 @@ function NewDesignDetail(param) {
                                 children: [
                                     imageUrl ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                         src: getImageUrl(imageUrl),
-                                        alt: design.title,
+                                        alt: design.name,
                                         fill: true,
                                         className: "object-cover"
                                     }, void 0, false, {
@@ -479,7 +479,7 @@ function NewDesignDetail(param) {
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                                                 className: "text-4xl font-bold text-white mb-4",
-                                                children: design.title
+                                                children: design.name
                                             }, void 0, false, {
                                                 fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
                                                 lineNumber: 132,
@@ -761,7 +761,7 @@ function NewDesignDetail(param) {
                                                     className: "relative aspect-[4/3] bg-gray-200",
                                                     children: relatedImageUrl ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                                         src: getImageUrl(relatedImageUrl),
-                                                        alt: related.title,
+                                                        alt: related.name,
                                                         fill: true,
                                                         className: "object-cover"
                                                     }, void 0, false, {
@@ -792,7 +792,7 @@ function NewDesignDetail(param) {
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                                                             className: "font-bold text-white line-clamp-2",
-                                                            children: related.title
+                                                            children: related.name
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
                                                             lineNumber: 234,

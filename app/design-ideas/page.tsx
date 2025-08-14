@@ -52,7 +52,7 @@ export default function NewDesignIdeasPage() {
     // Search filter
     if (searchTerm) {
       filtered = filtered.filter(design =>
-        design.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        design.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
         design.description?.toLowerCase().includes(searchTerm.toLowerCase()) ||
         design.location?.toLowerCase().includes(searchTerm.toLowerCase())
       );
@@ -194,7 +194,7 @@ function DesignCard({
             {imageUrl ? (
               <Image
                 src={getImageUrl(imageUrl)}
-                alt={design.title}
+                alt={design.name}
                 fill
                 className="object-cover"
               />
@@ -205,7 +205,7 @@ function DesignCard({
             )}
           </div>
           <div className="flex-1 p-6">
-            <h3 className="text-xl font-bold text-gray-900 mb-2">{design.title}</h3>
+            <h3 className="text-xl font-bold text-gray-900 mb-2">{design.name}</h3>
             {design.description && (
               <p className="text-gray-600 mb-4 line-clamp-2">{design.description}</p>
             )}
@@ -247,7 +247,7 @@ function DesignCard({
         {imageUrl ? (
           <Image
             src={getImageUrl(imageUrl)}
-            alt={design.title}
+            alt={design.name}
             fill
             className="object-cover"
           />
@@ -268,7 +268,7 @@ function DesignCard({
       </div>
       
       <div className="p-4">
-        <h3 className="font-bold text-white mb-2 line-clamp-2">{design.title}</h3>
+        <h3 className="font-bold text-white mb-2 line-clamp-2">{design.name}</h3>
         
         {design.categories && design.categories.length > 0 && (
           <div className="flex flex-wrap gap-1 mb-3">

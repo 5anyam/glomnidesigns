@@ -374,7 +374,7 @@ function NewDesignIdeasPage() {
         ];
         // Search filter
         if (searchTerm) {
-            filtered = filtered.filter((design)=>design.title?.toLowerCase().includes(searchTerm.toLowerCase()) || design.description?.toLowerCase().includes(searchTerm.toLowerCase()) || design.location?.toLowerCase().includes(searchTerm.toLowerCase()));
+            filtered = filtered.filter((design)=>design.name?.toLowerCase().includes(searchTerm.toLowerCase()) || design.description?.toLowerCase().includes(searchTerm.toLowerCase()) || design.location?.toLowerCase().includes(searchTerm.toLowerCase()));
         }
         // Category filter
         if (selectedCategory !== 'all') {
@@ -656,7 +656,7 @@ function DesignCard({ design, viewMode, getImageUrl }) {
                         className: "relative w-64 h-48 bg-black flex-shrink-0",
                         children: imageUrl ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                             src: getImageUrl(imageUrl),
-                            alt: design.title,
+                            alt: design.name,
                             fill: true,
                             className: "object-cover"
                         }, void 0, false, {
@@ -687,7 +687,7 @@ function DesignCard({ design, viewMode, getImageUrl }) {
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                                 className: "text-xl font-bold text-gray-900 mb-2",
-                                children: design.title
+                                children: design.name
                             }, void 0, false, {
                                 fileName: "[project]/app/design-ideas/page.tsx",
                                 lineNumber: 208,
@@ -830,7 +830,7 @@ function DesignCard({ design, viewMode, getImageUrl }) {
                 children: [
                     imageUrl ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                         src: getImageUrl(imageUrl),
-                        alt: design.title,
+                        alt: design.name,
                         fill: true,
                         className: "object-cover"
                     }, void 0, false, {
@@ -893,7 +893,7 @@ function DesignCard({ design, viewMode, getImageUrl }) {
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                         className: "font-bold text-white mb-2 line-clamp-2",
-                        children: design.title
+                        children: design.name
                     }, void 0, false, {
                         fileName: "[project]/app/design-ideas/page.tsx",
                         lineNumber: 271,
