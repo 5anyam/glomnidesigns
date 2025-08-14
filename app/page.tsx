@@ -5,6 +5,7 @@ import { CarouselDemo } from "@/components/carousel-home";
 import { CompareDemo } from "@/components/compareDemo";
 import { BentoGridDemo } from "@/components/design-idea";
 import { FlipWordsDemo } from "@/components/flip-words-home";
+import { InfiniteMovingCardsDemo } from "@/components/infinite-testimonials";
 import { AnimatedTestimonialsDemo } from "@/components/testimonials";
 import { TimelineDemo } from "@/components/timelinep-home";
 
@@ -25,8 +26,7 @@ export default function Home() {
     <BentoGridDemo/>
     <CompareDemo/>
     <AppleCardsCarouselDemo/>
-    <TimelineDemo/>
-    <AnimatedTestimonialsDemo/>
+    <InfiniteMovingCardsDemo/>
 </>
   );
 }
