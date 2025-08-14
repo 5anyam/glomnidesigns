@@ -29,25 +29,25 @@ export default function AboutUsPage() {
       icon: <Home className="w-6 h-6 sm:w-8 sm:h-8" />,
       title: "Interior Designs",
       description: "Beautiful home interiors that reflect your personality",
-      color: "from-blue-500 to-purple-600"
+      color: "from-blue-400 to-purple-500"
     },
     {
       icon: <Building className="w-6 h-6 sm:w-8 sm:h-8" />,
       title: "Office Spaces", 
       description: "Productive and stylish workspace solutions",
-      color: "from-green-500 to-teal-600"
+      color: "from-green-400 to-teal-500"
     },
     {
       icon: <Wrench className="w-6 h-6 sm:w-8 sm:h-8" />,
       title: "Constructions",
       description: "Quality construction with attention to detail",
-      color: "from-orange-500 to-red-600"
+      color: "from-orange-400 to-red-500"
     },
     {
       icon: <Cpu className="w-6 h-6 sm:w-8 sm:h-8" />,
       title: "Data Centers",
       description: "Efficient and reliable data center solutions",
-      color: "from-purple-500 to-indigo-600"
+      color: "from-purple-400 to-indigo-500"
     }
   ];
 
@@ -100,10 +100,10 @@ export default function AboutUsPage() {
   const locations = ["Delhi", "Noida", "Gurgaon"];
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Mobile-Optimized Hero Section */}
-      <div className="relative bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-black/20"></div>
+    <div className="min-h-screen bg-black text-white">
+      {/* Black Theme Hero Section */}
+      <div className="relative bg-gradient-to-r from-gray-900 via-black to-gray-900 text-white overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-indigo-900/20"></div>
         <div className="relative max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20">
           <div className="text-center">
             <motion.div
@@ -111,17 +111,19 @@ export default function AboutUsPage() {
               animate={{ opacity: 1, y: 0 }}
               className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-6 sm:mb-8"
             >
-              <div className="p-3 sm:p-4 bg-white/20 rounded-full backdrop-blur-sm">
-                <Palette className="w-8 h-8 sm:w-10 sm:h-10" />
+              <div className="p-3 sm:p-4 bg-white/10 border border-white/20 rounded-full backdrop-blur-sm">
+                <Palette className="w-8 h-8 sm:w-10 sm:h-10 text-blue-400" />
               </div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center">About Us</h1>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">
+                About Us
+              </h1>
             </motion.div>
             
             <motion.h2
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6"
+              className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent"
             >
               Glomni Designs
             </motion.h2>
@@ -130,7 +132,7 @@ export default function AboutUsPage() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-base sm:text-lg md:text-xl lg:text-2xl text-blue-100 max-w-4xl mx-auto leading-relaxed px-2"
+              className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed px-2"
             >
               At Glomni Designs, every space has a story to share. With fresh ideas, genuine passion, and hands-on experience, along with generating AI design feature our designers bring your ideas to life. We believe in creating a space that you live & enjoy every day.
             </motion.p>
@@ -138,8 +140,8 @@ export default function AboutUsPage() {
         </div>
       </div>
 
-      {/* Mobile-Optimized Expertise Section */}
-      <div className="py-12 sm:py-16 md:py-20 bg-gray-50">
+      {/* Black Theme Expertise Section */}
+      <div className="py-12 sm:py-16 md:py-20 bg-gray-900/50">
         <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -147,8 +149,8 @@ export default function AboutUsPage() {
             viewport={{ once: true }}
             className="text-center mb-10 sm:mb-12 md:mb-16"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">Our Expertise</h2>
-            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed px-2">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6">Our Expertise</h2>
+            <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed px-2">
               From efficient data centres to stylish office spaces and high-quality home interiors, we combine our expertise and creativity to provide you with the best output.
             </p>
           </motion.div>
@@ -161,21 +163,21 @@ export default function AboutUsPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 shadow-lg hover:shadow-xl transition-all duration-300 text-center group"
+                className="bg-gray-800/60 border border-gray-700/50 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 shadow-2xl hover:shadow-purple-500/20 hover:border-purple-500/30 transition-all duration-300 text-center group backdrop-blur-sm"
               >
-                <div className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-r ${item.color} rounded-full flex items-center justify-center text-white mx-auto mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                <div className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-r ${item.color} rounded-full flex items-center justify-center text-white mx-auto mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
                   {item.icon}
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-4">{item.title}</h3>
-                <p className="text-sm sm:text-base text-gray-600 leading-relaxed">{item.description}</p>
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-4">{item.title}</h3>
+                <p className="text-sm sm:text-base text-gray-400 leading-relaxed">{item.description}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Mobile-Optimized Story Section */}
-      <div className="py-12 sm:py-16 md:py-20 bg-white">
+      {/* Black Theme Story Section */}
+      <div className="py-12 sm:py-16 md:py-20 bg-black">
         <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center">
             <motion.div
@@ -183,12 +185,12 @@ export default function AboutUsPage() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-6 sm:mb-8 flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3">
-                <Users className="w-8 h-8 sm:w-10 sm:h-10 text-blue-600 flex-shrink-0" />
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-6 sm:mb-8 flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3">
+                <Users className="w-8 h-8 sm:w-10 sm:h-10 text-blue-400 flex-shrink-0" />
                 <span>OUR STORY</span>
               </h2>
               
-              <div className="space-y-4 sm:space-y-6 text-gray-700 leading-relaxed text-sm sm:text-base md:text-lg">
+              <div className="space-y-4 sm:space-y-6 text-gray-300 leading-relaxed text-sm sm:text-base md:text-lg">
                 <p>
                   Glomni Designs, starting with a simple but daring idea— to change how spaces are designed and experienced. We began as a small, passionate team and have grown into a complete design and build company, valued for quality work across home interiors, office spaces, constructions, and efficient data centres.
                 </p>
@@ -205,7 +207,7 @@ export default function AboutUsPage() {
                   For data centres, we provide end-to-end services, carefully planned rack setups, non-IT infrastructure, and smart layouts that keep smooth operations and long-term reliability. Every detail is planned correctly, including technical expertise with creative design, so your space works beautifully and efficiently.
                 </p>
                 
-                <p className="font-semibold text-blue-600 text-base sm:text-lg md:text-xl">
+                <p className="font-semibold text-blue-400 text-base sm:text-lg md:text-xl">
                   At Glomni Designs, we don't just build spaces—we craft environments that are practical, inspiring, and ready for the future.
                 </p>
               </div>
@@ -217,23 +219,23 @@ export default function AboutUsPage() {
               viewport={{ once: true }}
               className="relative order-first lg:order-last"
             >
-              <div className="bg-gradient-to-br from-blue-100 to-purple-100 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8">
+              <div className="bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-2xl">
                 <div className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-6">
                   <div className="text-center">
-                    <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-600 mb-1 sm:mb-2">500+</div>
-                    <div className="text-xs sm:text-sm md:text-base text-gray-600">Projects Completed</div>
+                    <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-400 mb-1 sm:mb-2">500+</div>
+                    <div className="text-xs sm:text-sm md:text-base text-gray-400">Projects Completed</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-purple-600 mb-1 sm:mb-2">50+</div>
-                    <div className="text-xs sm:text-sm md:text-base text-gray-600">Happy Clients</div>
+                    <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-purple-400 mb-1 sm:mb-2">50+</div>
+                    <div className="text-xs sm:text-sm md:text-base text-gray-400">Happy Clients</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-green-600 mb-1 sm:mb-2">3</div>
-                    <div className="text-xs sm:text-sm md:text-base text-gray-600">Cities Served</div>
+                    <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-green-400 mb-1 sm:mb-2">3</div>
+                    <div className="text-xs sm:text-sm md:text-base text-gray-400">Cities Served</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-orange-600 mb-1 sm:mb-2">5+</div>
-                    <div className="text-xs sm:text-sm md:text-base text-gray-600">Years Experience</div>
+                    <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-orange-400 mb-1 sm:mb-2">5+</div>
+                    <div className="text-xs sm:text-sm md:text-base text-gray-400">Years Experience</div>
                   </div>
                 </div>
               </div>
@@ -242,8 +244,8 @@ export default function AboutUsPage() {
         </div>
       </div>
 
-      {/* Mobile-Optimized Values Section */}
-      <div className="py-12 sm:py-16 md:py-20 bg-gray-50">
+      {/* Black Theme Values Section */}
+      <div className="py-12 sm:py-16 md:py-20 bg-gray-900/50">
         <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -251,11 +253,11 @@ export default function AboutUsPage() {
             viewport={{ once: true }}
             className="text-center mb-10 sm:mb-12 md:mb-16"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3">
-              <Target className="w-8 h-8 sm:w-10 sm:h-10 text-blue-600" />
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3">
+              <Target className="w-8 h-8 sm:w-10 sm:h-10 text-blue-400" />
               <span>OUR VALUES</span>
             </h2>
-            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed px-2">
+            <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed px-2">
               Our work is guided by values that shape every design, build, and transformation we create.
             </p>
           </motion.div>
@@ -268,15 +270,15 @@ export default function AboutUsPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 shadow-lg hover:shadow-xl transition-all duration-300"
+                className="bg-gray-800/60 border border-gray-700/50 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 shadow-2xl hover:shadow-purple-500/20 hover:border-purple-500/30 transition-all duration-300 backdrop-blur-sm"
               >
                 <div className="flex items-start gap-3 sm:gap-4">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white flex-shrink-0">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white flex-shrink-0 shadow-lg">
                     {value.icon}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-2 sm:mb-4">{value.title}</h3>
-                    <p className="text-sm sm:text-base text-gray-700 leading-relaxed">{value.description}</p>
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2 sm:mb-4">{value.title}</h3>
+                    <p className="text-sm sm:text-base text-gray-400 leading-relaxed">{value.description}</p>
                   </div>
                 </div>
               </motion.div>
@@ -285,8 +287,8 @@ export default function AboutUsPage() {
         </div>
       </div>
 
-      {/* Mobile-Optimized USP Section */}
-      <div className="py-12 sm:py-16 md:py-20 bg-white">
+      {/* Black Theme USP Section */}
+      <div className="py-12 sm:py-16 md:py-20 bg-black">
         <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -294,11 +296,11 @@ export default function AboutUsPage() {
             viewport={{ once: true }}
             className="text-center mb-10 sm:mb-12 md:mb-16"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3">
-              <Star className="w-8 h-8 sm:w-10 sm:h-10 text-yellow-500" />
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3">
+              <Star className="w-8 h-8 sm:w-10 sm:h-10 text-yellow-400" />
               <span>USP</span>
             </h2>
-            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-2">
+            <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto px-2">
               What makes us unique and why clients choose Glomni Designs
             </p>
           </motion.div>
@@ -311,21 +313,21 @@ export default function AboutUsPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 border border-blue-100 hover:border-blue-300 transition-all duration-300 text-center"
+                className="bg-gradient-to-br from-gray-800/60 to-gray-900/60 border border-gray-700/50 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 hover:border-purple-500/30 hover:shadow-purple-500/20 transition-all duration-300 text-center backdrop-blur-sm shadow-xl"
               >
-                <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white mx-auto mb-4 sm:mb-6">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white mx-auto mb-4 sm:mb-6 shadow-lg">
                   {item.icon}
                 </div>
-                <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-4 leading-tight">{item.title}</h3>
-                <p className="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed">{item.description}</p>
+                <h3 className="text-base sm:text-lg md:text-xl font-bold text-white mb-2 sm:mb-4 leading-tight">{item.title}</h3>
+                <p className="text-xs sm:text-sm md:text-base text-gray-400 leading-relaxed">{item.description}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Mobile-Optimized Location Section */}
-      <div className="py-12 sm:py-16 md:py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+      {/* Black Theme Location Section */}
+      <div className="py-12 sm:py-16 md:py-20 bg-gradient-to-r from-gray-900 via-black to-gray-900 text-white">
         <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -334,11 +336,11 @@ export default function AboutUsPage() {
             className="text-center"
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3">
-              <MapPin className="w-8 h-8 sm:w-10 sm:h-10" />
+              <MapPin className="w-8 h-8 sm:w-10 sm:h-10 text-blue-400" />
               <span>Location</span>
             </h2>
             
-            <p className="text-base sm:text-lg md:text-xl text-blue-100 mb-8 sm:mb-10 md:mb-12 max-w-4xl mx-auto leading-relaxed px-2">
+            <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-8 sm:mb-10 md:mb-12 max-w-4xl mx-auto leading-relaxed px-2">
               We serve our services in Delhi, Noida, and Gurgaon, delivering quality designs and builds to match every client's vision. Wherever you are in these cities, we're just a call away.
             </p>
 
@@ -350,11 +352,11 @@ export default function AboutUsPage() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-white/20 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 hover:bg-white/30 transition-all duration-300"
+                  className="bg-gray-800/60 border border-gray-700/50 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 hover:border-purple-500/30 hover:shadow-purple-500/20 transition-all duration-300 shadow-xl"
                 >
-                  <MapPin className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 mx-auto mb-3 sm:mb-4 text-yellow-300" />
-                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-1 sm:mb-2">{location}</h3>
-                  <p className="text-sm sm:text-base text-blue-100">Quality Design Services</p>
+                  <MapPin className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 mx-auto mb-3 sm:mb-4 text-yellow-400" />
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-1 sm:mb-2 text-white">{location}</h3>
+                  <p className="text-sm sm:text-base text-gray-400">Quality Design Services</p>
                 </motion.div>
               ))}
             </div>
@@ -364,19 +366,19 @@ export default function AboutUsPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.5 }}
-              className="p-4 sm:p-6 md:p-8 bg-white/10 backdrop-blur-sm rounded-xl sm:rounded-2xl"
+              className="p-4 sm:p-6 md:p-8 bg-gray-800/40 border border-gray-700/50 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-2xl"
             >
-              <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Ready to Transform Your Space?</h3>
-              <p className="text-base sm:text-lg md:text-xl text-blue-100 mb-6 sm:mb-8 px-2">
+              <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-white">Ready to Transform Your Space?</h3>
+              <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-6 sm:mb-8 px-2">
                 Contact us today for a free consultation and let's bring your vision to life!
               </p>
               
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center max-w-md mx-auto">
-                <button className="flex-1 px-4 sm:px-6 md:px-8 py-3 sm:py-4 bg-white text-blue-600 font-bold rounded-lg sm:rounded-xl hover:bg-gray-100 transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 text-sm sm:text-base">
+                <button className="flex-1 px-4 sm:px-6 md:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold rounded-lg sm:rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-2 text-sm sm:text-base">
                   <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
                   Call Now
                 </button>
-                <button className="flex-1 px-4 sm:px-6 md:px-8 py-3 sm:py-4 border-2 border-white text-white font-bold rounded-lg sm:rounded-xl hover:bg-white hover:text-blue-600 transition-all flex items-center justify-center gap-2 text-sm sm:text-base">
+                <button className="flex-1 px-4 sm:px-6 md:px-8 py-3 sm:py-4 border-2 border-gray-600 text-white font-bold rounded-lg sm:rounded-xl hover:bg-gray-800 hover:border-purple-500 transition-all flex items-center justify-center gap-2 text-sm sm:text-base">
                   <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
                   Get Quote
                 </button>
