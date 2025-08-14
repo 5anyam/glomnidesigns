@@ -3548,7 +3548,7 @@ function CompareDemo() {
             title: "Modern Kitchen Transformation",
             description: "Traditional to Contemporary Design",
             category: "Kitchen",
-            beforeImage: "https://5.imimg.com/data5/SELLER/Default/2021/6/OG/HL/AM/25060391/modular-kitchen-cabinets-500x500.jpg",
+            beforeImage: "https://5.imimg.com/data5/ANDROID/Default/2023/3/FG/UU/HU/5310916/product-jpeg-500x500.jpg",
             afterImage: "https://media.designcafe.com/wp-content/uploads/2019/12/23134656/interior-firms-in-bangalore.jpg"
         },
         {
@@ -3556,7 +3556,7 @@ function CompareDemo() {
             title: "Living Room Makeover",
             description: "Classic to Modern Living Space",
             category: "Living Room",
-            beforeImage: "https://5.imimg.com/data5/SELLER/Default/2021/6/OG/HL/AM/25060391/modular-kitchen-cabinets-500x500.jpg",
+            beforeImage: "https://5.imimg.com/data5/ANDROID/Default/2023/3/FG/UU/HU/5310916/product-jpeg-500x500.jpg",
             afterImage: "https://media.designcafe.com/wp-content/uploads/2019/12/23134656/interior-firms-in-bangalore.jpg"
         },
         {
@@ -3564,7 +3564,7 @@ function CompareDemo() {
             title: "Bedroom Redesign",
             description: "Simple to Luxurious Bedroom",
             category: "Bedroom",
-            beforeImage: "https://5.imimg.com/data5/SELLER/Default/2021/6/OG/HL/AM/25060391/modular-kitchen-cabinets-500x500.jpg",
+            beforeImage: "https://5.imimg.com/data5/ANDROID/Default/2023/3/FG/UU/HU/5310916/product-jpeg-500x500.jpg",
             afterImage: "https://media.designcafe.com/wp-content/uploads/2019/12/23134656/interior-firms-in-bangalore.jpg"
         }
     ];
