@@ -140,7 +140,7 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
     <div className="[perspective:1200px] [transform-style:preserve-3d]">
       <li
         ref={slideRef}
-        className="flex flex-1 flex-col items-center justify-center relative text-center text-white opacity-100 transition-all duration-300 ease-in-out w-[70vmin] h-[70vmin] mx-[4vmin] z-10 "
+        className="flex flex-1 flex-col items-center justify-center relative text-center text-white opacity-100 transition-all duration-300 ease-in-out w-[70vmin] h-[70vmin] mx-[4vmin] z-10"
         onClick={() => handleSlideClick(index)}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
@@ -256,47 +256,52 @@ export function Carouselcard({ slides }: CarouselProps) {
   const id = useId();
 
   return (
-    <BackgroundBeamsWithCollision >
-    <div className="relative w-full py-20 min-h-[80vh] flex items-center justify-center overflow-hidden">
-      {/* Professional Animated Background */}
-      
-      
-      <div
-        className="relative w-[70vmin] h-[70vmin] mx-auto z-10"
-        aria-labelledby={`carousel-heading-${id}`}
-      >
-        <ul
-          className="absolute flex mx-[-4vmin] transition-transform duration-1000 ease-in-out"
-          style={{
-            transform: `translateX(-${current * (100 / slides.length)}%)`,
+    <BackgroundBeamsWithCollision>
+      {/* ✅ MAIN FIX: Adjusted container height and positioning */}
+      <div className="relative w-full py-12 flex items-center justify-center overflow-hidden" style={{ minHeight: 'calc(70vmin + 120px)' }}>
+        
+        <div
+          className="relative mx-auto z-10"
+          style={{ 
+            width: '70vmin', 
+            height: 'calc(70vmin + 80px)' // ✅ Added extra space for arrows
           }}
+          aria-labelledby={`carousel-heading-${id}`}
         >
-          {slides.map((slide, index) => (
-            <Slide
-              key={index}
-              slide={slide}
-              index={index}
-              current={current}
-              handleSlideClick={handleSlideClick}
+          <ul
+            className="absolute flex mx-[-4vmin] transition-transform duration-1000 ease-in-out"
+            style={{
+              transform: `translateX(-${current * (100 / slides.length)}%)`,
+              height: '70vmin' // ✅ Keep slides at original height
+            }}
+          >
+            {slides.map((slide, index) => (
+              <Slide
+                key={index}
+                slide={slide}
+                index={index}
+                current={current}
+                handleSlideClick={handleSlideClick}
+              />
+            ))}
+          </ul>
+
+          {/* ✅ ARROWS: Better positioned with proper spacing */}
+          <div className="absolute flex justify-center w-full" style={{ top: 'calc(70vmin + 20px)' }}>
+            <CarouselControl
+              type="previous"
+              title="Go to previous slide"
+              handleClick={handlePreviousClick}
             />
-          ))}
-        </ul>
 
-        <div className="absolute flex justify-center w-full top-[calc(100%+1rem)]">
-          <CarouselControl
-            type="previous"
-            title="Go to previous slide"
-            handleClick={handlePreviousClick}
-          />
-
-          <CarouselControl
-            type="next"
-            title="Go to next slide"
-            handleClick={handleNextClick}
-          />
+            <CarouselControl
+              type="next"
+              title="Go to next slide"
+              handleClick={handleNextClick}
+            />
+          </div>
         </div>
       </div>
-    </div>
     </BackgroundBeamsWithCollision>
   );
 }

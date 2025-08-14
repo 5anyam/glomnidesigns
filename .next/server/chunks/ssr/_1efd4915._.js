@@ -2296,7 +2296,7 @@ const Slide = ({ slide, index, current, handleSlideClick })=>{
         className: "[perspective:1200px] [transform-style:preserve-3d]",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
             ref: slideRef,
-            className: "flex flex-1 flex-col items-center justify-center relative text-center text-white opacity-100 transition-all duration-300 ease-in-out w-[70vmin] h-[70vmin] mx-[4vmin] z-10 ",
+            className: "flex flex-1 flex-col items-center justify-center relative text-center text-white opacity-100 transition-all duration-300 ease-in-out w-[70vmin] h-[70vmin] mx-[4vmin] z-10",
             onClick: ()=>handleSlideClick(index),
             onMouseMove: handleMouseMove,
             onMouseLeave: handleMouseLeave,
@@ -2429,15 +2429,23 @@ function Carouselcard({ slides }) {
     const id = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useId"])();
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$background$2d$beams$2d$with$2d$collision$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["BackgroundBeamsWithCollision"], {
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "relative w-full py-20 min-h-[80vh] flex items-center justify-center overflow-hidden",
+            className: "relative w-full py-12 flex items-center justify-center overflow-hidden",
+            style: {
+                minHeight: 'calc(70vmin + 120px)'
+            },
             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "relative w-[70vmin] h-[70vmin] mx-auto z-10",
+                className: "relative mx-auto z-10",
+                style: {
+                    width: '70vmin',
+                    height: 'calc(70vmin + 80px)' // ✅ Added extra space for arrows
+                },
                 "aria-labelledby": `carousel-heading-${id}`,
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
                         className: "absolute flex mx-[-4vmin] transition-transform duration-1000 ease-in-out",
                         style: {
-                            transform: `translateX(-${current * (100 / slides.length)}%)`
+                            transform: `translateX(-${current * (100 / slides.length)}%)`,
+                            height: '70vmin' // ✅ Keep slides at original height
                         },
                         children: slides.map((slide, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(Slide, {
                                 slide: slide,
@@ -2446,16 +2454,19 @@ function Carouselcard({ slides }) {
                                 handleSlideClick: handleSlideClick
                             }, index, false, {
                                 fileName: "[project]/components/ui/carousel.tsx",
-                                lineNumber: 275,
-                                columnNumber: 13
+                                lineNumber: 279,
+                                columnNumber: 15
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/components/ui/carousel.tsx",
-                        lineNumber: 268,
-                        columnNumber: 9
+                        lineNumber: 271,
+                        columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "absolute flex justify-center w-full top-[calc(100%+1rem)]",
+                        className: "absolute flex justify-center w-full",
+                        style: {
+                            top: 'calc(70vmin + 20px)'
+                        },
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(CarouselControl, {
                                 type: "previous",
@@ -2463,8 +2474,8 @@ function Carouselcard({ slides }) {
                                 handleClick: handlePreviousClick
                             }, void 0, false, {
                                 fileName: "[project]/components/ui/carousel.tsx",
-                                lineNumber: 286,
-                                columnNumber: 11
+                                lineNumber: 291,
+                                columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(CarouselControl, {
                                 type: "next",
@@ -2472,25 +2483,25 @@ function Carouselcard({ slides }) {
                                 handleClick: handleNextClick
                             }, void 0, false, {
                                 fileName: "[project]/components/ui/carousel.tsx",
-                                lineNumber: 292,
-                                columnNumber: 11
+                                lineNumber: 297,
+                                columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/ui/carousel.tsx",
-                        lineNumber: 285,
-                        columnNumber: 9
+                        lineNumber: 290,
+                        columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/ui/carousel.tsx",
-                lineNumber: 264,
-                columnNumber: 7
+                lineNumber: 263,
+                columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/components/ui/carousel.tsx",
-            lineNumber: 260,
-            columnNumber: 5
+            lineNumber: 261,
+            columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/components/ui/carousel.tsx",
@@ -3902,10 +3913,9 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$ts__$5b$app$
 ;
 ;
 ;
-const FlipWords = ({ words, duration = 3000, className })=>{
+const FlipWords = ({ words, duration = 4000, className })=>{
     const [currentWord, setCurrentWord] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(words[0]);
     const [isAnimating, setIsAnimating] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
-    // thanks for the fix Julian - https://github.com/Julian-AT
     const startAnimation = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])(()=>{
         const word = words[words.indexOf(currentWord) + 1] || words[0];
         setCurrentWord(word);
@@ -3982,7 +3992,7 @@ const FlipWords = ({ words, duration = 3000, className })=>{
                             children: letter
                         }, word + letterIndex, false, {
                             fileName: "[project]/components/ui/flip-words.tsx",
-                            lineNumber: 74,
+                            lineNumber: 73,
                             columnNumber: 15
                         }, ("TURBOPACK compile-time value", void 0))),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3990,18 +4000,18 @@ const FlipWords = ({ words, duration = 3000, className })=>{
                         children: " "
                     }, void 0, false, {
                         fileName: "[project]/components/ui/flip-words.tsx",
-                        lineNumber: 87,
+                        lineNumber: 86,
                         columnNumber: 13
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, word + wordIndex, true, {
                 fileName: "[project]/components/ui/flip-words.tsx",
-                lineNumber: 63,
+                lineNumber: 62,
                 columnNumber: 11
             }, ("TURBOPACK compile-time value", void 0)))
     }, currentWord, false, {
         fileName: "[project]/components/ui/flip-words.tsx",
-        lineNumber: 33,
+        lineNumber: 32,
         columnNumber: 7
     }, ("TURBOPACK compile-time value", void 0));
 };
