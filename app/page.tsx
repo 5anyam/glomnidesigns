@@ -2,6 +2,7 @@
 import Threedcardshome from "@/components/3dcard-data";
 import { AppleCardsCarouselDemo } from "@/components/apple-card";
 import { CarouselDemo } from "@/components/carousel-home";
+import { CompareDemo } from "@/components/compareDemo";
 import { BentoGridDemo } from "@/components/design-idea";
 import { FlipWordsDemo } from "@/components/flip-words-home";
 import { AnimatedTestimonialsDemo } from "@/components/testimonials";
@@ -22,6 +23,7 @@ export default function Home() {
   </p>
 </div>
     <BentoGridDemo/>
+    <CompareDemo/>
     <AppleCardsCarouselDemo/>
     <TimelineDemo/>
     <AnimatedTestimonialsDemo/>
