@@ -1,10 +1,3 @@
 {
-  "/about-us/page": "app/about-us/page.js",
-  "/ai-designs/page": "app/ai-designs/page.js",
-  "/api/generate-interior-design/route": "app/api/generate-interior-design/route.js",
-  "/api/test-openai/route": "app/api/test-openai/route.js",
-  "/design-ideas/[slug]/page": "app/design-ideas/[slug]/page.js",
-  "/design-ideas/page": "app/design-ideas/page.js",
-  "/page": "app/page.js",
-  "/portfolio/page": "app/portfolio/page.js"
+  "/page": "app/page.js"
 }
