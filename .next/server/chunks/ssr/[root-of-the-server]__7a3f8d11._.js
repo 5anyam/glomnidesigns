@@ -372,7 +372,7 @@ function NewDesignDetail({ slug }) {
     };
     if (loading) {
         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "min-h-screen bg-white flex items-center justify-center",
+            className: "min-h-screen bg-black flex items-center justify-center",
             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "animate-spin w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full"
             }, void 0, false, {
@@ -431,10 +431,10 @@ function NewDesignDetail({ slug }) {
     }
     const imageUrl = design.featured_image?.url || design.images?.[0]?.url || '';
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "min-h-screen bg-white",
+        className: "min-h-screen text-white bg-black",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "bg-white shadow-sm border-b sticky top-0 z-10",
+                className: "bg-black shadow-sm border-b sticky top-0 z-10",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "max-w-7xl mx-auto px-4 py-4 flex items-center justify-between",
                     children: [
@@ -565,7 +565,7 @@ function NewDesignDetail({ slug }) {
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                                                className: "text-4xl font-bold text-gray-900 mb-4",
+                                                className: "text-4xl font-bold text-white mb-4",
                                                 children: design.title
                                             }, void 0, false, {
                                                 fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
@@ -596,7 +596,7 @@ function NewDesignDetail({ slug }) {
                                     design.description && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                                className: "text-xl font-bold text-gray-900 mb-3",
+                                                className: "text-xl font-bold text-white mb-3",
                                                 children: "Description"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
@@ -604,7 +604,7 @@ function NewDesignDetail({ slug }) {
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                className: "text-gray-700 leading-relaxed",
+                                                className: "text-white leading-relaxed",
                                                 children: design.description
                                             }, void 0, false, {
                                                 fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
@@ -634,7 +634,7 @@ function NewDesignDetail({ slug }) {
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "font-medium text-gray-900",
+                                                                className: "font-medium text-white",
                                                                 children: "Location"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
@@ -648,7 +648,7 @@ function NewDesignDetail({ slug }) {
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                        className: "text-gray-700",
+                                                        className: "text-white",
                                                         children: design.location
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
@@ -662,10 +662,10 @@ function NewDesignDetail({ slug }) {
                                                 columnNumber: 17
                                             }, this),
                                             design.area_size && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "p-4 bg-gray-50 rounded-lg",
+                                                className: "p-4 bg-black rounded-lg",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "font-medium text-gray-900 block mb-2",
+                                                        className: "font-medium text-white block mb-2",
                                                         children: "Area"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
@@ -673,7 +673,7 @@ function NewDesignDetail({ slug }) {
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                        className: "text-gray-700",
+                                                        className: "text-white",
                                                         children: [
                                                             design.area_size,
                                                             " sq ft"
@@ -690,10 +690,10 @@ function NewDesignDetail({ slug }) {
                                                 columnNumber: 17
                                             }, this),
                                             design.style && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "p-4 bg-gray-50 rounded-lg",
+                                                className: "p-4 bg-black rounded-lg",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "font-medium text-gray-900 block mb-2",
+                                                        className: "font-medium text-white block mb-2",
                                                         children: "Style"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
@@ -701,7 +701,7 @@ function NewDesignDetail({ slug }) {
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                        className: "text-gray-700 capitalize",
+                                                        className: "text-white capitalize",
                                                         children: design.style
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
@@ -715,7 +715,7 @@ function NewDesignDetail({ slug }) {
                                                 columnNumber: 17
                                             }, this),
                                             design.completion_time && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "p-4 bg-gray-50 rounded-lg",
+                                                className: "p-4 bg-black rounded-lg",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                         className: "flex items-center gap-2 mb-2",
@@ -728,7 +728,7 @@ function NewDesignDetail({ slug }) {
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "font-medium text-gray-900",
+                                                                className: "font-medium text-white",
                                                                 children: "Timeline"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
@@ -742,7 +742,7 @@ function NewDesignDetail({ slug }) {
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                        className: "text-gray-700",
+                                                        className: "text-white",
                                                         children: design.completion_time
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
@@ -798,7 +798,7 @@ function NewDesignDetail({ slug }) {
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                className: "flex-1 border-2 border-gray-300 text-gray-700 py-4 px-6 rounded-lg font-bold text-lg hover:border-gray-400",
+                                                className: "flex-1 border-2 border-gray-300 text-white py-4 px-6 rounded-lg font-bold text-lg hover:border-gray-400",
                                                 children: "Call Now"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
@@ -827,7 +827,7 @@ function NewDesignDetail({ slug }) {
                         className: "mt-16",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                className: "text-3xl font-bold text-gray-900 mb-8 text-center",
+                                className: "text-3xl font-bold text-white mb-8 text-center",
                                 children: "Similar Designs"
                             }, void 0, false, {
                                 fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
@@ -857,7 +857,7 @@ function NewDesignDetail({ slug }) {
                                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                         className: "w-full h-full flex items-center justify-center",
                                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$eye$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Eye$3e$__["Eye"], {
-                                                            className: "w-8 h-8 text-gray-400"
+                                                            className: "w-8 h-8 text-white"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
                                                             lineNumber: 229,
@@ -877,7 +877,7 @@ function NewDesignDetail({ slug }) {
                                                     className: "p-4",
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                                            className: "font-bold text-gray-900 line-clamp-2",
+                                                            className: "font-bold text-white line-clamp-2",
                                                             children: related.title
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",

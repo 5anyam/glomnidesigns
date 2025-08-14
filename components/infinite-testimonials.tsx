@@ -50,7 +50,7 @@ export function InfiniteMovingCardsDemo() {
       </div>
 
       {/* Infinite Moving Cards */}
-      <div className="h-[40rem] flex flex-col antialiased items-center justify-center relative">
+      <div className="h-[20rem] flex flex-col antialiased items-center justify-center relative">
         <InfiniteMovingCards
           items={testimonials}
           direction="right"
@@ -59,7 +59,7 @@ export function InfiniteMovingCardsDemo() {
       </div>
 
       {/* Bottom CTA */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mt-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mt-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -89,41 +89,55 @@ export function InfiniteMovingCardsDemo() {
   );
 }
 
+// Update your testimonials array to include avatar images
 const testimonials = [
-  {
-    quote:
-      "Glomni Designs completely transformed our living space beyond our expectations. Their attention to detail and creative vision turned our house into a dream home. The team was professional, timely, and delivered exceptional quality work.",
-    name: "Priya Sharma",
-    title: "Homeowner, Gurgaon",
-  },
-  {
-    quote:
-      "Working with Glomni Designs for our office renovation was the best decision we made. They created a modern, functional workspace that boosted our team's productivity. The project was completed on time and within budget.",
-    name: "Rajesh Kumar",
-    title: "CEO, Tech Solutions Delhi",
-  },
-  {
-    quote:
-      "The kitchen makeover by Glomni Designs is absolutely stunning! They understood our lifestyle and created a perfect blend of functionality and aesthetics. Our family loves spending time in the new kitchen.",
-    name: "Anjali Gupta",
-    title: "Interior Design Enthusiast, Noida",
-  },
-  {
-    quote:
-      "Glomni Designs delivered our data center project with precision and technical expertise. Their understanding of both aesthetics and functionality in critical infrastructure is unmatched. Highly recommended for commercial projects.",
-    name: "Vikram Singh",
-    title: "IT Director, Mumbai",
-  },
-  {
-    quote:
-      "From concept to completion, Glomni Designs exceeded every expectation. Their AI design preview feature helped us visualize the final result perfectly. The after-delivery support has been exceptional too.",
-    name: "Meera Agarwal",
-    title: "Happy Client, Delhi",
-  },
-  {
-    quote:
-      "The bedroom redesign by Glomni Designs created our perfect sanctuary. They listened to our needs, respected our budget, and delivered a luxurious space that feels like a five-star hotel room.",
-    name: "Arjun Patel",
-    title: "Business Owner, Gurgaon",
-  },
-];
+    {
+      quote:
+        "Glomni Designs completely transformed our living space beyond our expectations. Their attention to detail and creative vision turned our house into a dream home. The team was professional, timely, and delivered exceptional quality work.",
+      name: "Priya Sharma",
+      title: "Homeowner, Gurgaon",
+      rating: 5,
+      avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b586?w=150&h=150&fit=crop&crop=face", // Professional Indian woman
+    },
+    {
+      quote:
+        "Working with Glomni Designs for our office renovation was the best decision we made. They created a modern, functional workspace that boosted our team's productivity. The project was completed on time and within budget.",
+      name: "Rajesh Kumar",
+      title: "CEO, Tech Solutions Delhi",
+      rating: 5,
+      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face", // Professional Indian man
+    },
+    {
+      quote:
+        "The kitchen makeover by Glomni Designs is absolutely stunning! They understood our lifestyle and created a perfect blend of functionality and aesthetics. Our family loves spending time in the new kitchen.",
+      name: "Anjali Gupta",
+      title: "Interior Design Enthusiast, Noida",
+      rating: 5,
+      avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face", // Happy woman
+    },
+    {
+      quote:
+        "Glomni Designs delivered our data center project with precision and technical expertise. Their understanding of both aesthetics and functionality in critical infrastructure is unmatched. Highly recommended for commercial projects.",
+      name: "Vikram Singh",
+      title: "IT Director, Mumbai",
+      rating: 5,
+      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face", // Professional man
+    },
+    {
+      quote:
+        "From concept to completion, Glomni Designs exceeded every expectation. Their AI design preview feature helped us visualize the final result perfectly. The after-delivery support has been exceptional too.",
+      name: "Meera Agarwal",
+      title: "Happy Client, Delhi",
+      rating: 4,
+      avatar: "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=150&h=150&fit=crop&crop=face", // Smiling woman
+    },
+    {
+      quote:
+        "The bedroom redesign by Glomni Designs created our perfect sanctuary. They listened to our needs, respected our budget, and delivered a luxurious space that feels like a five-star hotel room.",
+      name: "Arjun Patel",
+      title: "Business Owner, Gurgaon",
+      rating: 5,
+      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face", // Confident man
+    },
+  ];
+  

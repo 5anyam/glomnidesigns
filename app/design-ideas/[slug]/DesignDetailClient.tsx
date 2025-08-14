@@ -53,7 +53,7 @@ export default function NewDesignDetail({ slug }: { slug: string }) {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
+      <div className="min-h-screen bg-black flex items-center justify-center">
         <div className="animate-spin w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full"></div>
       </div>
     );
@@ -76,9 +76,9 @@ export default function NewDesignDetail({ slug }: { slug: string }) {
   const imageUrl = design.featured_image?.url || design.images?.[0]?.url || '';
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen text-white bg-black">
       {/* Header */}
-      <div className="bg-white shadow-sm border-b sticky top-0 z-10">
+      <div className="bg-black shadow-sm border-b sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
           <button
             onClick={() => router.back()}
@@ -129,7 +129,7 @@ export default function NewDesignDetail({ slug }: { slug: string }) {
           {/* Details */}
           <div className="space-y-6">
             <div>
-              <h1 className="text-4xl font-bold text-gray-900 mb-4">{design.title}</h1>
+              <h1 className="text-4xl font-bold text-white mb-4">{design.title}</h1>
               
               {design.categories && design.categories.length > 0 && (
                 <div className="flex flex-wrap gap-2 mb-4">
@@ -144,8 +144,8 @@ export default function NewDesignDetail({ slug }: { slug: string }) {
 
             {design.description && (
               <div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">Description</h3>
-                <p className="text-gray-700 leading-relaxed">{design.description}</p>
+                <h3 className="text-xl font-bold text-white mb-3">Description</h3>
+                <p className="text-white leading-relaxed">{design.description}</p>
               </div>
             )}
 
@@ -155,33 +155,33 @@ export default function NewDesignDetail({ slug }: { slug: string }) {
                 <div className="p-4 bg-gray-50 rounded-lg">
                   <div className="flex items-center gap-2 mb-2">
                     <MapPin className="w-5 h-5 text-blue-600" />
-                    <span className="font-medium text-gray-900">Location</span>
+                    <span className="font-medium text-white">Location</span>
                   </div>
-                  <p className="text-gray-700">{design.location}</p>
+                  <p className="text-white">{design.location}</p>
                 </div>
               )}
 
               {design.area_size && (
-                <div className="p-4 bg-gray-50 rounded-lg">
-                  <span className="font-medium text-gray-900 block mb-2">Area</span>
-                  <p className="text-gray-700">{design.area_size} sq ft</p>
+                <div className="p-4 bg-black rounded-lg">
+                  <span className="font-medium text-white block mb-2">Area</span>
+                  <p className="text-white">{design.area_size} sq ft</p>
                 </div>
               )}
 
               {design.style && (
-                <div className="p-4 bg-gray-50 rounded-lg">
-                  <span className="font-medium text-gray-900 block mb-2">Style</span>
-                  <p className="text-gray-700 capitalize">{design.style}</p>
+                <div className="p-4 bg-black rounded-lg">
+                  <span className="font-medium text-white block mb-2">Style</span>
+                  <p className="text-white capitalize">{design.style}</p>
                 </div>
               )}
 
               {design.completion_time && (
-                <div className="p-4 bg-gray-50 rounded-lg">
+                <div className="p-4 bg-black rounded-lg">
                   <div className="flex items-center gap-2 mb-2">
                     <Clock className="w-5 h-5 text-green-600" />
-                    <span className="font-medium text-gray-900">Timeline</span>
+                    <span className="font-medium text-white">Timeline</span>
                   </div>
-                  <p className="text-gray-700">{design.completion_time}</p>
+                  <p className="text-white">{design.completion_time}</p>
                 </div>
               )}
             </div>
@@ -199,7 +199,7 @@ export default function NewDesignDetail({ slug }: { slug: string }) {
               <button className="flex-1 bg-blue-600 text-white py-4 px-6 rounded-lg font-bold text-lg hover:bg-blue-700">
                 Get Quote
               </button>
-              <button className="flex-1 border-2 border-gray-300 text-gray-700 py-4 px-6 rounded-lg font-bold text-lg hover:border-gray-400">
+              <button className="flex-1 border-2 border-gray-300 text-white py-4 px-6 rounded-lg font-bold text-lg hover:border-gray-400">
                 Call Now
               </button>
             </div>
@@ -209,7 +209,7 @@ export default function NewDesignDetail({ slug }: { slug: string }) {
         {/* Related Designs */}
         {relatedDesigns.length > 0 && (
           <div className="mt-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Similar Designs</h2>
+            <h2 className="text-3xl font-bold text-white mb-8 text-center">Similar Designs</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {relatedDesigns.map(related => {
                 const relatedImageUrl = related.featured_image?.url || related.images?.[0]?.url || '';
@@ -226,12 +226,12 @@ export default function NewDesignDetail({ slug }: { slug: string }) {
                           />
                         ) : (
                           <div className="w-full h-full flex items-center justify-center">
-                            <Eye className="w-8 h-8 text-gray-400" />
+                            <Eye className="w-8 h-8 text-white" />
                           </div>
                         )}
                       </div>
                       <div className="p-4">
-                        <h3 className="font-bold text-gray-900 line-clamp-2">{related.title}</h3>
+                        <h3 className="font-bold text-white line-clamp-2">{related.title}</h3>
                         {related.price_range && (
                           <p className="text-green-600 font-bold mt-2">{related.price_range}</p>
                         )}

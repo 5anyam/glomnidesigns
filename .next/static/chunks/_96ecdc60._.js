@@ -4387,13 +4387,19 @@ __turbopack_context__.s({
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/utils.ts [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$star$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Star$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/star.js [app-client] (ecmascript) <export default as Star>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$user$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__User$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/user.js [app-client] (ecmascript) <export default as User>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/image.js [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 "use client";
 ;
 ;
+;
+;
 const InfiniteMovingCards = (param)=>{
     let { items, direction = "left", speed = "fast", pauseOnHover = true, className } = param;
+    var _this = ("TURBOPACK compile-time value", void 0);
     _s();
     const containerRef = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].useRef(null);
     const scrollerRef = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].useRef(null);
@@ -4437,6 +4443,39 @@ const InfiniteMovingCards = (param)=>{
             }
         }
     };
+    // Function to render star ratings
+    const renderStars = function() {
+        let rating = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : 5;
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "flex items-center gap-1 mb-4",
+            children: [
+                [
+                    ...Array(5)
+                ].map((_, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$star$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Star$3e$__["Star"], {
+                        className: "w-4 h-4 ".concat(index < rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-600 fill-gray-600')
+                    }, index, false, {
+                        fileName: "[project]/components/ui/infinite-moving-cards.tsx",
+                        lineNumber: 86,
+                        columnNumber: 11
+                    }, _this)),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                    className: "text-xs text-gray-400 ml-2",
+                    children: [
+                        rating,
+                        "/5"
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/components/ui/infinite-moving-cards.tsx",
+                    lineNumber: 95,
+                    columnNumber: 9
+                }, _this)
+            ]
+        }, void 0, true, {
+            fileName: "[project]/components/ui/infinite-moving-cards.tsx",
+            lineNumber: 84,
+            columnNumber: 7
+        }, _this);
+    };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         ref: containerRef,
         className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["cn"])("scroller relative z-20 max-w-7xl overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]", className),
@@ -4444,7 +4483,7 @@ const InfiniteMovingCards = (param)=>{
             ref: scrollerRef,
             className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["cn"])("flex w-max min-w-full shrink-0 flex-nowrap gap-4 py-4", start && "animate-scroll", pauseOnHover && "hover:[animation-play-state:paused]"),
             children: items.map((item, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                    className: "relative w-[350px] max-w-full shrink-0 rounded-2xl border border-b-0 border-zinc-200 bg-black px-8 py-6 md:w-[450px] dark:border-zinc-700 dark:bg-[linear-gradient(180deg,#27272a,#18181b)]",
+                    className: "relative w-[350px] max-w-full shrink-0 rounded-2xl border border-b-0 border-zinc-200 bg-black px-8 py-6 md:w-[450px] dark:border-zinc-700 dark:bg-[linear-gradient(180deg,#27272a,#18181b)] hover:border-yellow-400/30 transition-all duration-300 shadow-2xl",
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("blockquote", {
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4452,68 +4491,146 @@ const InfiniteMovingCards = (param)=>{
                                 className: "user-select-none pointer-events-none absolute -top-0.5 -left-0.5 -z-1 h-[calc(100%_+_4px)] w-[calc(100%_+_4px)]"
                             }, void 0, false, {
                                 fileName: "[project]/components/ui/infinite-moving-cards.tsx",
-                                lineNumber: 94,
-                                columnNumber: 15
-                            }, ("TURBOPACK compile-time value", void 0)),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                className: "relative z-20 text-sm leading-[1.6] font-normal text-gray-100",
-                                children: item.quote
-                            }, void 0, false, {
-                                fileName: "[project]/components/ui/infinite-moving-cards.tsx",
-                                lineNumber: 98,
+                                lineNumber: 124,
                                 columnNumber: 15
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "relative z-20 mt-6 flex flex-row items-center",
-                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                    className: "flex flex-col gap-1",
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            className: "text-sm leading-[1.6] font-normal text-gray-400",
-                                            children: item.name
-                                        }, void 0, false, {
-                                            fileName: "[project]/components/ui/infinite-moving-cards.tsx",
-                                            lineNumber: 103,
-                                            columnNumber: 19
-                                        }, ("TURBOPACK compile-time value", void 0)),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            className: "text-sm leading-[1.6] font-normal text-gray-400",
-                                            children: item.title
-                                        }, void 0, false, {
-                                            fileName: "[project]/components/ui/infinite-moving-cards.tsx",
-                                            lineNumber: 106,
-                                            columnNumber: 19
-                                        }, ("TURBOPACK compile-time value", void 0))
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/components/ui/infinite-moving-cards.tsx",
-                                    lineNumber: 102,
-                                    columnNumber: 17
-                                }, ("TURBOPACK compile-time value", void 0))
+                                className: "relative z-20",
+                                children: renderStars(item.rating || 5)
                             }, void 0, false, {
                                 fileName: "[project]/components/ui/infinite-moving-cards.tsx",
-                                lineNumber: 101,
+                                lineNumber: 130,
+                                columnNumber: 15
+                            }, ("TURBOPACK compile-time value", void 0)),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                className: "relative z-20 text-sm leading-[1.6] font-normal text-gray-100 mb-6 block",
+                                children: [
+                                    '"',
+                                    item.quote,
+                                    '"'
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/components/ui/infinite-moving-cards.tsx",
+                                lineNumber: 135,
+                                columnNumber: 15
+                            }, ("TURBOPACK compile-time value", void 0)),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "relative z-20 flex flex-row items-center justify-between pt-4 border-t border-gray-700/50",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex items-center gap-3",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "relative w-12 h-12 rounded-full overflow-hidden bg-gray-700 border-2 border-gray-600 flex-shrink-0",
+                                                children: item.avatar ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                                    src: item.avatar,
+                                                    alt: "".concat(item.name, "'s avatar"),
+                                                    fill: true,
+                                                    className: "object-cover",
+                                                    sizes: "48px"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/ui/infinite-moving-cards.tsx",
+                                                    lineNumber: 145,
+                                                    columnNumber: 23
+                                                }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600",
+                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$user$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__User$3e$__["User"], {
+                                                        className: "w-6 h-6 text-white"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/components/ui/infinite-moving-cards.tsx",
+                                                        lineNumber: 154,
+                                                        columnNumber: 25
+                                                    }, ("TURBOPACK compile-time value", void 0))
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/ui/infinite-moving-cards.tsx",
+                                                    lineNumber: 153,
+                                                    columnNumber: 23
+                                                }, ("TURBOPACK compile-time value", void 0))
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/ui/infinite-moving-cards.tsx",
+                                                lineNumber: 143,
+                                                columnNumber: 19
+                                            }, ("TURBOPACK compile-time value", void 0)),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "flex flex-col gap-1",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        className: "text-sm leading-[1.6] font-semibold text-white",
+                                                        children: item.name
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/components/ui/infinite-moving-cards.tsx",
+                                                        lineNumber: 161,
+                                                        columnNumber: 21
+                                                    }, ("TURBOPACK compile-time value", void 0)),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        className: "text-xs leading-[1.4] font-normal text-gray-400",
+                                                        children: item.title
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/components/ui/infinite-moving-cards.tsx",
+                                                        lineNumber: 164,
+                                                        columnNumber: 21
+                                                    }, ("TURBOPACK compile-time value", void 0))
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/components/ui/infinite-moving-cards.tsx",
+                                                lineNumber: 160,
+                                                columnNumber: 19
+                                            }, ("TURBOPACK compile-time value", void 0))
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/components/ui/infinite-moving-cards.tsx",
+                                        lineNumber: 141,
+                                        columnNumber: 17
+                                    }, ("TURBOPACK compile-time value", void 0)),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex items-center gap-1",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$star$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Star$3e$__["Star"], {
+                                                className: "w-4 h-4 text-yellow-400 fill-yellow-400"
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/ui/infinite-moving-cards.tsx",
+                                                lineNumber: 172,
+                                                columnNumber: 19
+                                            }, ("TURBOPACK compile-time value", void 0)),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "text-sm font-bold text-yellow-400",
+                                                children: item.rating || 5.0
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/ui/infinite-moving-cards.tsx",
+                                                lineNumber: 173,
+                                                columnNumber: 19
+                                            }, ("TURBOPACK compile-time value", void 0))
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/components/ui/infinite-moving-cards.tsx",
+                                        lineNumber: 171,
+                                        columnNumber: 17
+                                    }, ("TURBOPACK compile-time value", void 0))
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/components/ui/infinite-moving-cards.tsx",
+                                lineNumber: 140,
                                 columnNumber: 15
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/ui/infinite-moving-cards.tsx",
-                        lineNumber: 93,
+                        lineNumber: 123,
                         columnNumber: 13
                     }, ("TURBOPACK compile-time value", void 0))
-                }, item.name, false, {
+                }, "".concat(item.name, "-").concat(idx), false, {
                     fileName: "[project]/components/ui/infinite-moving-cards.tsx",
-                    lineNumber: 89,
+                    lineNumber: 119,
                     columnNumber: 11
                 }, ("TURBOPACK compile-time value", void 0)))
         }, void 0, false, {
             fileName: "[project]/components/ui/infinite-moving-cards.tsx",
-            lineNumber: 80,
+            lineNumber: 110,
             columnNumber: 7
         }, ("TURBOPACK compile-time value", void 0))
     }, void 0, false, {
         fileName: "[project]/components/ui/infinite-moving-cards.tsx",
-        lineNumber: 73,
+        lineNumber: 103,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };
@@ -4701,7 +4818,7 @@ function InfiniteMovingCardsDemo() {
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "h-[40rem] flex flex-col antialiased items-center justify-center relative",
+                className: "h-[20rem] flex flex-col antialiased items-center justify-center relative",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$infinite$2d$moving$2d$cards$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["InfiniteMovingCards"], {
                     items: testimonials,
                     direction: "right",
@@ -4717,7 +4834,7 @@ function InfiniteMovingCardsDemo() {
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mt-12",
+                className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mt-4",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
                     initial: {
                         opacity: 0,
@@ -4799,36 +4916,49 @@ function InfiniteMovingCardsDemo() {
     }, this);
 }
 _c = InfiniteMovingCardsDemo;
+// Update your testimonials array to include avatar images
 const testimonials = [
     {
         quote: "Glomni Designs completely transformed our living space beyond our expectations. Their attention to detail and creative vision turned our house into a dream home. The team was professional, timely, and delivered exceptional quality work.",
         name: "Priya Sharma",
-        title: "Homeowner, Gurgaon"
+        title: "Homeowner, Gurgaon",
+        rating: 5,
+        avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b586?w=150&h=150&fit=crop&crop=face"
     },
     {
         quote: "Working with Glomni Designs for our office renovation was the best decision we made. They created a modern, functional workspace that boosted our team's productivity. The project was completed on time and within budget.",
         name: "Rajesh Kumar",
-        title: "CEO, Tech Solutions Delhi"
+        title: "CEO, Tech Solutions Delhi",
+        rating: 5,
+        avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face"
     },
     {
         quote: "The kitchen makeover by Glomni Designs is absolutely stunning! They understood our lifestyle and created a perfect blend of functionality and aesthetics. Our family loves spending time in the new kitchen.",
         name: "Anjali Gupta",
-        title: "Interior Design Enthusiast, Noida"
+        title: "Interior Design Enthusiast, Noida",
+        rating: 5,
+        avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face"
     },
     {
         quote: "Glomni Designs delivered our data center project with precision and technical expertise. Their understanding of both aesthetics and functionality in critical infrastructure is unmatched. Highly recommended for commercial projects.",
         name: "Vikram Singh",
-        title: "IT Director, Mumbai"
+        title: "IT Director, Mumbai",
+        rating: 5,
+        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
     },
     {
         quote: "From concept to completion, Glomni Designs exceeded every expectation. Their AI design preview feature helped us visualize the final result perfectly. The after-delivery support has been exceptional too.",
         name: "Meera Agarwal",
-        title: "Happy Client, Delhi"
+        title: "Happy Client, Delhi",
+        rating: 4,
+        avatar: "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=150&h=150&fit=crop&crop=face"
     },
     {
         quote: "The bedroom redesign by Glomni Designs created our perfect sanctuary. They listened to our needs, respected our budget, and delivered a luxurious space that feels like a five-star hotel room.",
         name: "Arjun Patel",
-        title: "Business Owner, Gurgaon"
+        title: "Business Owner, Gurgaon",
+        rating: 5,
+        avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face"
     }
 ];
 var _c;
