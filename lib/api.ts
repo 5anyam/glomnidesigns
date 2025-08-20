@@ -59,7 +59,7 @@ export interface InteriorCategory {
 export interface Design {
   id: number;
   name: string;
-  description?: string;
+  description: string;
   tags?: string | string[];
   featured_image?: { url: string; alternativeText?: string };
   images?: Array<{ url: string; alternativeText?: string }>;
