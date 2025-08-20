@@ -451,17 +451,6 @@ function DesignCard({
           </div>
         )}
         
-        {/* Like Button - Bottom Right of Image */}
-        <button 
-          onClick={onToggleLike}
-          className={`absolute bottom-4 right-4 p-3 rounded-full transition-all duration-300 shadow-lg ${
-            isLiked 
-              ? 'bg-red-500/90 text-white scale-110 shadow-red-500/25' 
-              : 'bg-black/60 backdrop-blur-md text-gray-300 hover:text-red-400 hover:bg-red-500/20 border border-white/10'
-          }`}
-        >
-          <Heart className={`w-5 h-5 ${isLiked ? 'fill-current' : ''}`} />
-        </button>
 
         {/* Gradient Overlay for Better Text Readability */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
