@@ -821,7 +821,7 @@ function NewDesignIdeasPage() {
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: viewMode === 'grid' ? 'grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8' : 'space-y-6',
+                            className: viewMode === 'grid' ? 'grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6' : 'space-y-6',
                             children: filteredDesigns.map((design)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(DesignCard, {
                                     design: design,
                                     viewMode: viewMode,
@@ -854,14 +854,14 @@ function NewDesignIdeasPage() {
 }
 _s(NewDesignIdeasPage, "+RN1W2e115HXXOYaeRg2mojC2Co=");
 _c = NewDesignIdeasPage;
-// Enhanced Design Card Component
+// Enhanced Design Card Component - Optimized for smaller grid cards
 function DesignCard(param) {
     let { design, viewMode, getImageUrl, isLiked, onToggleLike } = param;
     var _design_featured_image, _design_images_, _design_images;
     const imageUrl = ((_design_featured_image = design.featured_image) === null || _design_featured_image === void 0 ? void 0 : _design_featured_image.url) || ((_design_images = design.images) === null || _design_images === void 0 ? void 0 : (_design_images_ = _design_images[0]) === null || _design_images_ === void 0 ? void 0 : _design_images_.url) || '';
     // Function to truncate description to word limit
     const getTruncatedDescription = function(text) {
-        let wordLimit = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : 35;
+        let wordLimit = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : 20;
         if (!text) return '';
         const words = text.split(' ');
         if (words.length <= wordLimit) return text;
@@ -1078,7 +1078,7 @@ function DesignCard(param) {
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                 className: "text-gray-300 mb-4 md:mb-6 leading-relaxed text-sm md:text-base",
-                                children: getTruncatedDescription(design.description) || 'A beautiful interior design crafted with premium materials and expert attention to detail for your perfect space.'
+                                children: getTruncatedDescription(design.description, 35) || 'A beautiful interior design crafted with premium materials and expert attention to detail for your perfect space.'
                             }, void 0, false, {
                                 fileName: "[project]/app/design-ideas/page.tsx",
                                 lineNumber: 381,
@@ -1186,8 +1186,9 @@ function DesignCard(param) {
             columnNumber: 7
         }, this);
     }
+    // Grid Card - Optimized for 2 mobile / 4 desktop layout
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "group bg-gray-900/90 backdrop-blur-sm rounded-2xl md:rounded-3xl border border-gray-800/60 overflow-hidden hover:border-gray-600/80 transition-all duration-500 hover:scale-105 hover:shadow-2xl",
+        className: "group bg-gray-900/90 backdrop-blur-sm rounded-xl lg:rounded-2xl border border-gray-800/60 overflow-hidden hover:border-gray-600/80 transition-all duration-500 hover:scale-105 hover:shadow-2xl",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "relative aspect-[4/3] bg-gradient-to-br from-gray-800 to-gray-900 overflow-hidden",
@@ -1199,288 +1200,280 @@ function DesignCard(param) {
                         className: "object-cover group-hover:scale-110 transition-transform duration-700"
                     }, void 0, false, {
                         fileName: "[project]/app/design-ideas/page.tsx",
-                        lineNumber: 416,
+                        lineNumber: 417,
                         columnNumber: 11
                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "w-full h-full flex items-center justify-center",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$eye$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Eye$3e$__["Eye"], {
-                            className: "w-12 h-12 md:w-16 md:h-16 text-gray-600"
+                            className: "w-8 h-8 lg:w-12 lg:h-12 text-gray-600"
                         }, void 0, false, {
                             fileName: "[project]/app/design-ideas/page.tsx",
-                            lineNumber: 424,
+                            lineNumber: 425,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/design-ideas/page.tsx",
-                        lineNumber: 423,
+                        lineNumber: 424,
                         columnNumber: 11
                     }, this),
                     design.categories && design.categories.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "absolute top-3 md:top-4 left-3 md:left-4 flex flex-col gap-1 md:gap-2",
+                        className: "absolute top-2 lg:top-3 left-2 lg:left-3 flex flex-col gap-1",
                         children: [
-                            design.categories.slice(0, 2).map((cat)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                    className: "px-2 md:px-3 py-1 md:py-1.5 bg-black/80 backdrop-blur-md text-white text-xs font-semibold rounded-full border border-white/20 shadow-lg hover:bg-black/90 transition-all duration-300",
+                            design.categories.slice(0, 1).map((cat)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    className: "px-2 lg:px-3 py-1 bg-black/80 backdrop-blur-md text-white text-xs font-semibold rounded-full border border-white/20 shadow-lg",
                                     children: cat.name
                                 }, cat.id, false, {
                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                    lineNumber: 432,
+                                    lineNumber: 433,
                                     columnNumber: 15
                                 }, this)),
-                            design.categories.length > 2 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                className: "px-2 md:px-3 py-1 md:py-1.5 bg-black/60 backdrop-blur-md text-gray-300 text-xs rounded-full border border-white/10",
+                            design.categories.length > 1 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                className: "px-2 lg:px-3 py-1 bg-black/60 backdrop-blur-md text-gray-300 text-xs rounded-full border border-white/10",
                                 children: [
                                     "+",
-                                    design.categories.length - 2
+                                    design.categories.length - 1
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/design-ideas/page.tsx",
-                                lineNumber: 440,
+                                lineNumber: 441,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/design-ideas/page.tsx",
-                        lineNumber: 430,
+                        lineNumber: 431,
                         columnNumber: 11
                     }, this),
                     design.is_featured && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "absolute top-3 md:top-4 right-3 md:right-4 flex items-center gap-1 bg-gradient-to-r from-yellow-500 via-orange-500 to-red-500 text-white px-2 md:px-3 py-1 md:py-1.5 rounded-full text-xs font-bold shadow-xl border border-yellow-400/30 animate-pulse",
+                        className: "absolute top-2 lg:top-3 right-2 lg:right-3 flex items-center gap-1 bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-2 lg:px-3 py-1 rounded-full text-xs font-bold shadow-xl border border-yellow-400/30",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$star$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Star$3e$__["Star"], {
-                                className: "w-3 h-3 fill-current"
+                                className: "w-2.5 h-2.5 lg:w-3 lg:h-3 fill-current"
                             }, void 0, false, {
                                 fileName: "[project]/app/design-ideas/page.tsx",
-                                lineNumber: 450,
+                                lineNumber: 451,
                                 columnNumber: 13
                             }, this),
-                            "Featured"
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                className: "hidden sm:inline",
+                                children: "Featured"
+                            }, void 0, false, {
+                                fileName: "[project]/app/design-ideas/page.tsx",
+                                lineNumber: 452,
+                                columnNumber: 13
+                            }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/design-ideas/page.tsx",
-                        lineNumber: 449,
+                        lineNumber: 450,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                         onClick: onToggleLike,
-                        className: "absolute bottom-3 md:bottom-4 right-3 md:right-4 p-2 md:p-3 rounded-full transition-all duration-300 shadow-lg ".concat(isLiked ? 'bg-red-500/90 text-white scale-110 shadow-red-500/25' : 'bg-black/60 backdrop-blur-md text-gray-300 hover:text-red-400 hover:bg-red-500/20 border border-white/10'),
+                        className: "absolute bottom-2 lg:bottom-3 right-2 lg:right-3 p-1.5 lg:p-2 rounded-full transition-all duration-300 shadow-lg ".concat(isLiked ? 'bg-red-500/90 text-white scale-110 shadow-red-500/25' : 'bg-black/60 backdrop-blur-md text-gray-300 hover:text-red-400 hover:bg-red-500/20 border border-white/10'),
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$heart$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Heart$3e$__["Heart"], {
-                            className: "w-4 h-4 md:w-5 md:h-5 ".concat(isLiked ? 'fill-current' : '')
+                            className: "w-3 h-3 lg:w-4 lg:h-4 ".concat(isLiked ? 'fill-current' : '')
                         }, void 0, false, {
                             fileName: "[project]/app/design-ideas/page.tsx",
-                            lineNumber: 464,
+                            lineNumber: 465,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/design-ideas/page.tsx",
-                        lineNumber: 456,
+                        lineNumber: 457,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300"
                     }, void 0, false, {
                         fileName: "[project]/app/design-ideas/page.tsx",
-                        lineNumber: 468,
+                        lineNumber: 469,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/design-ideas/page.tsx",
-                lineNumber: 414,
+                lineNumber: 415,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "p-4 md:p-6",
+                className: "p-3 lg:p-4",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                        className: "font-bold text-white text-lg md:text-xl mb-2 md:mb-3 line-clamp-2 group-hover:text-blue-400 transition-colors leading-tight",
+                        className: "font-bold text-white text-sm lg:text-base mb-2 line-clamp-2 group-hover:text-blue-400 transition-colors leading-tight",
                         children: design.name
                     }, void 0, false, {
                         fileName: "[project]/app/design-ideas/page.tsx",
-                        lineNumber: 472,
+                        lineNumber: 473,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                        className: "text-gray-400 text-sm mb-3 md:mb-4 line-clamp-3 leading-relaxed",
-                        children: getTruncatedDescription(design.description) || 'Premium interior design featuring modern aesthetics with carefully selected materials and expert craftsmanship for exceptional living spaces.'
+                        className: "text-gray-400 text-xs lg:text-sm mb-3 line-clamp-2 leading-relaxed",
+                        children: getTruncatedDescription(design.description, 15) || 'Premium interior design with modern aesthetics and expert craftsmanship.'
                     }, void 0, false, {
                         fileName: "[project]/app/design-ideas/page.tsx",
-                        lineNumber: 477,
+                        lineNumber: 478,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3 md:mb-4 gap-2",
-                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "flex items-center gap-3 md:gap-4 text-sm",
-                            children: [
-                                design.location && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "flex items-center gap-2 text-gray-400",
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "w-5 h-5 md:w-6 md:h-6 bg-blue-500/20 rounded-md flex items-center justify-center",
-                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$map$2d$pin$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__MapPin$3e$__["MapPin"], {
-                                                className: "w-3 h-3 text-blue-400"
-                                            }, void 0, false, {
-                                                fileName: "[project]/app/design-ideas/page.tsx",
-                                                lineNumber: 487,
-                                                columnNumber: 19
-                                            }, this)
+                        className: "flex items-center justify-between mb-3 text-xs lg:text-sm",
+                        children: [
+                            design.location && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "flex items-center gap-1 text-gray-400",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "w-4 h-4 lg:w-5 lg:h-5 bg-blue-500/20 rounded flex items-center justify-center",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$map$2d$pin$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__MapPin$3e$__["MapPin"], {
+                                            className: "w-2.5 h-2.5 lg:w-3 lg:h-3 text-blue-400"
                                         }, void 0, false, {
                                             fileName: "[project]/app/design-ideas/page.tsx",
-                                            lineNumber: 486,
-                                            columnNumber: 17
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            className: "text-xs md:text-sm",
-                                            children: design.location
-                                        }, void 0, false, {
-                                            fileName: "[project]/app/design-ideas/page.tsx",
-                                            lineNumber: 489,
+                                            lineNumber: 487,
                                             columnNumber: 17
                                         }, this)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/app/design-ideas/page.tsx",
-                                    lineNumber: 485,
-                                    columnNumber: 15
-                                }, this),
-                                design.area_size && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "flex items-center gap-2 text-gray-400",
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "w-5 h-5 md:w-6 md:h-6 bg-green-500/20 rounded-md flex items-center justify-center",
-                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sliders$2d$horizontal$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__SlidersHorizontal$3e$__["SlidersHorizontal"], {
-                                                className: "w-3 h-3 text-green-400"
-                                            }, void 0, false, {
-                                                fileName: "[project]/app/design-ideas/page.tsx",
-                                                lineNumber: 495,
-                                                columnNumber: 19
-                                            }, this)
-                                        }, void 0, false, {
-                                            fileName: "[project]/app/design-ideas/page.tsx",
-                                            lineNumber: 494,
-                                            columnNumber: 17
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            className: "text-xs md:text-sm",
-                                            children: [
-                                                design.area_size,
-                                                " sq ft"
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "[project]/app/design-ideas/page.tsx",
-                                            lineNumber: 497,
-                                            columnNumber: 17
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/app/design-ideas/page.tsx",
-                                    lineNumber: 493,
-                                    columnNumber: 15
-                                }, this)
-                            ]
-                        }, void 0, true, {
-                            fileName: "[project]/app/design-ideas/page.tsx",
-                            lineNumber: 483,
-                            columnNumber: 11
-                        }, this)
-                    }, void 0, false, {
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/design-ideas/page.tsx",
+                                        lineNumber: 486,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "truncate",
+                                        children: design.location
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/design-ideas/page.tsx",
+                                        lineNumber: 489,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/app/design-ideas/page.tsx",
+                                lineNumber: 485,
+                                columnNumber: 13
+                            }, this),
+                            design.area_size && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "flex items-center gap-1 text-gray-400",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sliders$2d$horizontal$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__SlidersHorizontal$3e$__["SlidersHorizontal"], {
+                                        className: "w-3 h-3 text-green-400"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/design-ideas/page.tsx",
+                                        lineNumber: 494,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        children: [
+                                            design.area_size,
+                                            " sq ft"
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/app/design-ideas/page.tsx",
+                                        lineNumber: 495,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/app/design-ideas/page.tsx",
+                                lineNumber: 493,
+                                columnNumber: 13
+                            }, this)
+                        ]
+                    }, void 0, true, {
                         fileName: "[project]/app/design-ideas/page.tsx",
-                        lineNumber: 482,
+                        lineNumber: 483,
                         columnNumber: 9
                     }, this),
                     design.price_range && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "mb-4 md:mb-5",
+                        className: "mb-3",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "flex items-baseline gap-2",
+                            className: "flex items-baseline gap-1",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                     className: "text-xs text-gray-400",
-                                    children: "Starting from"
+                                    children: "From"
                                 }, void 0, false, {
                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                    lineNumber: 507,
+                                    lineNumber: 504,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "text-lg md:text-xl font-bold text-green-400",
+                                    className: "text-sm lg:text-base font-bold text-green-400",
                                     children: design.price_range
                                 }, void 0, false, {
                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                    lineNumber: 508,
+                                    lineNumber: 505,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/design-ideas/page.tsx",
-                            lineNumber: 506,
+                            lineNumber: 503,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/design-ideas/page.tsx",
-                        lineNumber: 505,
+                        lineNumber: 502,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex gap-2 md:gap-3",
+                        className: "flex gap-2",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                 href: "/design-ideas/".concat(design.slug),
                                 className: "flex-1",
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                    className: "w-full flex items-center justify-center gap-2 px-3 md:px-4 py-2 md:py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-xl font-semibold text-xs md:text-sm transition-all duration-300 hover:scale-105 shadow-lg",
+                                    className: "w-full flex items-center justify-center gap-1 lg:gap-2 px-2 lg:px-3 py-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-lg font-semibold text-xs lg:text-sm transition-all duration-300 hover:scale-105 shadow-lg",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$eye$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Eye$3e$__["Eye"], {
-                                            className: "w-4 h-4"
+                                            className: "w-3 h-3 lg:w-4 lg:h-4"
                                         }, void 0, false, {
                                             fileName: "[project]/app/design-ideas/page.tsx",
-                                            lineNumber: 517,
+                                            lineNumber: 514,
                                             columnNumber: 15
                                         }, this),
                                         "View"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                    lineNumber: 516,
+                                    lineNumber: 513,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/app/design-ideas/page.tsx",
-                                lineNumber: 515,
+                                lineNumber: 512,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                className: "flex-1 flex items-center justify-center gap-2 px-3 md:px-4 py-2 md:py-3 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white rounded-xl font-semibold text-xs md:text-sm transition-all duration-300 hover:scale-105 shadow-lg",
+                                className: "flex-1 flex items-center justify-center gap-1 lg:gap-2 px-2 lg:px-3 py-2 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white rounded-lg font-semibold text-xs lg:text-sm transition-all duration-300 hover:scale-105 shadow-lg",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$calculator$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Calculator$3e$__["Calculator"], {
-                                        className: "w-4 h-4"
+                                        className: "w-3 h-3 lg:w-4 lg:h-4"
                                     }, void 0, false, {
                                         fileName: "[project]/app/design-ideas/page.tsx",
-                                        lineNumber: 522,
+                                        lineNumber: 519,
                                         columnNumber: 13
                                     }, this),
                                     "Quote"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/design-ideas/page.tsx",
-                                lineNumber: 521,
+                                lineNumber: 518,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/design-ideas/page.tsx",
-                        lineNumber: 514,
+                        lineNumber: 511,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/design-ideas/page.tsx",
-                lineNumber: 471,
+                lineNumber: 472,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/design-ideas/page.tsx",
-        lineNumber: 413,
+        lineNumber: 414,
         columnNumber: 5
     }, this);
 }
