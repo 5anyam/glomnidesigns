@@ -103,43 +103,43 @@ export default function NewDesignIdeasPage() {
     <div className="min-h-screen bg-black">
       {/* Enhanced Header */}
       <div className="bg-black border-b border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 py-12">
-          <div className="text-center mb-8">
+        <div className="max-w-7xl mx-auto px-4 py-8 md:py-12">
+          <div className="text-center mb-6 md:mb-8">
             <div className="flex items-center justify-center gap-2 mb-4">
-              <Sparkles className="w-6 h-6 text-yellow-400" />
-              <span className="text-yellow-400 font-semibold text-sm uppercase tracking-wider">Premium Collection</span>
-              <Sparkles className="w-6 h-6 text-yellow-400" />
+              <Sparkles className="w-5 h-5 md:w-6 md:h-6 text-yellow-400" />
+              <span className="text-yellow-400 font-semibold text-xs md:text-sm uppercase tracking-wider">Premium Collection</span>
+              <Sparkles className="w-5 h-5 md:w-6 md:h-6 text-yellow-400" />
             </div>
-            <h1 className="text-5xl font-bold text-white mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
               Stunning Interior Designs
             </h1>
-            <p className="text-gray-400 text-xl max-w-2xl mx-auto leading-relaxed">
+            <p className="text-gray-400 text-base md:text-lg lg:text-xl max-w-2xl mx-auto leading-relaxed px-4">
               Discover {filteredDesigns.length} carefully curated designs crafted by expert designers
             </p>
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-gray-900 rounded-xl border border-gray-800 p-6 text-center">
-              <div className="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mx-auto mb-3 border border-blue-500/30">
-                <Award className="w-6 h-6 text-blue-400" />
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
+            <div className="bg-gray-900 rounded-xl border border-gray-800 p-4 md:p-6 text-center">
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mx-auto mb-2 md:mb-3 border border-blue-500/30">
+                <Award className="w-5 h-5 md:w-6 md:h-6 text-blue-400" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-1">500+</h3>
-              <p className="text-gray-400">Premium Designs</p>
+              <h3 className="text-xl md:text-2xl font-bold text-white mb-1">500+</h3>
+              <p className="text-gray-400 text-sm md:text-base">Premium Designs</p>
             </div>
-            <div className="bg-gray-900 rounded-xl border border-gray-800 p-6 text-center">
-              <div className="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center mx-auto mb-3 border border-green-500/30">
-                <TrendingUp className="w-6 h-6 text-green-400" />
+            <div className="bg-gray-900 rounded-xl border border-gray-800 p-4 md:p-6 text-center">
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-green-500/20 rounded-lg flex items-center justify-center mx-auto mb-2 md:mb-3 border border-green-500/30">
+                <TrendingUp className="w-5 h-5 md:w-6 md:h-6 text-green-400" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-1">98%</h3>
-              <p className="text-gray-400">Satisfaction Rate</p>
+              <h3 className="text-xl md:text-2xl font-bold text-white mb-1">98%</h3>
+              <p className="text-gray-400 text-sm md:text-base">Satisfaction Rate</p>
             </div>
-            <div className="bg-gray-900 rounded-xl border border-gray-800 p-6 text-center">
-              <div className="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center mx-auto mb-3 border border-purple-500/30">
-                <Star className="w-6 h-6 text-purple-400" />
+            <div className="bg-gray-900 rounded-xl border border-gray-800 p-4 md:p-6 text-center">
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-purple-500/20 rounded-lg flex items-center justify-center mx-auto mb-2 md:mb-3 border border-purple-500/30">
+                <Star className="w-5 h-5 md:w-6 md:h-6 text-purple-400" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-1">1000+</h3>
-              <p className="text-gray-400">Happy Clients</p>
+              <h3 className="text-xl md:text-2xl font-bold text-white mb-1">1000+</h3>
+              <p className="text-gray-400 text-sm md:text-base">Happy Clients</p>
             </div>
           </div>
         </div>
@@ -147,28 +147,28 @@ export default function NewDesignIdeasPage() {
 
       {/* Enhanced Filters */}
       <div className="bg-gray-900 border-b border-gray-800 sticky top-0 z-40 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto px-4 py-6">
-          <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 py-4 md:py-6">
+          <div className="flex flex-col gap-4 items-stretch md:flex-row md:items-center md:justify-between">
             {/* Search */}
-            <div className="relative w-full lg:w-96">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+            <div className="relative w-full md:w-80 lg:w-96">
+              <Search className="absolute left-3 md:left-4 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4 md:w-5 md:h-5" />
               <input
                 type="text"
                 placeholder="Search designs, styles, locations..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 bg-black border border-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-white placeholder-gray-400 transition-all duration-300"
+                className="w-full pl-10 md:pl-12 pr-4 py-3 bg-black border border-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-white placeholder-gray-400 transition-all duration-300 text-sm md:text-base"
               />
             </div>
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3 md:gap-4 flex-wrap">
               {/* Category Filter */}
-              <div className="relative">
+              <div className="relative flex-1 md:flex-none">
                 <Filter className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
                 <select
                   value={selectedCategory}
                   onChange={(e) => setSelectedCategory(e.target.value)}
-                  className="pl-10 pr-8 py-3 bg-black border border-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 text-white min-w-48 appearance-none cursor-pointer"
+                  className="pl-10 pr-8 py-3 bg-black border border-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 text-white min-w-[140px] md:min-w-48 appearance-none cursor-pointer text-sm md:text-base"
                 >
                   <option value="all">All Categories</option>
                   {categories.map(cat => (
@@ -181,23 +181,23 @@ export default function NewDesignIdeasPage() {
               <div className="flex bg-black rounded-xl p-1 border border-gray-700">
                 <button
                   onClick={() => setViewMode('grid')}
-                  className={`p-3 rounded-lg transition-all duration-300 ${
+                  className={`p-2 md:p-3 rounded-lg transition-all duration-300 ${
                     viewMode === 'grid' 
                       ? 'bg-blue-600 text-white shadow-lg' 
                       : 'text-gray-400 hover:text-white hover:bg-gray-800'
                   }`}
                 >
-                  <Grid className="w-5 h-5" />
+                  <Grid className="w-4 h-4 md:w-5 md:h-5" />
                 </button>
                 <button
                   onClick={() => setViewMode('list')}
-                  className={`p-3 rounded-lg transition-all duration-300 ${
+                  className={`p-2 md:p-3 rounded-lg transition-all duration-300 ${
                     viewMode === 'list' 
                       ? 'bg-blue-600 text-white shadow-lg' 
                       : 'text-gray-400 hover:text-white hover:bg-gray-800'
                   }`}
                 >
-                  <List className="w-5 h-5" />
+                  <List className="w-4 h-4 md:w-5 md:h-5" />
                 </button>
               </div>
             </div>
@@ -206,14 +206,14 @@ export default function NewDesignIdeasPage() {
       </div>
 
       {/* Content */}
-      <div className="max-w-7xl mx-auto px-4 py-8">
+      <div className="max-w-7xl mx-auto px-4 py-6 md:py-8">
         {filteredDesigns.length === 0 ? (
-          <div className="text-center py-20">
-            <div className="w-24 h-24 bg-gray-900 rounded-full flex items-center justify-center mx-auto mb-6 border border-gray-800">
-              <Search className="w-12 h-12 text-gray-400" />
+          <div className="text-center py-16 md:py-20">
+            <div className="w-20 h-20 md:w-24 md:h-24 bg-gray-900 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6 border border-gray-800">
+              <Search className="w-10 h-10 md:w-12 md:h-12 text-gray-400" />
             </div>
-            <h3 className="text-3xl font-bold text-white mb-4">No designs found</h3>
-            <p className="text-gray-400 text-lg mb-8">Try adjusting your search criteria or browse all categories</p>
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">No designs found</h3>
+            <p className="text-gray-400 text-base md:text-lg mb-6 md:mb-8 px-4">Try adjusting your search criteria or browse all categories</p>
             <button 
               onClick={() => {setSearchTerm(''); setSelectedCategory('all');}}
               className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-semibold transition-all duration-300"
@@ -224,27 +224,28 @@ export default function NewDesignIdeasPage() {
         ) : (
           <>
             {/* Results Header */}
-            <div className="flex items-center justify-between mb-8">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 md:mb-8 gap-4">
               <div>
-                <h2 className="text-2xl font-bold text-white">
+                <h2 className="text-xl md:text-2xl font-bold text-white">
                   {searchTerm || selectedCategory !== 'all' ? 'Filtered Results' : 'All Designs'}
                 </h2>
-                <p className="text-gray-400">
+                <p className="text-gray-400 text-sm md:text-base">
                   Showing {filteredDesigns.length} of {designs.length} designs
                 </p>
               </div>
               {(searchTerm || selectedCategory !== 'all') && (
                 <button
                   onClick={() => {setSearchTerm(''); setSelectedCategory('all');}}
-                  className="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg border border-gray-700 transition-all duration-300"
+                  className="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg border border-gray-700 transition-all duration-300 text-sm self-start sm:self-auto"
                 >
                   Clear Filters
                 </button>
               )}
             </div>
 
+            {/* Updated Grid - 2 Designs per Row */}
             <div className={viewMode === 'grid' 
-              ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8' 
+              ? 'grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8' 
               : 'space-y-6'
             }>
               {filteredDesigns.map(design => (
@@ -291,9 +292,9 @@ function DesignCard({
 
   if (viewMode === 'list') {
     return (
-      <div className="group bg-gray-900/80 backdrop-blur-sm rounded-3xl border border-gray-800/60 overflow-hidden hover:border-gray-600/80 transition-all duration-500 hover:scale-[1.01] hover:shadow-2xl">
-        <div className="flex">
-          <div className="relative w-80 h-72 bg-gray-800 flex-shrink-0 overflow-hidden">
+      <div className="group bg-gray-900/80 backdrop-blur-sm rounded-2xl md:rounded-3xl border border-gray-800/60 overflow-hidden hover:border-gray-600/80 transition-all duration-500 hover:scale-[1.01] hover:shadow-2xl">
+        <div className="flex flex-col md:flex-row">
+          <div className="relative w-full md:w-80 h-64 md:h-72 bg-gray-800 flex-shrink-0 overflow-hidden">
             {imageUrl ? (
               <Image
                 src={getImageUrl(imageUrl)}
@@ -303,23 +304,23 @@ function DesignCard({
               />
             ) : (
               <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-800 to-gray-900">
-                <Eye className="w-16 h-16 text-gray-600" />
+                <Eye className="w-12 h-12 md:w-16 md:h-16 text-gray-600" />
               </div>
             )}
             
             {/* Categories on Image - Top Left */}
             {design.categories && design.categories.length > 0 && (
-              <div className="absolute top-4 left-4 flex flex-col gap-2">
+              <div className="absolute top-3 md:top-4 left-3 md:left-4 flex flex-col gap-1 md:gap-2">
                 {design.categories.slice(0, 2).map(cat => (
                   <span 
                     key={cat.id} 
-                    className="px-3 py-1.5 bg-black/80 backdrop-blur-md text-white text-xs font-semibold rounded-full border border-white/20 shadow-lg"
+                    className="px-2 md:px-3 py-1 md:py-1.5 bg-black/80 backdrop-blur-md text-white text-xs font-semibold rounded-full border border-white/20 shadow-lg"
                   >
                     {cat.name}
                   </span>
                 ))}
                 {design.categories.length > 2 && (
-                  <span className="px-3 py-1.5 bg-black/60 backdrop-blur-md text-gray-300 text-xs rounded-full border border-white/10">
+                  <span className="px-2 md:px-3 py-1 md:py-1.5 bg-black/60 backdrop-blur-md text-gray-300 text-xs rounded-full border border-white/10">
                     +{design.categories.length - 2} more
                   </span>
                 )}
@@ -328,35 +329,35 @@ function DesignCard({
 
             {/* Featured Badge - Top Right */}
             {design.is_featured && (
-              <div className="absolute top-4 right-4 flex items-center gap-1 bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-xl border border-yellow-400/30">
+              <div className="absolute top-3 md:top-4 right-3 md:right-4 flex items-center gap-1 bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-2 md:px-3 py-1 md:py-1.5 rounded-full text-xs font-bold shadow-xl border border-yellow-400/30">
                 <Star className="w-3 h-3 fill-current" />
                 Featured
               </div>
             )}
 
             {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-transparent md:bg-gradient-to-r md:from-black/30 md:via-transparent md:to-transparent" />
           </div>
           
-          <div className="flex-1 p-8">
-            <div className="flex items-start justify-between mb-6">
+          <div className="flex-1 p-4 md:p-8">
+            <div className="flex items-start justify-between mb-4 md:mb-6">
               <div className="flex-1">
-                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors leading-tight">
+                <h3 className="text-xl md:text-2xl font-bold text-white mb-2 md:mb-3 group-hover:text-blue-400 transition-colors leading-tight">
                   {design.name}
                 </h3>
-                <div className="flex items-center gap-6 text-sm text-gray-400 mb-4">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 text-sm text-gray-400 mb-3 md:mb-4">
                   {design.location && (
                     <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 bg-blue-500/20 rounded-lg flex items-center justify-center border border-blue-500/30">
-                        <MapPin className="w-4 h-4 text-blue-400" />
+                      <div className="w-6 h-6 md:w-8 md:h-8 bg-blue-500/20 rounded-lg flex items-center justify-center border border-blue-500/30">
+                        <MapPin className="w-3 h-3 md:w-4 md:h-4 text-blue-400" />
                       </div>
                       <span className="font-medium">{design.location}</span>
                     </div>
                   )}
                   {design.area_size && (
                     <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 bg-green-500/20 rounded-lg flex items-center justify-center border border-green-500/30">
-                        <SlidersHorizontal className="w-4 h-4 text-green-400" />
+                      <div className="w-6 h-6 md:w-8 md:h-8 bg-green-500/20 rounded-lg flex items-center justify-center border border-green-500/30">
+                        <SlidersHorizontal className="w-3 h-3 md:w-4 md:h-4 text-green-400" />
                       </div>
                       <span className="font-medium">{design.area_size} sq ft</span>
                     </div>
@@ -366,37 +367,37 @@ function DesignCard({
               
               <button 
                 onClick={onToggleLike}
-                className={`p-3 rounded-full transition-all duration-300 ${
+                className={`p-2 md:p-3 rounded-full transition-all duration-300 ${
                   isLiked 
                     ? 'bg-red-500/20 text-red-400 scale-110 border border-red-500/30' 
                     : 'bg-gray-800 hover:bg-gray-700 text-gray-400 hover:text-red-400 border border-gray-700'
                 }`}
               >
-                <Heart className={`w-5 h-5 ${isLiked ? 'fill-current' : ''}`} />
+                <Heart className={`w-4 h-4 md:w-5 md:h-5 ${isLiked ? 'fill-current' : ''}`} />
               </button>
             </div>
 
             {/* Description for List View */}
-            <p className="text-gray-300 mb-6 leading-relaxed text-base">
+            <p className="text-gray-300 mb-4 md:mb-6 leading-relaxed text-sm md:text-base">
               {getTruncatedDescription(design.description) || 'A beautiful interior design crafted with premium materials and expert attention to detail for your perfect space.'}
             </p>
             
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               {design.price_range && (
                 <div className="flex flex-col">
-                  <span className="text-sm text-gray-400 mb-1">Starting from</span>
-                  <div className="text-2xl font-bold text-green-400">{design.price_range}</div>
+                  <span className="text-xs md:text-sm text-gray-400 mb-1">Starting from</span>
+                  <div className="text-xl md:text-2xl font-bold text-green-400">{design.price_range}</div>
                 </div>
               )}
               
               <div className="flex gap-3">
                 <Link href={`/design-ideas/${design.slug}`}>
-                  <button className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg">
+                  <button className="flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-xl font-semibold text-sm md:text-base transition-all duration-300 hover:scale-105 shadow-lg">
                     <Eye className="w-4 h-4" />
                     View Details
                   </button>
                 </Link>
-                <button className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg">
+                <button className="flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white rounded-xl font-semibold text-sm md:text-base transition-all duration-300 hover:scale-105 shadow-lg">
                   <Calculator className="w-4 h-4" />
                   Get Quote
                 </button>
@@ -409,7 +410,7 @@ function DesignCard({
   }
 
   return (
-    <div className="group bg-gray-900/90 backdrop-blur-sm rounded-3xl border border-gray-800/60 overflow-hidden hover:border-gray-600/80 transition-all duration-500 hover:scale-105 hover:shadow-2xl">
+    <div className="group bg-gray-900/90 backdrop-blur-sm rounded-2xl md:rounded-3xl border border-gray-800/60 overflow-hidden hover:border-gray-600/80 transition-all duration-500 hover:scale-105 hover:shadow-2xl">
       <div className="relative aspect-[4/3] bg-gradient-to-br from-gray-800 to-gray-900 overflow-hidden">
         {imageUrl ? (
           <Image
@@ -420,23 +421,23 @@ function DesignCard({
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center">
-            <Eye className="w-16 h-16 text-gray-600" />
+            <Eye className="w-12 h-12 md:w-16 md:h-16 text-gray-600" />
           </div>
         )}
         
         {/* Categories on Image - Top Left */}
         {design.categories && design.categories.length > 0 && (
-          <div className="absolute top-4 left-4 flex flex-col gap-2">
+          <div className="absolute top-3 md:top-4 left-3 md:left-4 flex flex-col gap-1 md:gap-2">
             {design.categories.slice(0, 2).map(cat => (
               <span 
                 key={cat.id} 
-                className="px-3 py-1.5 bg-black/80 backdrop-blur-md text-white text-xs font-semibold rounded-full border border-white/20 shadow-lg hover:bg-black/90 transition-all duration-300"
+                className="px-2 md:px-3 py-1 md:py-1.5 bg-black/80 backdrop-blur-md text-white text-xs font-semibold rounded-full border border-white/20 shadow-lg hover:bg-black/90 transition-all duration-300"
               >
                 {cat.name}
               </span>
             ))}
             {design.categories.length > 2 && (
-              <span className="px-3 py-1.5 bg-black/60 backdrop-blur-md text-gray-300 text-xs rounded-full border border-white/10">
+              <span className="px-2 md:px-3 py-1 md:py-1.5 bg-black/60 backdrop-blur-md text-gray-300 text-xs rounded-full border border-white/10">
                 +{design.categories.length - 2}
               </span>
             )}
@@ -445,44 +446,55 @@ function DesignCard({
 
         {/* Featured Badge - Top Right of Image */}
         {design.is_featured && (
-          <div className="absolute top-4 right-4 flex items-center gap-1 bg-gradient-to-r from-yellow-500 via-orange-500 to-red-500 text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-xl border border-yellow-400/30 animate-pulse">
+          <div className="absolute top-3 md:top-4 right-3 md:right-4 flex items-center gap-1 bg-gradient-to-r from-yellow-500 via-orange-500 to-red-500 text-white px-2 md:px-3 py-1 md:py-1.5 rounded-full text-xs font-bold shadow-xl border border-yellow-400/30 animate-pulse">
             <Star className="w-3 h-3 fill-current" />
             Featured
           </div>
         )}
-        
+
+        {/* Like Button - Bottom Right of Image */}
+        <button 
+          onClick={onToggleLike}
+          className={`absolute bottom-3 md:bottom-4 right-3 md:right-4 p-2 md:p-3 rounded-full transition-all duration-300 shadow-lg ${
+            isLiked 
+              ? 'bg-red-500/90 text-white scale-110 shadow-red-500/25' 
+              : 'bg-black/60 backdrop-blur-md text-gray-300 hover:text-red-400 hover:bg-red-500/20 border border-white/10'
+          }`}
+        >
+          <Heart className={`w-4 h-4 md:w-5 md:h-5 ${isLiked ? 'fill-current' : ''}`} />
+        </button>
 
         {/* Gradient Overlay for Better Text Readability */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
       </div>
       
-      <div className="p-6">
-        <h3 className="font-bold text-white text-xl mb-3 line-clamp-2 group-hover:text-blue-400 transition-colors leading-tight">
+      <div className="p-4 md:p-6">
+        <h3 className="font-bold text-white text-lg md:text-xl mb-2 md:mb-3 line-clamp-2 group-hover:text-blue-400 transition-colors leading-tight">
           {design.name}
         </h3>
 
         {/* Description for Grid View */}
-        <p className="text-gray-400 text-sm mb-4 line-clamp-3 leading-relaxed">
+        <p className="text-gray-400 text-sm mb-3 md:mb-4 line-clamp-3 leading-relaxed">
           {getTruncatedDescription(design.description) || 'Premium interior design featuring modern aesthetics with carefully selected materials and expert craftsmanship for exceptional living spaces.'}
         </p>
         
         {/* Location and Area Info */}
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-4 text-sm">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3 md:mb-4 gap-2">
+          <div className="flex items-center gap-3 md:gap-4 text-sm">
             {design.location && (
               <div className="flex items-center gap-2 text-gray-400">
-                <div className="w-6 h-6 bg-blue-500/20 rounded-md flex items-center justify-center">
+                <div className="w-5 h-5 md:w-6 md:h-6 bg-blue-500/20 rounded-md flex items-center justify-center">
                   <MapPin className="w-3 h-3 text-blue-400" />
                 </div>
-                <span>{design.location}</span>
+                <span className="text-xs md:text-sm">{design.location}</span>
               </div>
             )}
             {design.area_size && (
               <div className="flex items-center gap-2 text-gray-400">
-                <div className="w-6 h-6 bg-green-500/20 rounded-md flex items-center justify-center">
+                <div className="w-5 h-5 md:w-6 md:h-6 bg-green-500/20 rounded-md flex items-center justify-center">
                   <SlidersHorizontal className="w-3 h-3 text-green-400" />
                 </div>
-                <span>{design.area_size} sq ft</span>
+                <span className="text-xs md:text-sm">{design.area_size} sq ft</span>
               </div>
             )}
           </div>
@@ -490,23 +502,23 @@ function DesignCard({
 
         {/* Price */}
         {design.price_range && (
-          <div className="mb-5">
+          <div className="mb-4 md:mb-5">
             <div className="flex items-baseline gap-2">
               <span className="text-xs text-gray-400">Starting from</span>
-              <div className="text-xl font-bold text-green-400">{design.price_range}</div>
+              <div className="text-lg md:text-xl font-bold text-green-400">{design.price_range}</div>
             </div>
           </div>
         )}
 
         {/* Action Buttons */}
-        <div className="flex gap-3">
+        <div className="flex gap-2 md:gap-3">
           <Link href={`/design-ideas/${design.slug}`} className="flex-1">
-            <button className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-xl font-semibold text-sm transition-all duration-300 hover:scale-105 shadow-lg">
+            <button className="w-full flex items-center justify-center gap-2 px-3 md:px-4 py-2 md:py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-xl font-semibold text-xs md:text-sm transition-all duration-300 hover:scale-105 shadow-lg">
               <Eye className="w-4 h-4" />
               View
             </button>
           </Link>
-          <button className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white rounded-xl font-semibold text-sm transition-all duration-300 hover:scale-105 shadow-lg">
+          <button className="flex-1 flex items-center justify-center gap-2 px-3 md:px-4 py-2 md:py-3 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white rounded-xl font-semibold text-xs md:text-sm transition-all duration-300 hover:scale-105 shadow-lg">
             <Calculator className="w-4 h-4" />
             Quote
           </button>

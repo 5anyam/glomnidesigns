@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, Heart, Share2, MapPin, Clock, Eye, Star, Phone, MessageSquare, Ruler, Palette, Calendar, Info, Sparkles, Award, Users } from 'lucide-react';
+import { ArrowLeft, Heart, Share2, MapPin, Clock, Eye, Star, Phone, MessageSquare, Ruler, Palette, Calendar, Info, Sparkles, Award, Users, CheckCircle, Shield, Clock3, Wrench } from 'lucide-react';
 import { designAPI, Design } from '../../../lib/api';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -31,7 +31,7 @@ export default function NewDesignDetail({ slug }: { slug: string }) {
       setDesign(designResult.data);
       
       if (designResult.data.categories?.[0]?.slug) {
-        const relatedResult = await designAPI.getByCategory(designResult.data.categories.slug);
+        const relatedResult = await designAPI.getByCategory(designResult.data.categories[0].slug);
         if (relatedResult.success) {
           const filtered = relatedResult.data.filter((d: Design) => d.id !== designResult.data!.id);
           setRelatedDesigns(filtered.slice(0, 6));
@@ -131,13 +131,13 @@ export default function NewDesignDetail({ slug }: { slug: string }) {
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 xl:grid-cols-3 gap-12">
+        {/* Top Section - Image and Basic Description (50-50) */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
           
-          {/* Image Section */}
-          <div className="xl:col-span-2">
-            <div className="relative aspect-[16/10] bg-gray-900 rounded-2xl overflow-hidden shadow-2xl border border-gray-800">
+          {/* Image Section - 50% */}
+          <div className="w-full">
+            <div className="relative aspect-[4/3] bg-gray-900 rounded-3xl overflow-hidden shadow-2xl border border-gray-800">
               {imageUrl ? (
                 <Image
                   src={getImageUrl(imageUrl)}
@@ -151,7 +151,7 @@ export default function NewDesignDetail({ slug }: { slug: string }) {
                 </div>
               )}
               
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
               
               {design.is_featured && (
                 <div className="absolute top-6 left-6 flex items-center gap-2 bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
@@ -161,13 +161,13 @@ export default function NewDesignDetail({ slug }: { slug: string }) {
               )}
 
               <div className="absolute bottom-6 left-6 right-6">
-                <h1 className="text-4xl lg:text-5xl font-bold text-white mb-3 drop-shadow-2xl">
+                <h1 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-3 drop-shadow-2xl">
                   {design.name}
                 </h1>
                 {design.categories && design.categories.length > 0 && (
                   <div className="flex flex-wrap gap-2">
                     {design.categories.map(cat => (
-                      <span key={cat.id} className="px-3 py-1.5 bg-black/50 backdrop-blur-sm text-white rounded-full text-sm font-medium border border-gray-700">
+                      <span key={cat.id} className="px-3 py-1.5 bg-black/60 backdrop-blur-sm text-white rounded-full text-sm font-medium border border-white/20">
                         {cat.name}
                       </span>
                     ))}
@@ -177,203 +177,221 @@ export default function NewDesignDetail({ slug }: { slug: string }) {
             </div>
           </div>
 
-          {/* Details Section */}
-          <div className="space-y-6">
-            
-            {/* Enhanced Description Card */}
-            <div className="bg-gray-900 rounded-2xl border border-gray-800 overflow-hidden">
-              <div className="p-6 border-b border-gray-800 bg-gradient-to-r from-blue-600/10 to-purple-600/10">
-                <h3 className="text-xl font-bold text-white flex items-center gap-2">
-                  <Info className="w-5 h-5 text-blue-400" />
-                  Design Overview
-                </h3>
-              </div>
-              <div className="p-6 space-y-4">
-                {design.description && (
-                  <div>
-                    <h4 className="text-lg font-semibold text-white mb-2 flex items-center gap-2">
-                      <MessageSquare className="w-4 h-4 text-gray-400" />
-                      Description
-                    </h4>
-                    <p className="text-gray-300 leading-relaxed">{design.description}</p>
-                  </div>
-                )}
-                
-                {/* Additional Description Content */}
-                <div className="pt-4 border-t border-gray-800">
-                  <h4 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
-                    <Sparkles className="w-4 h-4 text-yellow-400" />
-                    Key Features
-                  </h4>
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-2 text-gray-300">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                      <span>Premium quality materials and finishes</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-gray-300">
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <span>Customizable to your preferences</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-gray-300">
-                      <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                      <span>Professional installation included</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-gray-300">
-                      <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
-                      <span>3 years warranty on workmanship</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Design Process */}
-                <div className="pt-4 border-t border-gray-800">
-                  <h4 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
-                    <Award className="w-4 h-4 text-purple-400" />
-                    Our Process
-                  </h4>
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="text-center p-3 bg-gray-800 rounded-lg border border-gray-700">
-                      <div className="w-8 h-8 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-2">
-                        <span className="text-blue-400 font-bold text-sm">1</span>
-                      </div>
-                      <p className="text-xs text-gray-300 font-medium">Consultation</p>
-                    </div>
-                    <div className="text-center p-3 bg-gray-800 rounded-lg border border-gray-700">
-                      <div className="w-8 h-8 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-2">
-                        <span className="text-green-400 font-bold text-sm">2</span>
-                      </div>
-                      <p className="text-xs text-gray-300 font-medium">Design</p>
-                    </div>
-                    <div className="text-center p-3 bg-gray-800 rounded-lg border border-gray-700">
-                      <div className="w-8 h-8 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-2">
-                        <span className="text-purple-400 font-bold text-sm">3</span>
-                      </div>
-                      <p className="text-xs text-gray-300 font-medium">Execution</p>
-                    </div>
-                    <div className="text-center p-3 bg-gray-800 rounded-lg border border-gray-700">
-                      <div className="w-8 h-8 bg-orange-500/20 rounded-full flex items-center justify-center mx-auto mb-2">
-                        <span className="text-orange-400 font-bold text-sm">4</span>
-                      </div>
-                      <p className="text-xs text-gray-300 font-medium">Delivery</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Enhanced Details Cards */}
-            <div className="space-y-4">
-              {design.location && (
-                <div className="group bg-gray-900 rounded-xl border border-gray-800 p-6 hover:border-blue-500/30 transition-all duration-300 hover:bg-gray-800/50">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center border border-blue-500/30">
-                        <MapPin className="w-5 h-5 text-blue-400" />
-                      </div>
-                      <div>
-                        <span className="font-semibold text-white block">Location</span>
-                        <span className="text-gray-400 text-sm">Project area</span>
-                      </div>
-                    </div>
-                    <p className="text-white font-medium">{design.location}</p>
-                  </div>
-                </div>
+          {/* Basic Info Section - 50% */}
+          <div className="w-full flex flex-col justify-center space-y-8">
+            <div>
+              <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">Design Overview</h2>
+              {design.description && (
+                <p className="text-gray-300 leading-relaxed text-lg mb-8">{design.description}</p>
               )}
-
-              {design.area_size && (
-                <div className="group bg-gray-900 rounded-xl border border-gray-800 p-6 hover:border-green-500/30 transition-all duration-300 hover:bg-gray-800/50">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center border border-green-500/30">
-                        <Ruler className="w-5 h-5 text-green-400" />
-                      </div>
-                      <div>
-                        <span className="font-semibold text-white block">Area Size</span>
-                        <span className="text-gray-400 text-sm">Total coverage</span>
-                      </div>
-                    </div>
-                    <p className="text-white font-medium">{design.area_size} sq ft</p>
+              
+              {/* Price Highlight */}
+              {design.price_range && (
+                <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 rounded-2xl p-6 border border-green-500/20">
+                  <div className="flex items-center gap-3 mb-2">
+                    <span className="text-green-400 text-lg font-semibold">Starting from</span>
                   </div>
-                </div>
-              )}
-
-              {design.style && (
-                <div className="group bg-gray-900 rounded-xl border border-gray-800 p-6 hover:border-purple-500/30 transition-all duration-300 hover:bg-gray-800/50">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center border border-purple-500/30">
-                        <Palette className="w-5 h-5 text-purple-400" />
-                      </div>
-                      <div>
-                        <span className="font-semibold text-white block">Design Style</span>
-                        <span className="text-gray-400 text-sm">Theme & aesthetic</span>
-                      </div>
-                    </div>
-                    <p className="text-white font-medium capitalize">{design.style}</p>
-                  </div>
-                </div>
-              )}
-
-              {design.completion_time && (
-                <div className="group bg-gray-900 rounded-xl border border-gray-800 p-6 hover:border-orange-500/30 transition-all duration-300 hover:bg-gray-800/50">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-orange-500/20 rounded-lg flex items-center justify-center border border-orange-500/30">
-                        <Calendar className="w-5 h-5 text-orange-400" />
-                      </div>
-                      <div>
-                        <span className="font-semibold text-white block">Timeline</span>
-                        <span className="text-gray-400 text-sm">Completion time</span>
-                      </div>
-                    </div>
-                    <p className="text-white font-medium">{design.completion_time}</p>
-                  </div>
+                  <div className="text-4xl font-bold text-white mb-2">{design.price_range}</div>
+                  <p className="text-green-300 text-sm">*Final cost depends on customization & materials</p>
                 </div>
               )}
             </div>
 
-            {/* Enhanced Price Card */}
-            {design.price_range && (
-              <div className="bg-gradient-to-br from-green-900/50 to-emerald-900/30 rounded-2xl border border-green-700/50 p-8">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center border border-green-500/30">
-                    <span className="text-2xl">💰</span>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-green-400">Investment Range</h3>
-                    <p className="text-green-300 text-sm">Complete project cost</p>
-                  </div>
-                </div>
-                <p className="text-3xl font-bold text-white mb-2">{design.price_range}</p>
-                <p className="text-green-300 text-sm mb-4">*Price may vary based on customization and materials</p>
-                <div className="flex items-center gap-2 text-green-300 text-xs">
-                  <Users className="w-3 h-3" />
-                  <span>Trusted by 500+ satisfied customers</span>
-                </div>
-              </div>
-            )}
-
-            {/* Enhanced CTA Buttons */}
-            <div className="space-y-3">
-              <button className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white py-4 px-6 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-3 border border-blue-500">
+            {/* Quick CTA */}
+            <div className="flex flex-col sm:flex-row gap-4">
+              <button className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white py-4 px-6 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-3">
                 <MessageSquare className="w-5 h-5" />
-                Get Free Consultation
-                <span className="text-xs bg-yellow-400 text-black px-2 py-0.5 rounded-full">FREE</span>
+                Get Free Quote
               </button>
-              <button className="w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white py-4 px-6 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-3 border border-green-500">
+              <button className="flex-1 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white py-4 px-6 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-3">
                 <Phone className="w-5 h-5" />
-                Call Expert Now
-                <span className="text-xs bg-green-300 text-green-800 px-2 py-0.5 rounded-full">24/7</span>
+                Call Now
               </button>
             </div>
           </div>
         </div>
 
-        {/* Enhanced Related Designs */}
+        {/* Key Features Section */}
+        <div className="mb-20">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">Why Choose This Design</h2>
+            <p className="text-gray-400 text-lg">Premium features that make this design stand out</p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="bg-gray-900/80 backdrop-blur-sm rounded-2xl border border-gray-800 p-6 hover:border-blue-500/30 transition-all duration-300 hover:scale-105">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-blue-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-blue-500/30">
+                  <CheckCircle className="w-8 h-8 text-blue-400" />
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2">Premium Materials</h3>
+                <p className="text-gray-400 text-sm">High-quality finishes and materials for lasting beauty</p>
+              </div>
+            </div>
+
+            <div className="bg-gray-900/80 backdrop-blur-sm rounded-2xl border border-gray-800 p-6 hover:border-green-500/30 transition-all duration-300 hover:scale-105">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-green-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-green-500/30">
+                  <Wrench className="w-8 h-8 text-green-400" />
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2">Expert Installation</h3>
+                <p className="text-gray-400 text-sm">Professional installation by certified craftsmen</p>
+              </div>
+            </div>
+
+            <div className="bg-gray-900/80 backdrop-blur-sm rounded-2xl border border-gray-800 p-6 hover:border-purple-500/30 transition-all duration-300 hover:scale-105">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-purple-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-purple-500/30">
+                  <Palette className="w-8 h-8 text-purple-400" />
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2">Customizable</h3>
+                <p className="text-gray-400 text-sm">Tailored to your preferences and requirements</p>
+              </div>
+            </div>
+
+            <div className="bg-gray-900/80 backdrop-blur-sm rounded-2xl border border-gray-800 p-6 hover:border-orange-500/30 transition-all duration-300 hover:scale-105">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-orange-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-orange-500/30">
+                  <Shield className="w-8 h-8 text-orange-400" />
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2">3 Year Warranty</h3>
+                <p className="text-gray-400 text-sm">Comprehensive warranty on workmanship</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Design Specifications */}
+        <div className="mb-20">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">Design Specifications</h2>
+            <p className="text-gray-400 text-lg">Detailed information about this project</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {design.location && (
+              <div className="bg-gradient-to-br from-blue-900/30 to-blue-800/20 rounded-2xl border border-blue-700/50 p-6">
+                <div className="text-center">
+                  <div className="w-14 h-14 bg-blue-500/20 rounded-xl flex items-center justify-center mx-auto mb-4 border border-blue-500/30">
+                    <MapPin className="w-7 h-7 text-blue-400" />
+                  </div>
+                  <h4 className="font-bold text-white mb-2">Location</h4>
+                  <p className="text-blue-300 font-semibold text-lg">{design.location}</p>
+                </div>
+              </div>
+            )}
+
+            {design.area_size && (
+              <div className="bg-gradient-to-br from-green-900/30 to-green-800/20 rounded-2xl border border-green-700/50 p-6">
+                <div className="text-center">
+                  <div className="w-14 h-14 bg-green-500/20 rounded-xl flex items-center justify-center mx-auto mb-4 border border-green-500/30">
+                    <Ruler className="w-7 h-7 text-green-400" />
+                  </div>
+                  <h4 className="font-bold text-white mb-2">Area Size</h4>
+                  <p className="text-green-300 font-semibold text-lg">{design.area_size} sq ft</p>
+                </div>
+              </div>
+            )}
+
+            {design.style && (
+              <div className="bg-gradient-to-br from-purple-900/30 to-purple-800/20 rounded-2xl border border-purple-700/50 p-6">
+                <div className="text-center">
+                  <div className="w-14 h-14 bg-purple-500/20 rounded-xl flex items-center justify-center mx-auto mb-4 border border-purple-500/30">
+                    <Palette className="w-7 h-7 text-purple-400" />
+                  </div>
+                  <h4 className="font-bold text-white mb-2">Style</h4>
+                  <p className="text-purple-300 font-semibold text-lg capitalize">{design.style}</p>
+                </div>
+              </div>
+            )}
+
+            {design.completion_time && (
+              <div className="bg-gradient-to-br from-orange-900/30 to-orange-800/20 rounded-2xl border border-orange-700/50 p-6">
+                <div className="text-center">
+                  <div className="w-14 h-14 bg-orange-500/20 rounded-xl flex items-center justify-center mx-auto mb-4 border border-orange-500/30">
+                    <Clock3 className="w-7 h-7 text-orange-400" />
+                  </div>
+                  <h4 className="font-bold text-white mb-2">Timeline</h4>
+                  <p className="text-orange-300 font-semibold text-lg">{design.completion_time}</p>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Our Process */}
+        <div className="mb-20">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">Our Design Process</h2>
+            <p className="text-gray-400 text-lg">From concept to completion in 4 simple steps</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="relative bg-gray-900 rounded-2xl border border-gray-800 p-8 text-center">
+              <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-6 border-2 border-blue-500/30">
+                <span className="text-blue-400 font-bold text-2xl">1</span>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-3">Consultation</h3>
+              <p className="text-gray-400">Initial meeting to understand your vision and requirements</p>
+            </div>
+
+            <div className="relative bg-gray-900 rounded-2xl border border-gray-800 p-8 text-center">
+              <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6 border-2 border-green-500/30">
+                <span className="text-green-400 font-bold text-2xl">2</span>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-3">Design</h3>
+              <p className="text-gray-400">Create detailed 3D designs and material selections</p>
+            </div>
+
+            <div className="relative bg-gray-900 rounded-2xl border border-gray-800 p-8 text-center">
+              <div className="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-6 border-2 border-purple-500/30">
+                <span className="text-purple-400 font-bold text-2xl">3</span>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-3">Execution</h3>
+              <p className="text-gray-400">Professional installation with regular progress updates</p>
+            </div>
+
+            <div className="relative bg-gray-900 rounded-2xl border border-gray-800 p-8 text-center">
+              <div className="w-16 h-16 bg-orange-500/20 rounded-full flex items-center justify-center mx-auto mb-6 border-2 border-orange-500/30">
+                <span className="text-orange-400 font-bold text-2xl">4</span>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-3">Handover</h3>
+              <p className="text-gray-400">Final walkthrough and project completion with warranty</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Contact Section */}
+        <div className="mb-20">
+          <div className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-3xl border border-gray-700 p-12 text-center">
+            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">Ready to Transform Your Space?</h2>
+            <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
+              Get a free consultation with our design experts and bring your dream space to life.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+              <button className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white py-4 px-8 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-3">
+                <MessageSquare className="w-5 h-5" />
+                Free Consultation
+              </button>
+              <button className="flex-1 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white py-4 px-8 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-3">
+                <Phone className="w-5 h-5" />
+                Call Expert
+              </button>
+            </div>
+            
+            <div className="flex items-center justify-center gap-2 mt-6 text-gray-400">
+              <Users className="w-4 h-4" />
+              <span className="text-sm">Trusted by 500+ happy customers</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Related Designs */}
         {relatedDesigns.length > 0 && (
           <div className="mt-20">
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-white mb-4">Similar Designs</h2>
+              <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">Similar Designs</h2>
               <p className="text-gray-400 text-lg">Explore more designs that might inspire you</p>
             </div>
             
