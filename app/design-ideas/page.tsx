@@ -119,7 +119,7 @@ export default function NewDesignIdeasPage() {
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
+          <div className="grid grid-cols-3 sm:grid-cols-3 gap-4 md:gap-6">
             <div className="bg-gray-900 rounded-xl border border-gray-800 p-4 md:p-6 text-center">
               <div className="w-10 h-10 md:w-12 md:h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mx-auto mb-2 md:mb-3 border border-blue-500/30">
                 <Award className="w-5 h-5 md:w-6 md:h-6 text-blue-400" />
