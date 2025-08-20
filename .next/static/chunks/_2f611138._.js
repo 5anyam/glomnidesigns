@@ -2568,7 +2568,7 @@ _c3 = CarouselControl;
 function Carouselcard(param) {
     let { slides } = param;
     _s2();
-    const [current, setCurrent] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(0);
+    const [current, setCurrent] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(1);
     const handlePreviousClick = ()=>{
         const previous = current - 1;
         setCurrent(previous < 0 ? slides.length - 1 : previous);
@@ -2682,7 +2682,7 @@ function Carouselcard(param) {
         columnNumber: 5
     }, this);
 }
-_s2(Carouselcard, "Tuvp+ECfVbfiEl5T7qGUNgQ+ntU=", false, function() {
+_s2(Carouselcard, "ZcgrKhIqedJery+Muora9LH6fqY=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useId"]
     ];
@@ -2714,6 +2714,11 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$carousel
 function CarouselDemo() {
     const slideData = [
         {
+            title: "Constructions",
+            button: "Explore Layouts",
+            src: "https://images.unsplash.com/photo-1599707254554-027aeb4deacd?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        },
+        {
             title: "Home Interiors",
             button: "Explore Designs",
             src: "https://images.unsplash.com/photo-1613545325278-f24b0cae1224?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -2722,11 +2727,6 @@ function CarouselDemo() {
             title: "Office Spaces",
             button: "Explore Designs",
             src: "https://images.unsplash.com/photo-1716703371653-ca74beaa7a4a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        },
-        {
-            title: "Constructions",
-            button: "Explore Layouts",
-            src: "https://images.unsplash.com/photo-1599707254554-027aeb4deacd?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         },
         {
             title: "Data Centers",

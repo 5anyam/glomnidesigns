@@ -200,7 +200,7 @@ export default function AboutUsPage() {
                 </p>
                 
                 <p>
-                  We as a team try our best to complete the projects in just a few days, and sometimes it can vary depending on the size and location of the project, as well as what kind of project it is, because we believe in providing quality work to our customers.
+                We, as a team, complete all our projects on time with full customer satisfaction. Our focus is not only on delivering the project on time but also satisfying our valuable customers who have shown faith in our work. Because we believe customer satisfaction is the heart of every success story.
                 </p>
                 
                 <p>
