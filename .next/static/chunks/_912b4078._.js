@@ -1265,23 +1265,23 @@ const Navbar = ()=>{
             items: [
                 {
                     label: "Living Room",
-                    href: "/design-ideas?category=living-room"
+                    href: "category/living-room"
                 },
                 {
                     label: "Bedroom",
-                    href: "/design-ideas?category=bedroom"
+                    href: "category/bedroom"
                 },
                 {
                     label: "Kitchen",
-                    href: "/design-ideas?category=kitchen"
+                    href: "/category/kitchen"
                 },
                 {
                     label: "Bathroom",
-                    href: "/design-ideas?category=bathroom"
+                    href: "/category/bathroom"
                 },
                 {
                     label: "Dining Room",
-                    href: "/design-ideas?category=dining-room"
+                    href: "category/dining-room"
                 }
             ]
         },
@@ -1290,23 +1290,23 @@ const Navbar = ()=>{
             items: [
                 {
                     label: "Corporate Office",
-                    href: "/design-ideas?category=corporate-office"
+                    href: "/category/corporate-office"
                 },
                 {
                     label: "Home Office",
-                    href: "/design-ideas?category=home-office"
+                    href: "/category/home-office"
                 },
                 {
                     label: "Meeting Rooms",
-                    href: "/design-ideas?category=meeting-rooms"
+                    href: "/category/meeting-rooms"
                 },
                 {
                     label: "Reception Area",
-                    href: "/design-ideas?category=reception-area"
+                    href: "/category/reception-area"
                 },
                 {
                     label: "Co-working Space",
-                    href: "/design-ideas?category=coworking-space"
+                    href: "/category/coworking-space"
                 }
             ]
         },
@@ -1315,23 +1315,23 @@ const Navbar = ()=>{
             items: [
                 {
                     label: "Server Rooms",
-                    href: "/design-ideas?category=server-rooms"
+                    href: "/category/server-rooms"
                 },
                 {
                     label: "Control Centers",
-                    href: "/design-ideas?category=control-centers"
+                    href: "/category/control-centers"
                 },
                 {
                     label: "Network Operations",
-                    href: "/design-ideas?category=network-operations"
+                    href: "/category/network-operations"
                 },
                 {
                     label: "Cloud Infrastructure",
-                    href: "/design-ideas?category=cloud-infrastructure"
+                    href: "/category/cloud-infrastructure"
                 },
                 {
                     label: "Security Centers",
-                    href: "/design-ideas?category=security-centers"
+                    href: "/category/security-centers"
                 }
             ]
         }

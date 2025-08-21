@@ -29,31 +29,31 @@ export const Navbar = () => {
     {
       title: "Home Interior",
       items: [
-        { label: "Living Room", href: "/design-ideas?category=living-room" },
-        { label: "Bedroom", href: "/design-ideas?category=bedroom" },
-        { label: "Kitchen", href: "/design-ideas?category=kitchen" },
-        { label: "Bathroom", href: "/design-ideas?category=bathroom" },
-        { label: "Dining Room", href: "/design-ideas?category=dining-room" }
+        { label: "Living Room", href: "category/living-room" },
+        { label: "Bedroom", href: "category/bedroom" },
+        { label: "Kitchen", href: "/category/kitchen" },
+        { label: "Bathroom", href: "/category/bathroom" },
+        { label: "Dining Room", href: "category/dining-room" }
       ]
     },
     {
       title: "Office Spaces",
       items: [
-        { label: "Corporate Office", href: "/design-ideas?category=corporate-office" },
-        { label: "Home Office", href: "/design-ideas?category=home-office" },
-        { label: "Meeting Rooms", href: "/design-ideas?category=meeting-rooms" },
-        { label: "Reception Area", href: "/design-ideas?category=reception-area" },
-        { label: "Co-working Space", href: "/design-ideas?category=coworking-space" }
+        { label: "Corporate Office", href: "/category/corporate-office" },
+        { label: "Home Office", href: "/category/home-office" },
+        { label: "Meeting Rooms", href: "/category/meeting-rooms" },
+        { label: "Reception Area", href: "/category/reception-area" },
+        { label: "Co-working Space", href: "/category/coworking-space" }
       ]
     },
     {
       title: "Data Centers",
       items: [
-        { label: "Server Rooms", href: "/design-ideas?category=server-rooms" },
-        { label: "Control Centers", href: "/design-ideas?category=control-centers" },
-        { label: "Network Operations", href: "/design-ideas?category=network-operations" },
-        { label: "Cloud Infrastructure", href: "/design-ideas?category=cloud-infrastructure" },
-        { label: "Security Centers", href: "/design-ideas?category=security-centers" }
+        { label: "Server Rooms", href: "/category/server-rooms" },
+        { label: "Control Centers", href: "/category/control-centers" },
+        { label: "Network Operations", href: "/category/network-operations" },
+        { label: "Cloud Infrastructure", href: "/category/cloud-infrastructure" },
+        { label: "Security Centers", href: "/category/security-centers" }
       ]
     }
   ];
