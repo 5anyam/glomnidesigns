@@ -1265,23 +1265,23 @@ const Navbar = ()=>{
             items: [
                 {
                     label: "Living Room",
-                    href: "category/living-room"
+                    href: "https://www.glomnidesigns.com/category/living-room"
                 },
                 {
                     label: "Bedroom",
-                    href: "category/bedroom"
+                    href: "https://www.glomnidesigns.com/category/bedroom"
                 },
                 {
                     label: "Kitchen",
-                    href: "/category/kitchen"
+                    href: "https://www.glomnidesigns.com/category/kitchen"
                 },
                 {
                     label: "Bathroom",
-                    href: "/category/bathroom"
+                    href: "https://www.glomnidesigns.com/category/bathroom"
                 },
                 {
                     label: "Dining Room",
-                    href: "category/dining-room"
+                    href: "https://www.glomnidesigns.com/category/dining-room"
                 }
             ]
         },
@@ -1290,23 +1290,23 @@ const Navbar = ()=>{
             items: [
                 {
                     label: "Corporate Office",
-                    href: "/category/corporate-office"
+                    href: "https://www.glomnidesigns.com/category/corporate-office"
                 },
                 {
                     label: "Home Office",
-                    href: "/category/home-office"
+                    href: "https://www.glomnidesigns.com/category/home-office"
                 },
                 {
                     label: "Meeting Rooms",
-                    href: "/category/meeting-rooms"
+                    href: "https://www.glomnidesigns.com/category/meeting-rooms"
                 },
                 {
                     label: "Reception Area",
-                    href: "/category/reception-area"
+                    href: "https://www.glomnidesigns.com/category/reception-area"
                 },
                 {
                     label: "Co-working Space",
-                    href: "/category/coworking-space"
+                    href: "https://www.glomnidesigns.com/category/coworking-space"
                 }
             ]
         },
@@ -1315,23 +1315,23 @@ const Navbar = ()=>{
             items: [
                 {
                     label: "Server Rooms",
-                    href: "/category/server-rooms"
+                    href: "https://www.glomnidesigns.com/category/server-rooms"
                 },
                 {
                     label: "Control Centers",
-                    href: "/category/control-centers"
+                    href: "https://www.glomnidesigns.com/category/control-centers"
                 },
                 {
                     label: "Network Operations",
-                    href: "/category/network-operations"
+                    href: "https://www.glomnidesigns.com/category/network-operations"
                 },
                 {
                     label: "Cloud Infrastructure",
-                    href: "/category/cloud-infrastructure"
+                    href: "https://www.glomnidesigns.com/category/cloud-infrastructure"
                 },
                 {
                     label: "Security Centers",
-                    href: "/category/security-centers"
+                    href: "https://www.glomnidesigns.com/category/security-centers"
                 }
             ]
         }

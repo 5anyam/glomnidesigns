@@ -29,31 +29,31 @@ export const Navbar = () => {
     {
       title: "Home Interior",
       items: [
-        { label: "Living Room", href: "category/living-room" },
-        { label: "Bedroom", href: "category/bedroom" },
-        { label: "Kitchen", href: "/category/kitchen" },
-        { label: "Bathroom", href: "/category/bathroom" },
-        { label: "Dining Room", href: "category/dining-room" }
+        { label: "Living Room", href: "https://www.glomnidesigns.com/category/living-room" },
+        { label: "Bedroom", href: "https://www.glomnidesigns.com/category/bedroom" },
+        { label: "Kitchen", href: "https://www.glomnidesigns.com/category/kitchen" },
+        { label: "Bathroom", href: "https://www.glomnidesigns.com/category/bathroom" },
+        { label: "Dining Room", href: "https://www.glomnidesigns.com/category/dining-room" }
       ]
     },
     {
       title: "Office Spaces",
       items: [
-        { label: "Corporate Office", href: "/category/corporate-office" },
-        { label: "Home Office", href: "/category/home-office" },
-        { label: "Meeting Rooms", href: "/category/meeting-rooms" },
-        { label: "Reception Area", href: "/category/reception-area" },
-        { label: "Co-working Space", href: "/category/coworking-space" }
+        { label: "Corporate Office", href: "https://www.glomnidesigns.com/category/corporate-office" },
+        { label: "Home Office", href: "https://www.glomnidesigns.com/category/home-office" },
+        { label: "Meeting Rooms", href: "https://www.glomnidesigns.com/category/meeting-rooms" },
+        { label: "Reception Area", href: "https://www.glomnidesigns.com/category/reception-area" },
+        { label: "Co-working Space", href: "https://www.glomnidesigns.com/category/coworking-space" }
       ]
     },
     {
       title: "Data Centers",
       items: [
-        { label: "Server Rooms", href: "/category/server-rooms" },
-        { label: "Control Centers", href: "/category/control-centers" },
-        { label: "Network Operations", href: "/category/network-operations" },
-        { label: "Cloud Infrastructure", href: "/category/cloud-infrastructure" },
-        { label: "Security Centers", href: "/category/security-centers" }
+        { label: "Server Rooms", href: "https://www.glomnidesigns.com/category/server-rooms" },
+        { label: "Control Centers", href: "https://www.glomnidesigns.com/category/control-centers" },
+        { label: "Network Operations", href: "https://www.glomnidesigns.com/category/network-operations" },
+        { label: "Cloud Infrastructure", href: "https://www.glomnidesigns.com/category/cloud-infrastructure" },
+        { label: "Security Centers", href: "https://www.glomnidesigns.com/category/security-centers" }
       ]
     }
   ];
