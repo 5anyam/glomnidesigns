@@ -264,7 +264,7 @@ export default function NewDesignDetail({ slug }: { slug: string }) {
             <div className="space-y-6">
               {/* Main Title with Gradient */}
               <div className="space-y-4">
-                <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold bg-gradient-to-r from-white via-blue-100 to-blue-200 bg-clip-text text-transparent leading-tight">
+                <h1 className="text-4xl lg:text-5xl p-4 xl:text-6xl font-bold bg-gradient-to-r from-white via-blue-100 to-blue-200 bg-clip-text text-transparent leading-tight">
                   {design.name}
                 </h1>
                 
