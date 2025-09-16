@@ -195,11 +195,6 @@ export default function NewDesignDetail({ slug }: { slug: string }) {
 
               {/* Design Overview Subtitle */}
               <div className="pt-4">
-                <h2 className="text-xl font-semibold text-gray-400 mb-4 flex items-center gap-2">
-                  <Sparkles className="w-5 h-5 text-blue-400" />
-                  Design Overview
-                </h2>
-                
                 {design.description && (
                   <p className="text-gray-300 leading-relaxed text-lg">{design.description}</p>
                 )}
@@ -221,8 +216,8 @@ export default function NewDesignDetail({ slug }: { slug: string }) {
             <div className="flex flex-col sm:flex-row gap-4">
                 <ContactModal/>
               <button className="flex-1 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white py-4 px-6 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-3">
-                <Phone className="w-5 h-5" />
-                Call Now
+                <a href="tel:+919899989803"><Phone className="w-5 h-5" />
+                Call Now </a>
               </button>
             </div>
           </div>
