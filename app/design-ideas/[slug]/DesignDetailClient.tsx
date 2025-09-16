@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, Heart, Share2, MapPin, Clock, Eye, Star, Phone, MessageSquare, Ruler, Palette, Calendar, Info, Sparkles, Award, Users, CheckCircle, Shield, Clock3, Wrench } from 'lucide-react';
+import { ArrowLeft, Heart, Share2, MapPin, Clock, Eye, Star, Phone, MessageSquare, Ruler, Palette, Calendar, Info, Sparkles, Award, Users, CheckCircle, Shield, Clock3, Wrench, ZoomIn, ZoomOut, Maximize, X, Plus, Minus } from 'lucide-react';
 import { designAPI, Design } from '../../../lib/api';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -15,6 +15,10 @@ export default function NewDesignDetail({ slug }: { slug: string }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [isLiked, setIsLiked] = useState(false);
+  
+  // New states for zoom and fullscreen
+  const [zoomLevel, setZoomLevel] = useState(1);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   useEffect(() => {
     if (slug) {
@@ -61,6 +65,41 @@ export default function NewDesignDetail({ slug }: { slug: string }) {
       await navigator.clipboard.writeText(window.location.href);
     }
   };
+
+  // Zoom and Fullscreen functions
+  const zoomIn = () => {
+    setZoomLevel(prev => Math.min(prev + 0.25, 3));
+  };
+
+  const zoomOut = () => {
+    setZoomLevel(prev => Math.max(prev - 0.25, 1));
+  };
+
+  const resetZoom = () => {
+    setZoomLevel(1);
+  };
+
+  const openFullscreen = () => {
+    setIsFullscreen(true);
+  };
+
+  const closeFullscreen = () => {
+    setIsFullscreen(false);
+    setZoomLevel(1);
+  };
+
+  // Prevent body scroll when fullscreen is open
+  useEffect(() => {
+    if (isFullscreen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isFullscreen]);
 
   if (loading) {
     return (
@@ -136,24 +175,78 @@ export default function NewDesignDetail({ slug }: { slug: string }) {
         {/* Top Section - Image and Basic Description (50-50) */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
           
-          {/* Image Section - 50% */}
+          {/* Enhanced Image Section with Zoom & Fullscreen - 50% */}
           <div className="w-full">
-            <div className="relative aspect-[4/3] bg-gray-900 rounded-3xl overflow-hidden shadow-2xl border border-gray-800">
+            <div className="relative aspect-[4/3] bg-gray-900 rounded-3xl overflow-hidden shadow-2xl border border-gray-800 group">
               {imageUrl ? (
-                <Image
-                  src={getImageUrl(imageUrl)}
-                  alt={design.name}
-                  fill
-                  className="object-cover hover:scale-105 transition-transform duration-700"
-                />
+                <div className="relative w-full h-full overflow-hidden">
+                  <Image
+                    src={getImageUrl(imageUrl)}
+                    alt={design.name}
+                    fill
+                    className="object-cover transition-transform duration-500 cursor-pointer"
+                    style={{
+                      transform: `scale(${zoomLevel})`,
+                    }}
+                    onClick={() => zoomLevel > 1 ? resetZoom() : zoomIn()}
+                  />
+                  
+                  {/* Zoom Controls */}
+                  <div className="absolute top-4 left-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        zoomOut();
+                      }}
+                      disabled={zoomLevel <= 1}
+                      className="p-2 bg-black/70 backdrop-blur-sm text-white rounded-lg hover:bg-black/80 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                      title="Zoom Out"
+                    >
+                      <Minus className="w-4 h-4" />
+                    </button>
+                    
+                    <div className="px-3 py-2 bg-black/70 backdrop-blur-sm text-white rounded-lg text-sm font-bold">
+                      {Math.round(zoomLevel * 100)}%
+                    </div>
+                    
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        zoomIn();
+                      }}
+                      disabled={zoomLevel >= 3}
+                      className="p-2 bg-black/70 backdrop-blur-sm text-white rounded-lg hover:bg-black/80 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                      title="Zoom In"
+                    >
+                      <Plus className="w-4 h-4" />
+                    </button>
+                  </div>
+
+                  {/* Fullscreen Button */}
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      openFullscreen();
+                    }}
+                    className="absolute top-4 right-4 p-2 bg-black/70 backdrop-blur-sm text-white rounded-lg hover:bg-black/80 transition-all opacity-0 group-hover:opacity-100 z-10"
+                    title="Open Fullscreen"
+                  >
+                    <Maximize className="w-4 h-4" />
+                  </button>
+
+                  {/* Zoom Hint */}
+                  <div className="absolute bottom-4 left-4 bg-black/70 backdrop-blur-sm text-white px-3 py-1 rounded-lg text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    Click image to zoom • Use controls for precision
+                  </div>
+                </div>
               ) : (
                 <div className="w-full h-full flex items-center justify-center">
                   <Eye className="w-24 h-24 text-gray-600" />
                 </div>
               )}
               
-              {/* Simple gradient overlay without text */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+              {/* Simple gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
               
               {design.is_featured && (
                 <div className="absolute top-6 left-6 flex items-center gap-2 bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
@@ -188,13 +281,10 @@ export default function NewDesignDetail({ slug }: { slug: string }) {
                     ))}
                   </div>
                 )}
-                
-                {/* Decorative line */}
-                <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
               </div>
 
               {/* Design Overview Subtitle */}
-              <div className="pt-4">
+              <div className="pt-2">
                 {design.description && (
                   <p className="text-gray-300 leading-relaxed text-lg">{design.description}</p>
                 )}
@@ -215,14 +305,75 @@ export default function NewDesignDetail({ slug }: { slug: string }) {
             {/* Quick CTA */}
             <div className="flex flex-col sm:flex-row gap-4">
                 <ContactModal/>
-              <button className="flex-1 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white py-4 px-6 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-3">
-                <a href="tel:+919899989803"><Phone className="w-5 h-5" />
-                Call Now </a>
-              </button>
+                <a href="tel:+919899989803"><button className="flex-1 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white py-4 px-6 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-3">
+                <Phone className="w-5 h-5" />
+                Call Now 
+              </button></a>
             </div>
           </div>
         </div>
 
+        {/* Fullscreen Modal */}
+        {isFullscreen && (
+          <div className="fixed inset-0 bg-black z-[10000] flex items-center justify-center">
+            
+            {/* Fullscreen Controls */}
+            <div className="absolute top-6 left-6 right-6 flex justify-between items-center z-10">
+              
+              {/* Zoom Controls */}
+              <div className="flex gap-3">
+                <button
+                  onClick={zoomOut}
+                  disabled={zoomLevel <= 0.5}
+                  className="p-3 bg-white/20 backdrop-blur-sm text-white rounded-full hover:bg-white/30 transition-all disabled:opacity-50"
+                  title="Zoom Out"
+                >
+                  <Minus size={20} />
+                </button>
+                <div className="px-4 py-3 bg-white/20 backdrop-blur-sm text-white rounded-full font-bold">
+                  {Math.round(zoomLevel * 100)}%
+                </div>
+                <button
+                  onClick={zoomIn}
+                  disabled={zoomLevel >= 3}
+                  className="p-3 bg-white/20 backdrop-blur-sm text-white rounded-full hover:bg-white/30 transition-all disabled:opacity-50"
+                  title="Zoom In"
+                >
+                  <Plus size={20} />
+                </button>
+              </div>
+
+              {/* Close Button */}
+              <button
+                onClick={closeFullscreen}
+                className="p-3 bg-white/20 backdrop-blur-sm text-white rounded-full hover:bg-white/30 transition-all"
+                title="Close Fullscreen"
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            {/* Fullscreen Image */}
+            <div className="w-full h-full flex items-center justify-center p-20 overflow-hidden">
+              <img
+                src={getImageUrl(imageUrl)}
+                alt={design.name}
+                className="transition-transform duration-300 ease-out select-none max-w-full max-h-full object-contain"
+                style={{
+                  transform: `scale(${zoomLevel})`,
+                }}
+              />
+            </div>
+
+            {/* Instructions */}
+            <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-white/70 text-sm bg-black/50 px-4 py-2 rounded-full backdrop-blur-sm">
+              Use zoom controls to magnify • ESC or X to close
+            </div>
+          </div>
+        )}
+
+        {/* Rest of your existing sections remain the same... */}
+        
         {/* Key Features Section */}
         <div className="mb-20">
           <div className="text-center mb-12">
