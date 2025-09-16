@@ -533,14 +533,11 @@ export default function NewDesignDetail({ slug }: { slug: string }) {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
-              <button className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white py-4 px-8 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-3">
-                <MessageSquare className="w-5 h-5" />
-                Free Consultation
-              </button>
-              <button className="flex-1 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white py-4 px-8 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-3">
+            <ContactModal/>
+                <a href="tel:+919899989803"><button className="flex-1 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white py-4 px-6 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-3">
                 <Phone className="w-5 h-5" />
-                Call Expert
-              </button>
+                Call Now 
+              </button></a>
             </div>
             
             <div className="flex items-center justify-center gap-2 mt-6 text-gray-400">
