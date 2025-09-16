@@ -5,9 +5,11 @@
 
 var { k: __turbopack_refresh__, m: module } = __turbopack_context__;
 {
-// lib/api.ts - Fixed Version
+// lib/api.ts - Updated Version with Category Slug Support
 __turbopack_context__.s({
+    "apiHelper": ()=>apiHelper,
     "categoryAPI": ()=>categoryAPI,
+    "default": ()=>__TURBOPACK__default__export__,
     "designAPI": ()=>designAPI,
     "interiorAPI": ()=>interiorAPI,
     "interiorCategoryAPI": ()=>interiorCategoryAPI,
@@ -24,7 +26,7 @@ const api = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axio
 const interiorAPI = {
     async getAll () {
         try {
-            const { data } = await api.get('/services?populate=*'); // Changed to correct endpoint
+            const { data } = await api.get('/services?populate=*');
             return {
                 success: true,
                 data: data.data || data || []
@@ -90,10 +92,10 @@ const interiorCategoryAPI = {
     }
 };
 const designAPI = {
-    // Get all designs - FIXED endpoint
+    // Get all designs
     async getAll () {
         try {
-            const { data } = await api.get('/designs?populate=*'); // ✅ Changed from /design-ideas to /designs
+            const { data } = await api.get('/designs?populate=*');
             console.log('✅ Designs API Response:', data);
             return {
                 success: true,
@@ -108,7 +110,7 @@ const designAPI = {
             };
         }
     },
-    // Get design by slug - FIXED
+    // Get design by slug
     async getBySlug (slug) {
         try {
             const { data } = await api.get("/designs?filters[slug][$eq]=".concat(slug, "&populate=*"));
@@ -128,7 +130,7 @@ const designAPI = {
             };
         }
     },
-    // Get designs by category - FIXED
+    // Get designs by category slug
     async getByCategory (categorySlug) {
         try {
             const { data } = await api.get("/designs?filters[categories][slug][$eq]=".concat(categorySlug, "&populate=*"));
@@ -146,10 +148,10 @@ const designAPI = {
             };
         }
     },
-    // Search designs - FIXED
+    // Search designs
     async search (query) {
         try {
-            const { data } = await api.get("/designs?filters[title][$containsi]=".concat(query, "&populate=*"));
+            const { data } = await api.get("/designs?filters[name][$containsi]=".concat(query, "&populate=*"));
             console.log('✅ Search designs response:', data);
             return {
                 success: true,
@@ -166,6 +168,7 @@ const designAPI = {
     }
 };
 const categoryAPI = {
+    // Get all categories
     async getAll () {
         try {
             const { data } = await api.get('/categories?populate=*');
@@ -180,6 +183,53 @@ const categoryAPI = {
                 success: false,
                 data: [],
                 error: 'Failed to fetch categories'
+            };
+        }
+    },
+    // ✅ NEW: Get category by slug
+    async getBySlug (slug) {
+        try {
+            const { data } = await api.get("/categories?filters[slug][$eq]=".concat(slug, "&populate=*"));
+            console.log('✅ Category by slug response:', data);
+            const categories = data.data || data || [];
+            const category = categories.find((c)=>c.slug === slug) || categories[0] || null;
+            return {
+                success: true,
+                data: category
+            };
+        } catch (error) {
+            console.error('❌ Category by slug error:', error);
+            return {
+                success: false,
+                data: null,
+                error: 'Category not found'
+            };
+        }
+    },
+    // ✅ NEW: Get category with designs count
+    async getCategoryWithCount (slug) {
+        try {
+            // Get category info
+            const categoryResult = await this.getBySlug(slug);
+            if (!categoryResult.success) {
+                return categoryResult;
+            }
+            // Get designs count for this category
+            const designsResult = await designAPI.getByCategory(slug);
+            const designCount = designsResult.success ? designsResult.data.length : 0;
+            return {
+                success: true,
+                data: {
+                    ...categoryResult.data,
+                    designCount
+                }
+            };
+        } catch (error) {
+            console.error('❌ Category with count error:', error);
+            return {
+                success: false,
+                data: null,
+                error: 'Failed to load category data'
             };
         }
     }
@@ -201,8 +251,103 @@ const portfolioAPI = {
                 error: 'Failed to fetch portfolios'
             };
         }
+    },
+    // ✅ NEW: Get portfolio by slug
+    async getBySlug (slug) {
+        try {
+            const { data } = await api.get("/portfolios?filters[slug][$eq]=".concat(slug, "&populate=*"));
+            console.log('✅ Portfolio by slug response:', data);
+            const portfolios = data.data || data || [];
+            const portfolio = portfolios.find((p)=>p.slug === slug) || portfolios[0] || null;
+            return {
+                success: true,
+                data: portfolio
+            };
+        } catch (error) {
+            console.error('❌ Portfolio by slug error:', error);
+            return {
+                success: false,
+                data: null,
+                error: 'Portfolio not found'
+            };
+        }
     }
 };
+const apiHelper = {
+    // Custom query builder
+    async customQuery (endpoint, filters) {
+        let populate = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : '*';
+        try {
+            let url = "/".concat(endpoint);
+            const params = new URLSearchParams();
+            if (populate) {
+                params.append('populate', populate);
+            }
+            if (filters) {
+                Object.entries(filters).forEach((param)=>{
+                    let [key, value] = param;
+                    if (typeof value === 'object') {
+                        Object.entries(value).forEach((param)=>{
+                            let [operator, val] = param;
+                            params.append("filters[".concat(key, "][").concat(operator, "]"), String(val));
+                        });
+                    } else {
+                        params.append("filters[".concat(key, "]"), String(value));
+                    }
+                });
+            }
+            if (params.toString()) {
+                url += "?".concat(params.toString());
+            }
+            const { data } = await api.get(url);
+            console.log("✅ Custom query response for ".concat(endpoint, ":"), data);
+            return {
+                success: true,
+                data: data.data || data || []
+            };
+        } catch (error) {
+            console.error("❌ Custom query error for ".concat(endpoint, ":"), error);
+            return {
+                success: false,
+                data: [],
+                error: 'Query failed'
+            };
+        }
+    },
+    // Get entries with pagination
+    async getPaginated (endpoint) {
+        let page = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : 1, pageSize = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : 25, filters = arguments.length > 3 ? arguments[3] : void 0;
+        try {
+            const params = new URLSearchParams({
+                'pagination[page]': String(page),
+                'pagination[pageSize]': String(pageSize),
+                populate: '*'
+            });
+            if (filters) {
+                Object.entries(filters).forEach((param)=>{
+                    let [key, value] = param;
+                    params.append("filters[".concat(key, "]"), String(value));
+                });
+            }
+            const { data } = await api.get("/".concat(endpoint, "?").concat(params.toString()));
+            console.log("✅ Paginated response for ".concat(endpoint, ":"), data);
+            return {
+                success: true,
+                data: data.data || [],
+                meta: data.meta || {}
+            };
+        } catch (error) {
+            console.error("❌ Pagination error for ".concat(endpoint, ":"), error);
+            return {
+                success: false,
+                data: [],
+                meta: {},
+                error: 'Pagination failed'
+            };
+        }
+    }
+};
+const __TURBOPACK__default__export__ = api;
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(module, globalThis.$RefreshHelpers$);
 }
@@ -229,6 +374,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$message$2d$square$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__MessageSquare$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/message-square.js [app-client] (ecmascript) <export default as MessageSquare>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$ruler$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Ruler$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/ruler.js [app-client] (ecmascript) <export default as Ruler>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$palette$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Palette$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/palette.js [app-client] (ecmascript) <export default as Palette>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sparkles$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Sparkles$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/sparkles.js [app-client] (ecmascript) <export default as Sparkles>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/users.js [app-client] (ecmascript) <export default as Users>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2d$big$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/circle-check-big.js [app-client] (ecmascript) <export default as CheckCircle>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shield$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Shield$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/shield.js [app-client] (ecmascript) <export default as Shield>");
@@ -403,7 +549,7 @@ function NewDesignDetail(param) {
         className: "min-h-screen bg-black",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "sticky top-0 z-50 backdrop-blur-xl bg-black/80 border-b border-gray-800",
+                className: "sticky top-0 backdrop-blur-xl bg-black/80 border-b border-gray-800",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "max-w-7xl mx-auto px-4 py-4",
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -524,10 +670,10 @@ function NewDesignDetail(param) {
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"
+                                            className: "absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"
                                         }, void 0, false, {
                                             fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                            lineNumber: 154,
+                                            lineNumber: 155,
                                             columnNumber: 15
                                         }, this),
                                         design.is_featured && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -537,47 +683,15 @@ function NewDesignDetail(param) {
                                                     className: "w-4 h-4 fill-current"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                    lineNumber: 158,
+                                                    lineNumber: 159,
                                                     columnNumber: 19
                                                 }, this),
                                                 "Featured Design"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                            lineNumber: 157,
+                                            lineNumber: 158,
                                             columnNumber: 17
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "absolute bottom-6 left-6 right-6",
-                                            children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                                                    className: "text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-3 drop-shadow-2xl",
-                                                    children: design.name
-                                                }, void 0, false, {
-                                                    fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                    lineNumber: 164,
-                                                    columnNumber: 17
-                                                }, this),
-                                                design.categories && design.categories.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "flex flex-wrap gap-2",
-                                                    children: design.categories.map((cat)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                            className: "px-3 py-1.5 bg-black/60 backdrop-blur-sm text-white rounded-full text-sm font-medium border border-white/20",
-                                                            children: cat.name
-                                                        }, cat.id, false, {
-                                                            fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                            lineNumber: 170,
-                                                            columnNumber: 23
-                                                        }, this))
-                                                }, void 0, false, {
-                                                    fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                    lineNumber: 168,
-                                                    columnNumber: 19
-                                                }, this)
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                            lineNumber: 163,
-                                            columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
@@ -594,68 +708,126 @@ function NewDesignDetail(param) {
                                 className: "w-full flex flex-col justify-center space-y-8",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "space-y-6",
                                         children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                                className: "text-3xl lg:text-4xl font-bold text-white mb-6",
-                                                children: "Design Overview"
-                                            }, void 0, false, {
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "space-y-4",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
+                                                        className: "text-4xl lg:text-5xl xl:text-6xl font-bold bg-gradient-to-r from-white via-blue-100 to-blue-200 bg-clip-text text-transparent leading-tight",
+                                                        children: design.name
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
+                                                        lineNumber: 173,
+                                                        columnNumber: 17
+                                                    }, this),
+                                                    design.categories && design.categories.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "flex flex-wrap gap-3",
+                                                        children: design.categories.map((cat)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                className: "px-4 py-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm text-blue-300 rounded-full text-sm font-semibold border border-blue-500/30 hover:border-blue-400/50 transition-all duration-300",
+                                                                children: cat.name
+                                                            }, cat.id, false, {
+                                                                fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
+                                                                lineNumber: 181,
+                                                                columnNumber: 23
+                                                            }, this))
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
+                                                        lineNumber: 179,
+                                                        columnNumber: 19
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
+                                                        lineNumber: 192,
+                                                        columnNumber: 17
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
                                                 fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                lineNumber: 183,
+                                                lineNumber: 172,
                                                 columnNumber: 15
                                             }, this),
-                                            design.description && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                className: "text-gray-300 leading-relaxed text-lg mb-8",
-                                                children: design.description
-                                            }, void 0, false, {
-                                                fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                lineNumber: 185,
-                                                columnNumber: 17
-                                            }, this),
-                                            design.price_range && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "bg-gradient-to-r from-green-500/10 to-emerald-500/10 rounded-2xl p-6 border border-green-500/20",
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "pt-4",
                                                 children: [
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "flex items-center gap-3 mb-2",
-                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                            className: "text-green-400 text-lg font-semibold",
-                                                            children: "Starting from"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                            lineNumber: 192,
-                                                            columnNumber: 21
-                                                        }, this)
-                                                    }, void 0, false, {
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                                        className: "text-xl font-semibold text-gray-400 mb-4 flex items-center gap-2",
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sparkles$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Sparkles$3e$__["Sparkles"], {
+                                                                className: "w-5 h-5 text-blue-400"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
+                                                                lineNumber: 198,
+                                                                columnNumber: 19
+                                                            }, this),
+                                                            "Design Overview"
+                                                        ]
+                                                    }, void 0, true, {
                                                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                        lineNumber: 191,
-                                                        columnNumber: 19
+                                                        lineNumber: 197,
+                                                        columnNumber: 17
                                                     }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "text-4xl font-bold text-white mb-2",
-                                                        children: design.price_range
+                                                    design.description && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                        className: "text-gray-300 leading-relaxed text-lg",
+                                                        children: design.description
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                        lineNumber: 194,
-                                                        columnNumber: 19
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                        className: "text-green-300 text-sm",
-                                                        children: "*Final cost depends on customization & materials"
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                        lineNumber: 195,
+                                                        lineNumber: 203,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                lineNumber: 190,
+                                                lineNumber: 196,
+                                                columnNumber: 15
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
+                                        lineNumber: 170,
+                                        columnNumber: 13
+                                    }, this),
+                                    design.price_range && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "bg-gradient-to-r from-green-500/10 to-emerald-500/10 rounded-2xl p-6 border border-green-500/20",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "flex items-center gap-3 mb-2",
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                    className: "text-green-400 text-lg font-semibold",
+                                                    children: "Starting from"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
+                                                    lineNumber: 212,
+                                                    columnNumber: 19
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
+                                                lineNumber: 211,
+                                                columnNumber: 17
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "text-4xl font-bold text-white mb-2",
+                                                children: design.price_range
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
+                                                lineNumber: 214,
+                                                columnNumber: 17
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                className: "text-green-300 text-sm",
+                                                children: "*Final cost depends on customization & materials"
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
+                                                lineNumber: 215,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                        lineNumber: 182,
-                                        columnNumber: 13
+                                        lineNumber: 210,
+                                        columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "flex flex-col sm:flex-row gap-4",
@@ -667,14 +839,14 @@ function NewDesignDetail(param) {
                                                         className: "w-5 h-5"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                        lineNumber: 203,
+                                                        lineNumber: 222,
                                                         columnNumber: 17
                                                     }, this),
                                                     "Get Free Quote"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                lineNumber: 202,
+                                                lineNumber: 221,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -684,26 +856,26 @@ function NewDesignDetail(param) {
                                                         className: "w-5 h-5"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                        lineNumber: 207,
+                                                        lineNumber: 226,
                                                         columnNumber: 17
                                                     }, this),
                                                     "Call Now"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                lineNumber: 206,
+                                                lineNumber: 225,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                        lineNumber: 201,
+                                        lineNumber: 220,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                lineNumber: 181,
+                                lineNumber: 167,
                                 columnNumber: 11
                             }, this)
                         ]
@@ -723,7 +895,7 @@ function NewDesignDetail(param) {
                                         children: "Why Choose This Design"
                                     }, void 0, false, {
                                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                        lineNumber: 217,
+                                        lineNumber: 236,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -731,13 +903,13 @@ function NewDesignDetail(param) {
                                         children: "Premium features that make this design stand out"
                                     }, void 0, false, {
                                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                        lineNumber: 218,
+                                        lineNumber: 237,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                lineNumber: 216,
+                                lineNumber: 235,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -754,12 +926,12 @@ function NewDesignDetail(param) {
                                                         className: "w-8 h-8 text-blue-400"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                        lineNumber: 225,
+                                                        lineNumber: 244,
                                                         columnNumber: 19
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                    lineNumber: 224,
+                                                    lineNumber: 243,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -767,7 +939,7 @@ function NewDesignDetail(param) {
                                                     children: "Premium Materials"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                    lineNumber: 227,
+                                                    lineNumber: 246,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -775,18 +947,18 @@ function NewDesignDetail(param) {
                                                     children: "High-quality finishes and materials for lasting beauty"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                    lineNumber: 228,
+                                                    lineNumber: 247,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                            lineNumber: 223,
+                                            lineNumber: 242,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                        lineNumber: 222,
+                                        lineNumber: 241,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -800,12 +972,12 @@ function NewDesignDetail(param) {
                                                         className: "w-8 h-8 text-green-400"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                        lineNumber: 235,
+                                                        lineNumber: 254,
                                                         columnNumber: 19
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                    lineNumber: 234,
+                                                    lineNumber: 253,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -813,7 +985,7 @@ function NewDesignDetail(param) {
                                                     children: "Expert Installation"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                    lineNumber: 237,
+                                                    lineNumber: 256,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -821,18 +993,18 @@ function NewDesignDetail(param) {
                                                     children: "Professional installation by certified craftsmen"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                    lineNumber: 238,
+                                                    lineNumber: 257,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                            lineNumber: 233,
+                                            lineNumber: 252,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                        lineNumber: 232,
+                                        lineNumber: 251,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -846,12 +1018,12 @@ function NewDesignDetail(param) {
                                                         className: "w-8 h-8 text-purple-400"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                        lineNumber: 245,
+                                                        lineNumber: 264,
                                                         columnNumber: 19
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                    lineNumber: 244,
+                                                    lineNumber: 263,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -859,7 +1031,7 @@ function NewDesignDetail(param) {
                                                     children: "Customizable"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                    lineNumber: 247,
+                                                    lineNumber: 266,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -867,18 +1039,18 @@ function NewDesignDetail(param) {
                                                     children: "Tailored to your preferences and requirements"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                    lineNumber: 248,
+                                                    lineNumber: 267,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                            lineNumber: 243,
+                                            lineNumber: 262,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                        lineNumber: 242,
+                                        lineNumber: 261,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -892,12 +1064,12 @@ function NewDesignDetail(param) {
                                                         className: "w-8 h-8 text-orange-400"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                        lineNumber: 255,
+                                                        lineNumber: 274,
                                                         columnNumber: 19
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                    lineNumber: 254,
+                                                    lineNumber: 273,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -905,7 +1077,7 @@ function NewDesignDetail(param) {
                                                     children: "3 Year Warranty"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                    lineNumber: 257,
+                                                    lineNumber: 276,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -913,30 +1085,30 @@ function NewDesignDetail(param) {
                                                     children: "Comprehensive warranty on workmanship"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                    lineNumber: 258,
+                                                    lineNumber: 277,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                            lineNumber: 253,
+                                            lineNumber: 272,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                        lineNumber: 252,
+                                        lineNumber: 271,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                lineNumber: 221,
+                                lineNumber: 240,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                        lineNumber: 215,
+                        lineNumber: 234,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -950,7 +1122,7 @@ function NewDesignDetail(param) {
                                         children: "Design Specifications"
                                     }, void 0, false, {
                                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                        lineNumber: 267,
+                                        lineNumber: 286,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -958,13 +1130,13 @@ function NewDesignDetail(param) {
                                         children: "Detailed information about this project"
                                     }, void 0, false, {
                                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                        lineNumber: 268,
+                                        lineNumber: 287,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                lineNumber: 266,
+                                lineNumber: 285,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -981,12 +1153,12 @@ function NewDesignDetail(param) {
                                                         className: "w-7 h-7 text-blue-400"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                        lineNumber: 276,
+                                                        lineNumber: 295,
                                                         columnNumber: 21
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                    lineNumber: 275,
+                                                    lineNumber: 294,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
@@ -994,7 +1166,7 @@ function NewDesignDetail(param) {
                                                     children: "Location"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                    lineNumber: 278,
+                                                    lineNumber: 297,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1002,18 +1174,18 @@ function NewDesignDetail(param) {
                                                     children: design.location
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                    lineNumber: 279,
+                                                    lineNumber: 298,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                            lineNumber: 274,
+                                            lineNumber: 293,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                        lineNumber: 273,
+                                        lineNumber: 292,
                                         columnNumber: 15
                                     }, this),
                                     design.area_size && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1027,12 +1199,12 @@ function NewDesignDetail(param) {
                                                         className: "w-7 h-7 text-green-400"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                        lineNumber: 288,
+                                                        lineNumber: 307,
                                                         columnNumber: 21
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                    lineNumber: 287,
+                                                    lineNumber: 306,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
@@ -1040,7 +1212,7 @@ function NewDesignDetail(param) {
                                                     children: "Area Size"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                    lineNumber: 290,
+                                                    lineNumber: 309,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1051,18 +1223,18 @@ function NewDesignDetail(param) {
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                    lineNumber: 291,
+                                                    lineNumber: 310,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                            lineNumber: 286,
+                                            lineNumber: 305,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                        lineNumber: 285,
+                                        lineNumber: 304,
                                         columnNumber: 15
                                     }, this),
                                     design.style && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1076,12 +1248,12 @@ function NewDesignDetail(param) {
                                                         className: "w-7 h-7 text-purple-400"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                        lineNumber: 300,
+                                                        lineNumber: 319,
                                                         columnNumber: 21
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                    lineNumber: 299,
+                                                    lineNumber: 318,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
@@ -1089,7 +1261,7 @@ function NewDesignDetail(param) {
                                                     children: "Style"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                    lineNumber: 302,
+                                                    lineNumber: 321,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1097,18 +1269,18 @@ function NewDesignDetail(param) {
                                                     children: design.style
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                    lineNumber: 303,
+                                                    lineNumber: 322,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                            lineNumber: 298,
+                                            lineNumber: 317,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                        lineNumber: 297,
+                                        lineNumber: 316,
                                         columnNumber: 15
                                     }, this),
                                     design.completion_time && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1122,12 +1294,12 @@ function NewDesignDetail(param) {
                                                         className: "w-7 h-7 text-orange-400"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                        lineNumber: 312,
+                                                        lineNumber: 331,
                                                         columnNumber: 21
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                    lineNumber: 311,
+                                                    lineNumber: 330,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
@@ -1135,7 +1307,7 @@ function NewDesignDetail(param) {
                                                     children: "Timeline"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                    lineNumber: 314,
+                                                    lineNumber: 333,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1143,30 +1315,30 @@ function NewDesignDetail(param) {
                                                     children: design.completion_time
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                    lineNumber: 315,
+                                                    lineNumber: 334,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                            lineNumber: 310,
+                                            lineNumber: 329,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                        lineNumber: 309,
+                                        lineNumber: 328,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                lineNumber: 271,
+                                lineNumber: 290,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                        lineNumber: 265,
+                        lineNumber: 284,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1180,7 +1352,7 @@ function NewDesignDetail(param) {
                                         children: "Our Design Process"
                                     }, void 0, false, {
                                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                        lineNumber: 325,
+                                        lineNumber: 344,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1188,13 +1360,13 @@ function NewDesignDetail(param) {
                                         children: "From concept to completion in 4 simple steps"
                                     }, void 0, false, {
                                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                        lineNumber: 326,
+                                        lineNumber: 345,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                lineNumber: 324,
+                                lineNumber: 343,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1210,12 +1382,12 @@ function NewDesignDetail(param) {
                                                     children: "1"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                    lineNumber: 332,
+                                                    lineNumber: 351,
                                                     columnNumber: 17
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                lineNumber: 331,
+                                                lineNumber: 350,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -1223,7 +1395,7 @@ function NewDesignDetail(param) {
                                                 children: "Consultation"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                lineNumber: 334,
+                                                lineNumber: 353,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1231,13 +1403,13 @@ function NewDesignDetail(param) {
                                                 children: "Initial meeting to understand your vision and requirements"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                lineNumber: 335,
+                                                lineNumber: 354,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                        lineNumber: 330,
+                                        lineNumber: 349,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1250,12 +1422,12 @@ function NewDesignDetail(param) {
                                                     children: "2"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                    lineNumber: 340,
+                                                    lineNumber: 359,
                                                     columnNumber: 17
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                lineNumber: 339,
+                                                lineNumber: 358,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -1263,7 +1435,7 @@ function NewDesignDetail(param) {
                                                 children: "Design"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                lineNumber: 342,
+                                                lineNumber: 361,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1271,13 +1443,13 @@ function NewDesignDetail(param) {
                                                 children: "Create detailed 3D designs and material selections"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                lineNumber: 343,
+                                                lineNumber: 362,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                        lineNumber: 338,
+                                        lineNumber: 357,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1290,12 +1462,12 @@ function NewDesignDetail(param) {
                                                     children: "3"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                    lineNumber: 348,
+                                                    lineNumber: 367,
                                                     columnNumber: 17
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                lineNumber: 347,
+                                                lineNumber: 366,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -1303,7 +1475,7 @@ function NewDesignDetail(param) {
                                                 children: "Execution"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                lineNumber: 350,
+                                                lineNumber: 369,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1311,13 +1483,13 @@ function NewDesignDetail(param) {
                                                 children: "Professional installation with regular progress updates"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                lineNumber: 351,
+                                                lineNumber: 370,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                        lineNumber: 346,
+                                        lineNumber: 365,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1330,12 +1502,12 @@ function NewDesignDetail(param) {
                                                     children: "4"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                    lineNumber: 356,
+                                                    lineNumber: 375,
                                                     columnNumber: 17
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                lineNumber: 355,
+                                                lineNumber: 374,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -1343,7 +1515,7 @@ function NewDesignDetail(param) {
                                                 children: "Handover"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                lineNumber: 358,
+                                                lineNumber: 377,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1351,25 +1523,25 @@ function NewDesignDetail(param) {
                                                 children: "Final walkthrough and project completion with warranty"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                lineNumber: 359,
+                                                lineNumber: 378,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                        lineNumber: 354,
+                                        lineNumber: 373,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                lineNumber: 329,
+                                lineNumber: 348,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                        lineNumber: 323,
+                        lineNumber: 342,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1382,7 +1554,7 @@ function NewDesignDetail(param) {
                                     children: "Ready to Transform Your Space?"
                                 }, void 0, false, {
                                     fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                    lineNumber: 367,
+                                    lineNumber: 386,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1390,7 +1562,7 @@ function NewDesignDetail(param) {
                                     children: "Get a free consultation with our design experts and bring your dream space to life."
                                 }, void 0, false, {
                                     fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                    lineNumber: 368,
+                                    lineNumber: 387,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1403,14 +1575,14 @@ function NewDesignDetail(param) {
                                                     className: "w-5 h-5"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                    lineNumber: 374,
+                                                    lineNumber: 393,
                                                     columnNumber: 17
                                                 }, this),
                                                 "Free Consultation"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                            lineNumber: 373,
+                                            lineNumber: 392,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1420,20 +1592,20 @@ function NewDesignDetail(param) {
                                                     className: "w-5 h-5"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                    lineNumber: 378,
+                                                    lineNumber: 397,
                                                     columnNumber: 17
                                                 }, this),
                                                 "Call Expert"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                            lineNumber: 377,
+                                            lineNumber: 396,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                    lineNumber: 372,
+                                    lineNumber: 391,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1443,7 +1615,7 @@ function NewDesignDetail(param) {
                                             className: "w-4 h-4"
                                         }, void 0, false, {
                                             fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                            lineNumber: 384,
+                                            lineNumber: 403,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1451,24 +1623,24 @@ function NewDesignDetail(param) {
                                             children: "Trusted by 500+ happy customers"
                                         }, void 0, false, {
                                             fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                            lineNumber: 385,
+                                            lineNumber: 404,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                    lineNumber: 383,
+                                    lineNumber: 402,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                            lineNumber: 366,
+                            lineNumber: 385,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                        lineNumber: 365,
+                        lineNumber: 384,
                         columnNumber: 9
                     }, this),
                     relatedDesigns.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1482,7 +1654,7 @@ function NewDesignDetail(param) {
                                         children: "Similar Designs"
                                     }, void 0, false, {
                                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                        lineNumber: 394,
+                                        lineNumber: 413,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1490,13 +1662,13 @@ function NewDesignDetail(param) {
                                         children: "Explore more designs that might inspire you"
                                     }, void 0, false, {
                                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                        lineNumber: 395,
+                                        lineNumber: 414,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                lineNumber: 393,
+                                lineNumber: 412,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1519,7 +1691,7 @@ function NewDesignDetail(param) {
                                                             className: "object-cover group-hover:scale-110 transition-transform duration-700"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                            lineNumber: 406,
+                                                            lineNumber: 425,
                                                             columnNumber: 27
                                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                             className: "w-full h-full flex items-center justify-center",
@@ -1527,25 +1699,25 @@ function NewDesignDetail(param) {
                                                                 className: "w-12 h-12 text-gray-600"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                                lineNumber: 414,
+                                                                lineNumber: 433,
                                                                 columnNumber: 29
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                            lineNumber: 413,
+                                                            lineNumber: 432,
                                                             columnNumber: 27
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                             className: "absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                            lineNumber: 417,
+                                                            lineNumber: 436,
                                                             columnNumber: 25
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                    lineNumber: 404,
+                                                    lineNumber: 423,
                                                     columnNumber: 23
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1556,7 +1728,7 @@ function NewDesignDetail(param) {
                                                             children: related.name
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                            lineNumber: 421,
+                                                            lineNumber: 440,
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1567,7 +1739,7 @@ function NewDesignDetail(param) {
                                                                     children: related.price_range
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                                    lineNumber: 426,
+                                                                    lineNumber: 445,
                                                                     columnNumber: 29
                                                                 }, this),
                                                                 related.location && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1577,49 +1749,49 @@ function NewDesignDetail(param) {
                                                                             className: "w-3 h-3"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                                            lineNumber: 430,
+                                                                            lineNumber: 449,
                                                                             columnNumber: 31
                                                                         }, this),
                                                                         related.location
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                                    lineNumber: 429,
+                                                                    lineNumber: 448,
                                                                     columnNumber: 29
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                            lineNumber: 424,
+                                                            lineNumber: 443,
                                                             columnNumber: 25
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                                    lineNumber: 420,
+                                                    lineNumber: 439,
                                                     columnNumber: 23
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                            lineNumber: 403,
+                                            lineNumber: 422,
                                             columnNumber: 21
                                         }, this)
                                     }, related.id, false, {
                                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                        lineNumber: 402,
+                                        lineNumber: 421,
                                         columnNumber: 19
                                     }, this);
                                 })
                             }, void 0, false, {
                                 fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                                lineNumber: 398,
+                                lineNumber: 417,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/design-ideas/[slug]/DesignDetailClient.tsx",
-                        lineNumber: 392,
+                        lineNumber: 411,
                         columnNumber: 11
                     }, this)
                 ]

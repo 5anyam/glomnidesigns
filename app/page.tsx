@@ -5,6 +5,7 @@ import { CarouselDemo } from "@/components/carousel-home";
 import { CompareDemo } from "@/components/compareDemo";
 import { BentoGridDemo } from "@/components/design-idea";
 import { FlipWordsDemo } from "@/components/flip-words-home";
+import SimpleSlider from "@/components/home-slider";
 import { InfiniteMovingCardsDemo } from "@/components/infinite-testimonials";
 import { AnimatedTestimonialsDemo } from "@/components/testimonials";
 import { TimelineDemo } from "@/components/timelinep-home";
@@ -12,7 +13,7 @@ import { TimelineDemo } from "@/components/timelinep-home";
 export default function Home() {
   return (
     <>
-    <CarouselDemo/>
+    <SimpleSlider/>
     <FlipWordsDemo/>
     <Threedcardshome/>
     <div className="max-w-7xl py-4 px-4 md:px-8 lg:px-10">

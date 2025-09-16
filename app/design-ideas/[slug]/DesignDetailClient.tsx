@@ -6,6 +6,7 @@ import { ArrowLeft, Heart, Share2, MapPin, Clock, Eye, Star, Phone, MessageSquar
 import { designAPI, Design } from '../../../lib/api';
 import Image from 'next/image';
 import Link from 'next/link';
+import ContactModal from '@/components/contactModal';
 
 export default function NewDesignDetail({ slug }: { slug: string }) {
   const router = useRouter();
@@ -98,7 +99,7 @@ export default function NewDesignDetail({ slug }: { slug: string }) {
   return (
     <div className="min-h-screen bg-black">
       {/* Modern Header */}
-      <div className="sticky top-0 z-50 backdrop-blur-xl bg-black/80 border-b border-gray-800">
+      <div className="sticky top-0 backdrop-blur-xl bg-black/80 border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <button
@@ -151,7 +152,8 @@ export default function NewDesignDetail({ slug }: { slug: string }) {
                 </div>
               )}
               
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+              {/* Simple gradient overlay without text */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
               
               {design.is_featured && (
                 <div className="absolute top-6 left-6 flex items-center gap-2 bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
@@ -159,50 +161,65 @@ export default function NewDesignDetail({ slug }: { slug: string }) {
                   Featured Design
                 </div>
               )}
-
-              <div className="absolute bottom-6 left-6 right-6">
-                <h1 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-3 drop-shadow-2xl">
-                  {design.name}
-                </h1>
-                {design.categories && design.categories.length > 0 && (
-                  <div className="flex flex-wrap gap-2">
-                    {design.categories.map(cat => (
-                      <span key={cat.id} className="px-3 py-1.5 bg-black/60 backdrop-blur-sm text-white rounded-full text-sm font-medium border border-white/20">
-                        {cat.name}
-                      </span>
-                    ))}
-                  </div>
-                )}
-              </div>
             </div>
           </div>
 
           {/* Basic Info Section - 50% */}
           <div className="w-full flex flex-col justify-center space-y-8">
-            <div>
-              <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">Design Overview</h2>
-              {design.description && (
-                <p className="text-gray-300 leading-relaxed text-lg mb-8">{design.description}</p>
-              )}
-              
-              {/* Price Highlight */}
-              {design.price_range && (
-                <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 rounded-2xl p-6 border border-green-500/20">
-                  <div className="flex items-center gap-3 mb-2">
-                    <span className="text-green-400 text-lg font-semibold">Starting from</span>
+            
+            {/* Beautiful Title Section */}
+            <div className="space-y-6">
+              {/* Main Title with Gradient */}
+              <div className="space-y-4">
+                <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold bg-gradient-to-r from-white via-blue-100 to-blue-200 bg-clip-text text-transparent leading-tight">
+                  {design.name}
+                </h1>
+                
+                {/* Categories with beautiful styling */}
+                {design.categories && design.categories.length > 0 && (
+                  <div className="flex flex-wrap gap-3">
+                    {design.categories.map(cat => (
+                      <span 
+                        key={cat.id} 
+                        className="px-4 py-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm text-blue-300 rounded-full text-sm font-semibold border border-blue-500/30 hover:border-blue-400/50 transition-all duration-300"
+                      >
+                        {cat.name}
+                      </span>
+                    ))}
                   </div>
-                  <div className="text-4xl font-bold text-white mb-2">{design.price_range}</div>
-                  <p className="text-green-300 text-sm">*Final cost depends on customization & materials</p>
-                </div>
-              )}
+                )}
+                
+                {/* Decorative line */}
+                <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
+              </div>
+
+              {/* Design Overview Subtitle */}
+              <div className="pt-4">
+                <h2 className="text-xl font-semibold text-gray-400 mb-4 flex items-center gap-2">
+                  <Sparkles className="w-5 h-5 text-blue-400" />
+                  Design Overview
+                </h2>
+                
+                {design.description && (
+                  <p className="text-gray-300 leading-relaxed text-lg">{design.description}</p>
+                )}
+              </div>
             </div>
+            
+            {/* Price Highlight */}
+            {design.price_range && (
+              <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 rounded-2xl p-6 border border-green-500/20">
+                <div className="flex items-center gap-3 mb-2">
+                  <span className="text-green-400 text-lg font-semibold">Starting from</span>
+                </div>
+                <div className="text-4xl font-bold text-white mb-2">{design.price_range}</div>
+                <p className="text-green-300 text-sm">*Final cost depends on customization & materials</p>
+              </div>
+            )}
 
             {/* Quick CTA */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white py-4 px-6 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-3">
-                <MessageSquare className="w-5 h-5" />
-                Get Free Quote
-              </button>
+                <ContactModal/>
               <button className="flex-1 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white py-4 px-6 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-3">
                 <Phone className="w-5 h-5" />
                 Call Now
