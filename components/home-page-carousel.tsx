@@ -37,6 +37,23 @@ interface APIResponse<T> {
   error?: string;
 }
 
+// Office-related category keywords/slugs
+const OFFICE_CATEGORY_KEYWORDS = [
+  'office',
+  'corporate',
+  'workspace',
+  'commercial',
+  'business',
+  'executive',
+  'conference',
+  'meeting',
+  'coworking',
+  'study',
+  'work-from-home',
+  'home-office',
+  'professional'
+];
+
 // API functions with proper typing
 const designAPI = {
   async getAll(): Promise<APIResponse<Design[]>> {
@@ -78,6 +95,16 @@ const categoryAPI = {
       };
     }
   }
+};
+
+// Function to check if category is office-related
+const isOfficeCategory = (category: Category): boolean => {
+  const categoryName = category.name.toLowerCase();
+  const categorySlug = category.slug.toLowerCase();
+  
+  return OFFICE_CATEGORY_KEYWORDS.some(keyword => 
+    categoryName.includes(keyword) || categorySlug.includes(keyword)
+  );
 };
 
 // Category Carousel Component with proper typing
@@ -168,7 +195,7 @@ const CategoryCarousel: React.FC<CategoryCarouselProps> = ({ category, getImageU
             </p>
           )}
           <p className="text-blue-400 text-sm font-medium mt-1">
-            {category.designs.length} designs available
+            {category.designs.length} professional designs available
           </p>
         </div>
         
@@ -305,7 +332,7 @@ const DesignCard: React.FC<DesignCardProps> = ({ design, getImageUrl, isLiked, o
           {design.is_featured && (
             <div className="absolute top-3 left-3 flex items-center gap-1 bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-xl border border-yellow-400/30">
               <Star className="w-3 h-3 fill-current" />
-              <span className="hidden sm:inline">Featured</span>
+              <span className="hidden sm:inline">Premium</span>
             </div>
           )}
 
@@ -372,26 +399,10 @@ const DesignCard: React.FC<DesignCardProps> = ({ design, getImageUrl, isLiked, o
             </div>
           )}
 
-          {/* Categories - Max 2 */}
-          {design.categories && design.categories.length > 0 && (
-            <div className="hidden sm:flex flex-wrap gap-1 mb-3">
-              {design.categories.slice(0, 2).map(cat => (
-                <span key={cat.id} className="px-2 py-1 bg-blue-500/20 text-blue-400 text-xs rounded-full border border-blue-500/30">
-                  {cat.name}
-                </span>
-              ))}
-              {design.categories.length > 2 && (
-                <span className="px-2 py-1 bg-gray-500/20 text-gray-400 text-xs rounded-full border border-gray-500/30">
-                  +{design.categories.length - 2}
-                </span>
-              )}
-            </div>
-          )}
-
           {/* Mobile: View Button */}
           <div className="sm:hidden mt-3">
             <div className="w-full text-center px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg text-sm">
-              View Design
+              View Office Design
             </div>
           </div>
         </div>
@@ -400,7 +411,7 @@ const DesignCard: React.FC<DesignCardProps> = ({ design, getImageUrl, isLiked, o
   );
 };
 
-// Main Home Page Component with proper typing
+// Main Home Page Component with Office Category Filter
 const HomePageCarousel: React.FC = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [designs, setDesigns] = useState<Design[]>([]);
@@ -435,18 +446,23 @@ const HomePageCarousel: React.FC = () => {
         setCategories(categoriesResult.data);
         setDesigns(designsResult.data);
         
-        // Group designs by category
-        const categoriesWithDesignsData: CategoryWithDesigns[] = categoriesResult.data
+        // Filter only office-related categories and limit to 3
+        const officeCategories = categoriesResult.data.filter(isOfficeCategory);
+        
+        // Group designs by office category and limit to top 3
+        const categoriesWithDesignsData: CategoryWithDesigns[] = officeCategories
           .map(category => ({
             ...category,
             designs: designsResult.data.filter(design =>
               design.categories?.some(cat => cat.slug === category.slug)
             ).slice(0, 6) // Limit to 6 designs per category for carousel
           }))
-          .filter(category => category.designs.length > 0); // Only show categories with designs
+          .filter(category => category.designs.length > 0) // Only show categories with designs
+          .slice(0, 3); // LIMIT TO ONLY 3 MAIN CATEGORIES
 
         setCategoriesWithDesigns(categoriesWithDesignsData);
-        console.log('✅ Loaded categories with designs:', categoriesWithDesignsData.length);
+        console.log('✅ Loaded office categories with designs:', categoriesWithDesignsData.length);
+        console.log('Office categories:', categoriesWithDesignsData.map(cat => cat.name));
       } else {
         setError('Failed to load data from server');
       }
@@ -466,8 +482,8 @@ const HomePageCarousel: React.FC = () => {
             <div className="animate-spin w-20 h-20 border-4 border-blue-500/20 border-t-blue-500 rounded-full"></div>
             <div className="absolute inset-0 animate-ping w-20 h-20 border-4 border-blue-500/10 rounded-full"></div>
           </div>
-          <h3 className="text-2xl font-bold text-white mb-3">Loading Collections</h3>
-          <p className="text-gray-400 text-lg">Discovering stunning designs...</p>
+          <h3 className="text-2xl font-bold text-white mb-3">Loading Office Collections</h3>
+          <p className="text-gray-400 text-lg">Discovering professional workspace designs...</p>
         </div>
       </div>
     );
@@ -493,6 +509,32 @@ const HomePageCarousel: React.FC = () => {
     );
   }
 
+  // Show message if no office categories found
+  if (categoriesWithDesigns.length === 0) {
+    return (
+      <div className="py-8 md:py-12 bg-black">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center">
+            <div className="w-24 h-24 bg-gray-800 rounded-full flex items-center justify-center mb-8 mx-auto border border-gray-700">
+              <Eye className="w-12 h-12 text-gray-400" />
+            </div>
+            <h3 className="text-3xl font-bold text-white mb-4">No Office Categories Found</h3>
+            <p className="text-gray-400 text-xl mb-8 max-w-md mx-auto">
+              We're currently updating our office design collections. Please check back soon.
+            </p>
+            <Link
+              href="/design-ideas"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg text-lg"
+            >
+              View All Designs
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="py-8 md:py-12 bg-black">
       <div className="max-w-7xl mx-auto px-4">
@@ -500,21 +542,21 @@ const HomePageCarousel: React.FC = () => {
         <div className="text-center mb-12">
           <div className="flex items-center justify-center gap-2 mb-6">
             <Sparkles className="w-6 h-6 text-yellow-400" />
-            <span className="text-yellow-400 font-semibold text-sm uppercase tracking-wider">Premium Collections</span>
+            <span className="text-yellow-400 font-semibold text-sm uppercase tracking-wider">Professional Office Designs</span>
             <Sparkles className="w-6 h-6 text-yellow-400" />
           </div>
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-            Explore Our Design Collections
+            Premium Office Interiors
           </h1>
           <p className="text-gray-400 text-lg md:text-xl max-w-3xl mx-auto line-clamp-2">
-            Discover {designs.length} stunning interior designs across {categoriesWithDesigns.length} categories. 
-            Each design crafted with precision and attention to detail.
+            Discover our top {categoriesWithDesigns.length} office design categories. 
+            Professional workspaces crafted for productivity and elegance.
           </p>
         </div>
 
-        {/* Category Carousels */}
+        {/* Office Category Carousels - Max 3 */}
         <div className="space-y-12 md:space-y-16">
-          {categoriesWithDesigns.map((category) => (
+          {categoriesWithDesigns.map((category, index) => (
             <CategoryCarousel
               key={category.id}
               category={category}
@@ -523,13 +565,13 @@ const HomePageCarousel: React.FC = () => {
           ))}
         </div>
 
-        {/* View All Designs Button */}
+        {/* View All Office Designs Button */}
         <div className="text-center mt-16">
           <Link
-            href="/design-ideas"
+            href="/design-ideas?category=office"
             className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg text-lg"
           >
-            Explore All Designs
+            Explore All Office Designs
             <ArrowRight className="w-5 h-5" />
           </Link>
         </div>
