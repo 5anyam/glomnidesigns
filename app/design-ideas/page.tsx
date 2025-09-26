@@ -75,14 +75,38 @@ export default function NewDesignIdeasPage() {
       );
     }
 
-    // Sort by date (newest first) - prioritize recent designs
+    // Sort by date (newest first) - Fixed TypeScript errors with proper type assertion
     filtered.sort((a, b) => {
-      // Try different date fields that might exist
-      const dateA = new Date(a.createdAt || a.created_at || a.updatedAt || a.updated_at || a.publishedAt || a.published_at || 0);
-      const dateB = new Date(b.createdAt || b.created_at || b.updatedAt || b.updated_at || b.publishedAt || b.published_at || 0);
+      // Helper function to safely get date from design object
+      const getDateFromDesign = (design: Design): number => {
+        // Convert to unknown first, then to Record<string, unknown> as suggested by TypeScript
+        const designRecord = design as unknown as Record<string, unknown>;
+        
+        // Try different date fields that might exist
+        const possibleDateFields = [
+          'createdAt', 'created_at', 'updatedAt', 'updated_at', 
+          'publishedAt', 'published_at', 'date', 'timestamp'
+        ];
+        
+        for (const field of possibleDateFields) {
+          const dateValue = designRecord[field];
+          if (dateValue) {
+            const date = new Date(dateValue as string | number | Date);
+            if (!isNaN(date.getTime())) {
+              return date.getTime();
+            }
+          }
+        }
+        
+        // If no date found, use design.id as fallback for consistent ordering
+        return design.id || 0;
+      };
+
+      const dateA = getDateFromDesign(a);
+      const dateB = getDateFromDesign(b);
       
       // Sort descending (newest first)
-      return dateB.getTime() - dateA.getTime();
+      return dateB - dateA;
     });
 
     setFilteredDesigns(filtered);
@@ -312,7 +336,7 @@ export default function NewDesignIdeasPage() {
                   {/* Page Numbers */}
                   <div className="flex items-center gap-1">
                     {Array.from({ length: Math.min(totalPages, 5) }, (_, i) => {
-                      let pageNumber;
+                      let pageNumber: number;
                       if (totalPages <= 5) {
                         pageNumber = i + 1;
                       } else if (currentPage <= 3) {
@@ -366,7 +390,7 @@ export default function NewDesignIdeasPage() {
   );
 }
 
-// Updated Design Card Component - Now Complete Card is Clickable
+// Updated Design Card Component - TypeScript Errors Fixed
 function DesignCard({ 
   design, 
   viewMode, 
@@ -380,14 +404,24 @@ function DesignCard({
   isLiked: boolean;
   onToggleLike: () => void;
 }) {
-  const imageUrl = design.featured_image?.url || design.images?.[0]?.url || '';
+  // Safe image URL access with optional chaining
+  const imageUrl = design.featured_image?.url || 
+                   (design.images && design.images.length > 0 ? design.images[0]?.url : '') || 
+                   '';
 
   // Function to truncate description to word limit
-  const getTruncatedDescription = (text: string, wordLimit: number = 20) => {
+  const getTruncatedDescription = (text: string | undefined, wordLimit: number = 20): string => {
     if (!text) return '';
     const words = text.split(' ');
     if (words.length <= wordLimit) return text;
     return words.slice(0, wordLimit).join(' ') + '...';
+  };
+
+  // Handle click events with proper typing
+  const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement>, action: () => void) => {
+    e.preventDefault();
+    e.stopPropagation();
+    action();
   };
 
   if (viewMode === 'list') {
@@ -399,7 +433,7 @@ function DesignCard({
               {imageUrl ? (
                 <Image
                   src={getImageUrl(imageUrl)}
-                  alt={design.name}
+                  alt={design.name || 'Design'}
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
@@ -444,7 +478,7 @@ function DesignCard({
               <div className="flex items-start justify-between mb-4 md:mb-6">
                 <div className="flex-1">
                   <h3 className="text-xl md:text-2xl font-bold text-white mb-2 md:mb-3 group-hover:text-blue-400 transition-colors leading-tight">
-                    {design.name}
+                    {design.name || 'Untitled Design'}
                   </h3>
                   <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 text-sm text-gray-400 mb-3 md:mb-4">
                     {design.location && (
@@ -467,11 +501,7 @@ function DesignCard({
                 </div>
                 
                 <button 
-                  onClick={(e) => {
-                    e.preventDefault(); // Prevent navigation
-                    e.stopPropagation(); // Stop event bubbling
-                    onToggleLike();
-                  }}
+                  onClick={(e) => handleButtonClick(e, onToggleLike)}
                   className={`p-2 md:p-3 rounded-full transition-all duration-300 ${
                     isLiked 
                       ? 'bg-red-500/20 text-red-400 scale-110 border border-red-500/30' 
@@ -497,23 +527,16 @@ function DesignCard({
                 
                 <div className="flex gap-3">
                   <button 
-                    onClick={(e) => {
-                      e.preventDefault(); // Prevent default navigation
-                      e.stopPropagation(); // Prevent card click
-                      // This will use the card's Link navigation
-                    }}
+                    onClick={(e) => handleButtonClick(e, () => {})}
                     className="flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-xl font-semibold text-sm md:text-base transition-all duration-300 hover:scale-105 shadow-lg"
                   >
                     <Eye className="w-4 h-4" />
                     View Details
                   </button>
                   <button 
-                    onClick={(e) => {
-                      e.preventDefault(); // Prevent navigation
-                      e.stopPropagation(); // Stop event bubbling
-                      // Add quote functionality here
+                    onClick={(e) => handleButtonClick(e, () => {
                       alert('Get Quote functionality - will be implemented');
-                    }}
+                    })}
                     className="flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white rounded-xl font-semibold text-sm md:text-base transition-all duration-300 hover:scale-105 shadow-lg"
                   >
                     <Calculator className="w-4 h-4" />
@@ -528,7 +551,7 @@ function DesignCard({
     );
   }
 
-  // Grid Card - Now Complete Card is Clickable
+  // Grid Card - TypeScript Errors Fixed
   return (
     <Link href={`/design-ideas/${design.slug}`} className="block">
       <div className="group bg-gray-900/90 backdrop-blur-sm rounded-xl lg:rounded-2xl border border-gray-800/60 overflow-hidden hover:border-gray-600/80 transition-all duration-500 hover:scale-105 hover:shadow-2xl cursor-pointer">
@@ -536,7 +559,7 @@ function DesignCard({
           {imageUrl ? (
             <Image
               src={getImageUrl(imageUrl)}
-              alt={design.name}
+              alt={design.name || 'Design'}
               fill
               className="object-cover group-hover:scale-110 transition-transform duration-700"
             />
@@ -575,11 +598,7 @@ function DesignCard({
 
           {/* Like Button - Bottom Right of Image */}
           <button 
-            onClick={(e) => {
-              e.preventDefault(); // Prevent navigation
-              e.stopPropagation(); // Stop event bubbling
-              onToggleLike();
-            }}
+            onClick={(e) => handleButtonClick(e, onToggleLike)}
             className={`absolute bottom-2 lg:bottom-3 right-2 lg:right-3 p-1.5 lg:p-2 rounded-full transition-all duration-300 shadow-lg ${
               isLiked 
                 ? 'bg-red-500/90 text-white scale-110 shadow-red-500/25' 
@@ -595,7 +614,7 @@ function DesignCard({
         
         <div className="p-3 lg:p-4">
           <h3 className="font-bold text-white text-sm lg:text-base mb-2 line-clamp-2 group-hover:text-blue-400 transition-colors leading-tight">
-            {design.name}
+            {design.name || 'Untitled Design'}
           </h3>
 
           {/* Description for Grid View - Shorter for mobile */}
@@ -634,23 +653,16 @@ function DesignCard({
           {/* Action Buttons */}
           <div className="flex gap-2">
             <button 
-              onClick={(e) => {
-                e.preventDefault(); // Prevent default navigation
-                e.stopPropagation(); // Prevent card click
-                // This will use the card's Link navigation - card already clickable
-              }}
+              onClick={(e) => handleButtonClick(e, () => {})}
               className="flex-1 flex items-center justify-center gap-1 lg:gap-2 px-2 lg:px-3 py-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-lg font-semibold text-xs lg:text-sm transition-all duration-300 hover:scale-105 shadow-lg"
             >
               <Eye className="w-3 h-3 lg:w-4 lg:h-4" />
               View
             </button>
             <button 
-              onClick={(e) => {
-                e.preventDefault(); // Prevent navigation
-                e.stopPropagation(); // Stop event bubbling
-                // Add quote functionality here
+              onClick={(e) => handleButtonClick(e, () => {
                 alert('Get Quote functionality - will be implemented');
-              }}
+              })}
               className="flex-1 flex items-center justify-center gap-1 lg:gap-2 px-2 lg:px-3 py-2 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white rounded-lg font-semibold text-xs lg:text-sm transition-all duration-300 hover:scale-105 shadow-lg"
             >
               <Calculator className="w-3 h-3 lg:w-4 lg:h-4" />

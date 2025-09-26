@@ -538,13 +538,39 @@ function NewDesignIdeasPage() {
         if (selectedCategory !== 'all') {
             filtered = filtered.filter((design)=>design.categories?.some((cat)=>cat.slug === selectedCategory));
         }
-        // Sort by date (newest first) - prioritize recent designs
+        // Sort by date (newest first) - Fixed TypeScript errors with proper type assertion
         filtered.sort((a, b)=>{
-            // Try different date fields that might exist
-            const dateA = new Date(a.createdAt || a.created_at || a.updatedAt || a.updated_at || a.publishedAt || a.published_at || 0);
-            const dateB = new Date(b.createdAt || b.created_at || b.updatedAt || b.updated_at || b.publishedAt || b.published_at || 0);
+            // Helper function to safely get date from design object
+            const getDateFromDesign = (design)=>{
+                // Convert to unknown first, then to Record<string, unknown> as suggested by TypeScript
+                const designRecord = design;
+                // Try different date fields that might exist
+                const possibleDateFields = [
+                    'createdAt',
+                    'created_at',
+                    'updatedAt',
+                    'updated_at',
+                    'publishedAt',
+                    'published_at',
+                    'date',
+                    'timestamp'
+                ];
+                for (const field of possibleDateFields){
+                    const dateValue = designRecord[field];
+                    if (dateValue) {
+                        const date = new Date(dateValue);
+                        if (!isNaN(date.getTime())) {
+                            return date.getTime();
+                        }
+                    }
+                }
+                // If no date found, use design.id as fallback for consistent ordering
+                return design.id || 0;
+            };
+            const dateA = getDateFromDesign(a);
+            const dateB = getDateFromDesign(b);
             // Sort descending (newest first)
-            return dateB.getTime() - dateA.getTime();
+            return dateB - dateA;
         });
         setFilteredDesigns(filtered);
     };
@@ -588,20 +614,20 @@ function NewDesignIdeasPage() {
                                 className: "animate-spin w-16 h-16 border-4 border-blue-500/20 border-t-blue-500 rounded-full"
                             }, void 0, false, {
                                 fileName: "[project]/app/design-ideas/page.tsx",
-                                lineNumber: 124,
+                                lineNumber: 148,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "absolute inset-0 animate-ping w-16 h-16 border-4 border-blue-500/10 rounded-full"
                             }, void 0, false, {
                                 fileName: "[project]/app/design-ideas/page.tsx",
-                                lineNumber: 125,
+                                lineNumber: 149,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/design-ideas/page.tsx",
-                        lineNumber: 123,
+                        lineNumber: 147,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -609,18 +635,18 @@ function NewDesignIdeasPage() {
                         children: "Loading premium designs..."
                     }, void 0, false, {
                         fileName: "[project]/app/design-ideas/page.tsx",
-                        lineNumber: 127,
+                        lineNumber: 151,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/design-ideas/page.tsx",
-                lineNumber: 122,
+                lineNumber: 146,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/app/design-ideas/page.tsx",
-            lineNumber: 121,
+            lineNumber: 145,
             columnNumber: 7
         }, this);
     }
@@ -642,7 +668,7 @@ function NewDesignIdeasPage() {
                                             className: "w-5 h-5 md:w-6 md:h-6 text-yellow-400"
                                         }, void 0, false, {
                                             fileName: "[project]/app/design-ideas/page.tsx",
-                                            lineNumber: 140,
+                                            lineNumber: 164,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -650,20 +676,20 @@ function NewDesignIdeasPage() {
                                             children: "Premium Collection"
                                         }, void 0, false, {
                                             fileName: "[project]/app/design-ideas/page.tsx",
-                                            lineNumber: 141,
+                                            lineNumber: 165,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sparkles$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Sparkles$3e$__["Sparkles"], {
                                             className: "w-5 h-5 md:w-6 md:h-6 text-yellow-400"
                                         }, void 0, false, {
                                             fileName: "[project]/app/design-ideas/page.tsx",
-                                            lineNumber: 142,
+                                            lineNumber: 166,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                    lineNumber: 139,
+                                    lineNumber: 163,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
@@ -671,7 +697,7 @@ function NewDesignIdeasPage() {
                                     children: "Latest Interior Designs"
                                 }, void 0, false, {
                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                    lineNumber: 144,
+                                    lineNumber: 168,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -683,13 +709,13 @@ function NewDesignIdeasPage() {
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                    lineNumber: 147,
+                                    lineNumber: 171,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/design-ideas/page.tsx",
-                            lineNumber: 138,
+                            lineNumber: 162,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -704,12 +730,12 @@ function NewDesignIdeasPage() {
                                                 className: "w-5 h-5 md:w-6 md:h-6 text-blue-400"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/design-ideas/page.tsx",
-                                                lineNumber: 156,
+                                                lineNumber: 180,
                                                 columnNumber: 17
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/design-ideas/page.tsx",
-                                            lineNumber: 155,
+                                            lineNumber: 179,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -717,7 +743,7 @@ function NewDesignIdeasPage() {
                                             children: "500+"
                                         }, void 0, false, {
                                             fileName: "[project]/app/design-ideas/page.tsx",
-                                            lineNumber: 158,
+                                            lineNumber: 182,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -725,13 +751,13 @@ function NewDesignIdeasPage() {
                                             children: "Premium Designs"
                                         }, void 0, false, {
                                             fileName: "[project]/app/design-ideas/page.tsx",
-                                            lineNumber: 159,
+                                            lineNumber: 183,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                    lineNumber: 154,
+                                    lineNumber: 178,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -743,12 +769,12 @@ function NewDesignIdeasPage() {
                                                 className: "w-5 h-5 md:w-6 md:h-6 text-green-400"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/design-ideas/page.tsx",
-                                                lineNumber: 163,
+                                                lineNumber: 187,
                                                 columnNumber: 17
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/design-ideas/page.tsx",
-                                            lineNumber: 162,
+                                            lineNumber: 186,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -756,7 +782,7 @@ function NewDesignIdeasPage() {
                                             children: "98%"
                                         }, void 0, false, {
                                             fileName: "[project]/app/design-ideas/page.tsx",
-                                            lineNumber: 165,
+                                            lineNumber: 189,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -764,13 +790,13 @@ function NewDesignIdeasPage() {
                                             children: "Satisfaction Rate"
                                         }, void 0, false, {
                                             fileName: "[project]/app/design-ideas/page.tsx",
-                                            lineNumber: 166,
+                                            lineNumber: 190,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                    lineNumber: 161,
+                                    lineNumber: 185,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -782,12 +808,12 @@ function NewDesignIdeasPage() {
                                                 className: "w-5 h-5 md:w-6 md:h-6 text-purple-400"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/design-ideas/page.tsx",
-                                                lineNumber: 170,
+                                                lineNumber: 194,
                                                 columnNumber: 17
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/design-ideas/page.tsx",
-                                            lineNumber: 169,
+                                            lineNumber: 193,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -795,7 +821,7 @@ function NewDesignIdeasPage() {
                                             children: "1000+"
                                         }, void 0, false, {
                                             fileName: "[project]/app/design-ideas/page.tsx",
-                                            lineNumber: 172,
+                                            lineNumber: 196,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -803,30 +829,30 @@ function NewDesignIdeasPage() {
                                             children: "Happy Clients"
                                         }, void 0, false, {
                                             fileName: "[project]/app/design-ideas/page.tsx",
-                                            lineNumber: 173,
+                                            lineNumber: 197,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                    lineNumber: 168,
+                                    lineNumber: 192,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/design-ideas/page.tsx",
-                            lineNumber: 153,
+                            lineNumber: 177,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/design-ideas/page.tsx",
-                    lineNumber: 137,
+                    lineNumber: 161,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/design-ideas/page.tsx",
-                lineNumber: 136,
+                lineNumber: 160,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -843,7 +869,7 @@ function NewDesignIdeasPage() {
                                         className: "absolute left-3 md:left-4 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4 md:w-5 md:h-5"
                                     }, void 0, false, {
                                         fileName: "[project]/app/design-ideas/page.tsx",
-                                        lineNumber: 185,
+                                        lineNumber: 209,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -854,13 +880,13 @@ function NewDesignIdeasPage() {
                                         className: "w-full pl-10 md:pl-12 pr-4 py-3 bg-black border border-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-white placeholder-gray-400 transition-all duration-300 text-sm md:text-base"
                                     }, void 0, false, {
                                         fileName: "[project]/app/design-ideas/page.tsx",
-                                        lineNumber: 186,
+                                        lineNumber: 210,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/design-ideas/page.tsx",
-                                lineNumber: 184,
+                                lineNumber: 208,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -873,7 +899,7 @@ function NewDesignIdeasPage() {
                                                 className: "absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/design-ideas/page.tsx",
-                                                lineNumber: 198,
+                                                lineNumber: 222,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -886,7 +912,7 @@ function NewDesignIdeasPage() {
                                                         children: "All Categories"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/design-ideas/page.tsx",
-                                                        lineNumber: 204,
+                                                        lineNumber: 228,
                                                         columnNumber: 19
                                                     }, this),
                                                     categories.map((cat)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -894,19 +920,19 @@ function NewDesignIdeasPage() {
                                                             children: cat.name
                                                         }, cat.id, false, {
                                                             fileName: "[project]/app/design-ideas/page.tsx",
-                                                            lineNumber: 206,
+                                                            lineNumber: 230,
                                                             columnNumber: 21
                                                         }, this))
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/design-ideas/page.tsx",
-                                                lineNumber: 199,
+                                                lineNumber: 223,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/design-ideas/page.tsx",
-                                        lineNumber: 197,
+                                        lineNumber: 221,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -919,12 +945,12 @@ function NewDesignIdeasPage() {
                                                     className: "w-4 h-4 md:w-5 md:h-5"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                                    lineNumber: 221,
+                                                    lineNumber: 245,
                                                     columnNumber: 19
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/app/design-ideas/page.tsx",
-                                                lineNumber: 213,
+                                                lineNumber: 237,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -934,40 +960,40 @@ function NewDesignIdeasPage() {
                                                     className: "w-4 h-4 md:w-5 md:h-5"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                                    lineNumber: 231,
+                                                    lineNumber: 255,
                                                     columnNumber: 19
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/app/design-ideas/page.tsx",
-                                                lineNumber: 223,
+                                                lineNumber: 247,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/design-ideas/page.tsx",
-                                        lineNumber: 212,
+                                        lineNumber: 236,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/design-ideas/page.tsx",
-                                lineNumber: 195,
+                                lineNumber: 219,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/design-ideas/page.tsx",
-                        lineNumber: 182,
+                        lineNumber: 206,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/design-ideas/page.tsx",
-                    lineNumber: 181,
+                    lineNumber: 205,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/design-ideas/page.tsx",
-                lineNumber: 180,
+                lineNumber: 204,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -981,12 +1007,12 @@ function NewDesignIdeasPage() {
                                 className: "w-10 h-10 md:w-12 md:h-12 text-gray-400"
                             }, void 0, false, {
                                 fileName: "[project]/app/design-ideas/page.tsx",
-                                lineNumber: 244,
+                                lineNumber: 268,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/design-ideas/page.tsx",
-                            lineNumber: 243,
+                            lineNumber: 267,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -994,7 +1020,7 @@ function NewDesignIdeasPage() {
                             children: "No designs found"
                         }, void 0, false, {
                             fileName: "[project]/app/design-ideas/page.tsx",
-                            lineNumber: 246,
+                            lineNumber: 270,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1002,7 +1028,7 @@ function NewDesignIdeasPage() {
                             children: "Try adjusting your search criteria or browse all categories"
                         }, void 0, false, {
                             fileName: "[project]/app/design-ideas/page.tsx",
-                            lineNumber: 247,
+                            lineNumber: 271,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1014,13 +1040,13 @@ function NewDesignIdeasPage() {
                             children: "Reset Filters"
                         }, void 0, false, {
                             fileName: "[project]/app/design-ideas/page.tsx",
-                            lineNumber: 248,
+                            lineNumber: 272,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/design-ideas/page.tsx",
-                    lineNumber: 242,
+                    lineNumber: 266,
                     columnNumber: 11
                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
                     children: [
@@ -1034,7 +1060,7 @@ function NewDesignIdeasPage() {
                                             children: searchTerm || selectedCategory !== 'all' ? 'Filtered Results' : 'Latest Designs'
                                         }, void 0, false, {
                                             fileName: "[project]/app/design-ideas/page.tsx",
-                                            lineNumber: 260,
+                                            lineNumber: 284,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1051,13 +1077,13 @@ function NewDesignIdeasPage() {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/design-ideas/page.tsx",
-                                            lineNumber: 263,
+                                            lineNumber: 287,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                    lineNumber: 259,
+                                    lineNumber: 283,
                                     columnNumber: 15
                                 }, this),
                                 (searchTerm || selectedCategory !== 'all') && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1069,13 +1095,13 @@ function NewDesignIdeasPage() {
                                     children: "Clear Filters"
                                 }, void 0, false, {
                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                    lineNumber: 269,
+                                    lineNumber: 293,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/design-ideas/page.tsx",
-                            lineNumber: 258,
+                            lineNumber: 282,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1088,12 +1114,12 @@ function NewDesignIdeasPage() {
                                     onToggleLike: ()=>toggleLike(design.id)
                                 }, design.id, false, {
                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                    lineNumber: 284,
+                                    lineNumber: 308,
                                     columnNumber: 17
                                 }, this))
                         }, void 0, false, {
                             fileName: "[project]/app/design-ideas/page.tsx",
-                            lineNumber: 279,
+                            lineNumber: 303,
                             columnNumber: 13
                         }, this),
                         totalPages > 1 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1111,14 +1137,14 @@ function NewDesignIdeasPage() {
                                                     className: "w-4 h-4"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                                    lineNumber: 308,
+                                                    lineNumber: 332,
                                                     columnNumber: 21
                                                 }, this),
                                                 "Previous"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/design-ideas/page.tsx",
-                                            lineNumber: 299,
+                                            lineNumber: 323,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1142,13 +1168,13 @@ function NewDesignIdeasPage() {
                                                     children: pageNumber
                                                 }, pageNumber, false, {
                                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                                    lineNumber: 327,
+                                                    lineNumber: 351,
                                                     columnNumber: 25
                                                 }, this);
                                             })
                                         }, void 0, false, {
                                             fileName: "[project]/app/design-ideas/page.tsx",
-                                            lineNumber: 313,
+                                            lineNumber: 337,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1161,19 +1187,19 @@ function NewDesignIdeasPage() {
                                                     className: "w-4 h-4"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                                    lineNumber: 352,
+                                                    lineNumber: 376,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/design-ideas/page.tsx",
-                                            lineNumber: 342,
+                                            lineNumber: 366,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                    lineNumber: 298,
+                                    lineNumber: 322,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1189,38 +1215,45 @@ function NewDesignIdeasPage() {
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                    lineNumber: 357,
+                                    lineNumber: 381,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/design-ideas/page.tsx",
-                            lineNumber: 297,
+                            lineNumber: 321,
                             columnNumber: 15
                         }, this)
                     ]
                 }, void 0, true)
             }, void 0, false, {
                 fileName: "[project]/app/design-ideas/page.tsx",
-                lineNumber: 240,
+                lineNumber: 264,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/design-ideas/page.tsx",
-        lineNumber: 134,
+        lineNumber: 158,
         columnNumber: 5
     }, this);
 }
-// Updated Design Card Component - Now Complete Card is Clickable
+// Updated Design Card Component - TypeScript Errors Fixed
 function DesignCard({ design, viewMode, getImageUrl, isLiked, onToggleLike }) {
-    const imageUrl = design.featured_image?.url || design.images?.[0]?.url || '';
+    // Safe image URL access with optional chaining
+    const imageUrl = design.featured_image?.url || (design.images && design.images.length > 0 ? design.images[0]?.url : '') || '';
     // Function to truncate description to word limit
     const getTruncatedDescription = (text, wordLimit = 20)=>{
         if (!text) return '';
         const words = text.split(' ');
         if (words.length <= wordLimit) return text;
         return words.slice(0, wordLimit).join(' ') + '...';
+    };
+    // Handle click events with proper typing
+    const handleButtonClick = (e, action)=>{
+        e.preventDefault();
+        e.stopPropagation();
+        action();
     };
     if (viewMode === 'list') {
         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -1236,12 +1269,12 @@ function DesignCard({ design, viewMode, getImageUrl, isLiked, onToggleLike }) {
                             children: [
                                 imageUrl ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                                     src: getImageUrl(imageUrl),
-                                    alt: design.name,
+                                    alt: design.name || 'Design',
                                     fill: true,
                                     className: "object-cover group-hover:scale-105 transition-transform duration-700"
                                 }, void 0, false, {
                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                    lineNumber: 400,
+                                    lineNumber: 434,
                                     columnNumber: 17
                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-800 to-gray-900",
@@ -1249,12 +1282,12 @@ function DesignCard({ design, viewMode, getImageUrl, isLiked, onToggleLike }) {
                                         className: "w-12 h-12 md:w-16 md:h-16 text-gray-600"
                                     }, void 0, false, {
                                         fileName: "[project]/app/design-ideas/page.tsx",
-                                        lineNumber: 408,
+                                        lineNumber: 442,
                                         columnNumber: 19
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                    lineNumber: 407,
+                                    lineNumber: 441,
                                     columnNumber: 17
                                 }, this),
                                 design.categories && design.categories.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1265,7 +1298,7 @@ function DesignCard({ design, viewMode, getImageUrl, isLiked, onToggleLike }) {
                                                 children: cat.name
                                             }, cat.id, false, {
                                                 fileName: "[project]/app/design-ideas/page.tsx",
-                                                lineNumber: 416,
+                                                lineNumber: 450,
                                                 columnNumber: 21
                                             }, this)),
                                         design.categories.length > 2 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1277,13 +1310,13 @@ function DesignCard({ design, viewMode, getImageUrl, isLiked, onToggleLike }) {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/design-ideas/page.tsx",
-                                            lineNumber: 424,
+                                            lineNumber: 458,
                                             columnNumber: 21
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                    lineNumber: 414,
+                                    lineNumber: 448,
                                     columnNumber: 17
                                 }, this),
                                 design.is_featured && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1293,27 +1326,27 @@ function DesignCard({ design, viewMode, getImageUrl, isLiked, onToggleLike }) {
                                             className: "w-3 h-3 fill-current"
                                         }, void 0, false, {
                                             fileName: "[project]/app/design-ideas/page.tsx",
-                                            lineNumber: 434,
+                                            lineNumber: 468,
                                             columnNumber: 19
                                         }, this),
                                         "Featured"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                    lineNumber: 433,
+                                    lineNumber: 467,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-transparent md:bg-gradient-to-r md:from-black/30 md:via-transparent md:to-transparent"
                                 }, void 0, false, {
                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                    lineNumber: 440,
+                                    lineNumber: 474,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/design-ideas/page.tsx",
-                            lineNumber: 398,
+                            lineNumber: 432,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1327,10 +1360,10 @@ function DesignCard({ design, viewMode, getImageUrl, isLiked, onToggleLike }) {
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                                                     className: "text-xl md:text-2xl font-bold text-white mb-2 md:mb-3 group-hover:text-blue-400 transition-colors leading-tight",
-                                                    children: design.name
+                                                    children: design.name || 'Untitled Design'
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                                    lineNumber: 446,
+                                                    lineNumber: 480,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1345,12 +1378,12 @@ function DesignCard({ design, viewMode, getImageUrl, isLiked, onToggleLike }) {
                                                                         className: "w-3 h-3 md:w-4 md:h-4 text-blue-400"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/design-ideas/page.tsx",
-                                                                        lineNumber: 453,
+                                                                        lineNumber: 487,
                                                                         columnNumber: 27
                                                                     }, this)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                                                    lineNumber: 452,
+                                                                    lineNumber: 486,
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1358,13 +1391,13 @@ function DesignCard({ design, viewMode, getImageUrl, isLiked, onToggleLike }) {
                                                                     children: design.location
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                                                    lineNumber: 455,
+                                                                    lineNumber: 489,
                                                                     columnNumber: 25
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/design-ideas/page.tsx",
-                                                            lineNumber: 451,
+                                                            lineNumber: 485,
                                                             columnNumber: 23
                                                         }, this),
                                                         design.area_size && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1376,12 +1409,12 @@ function DesignCard({ design, viewMode, getImageUrl, isLiked, onToggleLike }) {
                                                                         className: "w-3 h-3 md:w-4 md:h-4 text-green-400"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/design-ideas/page.tsx",
-                                                                        lineNumber: 461,
+                                                                        lineNumber: 495,
                                                                         columnNumber: 27
                                                                     }, this)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                                                    lineNumber: 460,
+                                                                    lineNumber: 494,
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1392,50 +1425,46 @@ function DesignCard({ design, viewMode, getImageUrl, isLiked, onToggleLike }) {
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                                                    lineNumber: 463,
+                                                                    lineNumber: 497,
                                                                     columnNumber: 25
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/design-ideas/page.tsx",
-                                                            lineNumber: 459,
+                                                            lineNumber: 493,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                                    lineNumber: 449,
+                                                    lineNumber: 483,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/design-ideas/page.tsx",
-                                            lineNumber: 445,
+                                            lineNumber: 479,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                            onClick: (e)=>{
-                                                e.preventDefault(); // Prevent navigation
-                                                e.stopPropagation(); // Stop event bubbling
-                                                onToggleLike();
-                                            },
+                                            onClick: (e)=>handleButtonClick(e, onToggleLike),
                                             className: `p-2 md:p-3 rounded-full transition-all duration-300 ${isLiked ? 'bg-red-500/20 text-red-400 scale-110 border border-red-500/30' : 'bg-gray-800 hover:bg-gray-700 text-gray-400 hover:text-red-400 border border-gray-700'}`,
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$heart$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Heart$3e$__["Heart"], {
                                                 className: `w-4 h-4 md:w-5 md:h-5 ${isLiked ? 'fill-current' : ''}`
                                             }, void 0, false, {
                                                 fileName: "[project]/app/design-ideas/page.tsx",
-                                                lineNumber: 481,
+                                                lineNumber: 511,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/design-ideas/page.tsx",
-                                            lineNumber: 469,
+                                            lineNumber: 503,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                    lineNumber: 444,
+                                    lineNumber: 478,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1443,7 +1472,7 @@ function DesignCard({ design, viewMode, getImageUrl, isLiked, onToggleLike }) {
                                     children: getTruncatedDescription(design.description, 35) || 'A beautiful interior design crafted with premium materials and expert attention to detail for your perfect space.'
                                 }, void 0, false, {
                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                    lineNumber: 486,
+                                    lineNumber: 516,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1457,7 +1486,7 @@ function DesignCard({ design, viewMode, getImageUrl, isLiked, onToggleLike }) {
                                                     children: "Starting from"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                                    lineNumber: 493,
+                                                    lineNumber: 523,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1465,99 +1494,92 @@ function DesignCard({ design, viewMode, getImageUrl, isLiked, onToggleLike }) {
                                                     children: design.price_range
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                                    lineNumber: 494,
+                                                    lineNumber: 524,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/design-ideas/page.tsx",
-                                            lineNumber: 492,
+                                            lineNumber: 522,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "flex gap-3",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                    onClick: (e)=>{
-                                                        e.preventDefault(); // Prevent default navigation
-                                                        e.stopPropagation(); // Prevent card click
-                                                    // This will use the card's Link navigation
-                                                    },
+                                                    onClick: (e)=>handleButtonClick(e, ()=>{}),
                                                     className: "flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-xl font-semibold text-sm md:text-base transition-all duration-300 hover:scale-105 shadow-lg",
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$eye$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Eye$3e$__["Eye"], {
                                                             className: "w-4 h-4"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/design-ideas/page.tsx",
-                                                            lineNumber: 507,
+                                                            lineNumber: 533,
                                                             columnNumber: 21
                                                         }, this),
                                                         "View Details"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                                    lineNumber: 499,
+                                                    lineNumber: 529,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                    onClick: (e)=>{
-                                                        e.preventDefault(); // Prevent navigation
-                                                        e.stopPropagation(); // Stop event bubbling
-                                                        // Add quote functionality here
-                                                        alert('Get Quote functionality - will be implemented');
-                                                    },
+                                                    onClick: (e)=>handleButtonClick(e, ()=>{
+                                                            alert('Get Quote functionality - will be implemented');
+                                                        }),
                                                     className: "flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white rounded-xl font-semibold text-sm md:text-base transition-all duration-300 hover:scale-105 shadow-lg",
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$calculator$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Calculator$3e$__["Calculator"], {
                                                             className: "w-4 h-4"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/design-ideas/page.tsx",
-                                                            lineNumber: 519,
+                                                            lineNumber: 542,
                                                             columnNumber: 21
                                                         }, this),
                                                         "Get Quote"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                                    lineNumber: 510,
+                                                    lineNumber: 536,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/design-ideas/page.tsx",
-                                            lineNumber: 498,
+                                            lineNumber: 528,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                    lineNumber: 490,
+                                    lineNumber: 520,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/design-ideas/page.tsx",
-                            lineNumber: 443,
+                            lineNumber: 477,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/design-ideas/page.tsx",
-                    lineNumber: 397,
+                    lineNumber: 431,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/design-ideas/page.tsx",
-                lineNumber: 396,
+                lineNumber: 430,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/app/design-ideas/page.tsx",
-            lineNumber: 395,
+            lineNumber: 429,
             columnNumber: 7
         }, this);
     }
-    // Grid Card - Now Complete Card is Clickable
+    // Grid Card - TypeScript Errors Fixed
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
         href: `/design-ideas/${design.slug}`,
         className: "block",
@@ -1569,12 +1591,12 @@ function DesignCard({ design, viewMode, getImageUrl, isLiked, onToggleLike }) {
                     children: [
                         imageUrl ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                             src: getImageUrl(imageUrl),
-                            alt: design.name,
+                            alt: design.name || 'Design',
                             fill: true,
                             className: "object-cover group-hover:scale-110 transition-transform duration-700"
                         }, void 0, false, {
                             fileName: "[project]/app/design-ideas/page.tsx",
-                            lineNumber: 537,
+                            lineNumber: 560,
                             columnNumber: 13
                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "w-full h-full flex items-center justify-center",
@@ -1582,12 +1604,12 @@ function DesignCard({ design, viewMode, getImageUrl, isLiked, onToggleLike }) {
                                 className: "w-8 h-8 lg:w-12 lg:h-12 text-gray-600"
                             }, void 0, false, {
                                 fileName: "[project]/app/design-ideas/page.tsx",
-                                lineNumber: 545,
+                                lineNumber: 568,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/design-ideas/page.tsx",
-                            lineNumber: 544,
+                            lineNumber: 567,
                             columnNumber: 13
                         }, this),
                         design.categories && design.categories.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1598,7 +1620,7 @@ function DesignCard({ design, viewMode, getImageUrl, isLiked, onToggleLike }) {
                                         children: cat.name
                                     }, cat.id, false, {
                                         fileName: "[project]/app/design-ideas/page.tsx",
-                                        lineNumber: 553,
+                                        lineNumber: 576,
                                         columnNumber: 17
                                     }, this)),
                                 design.categories.length > 1 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1609,13 +1631,13 @@ function DesignCard({ design, viewMode, getImageUrl, isLiked, onToggleLike }) {
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                    lineNumber: 561,
+                                    lineNumber: 584,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/design-ideas/page.tsx",
-                            lineNumber: 551,
+                            lineNumber: 574,
                             columnNumber: 13
                         }, this),
                         design.is_featured && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1625,7 +1647,7 @@ function DesignCard({ design, viewMode, getImageUrl, isLiked, onToggleLike }) {
                                     className: "w-2.5 h-2.5 lg:w-3 lg:h-3 fill-current"
                                 }, void 0, false, {
                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                    lineNumber: 571,
+                                    lineNumber: 594,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1633,45 +1655,41 @@ function DesignCard({ design, viewMode, getImageUrl, isLiked, onToggleLike }) {
                                     children: "Featured"
                                 }, void 0, false, {
                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                    lineNumber: 572,
+                                    lineNumber: 595,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/design-ideas/page.tsx",
-                            lineNumber: 570,
+                            lineNumber: 593,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                            onClick: (e)=>{
-                                e.preventDefault(); // Prevent navigation
-                                e.stopPropagation(); // Stop event bubbling
-                                onToggleLike();
-                            },
+                            onClick: (e)=>handleButtonClick(e, onToggleLike),
                             className: `absolute bottom-2 lg:bottom-3 right-2 lg:right-3 p-1.5 lg:p-2 rounded-full transition-all duration-300 shadow-lg ${isLiked ? 'bg-red-500/90 text-white scale-110 shadow-red-500/25' : 'bg-black/60 backdrop-blur-md text-gray-300 hover:text-red-400 hover:bg-red-500/20 border border-white/10'}`,
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$heart$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Heart$3e$__["Heart"], {
                                 className: `w-3 h-3 lg:w-4 lg:h-4 ${isLiked ? 'fill-current' : ''}`
                             }, void 0, false, {
                                 fileName: "[project]/app/design-ideas/page.tsx",
-                                lineNumber: 589,
+                                lineNumber: 608,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/design-ideas/page.tsx",
-                            lineNumber: 577,
+                            lineNumber: 600,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300"
                         }, void 0, false, {
                             fileName: "[project]/app/design-ideas/page.tsx",
-                            lineNumber: 593,
+                            lineNumber: 612,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/design-ideas/page.tsx",
-                    lineNumber: 535,
+                    lineNumber: 558,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1679,10 +1697,10 @@ function DesignCard({ design, viewMode, getImageUrl, isLiked, onToggleLike }) {
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                             className: "font-bold text-white text-sm lg:text-base mb-2 line-clamp-2 group-hover:text-blue-400 transition-colors leading-tight",
-                            children: design.name
+                            children: design.name || 'Untitled Design'
                         }, void 0, false, {
                             fileName: "[project]/app/design-ideas/page.tsx",
-                            lineNumber: 597,
+                            lineNumber: 616,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1690,7 +1708,7 @@ function DesignCard({ design, viewMode, getImageUrl, isLiked, onToggleLike }) {
                             children: getTruncatedDescription(design.description, 15) || 'Premium interior design with modern aesthetics and expert craftsmanship.'
                         }, void 0, false, {
                             fileName: "[project]/app/design-ideas/page.tsx",
-                            lineNumber: 602,
+                            lineNumber: 621,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1705,12 +1723,12 @@ function DesignCard({ design, viewMode, getImageUrl, isLiked, onToggleLike }) {
                                                 className: "w-2.5 h-2.5 lg:w-3 lg:h-3 text-blue-400"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/design-ideas/page.tsx",
-                                                lineNumber: 611,
+                                                lineNumber: 630,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/design-ideas/page.tsx",
-                                            lineNumber: 610,
+                                            lineNumber: 629,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1718,13 +1736,13 @@ function DesignCard({ design, viewMode, getImageUrl, isLiked, onToggleLike }) {
                                             children: design.location
                                         }, void 0, false, {
                                             fileName: "[project]/app/design-ideas/page.tsx",
-                                            lineNumber: 613,
+                                            lineNumber: 632,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                    lineNumber: 609,
+                                    lineNumber: 628,
                                     columnNumber: 15
                                 }, this),
                                 design.area_size && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1734,7 +1752,7 @@ function DesignCard({ design, viewMode, getImageUrl, isLiked, onToggleLike }) {
                                             className: "w-3 h-3 text-green-400"
                                         }, void 0, false, {
                                             fileName: "[project]/app/design-ideas/page.tsx",
-                                            lineNumber: 618,
+                                            lineNumber: 637,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1744,19 +1762,19 @@ function DesignCard({ design, viewMode, getImageUrl, isLiked, onToggleLike }) {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/design-ideas/page.tsx",
-                                            lineNumber: 619,
+                                            lineNumber: 638,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                    lineNumber: 617,
+                                    lineNumber: 636,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/design-ideas/page.tsx",
-                            lineNumber: 607,
+                            lineNumber: 626,
                             columnNumber: 11
                         }, this),
                         design.price_range && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1769,7 +1787,7 @@ function DesignCard({ design, viewMode, getImageUrl, isLiked, onToggleLike }) {
                                         children: "From"
                                     }, void 0, false, {
                                         fileName: "[project]/app/design-ideas/page.tsx",
-                                        lineNumber: 628,
+                                        lineNumber: 647,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1777,89 +1795,82 @@ function DesignCard({ design, viewMode, getImageUrl, isLiked, onToggleLike }) {
                                         children: design.price_range
                                     }, void 0, false, {
                                         fileName: "[project]/app/design-ideas/page.tsx",
-                                        lineNumber: 629,
+                                        lineNumber: 648,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/design-ideas/page.tsx",
-                                lineNumber: 627,
+                                lineNumber: 646,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/design-ideas/page.tsx",
-                            lineNumber: 626,
+                            lineNumber: 645,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "flex gap-2",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                    onClick: (e)=>{
-                                        e.preventDefault(); // Prevent default navigation
-                                        e.stopPropagation(); // Prevent card click
-                                    // This will use the card's Link navigation - card already clickable
-                                    },
+                                    onClick: (e)=>handleButtonClick(e, ()=>{}),
                                     className: "flex-1 flex items-center justify-center gap-1 lg:gap-2 px-2 lg:px-3 py-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-lg font-semibold text-xs lg:text-sm transition-all duration-300 hover:scale-105 shadow-lg",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$eye$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Eye$3e$__["Eye"], {
                                             className: "w-3 h-3 lg:w-4 lg:h-4"
                                         }, void 0, false, {
                                             fileName: "[project]/app/design-ideas/page.tsx",
-                                            lineNumber: 644,
+                                            lineNumber: 659,
                                             columnNumber: 15
                                         }, this),
                                         "View"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                    lineNumber: 636,
+                                    lineNumber: 655,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                    onClick: (e)=>{
-                                        e.preventDefault(); // Prevent navigation
-                                        e.stopPropagation(); // Stop event bubbling
-                                        // Add quote functionality here
-                                        alert('Get Quote functionality - will be implemented');
-                                    },
+                                    onClick: (e)=>handleButtonClick(e, ()=>{
+                                            alert('Get Quote functionality - will be implemented');
+                                        }),
                                     className: "flex-1 flex items-center justify-center gap-1 lg:gap-2 px-2 lg:px-3 py-2 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white rounded-lg font-semibold text-xs lg:text-sm transition-all duration-300 hover:scale-105 shadow-lg",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$calculator$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Calculator$3e$__["Calculator"], {
                                             className: "w-3 h-3 lg:w-4 lg:h-4"
                                         }, void 0, false, {
                                             fileName: "[project]/app/design-ideas/page.tsx",
-                                            lineNumber: 656,
+                                            lineNumber: 668,
                                             columnNumber: 15
                                         }, this),
                                         "Quote"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/design-ideas/page.tsx",
-                                    lineNumber: 647,
+                                    lineNumber: 662,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/design-ideas/page.tsx",
-                            lineNumber: 635,
+                            lineNumber: 654,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/design-ideas/page.tsx",
-                    lineNumber: 596,
+                    lineNumber: 615,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/design-ideas/page.tsx",
-            lineNumber: 534,
+            lineNumber: 557,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/design-ideas/page.tsx",
-        lineNumber: 533,
+        lineNumber: 556,
         columnNumber: 5
     }, this);
 }
