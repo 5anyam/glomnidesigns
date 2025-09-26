@@ -158,51 +158,22 @@ export default function NewDesignIdeasPage() {
     <div className="min-h-screen bg-black">
       {/* Enhanced Header */}
       <div className="bg-black border-b border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 py-8 md:py-12">
-          <div className="text-center mb-6 md:mb-8">
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <Sparkles className="w-5 h-5 md:w-6 md:h-6 text-yellow-400" />
-              <span className="text-yellow-400 font-semibold text-xs md:text-sm uppercase tracking-wider">Premium Collection</span>
-              <Sparkles className="w-5 h-5 md:w-6 md:h-6 text-yellow-400" />
-            </div>
+        <div className="max-w-7xl mx-auto px-4 py-8 md:py-4">
+          <div className="text-center mb-6 md:mb-2">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-              Latest Interior Designs
+              Latest Designs
             </h1>
             <p className="text-gray-400 text-base md:text-lg lg:text-xl max-w-2xl mx-auto leading-relaxed px-4">
               Discover {filteredDesigns.length} carefully curated designs sorted by newest first
             </p>
           </div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-3 sm:grid-cols-3 gap-4 md:gap-6">
-            <div className="bg-gray-900 rounded-xl border border-gray-800 p-4 md:p-6 text-center">
-              <div className="w-10 h-10 md:w-12 md:h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mx-auto mb-2 md:mb-3 border border-blue-500/30">
-                <Award className="w-5 h-5 md:w-6 md:h-6 text-blue-400" />
-              </div>
-              <h3 className="text-xl md:text-2xl font-bold text-white mb-1">500+</h3>
-              <p className="text-gray-400 text-sm md:text-base">Premium Designs</p>
-            </div>
-            <div className="bg-gray-900 rounded-xl border border-gray-800 p-4 md:p-6 text-center">
-              <div className="w-10 h-10 md:w-12 md:h-12 bg-green-500/20 rounded-lg flex items-center justify-center mx-auto mb-2 md:mb-3 border border-green-500/30">
-                <TrendingUp className="w-5 h-5 md:w-6 md:h-6 text-green-400" />
-              </div>
-              <h3 className="text-xl md:text-2xl font-bold text-white mb-1">98%</h3>
-              <p className="text-gray-400 text-sm md:text-base">Satisfaction Rate</p>
-            </div>
-            <div className="bg-gray-900 rounded-xl border border-gray-800 p-4 md:p-6 text-center">
-              <div className="w-10 h-10 md:w-12 md:h-12 bg-purple-500/20 rounded-lg flex items-center justify-center mx-auto mb-2 md:mb-3 border border-purple-500/30">
-                <Star className="w-5 h-5 md:w-6 md:h-6 text-purple-400" />
-              </div>
-              <h3 className="text-xl md:text-2xl font-bold text-white mb-1">1000+</h3>
-              <p className="text-gray-400 text-sm md:text-base">Happy Clients</p>
-            </div>
           </div>
-        </div>
       </div>
 
       {/* Enhanced Filters */}
-      <div className="bg-gray-900 border-b border-gray-800 sticky top-0 z-40 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto px-4 py-4 md:py-6">
+      <div className="bg-gray-900 border-b border-gray-800 sticky top-0 z-4 backdrop-blur-xl">
+        <div className="max-w-7xl mx-auto px-4 py-4 md:py-2">
           <div className="flex flex-col gap-4 items-stretch md:flex-row md:items-center md:justify-between">
             {/* Search */}
             <div className="relative w-full md:w-80 lg:w-96">

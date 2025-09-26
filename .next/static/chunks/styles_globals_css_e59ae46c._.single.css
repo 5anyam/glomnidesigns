@@ -13175,6 +13175,10 @@ img, video {
     margin-bottom: 2rem;
   }
 
+  .md\:mb-2 {
+    margin-bottom: .5rem;
+  }
+
   .md\:block {
     display: block;
   }
@@ -13443,6 +13447,16 @@ img, video {
   .md\:py-8 {
     padding-top: 2rem;
     padding-bottom: 2rem;
+  }
+
+  .md\:py-2 {
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+  }
+
+  .md\:py-4 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
 
   .md\:pl-12 {
