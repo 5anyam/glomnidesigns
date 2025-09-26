@@ -5,6 +5,7 @@ import { CarouselDemo } from "@/components/carousel-home";
 import { CompareDemo } from "@/components/compareDemo";
 import { BentoGridDemo } from "@/components/design-idea";
 import { FlipWordsDemo } from "@/components/flip-words-home";
+import HomePageCarousel from "@/components/home-page-carousel";
 import SimpleSlider from "@/components/home-slider";
 import { InfiniteMovingCardsDemo } from "@/components/infinite-testimonials";
 import { AnimatedTestimonialsDemo } from "@/components/testimonials";
@@ -24,6 +25,7 @@ export default function Home() {
     Discover thoughtfully crafted interiors that blend style and functionality perfect for every space you call yours.
   </p>
 </div>
+    <HomePageCarousel/>
     <BentoGridDemo/>
     <CompareDemo/>
     <AppleCardsCarouselDemo/>
