@@ -1,6 +1,6 @@
 "use client"
 import { useState, useEffect } from 'react';
-import { Search, Grid, List, Heart, MapPin, Eye, Calculator, Star, Filter, SlidersHorizontal, Sparkles, TrendingUp, Award } from 'lucide-react';
+import { Search, Grid, List, Heart, MapPin, Eye, Calculator, Star, Filter, SlidersHorizontal, Sparkles, TrendingUp, Award, ChevronLeft, ChevronRight } from 'lucide-react';
 import { designAPI, categoryAPI, Design, Category } from '../../lib/api';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -14,16 +14,25 @@ export default function NewDesignIdeasPage() {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [likedDesigns, setLikedDesigns] = useState<Set<number>>(new Set());
+  
+  // Pagination states
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(16);
 
   // Load data
   useEffect(() => {
     loadData();
   }, []);
 
-  // Filter designs when data changes
+  // Filter and sort designs when data changes
   useEffect(() => {
-    applyFilters();
+    applyFiltersAndSort();
   }, [designs, searchTerm, selectedCategory]);
+
+  // Reset to page 1 when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm, selectedCategory]);
 
   const loadData = async () => {
     setLoading(true);
@@ -47,7 +56,7 @@ export default function NewDesignIdeasPage() {
     setLoading(false);
   };
 
-  const applyFilters = () => {
+  const applyFiltersAndSort = () => {
     let filtered = [...designs];
 
     // Search filter
@@ -66,7 +75,29 @@ export default function NewDesignIdeasPage() {
       );
     }
 
+    // Sort by date (newest first) - prioritize recent designs
+    filtered.sort((a, b) => {
+      // Try different date fields that might exist
+      const dateA = new Date(a.createdAt || a.created_at || a.updatedAt || a.updated_at || a.publishedAt || a.published_at || 0);
+      const dateB = new Date(b.createdAt || b.created_at || b.updatedAt || b.updated_at || b.publishedAt || b.published_at || 0);
+      
+      // Sort descending (newest first)
+      return dateB.getTime() - dateA.getTime();
+    });
+
     setFilteredDesigns(filtered);
+  };
+
+  // Pagination calculations
+  const totalPages = Math.ceil(filteredDesigns.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentDesigns = filteredDesigns.slice(startIndex, endIndex);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    // Scroll to top when page changes
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const getImageUrl = (imageUrl: string) => {
@@ -111,10 +142,10 @@ export default function NewDesignIdeasPage() {
               <Sparkles className="w-5 h-5 md:w-6 md:h-6 text-yellow-400" />
             </div>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-              Stunning Interior Designs
+              Latest Interior Designs
             </h1>
             <p className="text-gray-400 text-base md:text-lg lg:text-xl max-w-2xl mx-auto leading-relaxed px-4">
-              Discover {filteredDesigns.length} carefully curated designs crafted by expert designers
+              Discover {filteredDesigns.length} carefully curated designs sorted by newest first
             </p>
           </div>
 
@@ -223,14 +254,15 @@ export default function NewDesignIdeasPage() {
           </div>
         ) : (
           <>
-            {/* Results Header */}
+            {/* Results Header with Pagination Info */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 md:mb-8 gap-4">
               <div>
                 <h2 className="text-xl md:text-2xl font-bold text-white">
-                  {searchTerm || selectedCategory !== 'all' ? 'Filtered Results' : 'All Designs'}
+                  {searchTerm || selectedCategory !== 'all' ? 'Filtered Results' : 'Latest Designs'}
                 </h2>
                 <p className="text-gray-400 text-sm md:text-base">
-                  Showing {filteredDesigns.length} of {designs.length} designs
+                  Showing {startIndex + 1}-{Math.min(endIndex, filteredDesigns.length)} of {filteredDesigns.length} designs
+                  {totalPages > 1 && ` • Page ${currentPage} of ${totalPages}`}
                 </p>
               </div>
               {(searchTerm || selectedCategory !== 'all') && (
@@ -245,10 +277,10 @@ export default function NewDesignIdeasPage() {
 
             {/* Grid Layout: Mobile 2 columns, Desktop 4 columns */}
             <div className={viewMode === 'grid' 
-              ? 'grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6' 
+              ? 'grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6' 
               : 'space-y-6'
             }>
-              {filteredDesigns.map(design => (
+              {currentDesigns.map(design => (
                 <DesignCard 
                   key={design.id} 
                   design={design} 
@@ -259,6 +291,74 @@ export default function NewDesignIdeasPage() {
                 />
               ))}
             </div>
+
+            {/* Pagination Controls */}
+            {totalPages > 1 && (
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-12 mb-8">
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => handlePageChange(currentPage - 1)}
+                    disabled={currentPage === 1}
+                    className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
+                      currentPage === 1
+                        ? 'bg-gray-800 text-gray-500 cursor-not-allowed'
+                        : 'bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white'
+                    }`}
+                  >
+                    <ChevronLeft className="w-4 h-4" />
+                    Previous
+                  </button>
+
+                  {/* Page Numbers */}
+                  <div className="flex items-center gap-1">
+                    {Array.from({ length: Math.min(totalPages, 5) }, (_, i) => {
+                      let pageNumber;
+                      if (totalPages <= 5) {
+                        pageNumber = i + 1;
+                      } else if (currentPage <= 3) {
+                        pageNumber = i + 1;
+                      } else if (currentPage >= totalPages - 2) {
+                        pageNumber = totalPages - 4 + i;
+                      } else {
+                        pageNumber = currentPage - 2 + i;
+                      }
+
+                      return (
+                        <button
+                          key={pageNumber}
+                          onClick={() => handlePageChange(pageNumber)}
+                          className={`w-10 h-10 rounded-lg font-medium transition-all duration-300 ${
+                            currentPage === pageNumber
+                              ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/25'
+                              : 'bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white'
+                          }`}
+                        >
+                          {pageNumber}
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  <button
+                    onClick={() => handlePageChange(currentPage + 1)}
+                    disabled={currentPage === totalPages}
+                    className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
+                      currentPage === totalPages
+                        ? 'bg-gray-800 text-gray-500 cursor-not-allowed'
+                        : 'bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white'
+                    }`}
+                  >
+                    Next
+                    <ChevronRight className="w-4 h-4" />
+                  </button>
+                </div>
+
+                {/* Page Info */}
+                <div className="text-sm text-gray-400">
+                  Page {currentPage} of {totalPages} • {filteredDesigns.length} total designs
+                </div>
+              </div>
+            )}
           </>
         )}
       </div>
@@ -266,7 +366,7 @@ export default function NewDesignIdeasPage() {
   );
 }
 
-// Enhanced Design Card Component - Optimized for smaller grid cards
+// Updated Design Card Component - Now Complete Card is Clickable
 function DesignCard({ 
   design, 
   viewMode, 
@@ -292,235 +392,273 @@ function DesignCard({
 
   if (viewMode === 'list') {
     return (
-      <div className="group bg-gray-900/80 backdrop-blur-sm rounded-2xl md:rounded-3xl border border-gray-800/60 overflow-hidden hover:border-gray-600/80 transition-all duration-500 hover:scale-[1.01] hover:shadow-2xl">
-        <div className="flex flex-col md:flex-row">
-          <div className="relative w-full md:w-80 h-64 md:h-72 bg-gray-800 flex-shrink-0 overflow-hidden">
-            {imageUrl ? (
-              <Image
-                src={getImageUrl(imageUrl)}
-                alt={design.name}
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
-              />
-            ) : (
-              <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-800 to-gray-900">
-                <Eye className="w-12 h-12 md:w-16 md:h-16 text-gray-600" />
-              </div>
-            )}
-            
-            {/* Categories on Image - Top Left */}
-            {design.categories && design.categories.length > 0 && (
-              <div className="absolute top-3 md:top-4 left-3 md:left-4 flex flex-col gap-1 md:gap-2">
-                {design.categories.slice(0, 2).map(cat => (
-                  <span 
-                    key={cat.id} 
-                    className="px-2 md:px-3 py-1 md:py-1.5 bg-black/80 backdrop-blur-md text-white text-xs font-semibold rounded-full border border-white/20 shadow-lg"
-                  >
-                    {cat.name}
-                  </span>
-                ))}
-                {design.categories.length > 2 && (
-                  <span className="px-2 md:px-3 py-1 md:py-1.5 bg-black/60 backdrop-blur-md text-gray-300 text-xs rounded-full border border-white/10">
-                    +{design.categories.length - 2} more
-                  </span>
-                )}
-              </div>
-            )}
-
-            {/* Featured Badge - Top Right */}
-            {design.is_featured && (
-              <div className="absolute top-3 md:top-4 right-3 md:right-4 flex items-center gap-1 bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-2 md:px-3 py-1 md:py-1.5 rounded-full text-xs font-bold shadow-xl border border-yellow-400/30">
-                <Star className="w-3 h-3 fill-current" />
-                Featured
-              </div>
-            )}
-
-            {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-transparent md:bg-gradient-to-r md:from-black/30 md:via-transparent md:to-transparent" />
-          </div>
-          
-          <div className="flex-1 p-4 md:p-8">
-            <div className="flex items-start justify-between mb-4 md:mb-6">
-              <div className="flex-1">
-                <h3 className="text-xl md:text-2xl font-bold text-white mb-2 md:mb-3 group-hover:text-blue-400 transition-colors leading-tight">
-                  {design.name}
-                </h3>
-                <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 text-sm text-gray-400 mb-3 md:mb-4">
-                  {design.location && (
-                    <div className="flex items-center gap-2">
-                      <div className="w-6 h-6 md:w-8 md:h-8 bg-blue-500/20 rounded-lg flex items-center justify-center border border-blue-500/30">
-                        <MapPin className="w-3 h-3 md:w-4 md:h-4 text-blue-400" />
-                      </div>
-                      <span className="font-medium">{design.location}</span>
-                    </div>
-                  )}
-                  {design.area_size && (
-                    <div className="flex items-center gap-2">
-                      <div className="w-6 h-6 md:w-8 md:h-8 bg-green-500/20 rounded-lg flex items-center justify-center border border-green-500/30">
-                        <SlidersHorizontal className="w-3 h-3 md:w-4 md:h-4 text-green-400" />
-                      </div>
-                      <span className="font-medium">{design.area_size} sq ft</span>
-                    </div>
-                  )}
-                </div>
-              </div>
-              
-              <button 
-                onClick={onToggleLike}
-                className={`p-2 md:p-3 rounded-full transition-all duration-300 ${
-                  isLiked 
-                    ? 'bg-red-500/20 text-red-400 scale-110 border border-red-500/30' 
-                    : 'bg-gray-800 hover:bg-gray-700 text-gray-400 hover:text-red-400 border border-gray-700'
-                }`}
-              >
-                <Heart className={`w-4 h-4 md:w-5 md:h-5 ${isLiked ? 'fill-current' : ''}`} />
-              </button>
-            </div>
-
-            {/* Description for List View */}
-            <p className="text-gray-300 mb-4 md:mb-6 leading-relaxed text-sm md:text-base">
-              {getTruncatedDescription(design.description, 35) || 'A beautiful interior design crafted with premium materials and expert attention to detail for your perfect space.'}
-            </p>
-            
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-              {design.price_range && (
-                <div className="flex flex-col">
-                  <span className="text-xs md:text-sm text-gray-400 mb-1">Starting from</span>
-                  <div className="text-xl md:text-2xl font-bold text-green-400">{design.price_range}</div>
+      <Link href={`/design-ideas/${design.slug}`} className="block">
+        <div className="group bg-gray-900/80 backdrop-blur-sm rounded-2xl md:rounded-3xl border border-gray-800/60 overflow-hidden hover:border-gray-600/80 transition-all duration-500 hover:scale-[1.01] hover:shadow-2xl cursor-pointer">
+          <div className="flex flex-col md:flex-row">
+            <div className="relative w-full md:w-80 h-64 md:h-72 bg-gray-800 flex-shrink-0 overflow-hidden">
+              {imageUrl ? (
+                <Image
+                  src={getImageUrl(imageUrl)}
+                  alt={design.name}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-800 to-gray-900">
+                  <Eye className="w-12 h-12 md:w-16 md:h-16 text-gray-600" />
                 </div>
               )}
               
-              <div className="flex gap-3">
-                <Link href={`/design-ideas/${design.slug}`}>
-                  <button className="flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-xl font-semibold text-sm md:text-base transition-all duration-300 hover:scale-105 shadow-lg">
+              {/* Categories on Image - Top Left */}
+              {design.categories && design.categories.length > 0 && (
+                <div className="absolute top-3 md:top-4 left-3 md:left-4 flex flex-col gap-1 md:gap-2">
+                  {design.categories.slice(0, 2).map(cat => (
+                    <span 
+                      key={cat.id} 
+                      className="px-2 md:px-3 py-1 md:py-1.5 bg-black/80 backdrop-blur-md text-white text-xs font-semibold rounded-full border border-white/20 shadow-lg"
+                    >
+                      {cat.name}
+                    </span>
+                  ))}
+                  {design.categories.length > 2 && (
+                    <span className="px-2 md:px-3 py-1 md:py-1.5 bg-black/60 backdrop-blur-md text-gray-300 text-xs rounded-full border border-white/10">
+                      +{design.categories.length - 2} more
+                    </span>
+                  )}
+                </div>
+              )}
+
+              {/* Featured Badge - Top Right */}
+              {design.is_featured && (
+                <div className="absolute top-3 md:top-4 right-3 md:right-4 flex items-center gap-1 bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-2 md:px-3 py-1 md:py-1.5 rounded-full text-xs font-bold shadow-xl border border-yellow-400/30">
+                  <Star className="w-3 h-3 fill-current" />
+                  Featured
+                </div>
+              )}
+
+              {/* Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-transparent md:bg-gradient-to-r md:from-black/30 md:via-transparent md:to-transparent" />
+            </div>
+            
+            <div className="flex-1 p-4 md:p-8">
+              <div className="flex items-start justify-between mb-4 md:mb-6">
+                <div className="flex-1">
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-2 md:mb-3 group-hover:text-blue-400 transition-colors leading-tight">
+                    {design.name}
+                  </h3>
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 text-sm text-gray-400 mb-3 md:mb-4">
+                    {design.location && (
+                      <div className="flex items-center gap-2">
+                        <div className="w-6 h-6 md:w-8 md:h-8 bg-blue-500/20 rounded-lg flex items-center justify-center border border-blue-500/30">
+                          <MapPin className="w-3 h-3 md:w-4 md:h-4 text-blue-400" />
+                        </div>
+                        <span className="font-medium">{design.location}</span>
+                      </div>
+                    )}
+                    {design.area_size && (
+                      <div className="flex items-center gap-2">
+                        <div className="w-6 h-6 md:w-8 md:h-8 bg-green-500/20 rounded-lg flex items-center justify-center border border-green-500/30">
+                          <SlidersHorizontal className="w-3 h-3 md:w-4 md:h-4 text-green-400" />
+                        </div>
+                        <span className="font-medium">{design.area_size} sq ft</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+                
+                <button 
+                  onClick={(e) => {
+                    e.preventDefault(); // Prevent navigation
+                    e.stopPropagation(); // Stop event bubbling
+                    onToggleLike();
+                  }}
+                  className={`p-2 md:p-3 rounded-full transition-all duration-300 ${
+                    isLiked 
+                      ? 'bg-red-500/20 text-red-400 scale-110 border border-red-500/30' 
+                      : 'bg-gray-800 hover:bg-gray-700 text-gray-400 hover:text-red-400 border border-gray-700'
+                  }`}
+                >
+                  <Heart className={`w-4 h-4 md:w-5 md:h-5 ${isLiked ? 'fill-current' : ''}`} />
+                </button>
+              </div>
+
+              {/* Description for List View */}
+              <p className="text-gray-300 mb-4 md:mb-6 leading-relaxed text-sm md:text-base">
+                {getTruncatedDescription(design.description, 35) || 'A beautiful interior design crafted with premium materials and expert attention to detail for your perfect space.'}
+              </p>
+              
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                {design.price_range && (
+                  <div className="flex flex-col">
+                    <span className="text-xs md:text-sm text-gray-400 mb-1">Starting from</span>
+                    <div className="text-xl md:text-2xl font-bold text-green-400">{design.price_range}</div>
+                  </div>
+                )}
+                
+                <div className="flex gap-3">
+                  <button 
+                    onClick={(e) => {
+                      e.preventDefault(); // Prevent default navigation
+                      e.stopPropagation(); // Prevent card click
+                      // This will use the card's Link navigation
+                    }}
+                    className="flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-xl font-semibold text-sm md:text-base transition-all duration-300 hover:scale-105 shadow-lg"
+                  >
                     <Eye className="w-4 h-4" />
                     View Details
                   </button>
-                </Link>
-                <button className="flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white rounded-xl font-semibold text-sm md:text-base transition-all duration-300 hover:scale-105 shadow-lg">
-                  <Calculator className="w-4 h-4" />
-                  Get Quote
-                </button>
+                  <button 
+                    onClick={(e) => {
+                      e.preventDefault(); // Prevent navigation
+                      e.stopPropagation(); // Stop event bubbling
+                      // Add quote functionality here
+                      alert('Get Quote functionality - will be implemented');
+                    }}
+                    className="flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white rounded-xl font-semibold text-sm md:text-base transition-all duration-300 hover:scale-105 shadow-lg"
+                  >
+                    <Calculator className="w-4 h-4" />
+                    Get Quote
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </Link>
     );
   }
 
-  // Grid Card - Optimized for 2 mobile / 4 desktop layout
+  // Grid Card - Now Complete Card is Clickable
   return (
-    <div className="group bg-gray-900/90 backdrop-blur-sm rounded-xl lg:rounded-2xl border border-gray-800/60 overflow-hidden hover:border-gray-600/80 transition-all duration-500 hover:scale-105 hover:shadow-2xl">
-      <div className="relative aspect-[4/3] bg-gradient-to-br from-gray-800 to-gray-900 overflow-hidden">
-        {imageUrl ? (
-          <Image
-            src={getImageUrl(imageUrl)}
-            alt={design.name}
-            fill
-            className="object-cover group-hover:scale-110 transition-transform duration-700"
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center">
-            <Eye className="w-8 h-8 lg:w-12 lg:h-12 text-gray-600" />
-          </div>
-        )}
+    <Link href={`/design-ideas/${design.slug}`} className="block">
+      <div className="group bg-gray-900/90 backdrop-blur-sm rounded-xl lg:rounded-2xl border border-gray-800/60 overflow-hidden hover:border-gray-600/80 transition-all duration-500 hover:scale-105 hover:shadow-2xl cursor-pointer">
+        <div className="relative aspect-[4/3] bg-gradient-to-br from-gray-800 to-gray-900 overflow-hidden">
+          {imageUrl ? (
+            <Image
+              src={getImageUrl(imageUrl)}
+              alt={design.name}
+              fill
+              className="object-cover group-hover:scale-110 transition-transform duration-700"
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center">
+              <Eye className="w-8 h-8 lg:w-12 lg:h-12 text-gray-600" />
+            </div>
+          )}
+          
+          {/* Categories on Image - Top Left */}
+          {design.categories && design.categories.length > 0 && (
+            <div className="absolute top-2 lg:top-3 left-2 lg:left-3 flex flex-col gap-1">
+              {design.categories.slice(0, 1).map(cat => (
+                <span 
+                  key={cat.id} 
+                  className="px-2 lg:px-3 py-1 bg-black/80 backdrop-blur-md text-white text-xs font-semibold rounded-full border border-white/20 shadow-lg"
+                >
+                  {cat.name}
+                </span>
+              ))}
+              {design.categories.length > 1 && (
+                <span className="px-2 lg:px-3 py-1 bg-black/60 backdrop-blur-md text-gray-300 text-xs rounded-full border border-white/10">
+                  +{design.categories.length - 1}
+                </span>
+              )}
+            </div>
+          )}
+
+          {/* Featured Badge - Top Right of Image */}
+          {design.is_featured && (
+            <div className="absolute top-2 lg:top-3 right-2 lg:right-3 flex items-center gap-1 bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-2 lg:px-3 py-1 rounded-full text-xs font-bold shadow-xl border border-yellow-400/30">
+              <Star className="w-2.5 h-2.5 lg:w-3 lg:h-3 fill-current" />
+              <span className="hidden sm:inline">Featured</span>
+            </div>
+          )}
+
+          {/* Like Button - Bottom Right of Image */}
+          <button 
+            onClick={(e) => {
+              e.preventDefault(); // Prevent navigation
+              e.stopPropagation(); // Stop event bubbling
+              onToggleLike();
+            }}
+            className={`absolute bottom-2 lg:bottom-3 right-2 lg:right-3 p-1.5 lg:p-2 rounded-full transition-all duration-300 shadow-lg ${
+              isLiked 
+                ? 'bg-red-500/90 text-white scale-110 shadow-red-500/25' 
+                : 'bg-black/60 backdrop-blur-md text-gray-300 hover:text-red-400 hover:bg-red-500/20 border border-white/10'
+            }`}
+          >
+            <Heart className={`w-3 h-3 lg:w-4 lg:h-4 ${isLiked ? 'fill-current' : ''}`} />
+          </button>
+
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
+        </div>
         
-        {/* Categories on Image - Top Left */}
-        {design.categories && design.categories.length > 0 && (
-          <div className="absolute top-2 lg:top-3 left-2 lg:left-3 flex flex-col gap-1">
-            {design.categories.slice(0, 1).map(cat => (
-              <span 
-                key={cat.id} 
-                className="px-2 lg:px-3 py-1 bg-black/80 backdrop-blur-md text-white text-xs font-semibold rounded-full border border-white/20 shadow-lg"
-              >
-                {cat.name}
-              </span>
-            ))}
-            {design.categories.length > 1 && (
-              <span className="px-2 lg:px-3 py-1 bg-black/60 backdrop-blur-md text-gray-300 text-xs rounded-full border border-white/10">
-                +{design.categories.length - 1}
-              </span>
+        <div className="p-3 lg:p-4">
+          <h3 className="font-bold text-white text-sm lg:text-base mb-2 line-clamp-2 group-hover:text-blue-400 transition-colors leading-tight">
+            {design.name}
+          </h3>
+
+          {/* Description for Grid View - Shorter for mobile */}
+          <p className="text-gray-400 text-xs lg:text-sm mb-3 line-clamp-2 leading-relaxed">
+            {getTruncatedDescription(design.description, 15) || 'Premium interior design with modern aesthetics and expert craftsmanship.'}
+          </p>
+          
+          {/* Location and Area Info */}
+          <div className="flex items-center justify-between mb-3 text-xs lg:text-sm">
+            {design.location && (
+              <div className="flex items-center gap-1 text-gray-400">
+                <div className="w-4 h-4 lg:w-5 lg:h-5 bg-blue-500/20 rounded flex items-center justify-center">
+                  <MapPin className="w-2.5 h-2.5 lg:w-3 lg:h-3 text-blue-400" />
+                </div>
+                <span className="truncate">{design.location}</span>
+              </div>
+            )}
+            {design.area_size && (
+              <div className="flex items-center gap-1 text-gray-400">
+                <SlidersHorizontal className="w-3 h-3 text-green-400" />
+                <span>{design.area_size} sq ft</span>
+              </div>
             )}
           </div>
-        )}
 
-        {/* Featured Badge - Top Right of Image */}
-        {design.is_featured && (
-          <div className="absolute top-2 lg:top-3 right-2 lg:right-3 flex items-center gap-1 bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-2 lg:px-3 py-1 rounded-full text-xs font-bold shadow-xl border border-yellow-400/30">
-            <Star className="w-2.5 h-2.5 lg:w-3 lg:h-3 fill-current" />
-            <span className="hidden sm:inline">Featured</span>
-          </div>
-        )}
-
-        {/* Like Button - Bottom Right of Image */}
-        <button 
-          onClick={onToggleLike}
-          className={`absolute bottom-2 lg:bottom-3 right-2 lg:right-3 p-1.5 lg:p-2 rounded-full transition-all duration-300 shadow-lg ${
-            isLiked 
-              ? 'bg-red-500/90 text-white scale-110 shadow-red-500/25' 
-              : 'bg-black/60 backdrop-blur-md text-gray-300 hover:text-red-400 hover:bg-red-500/20 border border-white/10'
-          }`}
-        >
-          <Heart className={`w-3 h-3 lg:w-4 lg:h-4 ${isLiked ? 'fill-current' : ''}`} />
-        </button>
-
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
-      </div>
-      
-      <div className="p-3 lg:p-4">
-        <h3 className="font-bold text-white text-sm lg:text-base mb-2 line-clamp-2 group-hover:text-blue-400 transition-colors leading-tight">
-          {design.name}
-        </h3>
-
-        {/* Description for Grid View - Shorter for mobile */}
-        <p className="text-gray-400 text-xs lg:text-sm mb-3 line-clamp-2 leading-relaxed">
-          {getTruncatedDescription(design.description, 15) || 'Premium interior design with modern aesthetics and expert craftsmanship.'}
-        </p>
-        
-        {/* Location and Area Info */}
-        <div className="flex items-center justify-between mb-3 text-xs lg:text-sm">
-          {design.location && (
-            <div className="flex items-center gap-1 text-gray-400">
-              <div className="w-4 h-4 lg:w-5 lg:h-5 bg-blue-500/20 rounded flex items-center justify-center">
-                <MapPin className="w-2.5 h-2.5 lg:w-3 lg:h-3 text-blue-400" />
+          {/* Price */}
+          {design.price_range && (
+            <div className="mb-3">
+              <div className="flex items-baseline gap-1">
+                <span className="text-xs text-gray-400">From</span>
+                <div className="text-sm lg:text-base font-bold text-green-400">{design.price_range}</div>
               </div>
-              <span className="truncate">{design.location}</span>
             </div>
           )}
-          {design.area_size && (
-            <div className="flex items-center gap-1 text-gray-400">
-              <SlidersHorizontal className="w-3 h-3 text-green-400" />
-              <span>{design.area_size} sq ft</span>
-            </div>
-          )}
-        </div>
 
-        {/* Price */}
-        {design.price_range && (
-          <div className="mb-3">
-            <div className="flex items-baseline gap-1">
-              <span className="text-xs text-gray-400">From</span>
-              <div className="text-sm lg:text-base font-bold text-green-400">{design.price_range}</div>
-            </div>
-          </div>
-        )}
-
-        {/* Action Buttons */}
-        <div className="flex gap-2">
-          <Link href={`/design-ideas/${design.slug}`} className="flex-1">
-            <button className="w-full flex items-center justify-center gap-1 lg:gap-2 px-2 lg:px-3 py-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-lg font-semibold text-xs lg:text-sm transition-all duration-300 hover:scale-105 shadow-lg">
+          {/* Action Buttons */}
+          <div className="flex gap-2">
+            <button 
+              onClick={(e) => {
+                e.preventDefault(); // Prevent default navigation
+                e.stopPropagation(); // Prevent card click
+                // This will use the card's Link navigation - card already clickable
+              }}
+              className="flex-1 flex items-center justify-center gap-1 lg:gap-2 px-2 lg:px-3 py-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-lg font-semibold text-xs lg:text-sm transition-all duration-300 hover:scale-105 shadow-lg"
+            >
               <Eye className="w-3 h-3 lg:w-4 lg:h-4" />
               View
             </button>
-          </Link>
-          <button className="flex-1 flex items-center justify-center gap-1 lg:gap-2 px-2 lg:px-3 py-2 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white rounded-lg font-semibold text-xs lg:text-sm transition-all duration-300 hover:scale-105 shadow-lg">
-            <Calculator className="w-3 h-3 lg:w-4 lg:h-4" />
-            Quote
-          </button>
+            <button 
+              onClick={(e) => {
+                e.preventDefault(); // Prevent navigation
+                e.stopPropagation(); // Stop event bubbling
+                // Add quote functionality here
+                alert('Get Quote functionality - will be implemented');
+              }}
+              className="flex-1 flex items-center justify-center gap-1 lg:gap-2 px-2 lg:px-3 py-2 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white rounded-lg font-semibold text-xs lg:text-sm transition-all duration-300 hover:scale-105 shadow-lg"
+            >
+              <Calculator className="w-3 h-3 lg:w-4 lg:h-4" />
+              Quote
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
