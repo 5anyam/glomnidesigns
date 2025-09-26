@@ -1,6 +1,6 @@
 "use client"
 import { useState, useEffect } from 'react';
-import { Search, Filter, Eye, MapPin, Home, X, ChevronLeft, ChevronRight, Star } from 'lucide-react';
+import { Search, Filter, Eye, MapPin, Home, X, ChevronLeft, ChevronRight, Star, Sparkles, Grid, Award, TrendingUp } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -185,11 +185,14 @@ export default function ModernPortfolioPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
+      <div className="min-h-screen bg-black flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin w-16 h-16 border-4 border-purple-600 border-t-transparent rounded-full mb-6"></div>
-          <h3 className="text-xl font-bold text-gray-900 mb-2">Loading Portfolio</h3>
-          <p className="text-gray-600">Fetching stunning projects...</p>
+          <div className="relative mb-8">
+            <div className="animate-spin w-20 h-20 border-4 border-blue-500/20 border-t-blue-500 rounded-full"></div>
+            <div className="absolute inset-0 animate-ping w-20 h-20 border-4 border-blue-500/10 rounded-full"></div>
+          </div>
+          <h3 className="text-2xl font-bold text-white mb-3">Loading Portfolio</h3>
+          <p className="text-gray-400 text-lg">Discovering stunning projects...</p>
         </div>
       </div>
     );
@@ -197,16 +200,16 @@ export default function ModernPortfolioPage() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
+      <div className="min-h-screen bg-black flex items-center justify-center">
         <div className="text-center max-w-md">
-          <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mb-6 mx-auto">
-            <X className="w-10 h-10 text-red-500" />
+          <div className="w-24 h-24 bg-red-500/20 rounded-full flex items-center justify-center mb-8 mx-auto border border-red-500/30">
+            <X className="w-12 h-12 text-red-400" />
           </div>
-          <h3 className="text-2xl font-bold text-gray-900 mb-4">Portfolio Unavailable</h3>
-          <p className="text-gray-600 mb-6">{error}</p>
+          <h3 className="text-3xl font-bold text-white mb-4">Portfolio Unavailable</h3>
+          <p className="text-gray-400 text-lg mb-8 leading-relaxed">{error}</p>
           <button 
             onClick={loadPortfolios}
-            className="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 font-semibold"
+            className="px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl hover:from-blue-700 hover:to-blue-800 font-semibold transition-all duration-300 hover:scale-105 shadow-lg"
           >
             Reload Portfolio
           </button>
@@ -216,28 +219,25 @@ export default function ModernPortfolioPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header Section */}
-      <div className="bg-gradient-to-br from-purple-600 via-indigo-600 to-blue-600 text-white">
-        <div className="max-w-7xl mx-auto px-4 py-20">
-          <div className="text-center">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Our Portfolio
+    <div className="min-h-screen bg-black">
+      {/* Enhanced Header Section */}
+      <div className="bg-black border-b border-gray-800">
+        <div className="max-w-7xl mx-auto px-4 py-12 md:py-4">
+          <div className="text-center mb-8">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+              Portfolio Designs
             </h1>
-            <p className="text-xl text-purple-100 max-w-3xl mx-auto leading-relaxed">
-              Discover {portfolios.length} exceptional interior design projects showcasing our expertise and creativity
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed mb-8">
+              Explore {portfolios.length} exceptional projects showcasing our design expertise and creative vision
             </p>
-            <div className="mt-8 inline-flex items-center gap-2 bg-white/10 px-6 py-3 rounded-full">
-              <Star className="w-5 h-5 text-yellow-400 fill-current" />
-              <span className="font-semibold">Premium Interior Designs</span>
-            </div>
           </div>
+         
         </div>
       </div>
 
       {/* Search & Filter Section */}
-      <div className="bg-white shadow-md sticky top-0 z-30 border-b">
-        <div className="max-w-7xl mx-auto px-4 py-6">
+      <div className="bg-gray-900 border-b border-gray-800 sticky top-0 z-30 backdrop-blur-xl">
+        <div className="max-w-7xl mx-auto px-4 py-2">
           {/* Search Bar */}
           <div className="mb-6">
             <div className="relative max-w-2xl mx-auto">
@@ -247,7 +247,7 @@ export default function ModernPortfolioPage() {
                 placeholder="Search projects, locations, clients..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-4 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-gray-900 placeholder-gray-500 text-lg"
+                className="w-full pl-12 pr-4 py-4 bg-black border border-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-white placeholder-gray-400 text-lg transition-all duration-300"
               />
             </div>
           </div>
@@ -256,7 +256,7 @@ export default function ModernPortfolioPage() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <button
               onClick={() => setShowFilters(!showFilters)}
-              className="md:hidden flex items-center gap-2 px-6 py-3 border-2 border-gray-300 rounded-lg hover:bg-gray-50"
+              className="md:hidden flex items-center gap-2 px-6 py-3 bg-black border border-gray-700 rounded-lg hover:bg-gray-800 text-white transition-all duration-300"
             >
               <Filter className="w-5 h-5" />
               Filters
@@ -266,7 +266,7 @@ export default function ModernPortfolioPage() {
               <select
                 value={locationFilter}
                 onChange={(e) => setLocationFilter(e.target.value)}
-                className="px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 min-w-48"
+                className="px-4 py-3 bg-black border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 text-white min-w-48 appearance-none cursor-pointer"
               >
                 <option value="all">All Locations</option>
                 {locations.map(location => (
@@ -277,7 +277,7 @@ export default function ModernPortfolioPage() {
               <select
                 value={areaFilter}
                 onChange={(e) => setAreaFilter(e.target.value)}
-                className="px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 min-w-40"
+                className="px-4 py-3 bg-black border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 text-white min-w-40 appearance-none cursor-pointer"
               >
                 <option value="all">All Areas</option>
                 {areas.map(area => (
@@ -286,19 +286,20 @@ export default function ModernPortfolioPage() {
               </select>
             </div>
 
-            <div className="text-gray-700 font-semibold">
-              <span className="text-purple-600">{filteredPortfolios.length}</span> project{filteredPortfolios.length !== 1 ? 's' : ''} found
+            <div className="bg-gray-800 px-6 py-3 rounded-lg border border-gray-700">
+              <span className="text-blue-400 font-bold text-lg">{filteredPortfolios.length}</span>
+              <span className="text-gray-300 ml-2">project{filteredPortfolios.length !== 1 ? 's' : ''} found</span>
             </div>
           </div>
 
           {/* Mobile Filters */}
           {showFilters && (
-            <div className="md:hidden mt-6 pt-6 border-t border-gray-200">
+            <div className="md:hidden mt-6 pt-6 border-t border-gray-700">
               <div className="grid grid-cols-1 gap-4">
                 <select
                   value={locationFilter}
                   onChange={(e) => setLocationFilter(e.target.value)}
-                  className="px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500"
+                  className="px-4 py-3 bg-black border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 text-white"
                 >
                   <option value="all">All Locations</option>
                   {locations.map(location => (
@@ -309,7 +310,7 @@ export default function ModernPortfolioPage() {
                 <select
                   value={areaFilter}
                   onChange={(e) => setAreaFilter(e.target.value)}
-                  className="px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500"
+                  className="px-4 py-3 bg-black border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 text-white"
                 >
                   <option value="all">All Areas</option>
                   {areas.map(area => (
@@ -326,11 +327,11 @@ export default function ModernPortfolioPage() {
       <div className="max-w-7xl mx-auto px-4 py-12">
         {filteredPortfolios.length === 0 ? (
           <div className="text-center py-20">
-            <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <div className="w-24 h-24 bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-8 border border-gray-700">
               <Search className="w-12 h-12 text-gray-400" />
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">No Projects Found</h3>
-            <p className="text-gray-600 text-lg">Try adjusting your search or filters to find more projects</p>
+            <h3 className="text-3xl font-bold text-white mb-4">No Projects Found</h3>
+            <p className="text-gray-400 text-xl mb-8 max-w-md mx-auto">Try adjusting your search or filters to discover more amazing projects</p>
             {(searchQuery || locationFilter !== 'all' || areaFilter !== 'all') && (
               <button
                 onClick={() => {
@@ -338,14 +339,14 @@ export default function ModernPortfolioPage() {
                   setLocationFilter('all');
                   setAreaFilter('all');
                 }}
-                className="mt-6 px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 font-semibold"
+                className="px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl hover:from-blue-700 hover:to-blue-800 font-semibold transition-all duration-300 hover:scale-105 shadow-lg"
               >
                 Clear All Filters
               </button>
             )}
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
             {filteredPortfolios.map((portfolio, index) => (
               <PortfolioCard
                 key={portfolio.id}
@@ -359,16 +360,16 @@ export default function ModernPortfolioPage() {
         )}
       </div>
 
-      {/* Lightbox */}
+      {/* Enhanced Lightbox */}
       {lightboxOpen && lightboxImages.length > 0 && (
         <div
-          className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-black/98 z-50 flex items-center justify-center p-4 backdrop-blur-sm"
           onClick={closeLightbox}
         >
           <div className="relative max-w-6xl max-h-full" onClick={(e) => e.stopPropagation()}>
             <button
               onClick={closeLightbox}
-              className="absolute -top-16 right-0 text-white hover:text-gray-300 p-2 bg-white/10 rounded-full"
+              className="absolute -top-16 right-0 text-white hover:text-gray-300 p-3 bg-gray-800/80 backdrop-blur-md rounded-full border border-gray-700 transition-all duration-300 hover:scale-110"
             >
               <X size={24} />
             </button>
@@ -378,14 +379,14 @@ export default function ModernPortfolioPage() {
                 <button
                   onClick={prevLightboxImage}
                   disabled={currentImageIndex === 0}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 disabled:opacity-50 p-3 bg-white/10 rounded-full"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 disabled:opacity-30 p-4 bg-gray-800/80 backdrop-blur-md rounded-full border border-gray-700 transition-all duration-300 hover:scale-110 disabled:hover:scale-100"
                 >
                   <ChevronLeft size={32} />
                 </button>
                 <button
                   onClick={nextLightboxImage}
                   disabled={currentImageIndex === lightboxImages.length - 1}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 disabled:opacity-50 p-3 bg-white/10 rounded-full"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 disabled:opacity-30 p-4 bg-gray-800/80 backdrop-blur-md rounded-full border border-gray-700 transition-all duration-300 hover:scale-110 disabled:hover:scale-100"
                 >
                   <ChevronRight size={32} />
                 </button>
@@ -395,12 +396,14 @@ export default function ModernPortfolioPage() {
             <img
               src={lightboxImages[currentImageIndex]}
               alt="Portfolio image"
-              className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+              className="max-w-full max-h-full object-contain rounded-2xl shadow-2xl border border-gray-700"
             />
 
             {lightboxImages.length > 1 && (
-              <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 text-white bg-white/10 px-4 py-2 rounded-full">
-                {currentImageIndex + 1} / {lightboxImages.length}
+              <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 text-white bg-gray-800/90 backdrop-blur-md px-6 py-3 rounded-full border border-gray-700">
+                <span className="font-semibold">{currentImageIndex + 1}</span>
+                <span className="text-gray-400 mx-2">/</span>
+                <span className="text-gray-300">{lightboxImages.length}</span>
               </div>
             )}
           </div>
@@ -410,7 +413,7 @@ export default function ModernPortfolioPage() {
   );
 }
 
-// Portfolio Card Component
+// Enhanced Portfolio Card Component
 interface PortfolioCardProps {
   portfolio: SimplePortfolio;
   getImageUrl: (url: string) => string;
@@ -441,67 +444,77 @@ const PortfolioCard: React.FC<PortfolioCardProps> = ({
   const projectName = portfolio.name || portfolio.title || `Project ${portfolio.id}`;
 
   return (
-    <div className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300 group">
+    <div className="bg-gray-900/90 backdrop-blur-sm rounded-2xl border border-gray-800 overflow-hidden hover:border-gray-600 transition-all duration-500 group hover:scale-105 hover:shadow-2xl">
       {/* Main Image */}
       {mainImage?.url && (
         <div 
-          className="relative aspect-[4/3] bg-gray-100 cursor-pointer overflow-hidden" 
+          className="relative aspect-[4/3] bg-gray-800 cursor-pointer overflow-hidden" 
           onClick={() => onImageClick(mainImage.url, allImageUrls)}
         >
           <Image
             src={getImageUrl(mainImage.url)}
             alt={projectName}
             fill
-            className="object-cover group-hover:scale-105 transition-transform duration-300"
+            className="object-cover group-hover:scale-110 transition-transform duration-700"
           />
           
           {/* Hover Overlay */}
-          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
-            <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <div className="bg-white/90 p-4 rounded-full shadow-lg">
-                <Eye size={24} className="text-gray-800" />
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-500 flex items-center justify-center">
+            <div className="opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+              <div className="bg-white/10 backdrop-blur-md p-4 rounded-full shadow-2xl border border-white/20">
+                <Eye size={28} className="text-white" />
               </div>
             </div>
           </div>
 
           {/* Image Count */}
           {allImageUrls.length > 1 && (
-            <div className="absolute top-3 right-3 bg-black/70 text-white px-3 py-1.5 rounded-full text-sm font-medium">
+            <div className="absolute top-3 right-3 bg-black/80 backdrop-blur-md text-white px-3 py-1.5 rounded-full text-sm font-semibold border border-white/20">
               +{allImageUrls.length - 1}
             </div>
           )}
+
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
         </div>
       )}
 
       {/* Content */}
       <div className="p-6">
-        <h3 className="font-bold text-xl text-gray-900 mb-3 line-clamp-2">
+        <h3 className="font-bold text-xl text-white mb-3 line-clamp-2 group-hover:text-blue-400 transition-colors">
           {projectName}
         </h3>
 
         {portfolio.description && (
-          <p className="text-gray-600 mb-4 line-clamp-3 leading-relaxed">
+          <p className="text-gray-300 mb-4 line-clamp-3 leading-relaxed text-sm">
             {portfolio.description}
           </p>
         )}
 
         {/* Details */}
-        <div className="space-y-2 text-sm text-gray-500 mb-4">
+        <div className="space-y-3 text-sm mb-6">
           {portfolio.client_name && (
-            <div className="flex items-center gap-2">
-              <Home className="w-4 h-4 text-purple-500" />
-              <span className="font-medium">{portfolio.client_name}</span>
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 bg-purple-500/20 rounded-lg flex items-center justify-center border border-purple-500/30">
+                <Home className="w-4 h-4 text-purple-400" />
+              </div>
+              <span className="text-gray-300 font-medium">{portfolio.client_name}</span>
             </div>
           )}
           {portfolio.location && (
-            <div className="flex items-center gap-2">
-              <MapPin className="w-4 h-4 text-blue-500" />
-              <span className="font-medium">{portfolio.location}</span>
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 bg-blue-500/20 rounded-lg flex items-center justify-center border border-blue-500/30">
+                <MapPin className="w-4 h-4 text-blue-400" />
+              </div>
+              <span className="text-gray-300 font-medium">{portfolio.location}</span>
             </div>
           )}
           {(portfolio.area || portfolio.area_size) && (
-            <div className="flex items-center gap-2">
-              <span className="font-medium">📐 {portfolio.area || `${portfolio.area_size} sq ft`}</span>
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 bg-green-500/20 rounded-lg flex items-center justify-center border border-green-500/30">
+                <Grid className="w-4 h-4 text-green-400" />
+              </div>
+              <span className="text-gray-300 font-medium">{portfolio.area || `${portfolio.area_size} sq ft`}</span>
             </div>
           )}
         </div>
@@ -509,7 +522,7 @@ const PortfolioCard: React.FC<PortfolioCardProps> = ({
         {/* View Project Button */}
         <Link
           href={`/portfolio/${portfolio.slug || portfolio.id}`}
-          className="block w-full text-center px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-xl hover:from-purple-700 hover:to-indigo-700 transition-all duration-200 hover:scale-105 shadow-lg"
+          className="block w-full text-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-blue-500/25"
         >
           View Full Project
         </Link>
