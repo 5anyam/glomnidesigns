@@ -107,36 +107,60 @@ const isOfficeCategory = (category: Category): boolean => {
   );
 };
 
-// Touch/Swipe Hook for Mobile
+// Enhanced Touch/Swipe Hook with Better Scroll Prevention
 const useTouch = () => {
   const [touchStart, setTouchStart] = useState<number>(0);
   const [touchEnd, setTouchEnd] = useState<number>(0);
+  const [touchStartY, setTouchStartY] = useState<number>(0);
+  const [touchEndY, setTouchEndY] = useState<number>(0);
 
   const minSwipeDistance = 50;
+  const maxVerticalDistance = 100; // Allow some vertical movement
 
   const onTouchStart = (e: React.TouchEvent) => {
-    setTouchEnd(0); // Reset
+    setTouchEnd(0);
+    setTouchEndY(0);
     setTouchStart(e.targetTouches[0].clientX);
+    setTouchStartY(e.targetTouches[0].clientY);
   };
 
   const onTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
+    const currentX = e.targetTouches[0].clientX;
+    const currentY = e.targetTouches[0].clientY;
+    
+    setTouchEnd(currentX);
+    setTouchEndY(currentY);
+
+    // Calculate movement distances
+    const horizontalDistance = Math.abs(touchStart - currentX);
+    const verticalDistance = Math.abs(touchStartY - currentY);
+
+    // If horizontal movement is greater than vertical, prevent default to stop page scroll
+    if (horizontalDistance > verticalDistance && horizontalDistance > 20) {
+      e.preventDefault();
+    }
   };
 
   const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
+    if (!touchStart || !touchEnd) return null;
     
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
+    const horizontalDistance = touchStart - touchEnd;
+    const verticalDistance = Math.abs(touchStartY - (touchEndY || touchStartY));
+    
+    // Only trigger swipe if horizontal movement is significant and vertical is minimal
+    if (Math.abs(horizontalDistance) > minSwipeDistance && verticalDistance < maxVerticalDistance) {
+      const isLeftSwipe = horizontalDistance > 0;
+      const isRightSwipe = horizontalDistance < 0;
+      return { isLeftSwipe, isRightSwipe };
+    }
 
-    return { isLeftSwipe, isRightSwipe };
+    return null;
   };
 
   return { onTouchStart, onTouchMove, onTouchEnd };
 };
 
-// Category Carousel Component with Touch Support
+// Category Carousel Component with Enhanced Touch Support
 interface CategoryCarouselProps {
   category: CategoryWithDesigns;
   getImageUrl: (url: string) => string;
@@ -149,7 +173,7 @@ const CategoryCarousel: React.FC<CategoryCarouselProps> = ({ category, getImageU
   const [isAtStart, setIsAtStart] = useState<boolean>(true);
   const [isAtEnd, setIsAtEnd] = useState<boolean>(false);
 
-  // Touch functionality
+  // Enhanced touch functionality
   const { onTouchStart, onTouchMove, onTouchEnd } = useTouch();
 
   // Show only first 6 designs for carousel
@@ -192,7 +216,7 @@ const CategoryCarousel: React.FC<CategoryCarouselProps> = ({ category, getImageU
     }
   };
 
-  // Handle touch end with swipe detection
+  // Enhanced touch end with better swipe detection
   const handleTouchEnd = () => {
     const swipeResult = onTouchEnd();
     if (swipeResult) {
@@ -243,18 +267,18 @@ const CategoryCarousel: React.FC<CategoryCarouselProps> = ({ category, getImageU
           </p>
         </div>
         
-        {/* View More Button - Mobile Optimized */}
+        {/* Enhanced View More Button - Smaller on Mobile */}
         <Link
           href={`/design-ideas?category=${category.slug}`}
-          className="group flex items-center gap-1 md:gap-2 px-3 py-2 md:px-6 md:py-3 bg-gradient-to-r from-blue-600/20 to-purple-600/20 hover:from-blue-600/30 hover:to-purple-600/30 text-blue-400 hover:text-blue-300 rounded-lg md:rounded-xl border border-blue-500/30 hover:border-blue-400/50 transition-all duration-300 text-xs sm:text-sm md:text-base font-semibold whitespace-nowrap"
+          className="group flex items-center gap-1 px-2 py-1.5 sm:px-3 sm:py-2 md:px-6 md:py-3 bg-gradient-to-r from-blue-600/20 to-purple-600/20 hover:from-blue-600/30 hover:to-purple-600/30 text-blue-400 hover:text-blue-300 rounded-lg md:rounded-xl border border-blue-500/30 hover:border-blue-400/50 transition-all duration-300 text-xs md:text-base font-semibold whitespace-nowrap hover:scale-105"
         >
           <span className="hidden sm:inline">View More</span>
-          <span className="sm:hidden">More</span>
-          <ArrowRight className="w-3 h-3 md:w-4 md:h-4 group-hover:translate-x-1 transition-transform duration-300" />
+          <span className="sm:hidden text-xs">More</span>
+          <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-0.5 transition-transform duration-300" />
         </Link>
       </div>
 
-      {/* Carousel Container with Touch Support */}
+      {/* Carousel Container with Enhanced Touch Support */}
       <div className="relative">
         {/* Navigation Arrows - Desktop Only */}
         <button
@@ -281,11 +305,11 @@ const CategoryCarousel: React.FC<CategoryCarouselProps> = ({ category, getImageU
           <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
         </button>
 
-        {/* Carousel Track with Touch Events */}
+        {/* Carousel Track with Enhanced Touch Events */}
         <div className="overflow-hidden rounded-xl md:rounded-2xl">
           <div
             ref={carouselRef}
-            className="flex transition-transform duration-500 ease-out"
+            className="flex transition-transform duration-500 ease-out touch-pan-x"
             style={{
               transform: `translateX(-${(currentIndex * 100) / cardsPerView}%)`
             }}
@@ -353,7 +377,7 @@ const DesignCard: React.FC<DesignCardProps> = ({ design, getImageUrl, isLiked, o
   const getTruncatedDescription = (text: string | undefined): string => {
     if (!text) return '';
     // Mobile: 40 chars, Desktop: 80 chars
-    const limit = window.innerWidth < 768 ? 40 : 80;
+    const limit = typeof window !== 'undefined' && window.innerWidth < 768 ? 40 : 80;
     if (text.length <= limit) return text;
     return text.substring(0, limit).trim() + '...';
   };
