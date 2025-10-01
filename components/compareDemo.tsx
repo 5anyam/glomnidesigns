@@ -33,7 +33,7 @@ export function CompareDemo() {
   ];
 
   return (
-    <div className="py-16 bg-black text-white min-h-screen">
+    <div className="py-16 bg-white dark:bg-gray-950 min-h-screen transition-colors">
       {/* Header Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -42,27 +42,27 @@ export function CompareDemo() {
           className="text-center mb-16"
         >
           <div className="flex items-center justify-center gap-3 mb-6">
-            <Sparkles className="w-8 h-8 text-blue-400" />
-            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400 py-2 bg-clip-text text-transparent">
-              Compare Our Projects and Designs
+            <Sparkles className="w-6 h-6 md:w-8 md:h-8 text-red-400" />
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white">
+              Before & After Transformations
             </h2>
-            <Sparkles className="w-8 h-8 text-purple-400" />
+            <Sparkles className="w-6 h-6 md:w-8 md:h-8 text-red-400" />
           </div>
           
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
             Witness the incredible transformations we've achieved for our clients. 
-            Slide to see the before and after of our stunning interior design projects.
+            Hover or slide to see the before and after of our stunning interior design projects.
           </p>
           
-          <div className="mt-8 inline-flex items-center gap-2 bg-gray-800/50 border border-gray-700 px-6 py-3 rounded-full">
-            <Eye className="w-5 h-5 text-blue-400" />
-            <span className="text-gray-300">Hover to Compare</span>
-            <ArrowRight className="w-4 h-4 text-gray-400" />
+          <div className="mt-8 inline-flex items-center gap-2 bg-red-400/10 border-2 border-red-400/30 px-6 py-3 rounded-full">
+            <Eye className="w-5 h-5 text-red-400" />
+            <span className="text-gray-700 dark:text-gray-300 font-medium">Hover to Compare</span>
+            <ArrowRight className="w-4 h-4 text-red-400" />
           </div>
         </motion.div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-10">
           {projects.map((project, index) => (
             <motion.div
               key={project.id}
@@ -72,11 +72,11 @@ export function CompareDemo() {
               className="group"
             >
               {/* Project Card */}
-              <div className="bg-gray-900/60 border border-gray-700/50 rounded-3xl overflow-hidden shadow-2xl hover:shadow-purple-500/20 hover:border-purple-500/30 transition-all duration-500 backdrop-blur-sm">
+              <div className="bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-800 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl hover:border-red-400 dark:hover:border-red-400 transition-all duration-500">
                 
                 {/* Category Badge */}
                 <div className="p-4 pb-0">
-                  <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-purple-600 px-4 py-2 rounded-full text-sm font-bold text-white">
+                  <div className="inline-flex items-center gap-2 bg-red-400 px-4 py-2 rounded-full text-sm font-bold text-white shadow-lg">
                     <Sparkles className="w-4 h-4" />
                     {project.category}
                   </div>
@@ -84,7 +84,7 @@ export function CompareDemo() {
 
                 {/* Compare Component */}
                 <div className="p-4">
-                  <div className="relative rounded-2xl overflow-hidden">
+                  <div className="relative rounded-xl overflow-hidden border-2 border-gray-200 dark:border-gray-800">
                     <Compare
                       firstImage={project.beforeImage}
                       secondImage={project.afterImage}
@@ -95,10 +95,10 @@ export function CompareDemo() {
                     />
                     
                     {/* Before/After Labels */}
-                    <div className="absolute top-4 left-4 bg-black/70 text-white px-3 py-1 rounded-full text-xs font-bold">
+                    <div className="absolute top-4 left-4 bg-gray-900/90 text-white px-3 py-1.5 rounded-full text-xs font-bold border-2 border-gray-700">
                       BEFORE
                     </div>
-                    <div className="absolute top-4 right-4 bg-blue-600/90 text-white px-3 py-1 rounded-full text-xs font-bold">
+                    <div className="absolute top-4 right-4 bg-red-400 text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-lg">
                       AFTER
                     </div>
                   </div>
@@ -106,17 +106,17 @@ export function CompareDemo() {
 
                 {/* Project Details */}
                 <div className="p-6 pt-0">
-                  <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
+                  <h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-red-400 transition-colors">
                     {project.title}
                   </h3>
-                  <p className="text-gray-400 mb-4 leading-relaxed">
+                  <p className="text-gray-600 dark:text-gray-400 mb-5 leading-relaxed">
                     {project.description}
                   </p>
                   
                   {/* View Project Button */}
-                  <button className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 hover:scale-105 shadow-lg">
+                  <button className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-red-400 hover:bg-red-500 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
                     <Eye className="w-4 h-4" />
-                    View Full Project
+                    <span>View Full Project</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </button>
                 </div>
@@ -132,20 +132,20 @@ export function CompareDemo() {
           transition={{ delay: 0.8 }}
           className="mt-16 text-center"
         >
-          <div className="bg-gradient-to-r from-gray-900 to-gray-800 border border-gray-700 rounded-3xl p-8 shadow-2xl">
-            <h3 className="text-3xl font-bold text-white mb-4">
+          <div className="bg-gray-50 dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-800 rounded-2xl p-8 md:p-12 shadow-lg">
+            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
               Ready for Your Own Transformation?
             </h3>
-            <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
+            <p className="text-gray-600 dark:text-gray-400 text-base md:text-lg mb-8 max-w-2xl mx-auto leading-relaxed">
               Let our expert designers create a stunning makeover for your space. 
               Every project is unique, just like your vision.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
-              <button className="flex-1 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl">
+              <button className="flex-1 px-6 md:px-8 py-3 md:py-4 bg-red-400 hover:bg-red-500 text-white font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
                 Get Free Quote
               </button>
-              <button className="flex-1 px-8 py-4 border-2 border-gray-600 text-white font-bold rounded-xl hover:bg-gray-800 hover:border-purple-500 transition-all">
+              <button className="flex-1 px-6 md:px-8 py-3 md:py-4 border-2 border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white font-bold rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 hover:border-red-400 transition-all duration-300">
                 View Portfolio
               </button>
             </div>

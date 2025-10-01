@@ -1,12 +1,13 @@
 "use client"
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { PlaceholdersAndVanishInputDemo } from "./search";
 import { NavbarModal } from "./navmodal";
 
 // Define the type for dropdown values
-type DropdownType = 'design' | 'more' | null;
+type DropdownType = 'office' | 'more' | null;
 
 export const Navbar = () => {
   const [activeDropdown, setActiveDropdown] = useState<DropdownType>(null);
@@ -24,36 +25,26 @@ export const Navbar = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  // Updated design categories with proper structure
-  const designCategories = [
+  // Office Designs categories with cowork and personal office structure
+  const officeDesignCategories = [
     {
-      title: "Home Interior",
+      title: "Coworking Offices",
       items: [
-        { label: "Living Room", href: "https://www.glomnidesigns.com/category/living-room" },
-        { label: "Bedroom", href: "https://www.glomnidesigns.com/category/bedroom" },
-        { label: "Kitchen", href: "https://www.glomnidesigns.com/category/kitchen" },
-        { label: "Bathroom", href: "https://www.glomnidesigns.com/category/bathroom" },
-        { label: "Dining Room", href: "https://www.glomnidesigns.com/category/dining-room" }
+        { label: "Open Workspace", href: "/office-designs/coworking/open-workspace", icon: "🤝" },
+        { label: "Hot Desking", href: "/office-designs/coworking/hot-desking", icon: "💼" },
+        { label: "Private Cabins", href: "/office-designs/coworking/private-cabins", icon: "🚪" },
+        { label: "Meeting Rooms", href: "/office-designs/coworking/meeting-rooms", icon: "👥" },
+        { label: "Lounge Area", href: "/office-designs/coworking/lounge", icon: "☕" }
       ]
     },
     {
-      title: "Office Spaces",
+      title: "Personal Offices",
       items: [
-        { label: "Corporate Office", href: "https://www.glomnidesigns.com/category/corporate-office" },
-        { label: "Home Office", href: "https://www.glomnidesigns.com/category/home-office" },
-        { label: "Meeting Rooms", href: "https://www.glomnidesigns.com/category/meeting-rooms" },
-        { label: "Reception Area", href: "https://www.glomnidesigns.com/category/reception-area" },
-        { label: "Co-working Space", href: "https://www.glomnidesigns.com/category/coworking-space" }
-      ]
-    },
-    {
-      title: "Data Centers",
-      items: [
-        { label: "Server Rooms", href: "https://www.glomnidesigns.com/category/server-rooms" },
-        { label: "Control Centers", href: "https://www.glomnidesigns.com/category/control-centers" },
-        { label: "Network Operations", href: "https://www.glomnidesigns.com/category/network-operations" },
-        { label: "Cloud Infrastructure", href: "https://www.glomnidesigns.com/category/cloud-infrastructure" },
-        { label: "Security Centers", href: "https://www.glomnidesigns.com/category/security-centers" }
+        { label: "Executive Office", href: "/office-designs/personal/executive", icon: "👔" },
+        { label: "Home Office", href: "/office-designs/personal/home-office", icon: "🏠" },
+        { label: "Creative Studio", href: "/office-designs/personal/creative", icon: "🎨" },
+        { label: "Tech Workspace", href: "/office-designs/personal/tech", icon: "⚡" },
+        { label: "Medical Office", href: "/office-designs/personal/medical", icon: "🏥" }
       ]
     }
   ];
@@ -67,53 +58,62 @@ export const Navbar = () => {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 bg-gray-900 backdrop-blur-md border-b border-gray-700">
+    <nav className="sticky top-0 z-50 bg-white/95 dark:bg-gray-950/95 backdrop-blur-xl border-b border-gray-200 dark:border-gray-800 shadow-sm dark:shadow-gray-900/50 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-sm">G</span>
+            <Link href="/" className="flex items-center group">
+              <div className="relative w-auto h-12 transition-all duration-300 group-hover:scale-105">
+                <Image
+                  src="/logo.png"
+                  alt="Glomni Designs"
+                  width={118}
+                  height={118}
+                  className="object-contain group-hover:opacity-80 transition-opacity"
+                  priority
+                />
               </div>
-              <h1 className="font-bold text-xl text-white">Glomni Designs</h1>
             </Link>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-8">
-            {/* Design Ideas Dropdown with Categories */}
+          <div className="hidden lg:flex items-center gap-2">
+            {/* Office Designs Dropdown */}
             <div 
               className="relative"
-              onMouseEnter={() => handleMouseEnter('design')}
+              onMouseEnter={() => handleMouseEnter('office')}
               onMouseLeave={handleMouseLeave}
             >
               <Link 
-                href="/design-ideas"
-                className="flex items-center gap-1 px-3 py-2 text-gray-300 hover:text-white font-medium transition-colors"
+                href="/office-designs"
+                className="flex items-center gap-1.5 px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium transition-all hover:bg-gray-100 dark:hover:bg-gray-800/60 rounded-lg"
               >
-                Design Ideas
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                Office Designs
+                <svg className="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </Link>
               
-              {activeDropdown === 'design' && (
-                <div className="absolute top-full left-0 mt-1 w-96 bg-gray-800 border border-gray-700 rounded-lg shadow-xl py-4">
-                  <div className="grid grid-cols-3 gap-4 px-4">
-                    {designCategories.map((category) => (
-                      <div key={category.title} className="space-y-2">
-                        <h3 className="font-semibold text-white text-sm border-b border-gray-600 pb-1">
+              {activeDropdown === 'office' && (
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[520px] bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl shadow-xl dark:shadow-2xl dark:shadow-black/40 p-6 animate-in fade-in slide-in-from-top-2 duration-200">
+                  <div className="grid grid-cols-2 gap-6">
+                    {officeDesignCategories.map((category) => (
+                      <div key={category.title} className="space-y-3">
+                        <h3 className="font-bold text-gray-900 dark:text-white text-sm uppercase tracking-wide border-b border-gray-200 dark:border-gray-700 pb-2 mb-3">
                           {category.title}
                         </h3>
-                        <div className="space-y-1">
+                        <div className="space-y-1.5">
                           {category.items.map((item) => (
                             <Link
                               key={item.label}
                               href={item.href}
-                              className="block px-2 py-1 text-xs text-gray-300 hover:text-white hover:bg-gray-700 rounded transition-colors"
+                              className="group flex items-center gap-3 px-3 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200"
                             >
-                              {item.label}
+                              <span className="text-xl group-hover:scale-110 transition-transform">
+                                {item.icon}
+                              </span>
+                              <span className="font-medium">{item.label}</span>
                             </Link>
                           ))}
                         </div>
@@ -122,13 +122,13 @@ export const Navbar = () => {
                   </div>
                   
                   {/* View All Link */}
-                  <div className="border-t border-gray-600 mt-4 pt-3 px-4">
+                  <div className="border-t border-gray-200 dark:border-gray-700 mt-6 pt-4">
                     <Link
-                      href="/design-ideas"
-                      className="inline-flex items-center gap-2 text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors"
+                      href="/office-designs"
+                      className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors group"
                     >
-                      <span>View All Design Ideas</span>
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <span>View All Design Categories</span>
+                      <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                       </svg>
                     </Link>
@@ -137,28 +137,29 @@ export const Navbar = () => {
               )}
             </div>
 
-            {/* Portfolio Link */}
+            {/* Home Designs Link */}
             <Link
-              href="/portfolio"
-              className="px-3 py-2 text-gray-300 hover:text-white font-medium transition-colors"
+              href="/home-designs"
+              className="px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium transition-all hover:bg-gray-100 dark:hover:bg-gray-800/60 rounded-lg"
             >
-              Portfolio
+              Home Designs
             </Link>
 
-            {/* Generate AI Designs with Offer Sticker */}
-            <div className="relative">
-              <Link
-                href="/ai-designs"
-                className="px-3 py-2 text-gray-300 hover:text-white font-medium transition-colors relative"
-              >
-                Generate AI Designs
-                {/* Animated Offer Sticker */}
-                <div className="absolute -top-2 -right-2 bg-gradient-to-r from-yellow-400 to-orange-500 text-black text-xs font-bold px-2 py-1 rounded-full shadow-lg animate-pulse">
-                  <span className="relative text-[.5rem] z-10">NEW</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-yellow-300 to-orange-400 rounded-full animate-ping opacity-75"></div>
-                </div>
-              </Link>
-            </div>
+            {/* Data Center Link */}
+            <Link
+              href="/data-center"
+              className="px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium transition-all hover:bg-gray-100 dark:hover:bg-gray-800/60 rounded-lg"
+            >
+              Data Center
+            </Link>
+
+            {/* Construction Link */}
+            <Link
+              href="/construction"
+              className="px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium transition-all hover:bg-gray-100 dark:hover:bg-gray-800/60 rounded-lg"
+            >
+              Construction
+            </Link>
 
             {/* More Dropdown */}
             <div 
@@ -166,19 +167,19 @@ export const Navbar = () => {
               onMouseEnter={() => handleMouseEnter('more')}
               onMouseLeave={handleMouseLeave}
             >
-              <button className="flex items-center gap-1 px-3 py-2 text-gray-300 hover:text-white font-medium transition-colors">
+              <button className="flex items-center gap-1.5 px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium transition-all hover:bg-gray-100 dark:hover:bg-gray-800/60 rounded-lg">
                 More
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
               {activeDropdown === 'more' && (
-                <div className="absolute top-full left-0 mt-1 w-48 bg-gray-800 border border-gray-700 rounded-lg shadow-lg py-2">
+                <div className="absolute top-full right-0 mt-2 w-56 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl shadow-xl dark:shadow-2xl dark:shadow-black/40 py-2 animate-in fade-in slide-in-from-top-2 duration-200">
                   {moreItems.map((item) => (
                     <Link
                       key={item.label}
                       href={item.href}
-                      className="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-gray-700 transition-colors"
+                      className="block px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
                     >
                       {item.label}
                     </Link>
@@ -189,19 +190,22 @@ export const Navbar = () => {
           </div>
 
           {/* Right side items */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             {/* Search - Hidden on mobile */}
             <div className="hidden sm:block">
               <PlaceholdersAndVanishInputDemo />
             </div>
 
-            {/* Theme Switch
-            <ThemeSwitch /> */}
+            {/* Theme Switch */}
+            <div className="flex items-center">
+              <ThemeSwitch />
+            </div>
 
             {/* Mobile menu button */}
             <button
               onClick={toggleMobileMenu}
-              className="lg:hidden p-2 text-gray-300 hover:text-white"
+              className="lg:hidden p-2.5 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800/60 rounded-lg transition-all"
+              aria-label="Toggle menu"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 {isMobileMenuOpen ? (
@@ -217,82 +221,91 @@ export const Navbar = () => {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden bg-gray-800 border-t border-gray-700">
-          <div className="px-4 py-4 space-y-4">
+        <div className="lg:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
+          <div className="max-h-[80vh] overflow-y-auto px-4 py-6 space-y-6">
             {/* Search on mobile */}
-            <div className="sm:hidden">
+            <div className="sm:hidden pb-4 border-b border-gray-200 dark:border-gray-800">
               <PlaceholdersAndVanishInputDemo />
             </div>
 
-            {/* Design Ideas - Mobile Categories */}
-            <div>
-              <Link 
-                href="/design-ideas"
-                className="font-medium text-white mb-2 hover:text-gray-300 transition-colors flex items-center justify-between"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Design Ideas
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </Link>
-              
-              <div className="pl-4 space-y-3">
-                {designCategories.map((category) => (
-                  <div key={category.title} className="space-y-2">
-                    <h4 className="text-sm font-semibold text-gray-400">
-                      {category.title}
-                    </h4>
-                    <div className="pl-2 space-y-1">
-                      {category.items.slice(0, 3).map((item) => (
-                        <Link
-                          key={item.label}
-                          href={item.href}
-                          className="block text-sm text-gray-300 hover:text-white transition-colors"
-                          onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                          {item.label}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                ))}
+            {/* Office Designs - Mobile */}
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <h3 className="font-bold text-gray-900 dark:text-white text-lg">Office Designs</h3>
+                <Link 
+                  href="/office-designs"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
               </div>
+              
+              {officeDesignCategories.map((category) => (
+                <div key={category.title} className="space-y-3">
+                  <h4 className="text-sm font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide">
+                    {category.title}
+                  </h4>
+                  <div className="grid grid-cols-2 gap-3">
+                    {category.items.map((item) => (
+                      <Link
+                        key={item.label}
+                        href={item.href}
+                        className="flex flex-col items-center gap-2 p-4 bg-gray-50 dark:bg-gray-800/50 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl transition-all active:scale-95 border border-gray-200 dark:border-gray-800"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        <span className="text-3xl">{item.icon}</span>
+                        <span className="text-xs text-center text-gray-700 dark:text-gray-300 font-medium">
+                          {item.label}
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
 
-            {/* Portfolio */}
-            <Link
-              href="/portfolio"
-              className="block font-medium text-white hover:text-gray-300 transition-colors"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Portfolio
-            </Link>
-
-            {/* Generate AI Designs with Mobile Sticker */}
-            <div className="relative">
+            {/* Other Menu Items */}
+            <div className="space-y-3 pt-4 border-t border-gray-200 dark:border-gray-800">
               <Link
-                href="/ai-designs"
-                className="block font-medium text-white hover:text-gray-300 transition-colors relative"
+                href="/home-designs"
+                className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-800/50 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl transition-all active:scale-95 border border-gray-200 dark:border-gray-800"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Generate AI Designs
-                {/* Mobile Offer Sticker */}
-                <span className="absolute -top-1 -right-1 bg-gradient-to-r from-yellow-400 to-orange-500 text-black text-xs font-bold px-2 py-1 rounded-full shadow-lg animate-pulse">
-                  NEW
-                </span>
+                <span className="text-2xl">🏡</span>
+                <span className="font-medium text-gray-900 dark:text-white">Home Designs</span>
+              </Link>
+
+              <Link
+                href="/data-center"
+                className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-800/50 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl transition-all active:scale-95 border border-gray-200 dark:border-gray-800"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <span className="text-2xl">💾</span>
+                <span className="font-medium text-gray-900 dark:text-white">Data Center</span>
+              </Link>
+
+              <Link
+                href="/construction"
+                className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-800/50 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl transition-all active:scale-95 border border-gray-200 dark:border-gray-800"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <span className="text-2xl">🏗️</span>
+                <span className="font-medium text-gray-900 dark:text-white">Construction</span>
               </Link>
             </div>
 
             {/* More Items */}
-            <div>
-              <div className="font-medium text-white mb-2">More</div>
-              <div className="pl-4 space-y-2">
+            <div className="space-y-3 pt-4 border-t border-gray-200 dark:border-gray-800">
+              <h4 className="text-sm font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide">More</h4>
+              <div className="grid grid-cols-2 gap-3">
                 {moreItems.map((item) => (
                   <Link
                     key={item.label}
                     href={item.href}
-                    className="block text-gray-300 hover:text-white transition-colors"
+                    className="p-3 text-center bg-gray-50 dark:bg-gray-800/30 hover:bg-gray-100 dark:hover:bg-gray-800/50 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all active:scale-95 border border-gray-200 dark:border-gray-800"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {item.label}
@@ -302,9 +315,11 @@ export const Navbar = () => {
             </div>
 
             {/* CTA Button on mobile */}
-            <button className="w-full mt-4 px-4 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition-colors">
-              <span className="bg-red-500 text-white px-2 py-1 rounded text-xs mr-2">NEW</span>
-              Talk To Expert
+            <button 
+              className="w-full mt-6 px-6 py-4 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 dark:from-blue-500 dark:to-blue-600 dark:hover:from-blue-600 dark:hover:to-blue-700 text-white rounded-xl font-semibold transition-all shadow-lg hover:shadow-xl active:scale-95 flex items-center justify-center gap-2"
+            >
+              <span className="bg-green-500 text-white px-2 py-1 rounded text-xs font-bold">FREE</span>
+              <span>Get Consultation</span>
             </button>
           </div>
         </div>
