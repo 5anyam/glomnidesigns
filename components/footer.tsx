@@ -1,4 +1,3 @@
-
 "use client"
 import { useState } from 'react';
 import Link from 'next/link';
@@ -15,15 +14,9 @@ import {
   Heart,
   ChevronUp,
   Send,
-  Palette,
-  Building2,
   Briefcase,
-  HomeIcon,
   Store,
-  Coffee,
-  Hotel,
-  Warehouse,
-  ShoppingBag
+  HomeIcon
 } from 'lucide-react';
 import Image from 'next/image';
 
@@ -90,7 +83,7 @@ export default function Footer() {
   return (
     <footer className="bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-white border-t border-gray-200 dark:border-gray-800 transition-colors">
 
-      {/* SEO Keywords Section - Prominent placement */}
+      {/* SEO Keywords Section */}
       <div className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
           <div className="text-center mb-8">
@@ -178,24 +171,22 @@ export default function Footer() {
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-
           {/* Company Info - Spans 2 columns on large screens */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-6">
-            <Link href="/" className="flex items-center group">
-              <div className="relative w-auto h-12 transition-all duration-300 group-hover:scale-105">
-                <Image
-                  src="/logo.png"
-                  alt="Glomni Designs"
-                  width={118}
-                  height={118}
-                  className="object-contain group-hover:opacity-80 transition-opacity"
-                  priority
-                />
-              </div>
-            </Link>
+              <Link href="/" className="flex items-center group">
+                <div className="relative w-auto h-12 transition-all duration-300 group-hover:scale-105">
+                  <Image
+                    src="/logo.png"
+                    alt="Glomni Designs"
+                    width={118}
+                    height={118}
+                    className="object-contain group-hover:opacity-80 transition-opacity"
+                    priority
+                  />
+                </div>
+              </Link>
             </div>
-
             <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed text-sm">
               Transforming spaces with innovative interior design solutions. 
               Creating beautiful, functional environments for offices, homes, and commercial spaces across Delhi NCR.
@@ -316,7 +307,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Services */}
+          {/* Our Services */}
           <div>
             <h4 className="text-base font-semibold mb-4 text-gray-900 dark:text-white">Our Services</h4>
             <ul className="space-y-2">
@@ -333,7 +324,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Locations */}
+          {/* Service Locations */}
           <div>
             <h4 className="text-base font-semibold mb-4 text-gray-900 dark:text-white">Service Locations</h4>
             <ul className="space-y-2 mb-6">
@@ -349,7 +340,7 @@ export default function Footer() {
               ))}
             </ul>
 
-            {/* Newsletter */}
+            {/* Newsletter moved here under service locations */}
             <div className="bg-gray-100 dark:bg-gray-900 p-4 rounded-lg border border-gray-200 dark:border-gray-800">
               <h5 className="text-sm font-semibold mb-2 text-gray-900 dark:text-white">Newsletter</h5>
               <p className="text-gray-600 dark:text-gray-400 text-xs mb-3">
@@ -381,7 +372,6 @@ export default function Footer() {
       <div className="border-t border-gray-200 dark:border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-
             {/* Copyright */}
             <div className="text-center md:text-left">
               <p className="text-gray-600 dark:text-gray-400 text-sm">
