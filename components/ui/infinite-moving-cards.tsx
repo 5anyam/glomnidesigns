@@ -1,8 +1,9 @@
+
 "use client";
 
 import { cn } from "@/lib/utils";
 import React, { useEffect, useState } from "react";
-import { Star, User } from 'lucide-react';
+import { Star, User, Quote } from 'lucide-react';
 import Image from 'next/image';
 
 export const InfiniteMovingCards = ({
@@ -17,7 +18,7 @@ export const InfiniteMovingCards = ({
     name: string;
     title: string;
     rating?: number;
-    avatar?: string; // Add optional avatar field
+    avatar?: string;
   }[];
   direction?: "left" | "right";
   speed?: "fast" | "normal" | "slow";
@@ -30,9 +31,9 @@ export const InfiniteMovingCards = ({
   useEffect(() => {
     addAnimation();
   }, []);
-  
+
   const [start, setStart] = useState(false);
-  
+
   function addAnimation() {
     if (containerRef.current && scrollerRef.current) {
       const scrollerContent = Array.from(scrollerRef.current.children);
@@ -49,7 +50,7 @@ export const InfiniteMovingCards = ({
       setStart(true);
     }
   }
-  
+
   const getDirection = () => {
     if (containerRef.current) {
       if (direction === "left") {
@@ -65,7 +66,7 @@ export const InfiniteMovingCards = ({
       }
     }
   };
-  
+
   const getSpeed = () => {
     if (containerRef.current) {
       if (speed === "fast") {
@@ -81,20 +82,17 @@ export const InfiniteMovingCards = ({
   // Function to render star ratings
   const renderStars = (rating: number = 5) => {
     return (
-      <div className="flex items-center gap-1 mb-4">
+      <div className="flex items-center gap-1">
         {[...Array(5)].map((_, index) => (
           <Star
             key={index}
             className={`w-4 h-4 ${
               index < rating
-                ? 'text-yellow-400 fill-yellow-400'
-                : 'text-gray-600 fill-gray-600'
+                ? 'text-yellow-500 fill-yellow-500'
+                : 'text-gray-300 dark:text-gray-600 fill-gray-300 dark:fill-gray-600'
             }`}
           />
         ))}
-        <span className="text-xs text-gray-400 ml-2">
-          {rating}/5
-        </span>
       </div>
     );
   };
@@ -110,72 +108,88 @@ export const InfiniteMovingCards = ({
       <ul
         ref={scrollerRef}
         className={cn(
-          "flex w-max min-w-full shrink-0 flex-nowrap gap-4 py-4",
+          "flex w-max min-w-full shrink-0 flex-nowrap gap-6 py-4",
           start && "animate-scroll",
           pauseOnHover && "hover:[animation-play-state:paused]",
         )}
       >
         {items.map((item, idx) => (
           <li
-            className="relative w-[350px] max-w-full shrink-0 rounded-2xl border border-b-0 border-zinc-200 bg-black px-8 py-6 md:w-[450px] dark:border-zinc-700 dark:bg-[linear-gradient(180deg,#27272a,#18181b)] hover:border-yellow-400/30 transition-all duration-300 shadow-2xl"
+            className="relative w-[380px] max-w-full shrink-0 rounded-2xl border-2 border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 overflow-hidden hover:border-red-400 dark:hover:border-red-400 transition-all duration-300 shadow-lg hover:shadow-2xl group"
+            style={{ minHeight: '420px' }}
             key={`${item.name}-${idx}`}
           >
-            <blockquote>
-              <div
-                aria-hidden="true"
-                className="user-select-none pointer-events-none absolute -top-0.5 -left-0.5 -z-1 h-[calc(100%_+_4px)] w-[calc(100%_+_4px)]"
-              ></div>
-              
-              {/* Star Rating Section */}
-              <div className="relative z-20">
-                {renderStars(item.rating || 5)}
-              </div>
-              
-              {/* Quote Section */}
-              <span className="relative z-20 text-sm leading-[1.6] font-normal text-gray-100 mb-6 block">
-                "{item.quote}"
-              </span>
-              
-              {/* Author Info Section with Avatar */}
-              <div className="relative z-20 flex flex-row items-center justify-between pt-4 border-t border-gray-700/50">
-                <div className="flex items-center gap-3">
-                  {/* Avatar Image */}
-                  <div className="relative w-12 h-12 rounded-full overflow-hidden bg-gray-700 border-2 border-gray-600 flex-shrink-0">
-                    {item.avatar ? (
-                      <Image
-                        src={item.avatar}
-                        alt={`${item.name}'s avatar`}
-                        fill
-                        className="object-cover"
-                        sizes="48px"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600">
-                        <User className="w-6 h-6 text-white" />
-                      </div>
-                    )}
+            {/* Decorative Top Bar */}
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-400 via-red-300 to-red-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+            <div className="p-8 h-full flex flex-col">
+              <blockquote className="flex flex-col h-full">
+
+                {/* Quote Icon & Rating Row */}
+                <div className="flex items-start justify-between mb-6">
+                  <div className="w-12 h-12 bg-red-400/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Quote className="w-7 h-7 text-red-400" />
                   </div>
-                  
-                  {/* Author Details */}
-                  <span className="flex flex-col gap-1">
-                    <span className="text-sm leading-[1.6] font-semibold text-white">
-                      {item.name}
-                    </span>
-                    <span className="text-xs leading-[1.4] font-normal text-gray-400">
-                      {item.title}
-                    </span>
-                  </span>
+                  <div className="flex flex-col items-end gap-2">
+                    {renderStars(item.rating || 5)}
+                    <div className="flex items-center gap-1.5 bg-yellow-50 dark:bg-yellow-950/30 px-3 py-1.5 rounded-full border border-yellow-200 dark:border-yellow-800/30">
+                      <Star className="w-3.5 h-3.5 text-yellow-500 fill-yellow-500" />
+                      <span className="text-sm font-bold text-yellow-600 dark:text-yellow-400">
+                        {(item.rating || 5).toFixed(1)}
+                      </span>
+                    </div>
+                  </div>
                 </div>
-                
-                {/* Rating Display */}
-                <div className="flex items-center gap-1">
-                  <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-                  <span className="text-sm font-bold text-yellow-400">
-                    {item.rating || 5.0}
-                  </span>
+
+                {/* Quote Section - Flexible grow */}
+                <div className="flex-grow mb-6">
+                  <p className="text-base leading-relaxed text-gray-700 dark:text-gray-300 line-clamp-6">
+                    "{item.quote}"
+                  </p>
                 </div>
-              </div>
-            </blockquote>
+
+                {/* Author Info Section - Fixed at bottom */}
+                <div className="mt-auto pt-6 border-t-2 border-gray-200 dark:border-gray-800">
+                  <div className="flex items-center gap-4">
+                    {/* Avatar Image */}
+                    <div className="relative w-14 h-14 rounded-full overflow-hidden bg-gray-200 dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-700 flex-shrink-0 group-hover:border-red-400 dark:group-hover:border-red-400 transition-all duration-300 group-hover:scale-110">
+                      {item.avatar ? (
+                        <Image
+                          src={item.avatar}
+                          alt={`${item.name}'s avatar`}
+                          fill
+                          className="object-cover"
+                          sizes="56px"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center bg-red-400">
+                          <User className="w-7 h-7 text-white" />
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Author Details */}
+                    <div className="flex flex-col gap-1 flex-grow min-w-0">
+                      <span className="text-base font-bold text-gray-900 dark:text-white group-hover:text-red-400 transition-colors truncate">
+                        {item.name}
+                      </span>
+                      <span className="text-sm font-medium text-gray-600 dark:text-gray-400 truncate">
+                        {item.title}
+                      </span>
+                    </div>
+
+                    {/* Verified Badge */}
+                    <div className="flex-shrink-0">
+                      <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                        <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </blockquote>
+            </div>
           </li>
         ))}
       </ul>

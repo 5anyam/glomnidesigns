@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -15,26 +16,20 @@ export default function NewDesignDetail({ slug }: { slug: string }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [isLiked, setIsLiked] = useState(false);
-  
-  // New states for zoom and fullscreen
   const [zoomLevel, setZoomLevel] = useState(1);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   useEffect(() => {
-    if (slug) {
-      loadDesign();
-    }
+    if (slug) loadDesign();
   }, [slug]);
 
   const loadDesign = async () => {
     setLoading(true);
     setError('');
-
     const designResult = await designAPI.getBySlug(slug);
-    
+
     if (designResult.success && designResult.data) {
       setDesign(designResult.data);
-      
       if (designResult.data.categories?.[0]?.slug) {
         const relatedResult = await designAPI.getByCategory(designResult.data.categories[0].slug);
         if (relatedResult.success) {
@@ -45,7 +40,6 @@ export default function NewDesignDetail({ slug }: { slug: string }) {
     } else {
       setError('Design not found');
     }
-
     setLoading(false);
   };
 
@@ -57,56 +51,33 @@ export default function NewDesignDetail({ slug }: { slug: string }) {
 
   const handleShare = async () => {
     if (navigator.share) {
-      await navigator.share({
-        title: design?.name,
-        url: window.location.href,
-      });
+      await navigator.share({ title: design?.name, url: window.location.href });
     } else {
       await navigator.clipboard.writeText(window.location.href);
     }
   };
 
-  // Zoom and Fullscreen functions
-  const zoomIn = () => {
-    setZoomLevel(prev => Math.min(prev + 0.25, 3));
-  };
+  const zoomIn = () => setZoomLevel(prev => Math.min(prev + 0.25, 3));
+  const zoomOut = () => setZoomLevel(prev => Math.max(prev - 0.25, 1));
+  const resetZoom = () => setZoomLevel(1);
+  const openFullscreen = () => setIsFullscreen(true);
+  const closeFullscreen = () => { setIsFullscreen(false); setZoomLevel(1); };
 
-  const zoomOut = () => {
-    setZoomLevel(prev => Math.max(prev - 0.25, 1));
-  };
-
-  const resetZoom = () => {
-    setZoomLevel(1);
-  };
-
-  const openFullscreen = () => {
-    setIsFullscreen(true);
-  };
-
-  const closeFullscreen = () => {
-    setIsFullscreen(false);
-    setZoomLevel(1);
-  };
-
-  // Prevent body scroll when fullscreen is open
   useEffect(() => {
     if (isFullscreen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
     }
-    
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
+    return () => { document.body.style.overflow = 'unset'; };
   }, [isFullscreen]);
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
+      <div className="min-h-screen bg-white dark:bg-gray-950 flex items-center justify-center transition-colors">
         <div className="relative">
-          <div className="animate-spin w-16 h-16 border-4 border-blue-500/20 border-t-blue-500 rounded-full"></div>
-          <div className="absolute inset-0 animate-ping w-16 h-16 border-4 border-blue-500/10 rounded-full"></div>
+          <div className="animate-spin w-16 h-16 border-4 border-red-400/20 border-t-red-400 rounded-full"></div>
+          <div className="absolute inset-0 animate-ping w-16 h-16 border-4 border-red-400/10 rounded-full"></div>
         </div>
       </div>
     );
@@ -114,16 +85,16 @@ export default function NewDesignDetail({ slug }: { slug: string }) {
 
   if (error || !design) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
+      <div className="min-h-screen bg-white dark:bg-gray-950 flex items-center justify-center transition-colors">
         <div className="text-center max-w-md mx-auto px-6">
-          <div className="w-24 h-24 mx-auto mb-6 bg-red-500/10 rounded-full flex items-center justify-center border border-red-500/20">
+          <div className="w-24 h-24 mx-auto mb-6 bg-red-400/10 rounded-full flex items-center justify-center border-2 border-red-400/30">
             <Eye className="w-12 h-12 text-red-400" />
           </div>
-          <h1 className="text-3xl font-bold text-white mb-4">Design Not Found</h1>
-          <p className="text-gray-400 mb-8 leading-relaxed">The design you're looking for doesn't exist or has been moved.</p>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Design Not Found</h1>
+          <p className="text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">The design you're looking for doesn't exist or has been moved.</p>
           <Link 
             href="/design-ideas" 
-            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl font-semibold hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-lg hover:shadow-xl"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-red-400 hover:bg-red-500 text-white rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Gallery
@@ -136,33 +107,33 @@ export default function NewDesignDetail({ slug }: { slug: string }) {
   const imageUrl = design.featured_image?.url || design.images?.[0]?.url || '';
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-white dark:bg-gray-950 transition-colors">
       {/* Modern Header */}
-      <div className="sticky top-0 backdrop-blur-xl bg-black/80 border-b border-gray-800">
+      <div className="sticky top-0 backdrop-blur-xl bg-white/80 dark:bg-gray-950/80 border-b border-gray-200 dark:border-gray-800 z-10 transition-colors">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <button
               onClick={() => router.back()}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-900 hover:bg-gray-800 border border-gray-700 text-white transition-all duration-300 hover:scale-105"
+              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-100 dark:bg-gray-900 hover:bg-gray-200 dark:hover:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white transition-all duration-300"
             >
               <ArrowLeft className="w-5 h-5" />
               <span className="font-medium">Back</span>
             </button>
-            
+
             <div className="flex items-center gap-3">
               <button 
                 onClick={() => setIsLiked(!isLiked)}
                 className={`p-3 rounded-full transition-all duration-300 ${
                   isLiked 
-                    ? 'bg-red-500/20 text-red-400 scale-110 border border-red-500/30' 
-                    : 'bg-gray-900 hover:bg-gray-800 text-white border border-gray-700'
+                    ? 'bg-red-400 text-white scale-110' 
+                    : 'bg-gray-100 dark:bg-gray-900 hover:bg-gray-200 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-700'
                 }`}
               >
                 <Heart className={`w-5 h-5 ${isLiked ? 'fill-current' : ''}`} />
               </button>
               <button 
                 onClick={handleShare}
-                className="p-3 rounded-full bg-gray-900 hover:bg-gray-800 border border-gray-700 text-white transition-all duration-300 hover:scale-105"
+                className="p-3 rounded-full bg-gray-100 dark:bg-gray-900 hover:bg-gray-200 dark:hover:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 transition-all duration-300"
               >
                 <Share2 className="w-5 h-5" />
               </button>
@@ -171,110 +142,110 @@ export default function NewDesignDetail({ slug }: { slug: string }) {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        {/* Top Section - Image and Basic Description (50-50) */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
-          
-          {/* Enhanced Image Section with Zoom & Fullscreen - 50% */}
+      <div className="max-w-7xl mx-auto px-4 py-6 md:py-12">
+        {/* Main Content Section with Sticky Image */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 mb-12 lg:mb-20">
+
+          {/* LEFT SIDE: Sticky Image Section - Desktop Only */}
           <div className="w-full">
-            <div className="relative aspect-[4/3] bg-gray-900 rounded-3xl overflow-hidden shadow-2xl border border-gray-800 group">
-              {imageUrl ? (
-                <div className="relative w-full h-full overflow-hidden">
-                  <Image
-                    src={getImageUrl(imageUrl)}
-                    alt={design.name}
-                    fill
-                    className="object-cover transition-transform duration-500 cursor-pointer"
-                    style={{
-                      transform: `scale(${zoomLevel})`,
-                    }}
-                    onClick={() => zoomLevel > 1 ? resetZoom() : zoomIn()}
-                  />
-                  
-                  {/* Zoom Controls */}
-                  <div className="absolute top-4 left-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        zoomOut();
-                      }}
-                      disabled={zoomLevel <= 1}
-                      className="p-2 bg-black/70 backdrop-blur-sm text-white rounded-lg hover:bg-black/80 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                      title="Zoom Out"
-                    >
-                      <Minus className="w-4 h-4" />
-                    </button>
-                    
-                    <div className="px-3 py-2 bg-black/70 backdrop-blur-sm text-white rounded-lg text-sm font-bold">
-                      {Math.round(zoomLevel * 100)}%
+            {/* Sticky container for desktop */}
+            <div className="lg:sticky lg:top-24 space-y-4">
+              <div className="relative aspect-[4/3] bg-gray-100 dark:bg-gray-900 rounded-2xl lg:rounded-3xl overflow-hidden shadow-xl border-2 border-gray-200 dark:border-gray-800 group transition-colors">
+                {imageUrl ? (
+                  <div className="relative w-full h-full overflow-hidden">
+                    <Image
+                      src={getImageUrl(imageUrl)}
+                      alt={design.name}
+                      fill
+                      className="object-cover transition-transform duration-500 cursor-pointer"
+                      style={{ transform: `scale(${zoomLevel})` }}
+                      onClick={() => zoomLevel > 1 ? resetZoom() : zoomIn()}
+                    />
+
+                    {/* Zoom Controls */}
+                    <div className="absolute top-4 left-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                      <button
+                        onClick={(e) => { e.stopPropagation(); zoomOut(); }}
+                        disabled={zoomLevel <= 1}
+                        className="p-2 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm text-gray-900 dark:text-white rounded-lg hover:bg-white dark:hover:bg-gray-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed border border-gray-200 dark:border-gray-700"
+                        title="Zoom Out"
+                      >
+                        <Minus className="w-4 h-4" />
+                      </button>
+
+                      <div className="px-3 py-2 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm text-gray-900 dark:text-white rounded-lg text-sm font-bold border border-gray-200 dark:border-gray-700">
+                        {Math.round(zoomLevel * 100)}%
+                      </div>
+
+                      <button
+                        onClick={(e) => { e.stopPropagation(); zoomIn(); }}
+                        disabled={zoomLevel >= 3}
+                        className="p-2 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm text-gray-900 dark:text-white rounded-lg hover:bg-white dark:hover:bg-gray-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed border border-gray-200 dark:border-gray-700"
+                        title="Zoom In"
+                      >
+                        <Plus className="w-4 h-4" />
+                      </button>
                     </div>
-                    
+
+                    {/* Fullscreen Button */}
                     <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        zoomIn();
-                      }}
-                      disabled={zoomLevel >= 3}
-                      className="p-2 bg-black/70 backdrop-blur-sm text-white rounded-lg hover:bg-black/80 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                      title="Zoom In"
+                      onClick={(e) => { e.stopPropagation(); openFullscreen(); }}
+                      className="absolute top-4 right-4 p-2 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm text-gray-900 dark:text-white rounded-lg hover:bg-white dark:hover:bg-gray-800 transition-all opacity-0 group-hover:opacity-100 z-10 border border-gray-200 dark:border-gray-700"
+                      title="Open Fullscreen"
                     >
-                      <Plus className="w-4 h-4" />
+                      <Maximize className="w-4 h-4" />
                     </button>
-                  </div>
 
-                  {/* Fullscreen Button */}
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      openFullscreen();
-                    }}
-                    className="absolute top-4 right-4 p-2 bg-black/70 backdrop-blur-sm text-white rounded-lg hover:bg-black/80 transition-all opacity-0 group-hover:opacity-100 z-10"
-                    title="Open Fullscreen"
-                  >
-                    <Maximize className="w-4 h-4" />
-                  </button>
-
-                  {/* Zoom Hint */}
-                  <div className="absolute bottom-4 left-4 bg-black/70 backdrop-blur-sm text-white px-3 py-1 rounded-lg text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    Click image to zoom • Use controls for precision
+                    {/* Zoom Hint */}
+                    <div className="absolute bottom-4 left-4 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm text-gray-900 dark:text-white px-3 py-1 rounded-lg text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 border border-gray-200 dark:border-gray-700">
+                      Click to zoom • Use controls for precision
+                    </div>
                   </div>
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center">
+                    <Eye className="w-24 h-24 text-gray-400" />
+                  </div>
+                )}
+
+                {design.is_featured && (
+                  <div className="absolute top-6 left-6 flex items-center gap-2 bg-red-400 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
+                    <Star className="w-4 h-4 fill-current" />
+                    Featured Design
+                  </div>
+                )}
+              </div>
+
+              {/* Quick Actions Below Image */}
+              <div className="hidden lg:block space-y-3">
+                <div className="flex gap-3">
+                  <ContactModal/>
+                  <a href="tel:+919899989803" className="flex-1">
+                    <button className="w-full bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 text-white py-3 px-4 rounded-xl font-bold text-base transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
+                      <Phone className="w-4 h-4" />
+                      Call Now 
+                    </button>
+                  </a>
                 </div>
-              ) : (
-                <div className="w-full h-full flex items-center justify-center">
-                  <Eye className="w-24 h-24 text-gray-600" />
-                </div>
-              )}
-              
-              {/* Simple gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
-              
-              {design.is_featured && (
-                <div className="absolute top-6 left-6 flex items-center gap-2 bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
-                  <Star className="w-4 h-4 fill-current" />
-                  Featured Design
-                </div>
-              )}
+              </div>
             </div>
           </div>
 
-          {/* Basic Info Section - 50% */}
-          <div className="w-full flex flex-col justify-center space-y-8">
-            
-            {/* Beautiful Title Section */}
+          {/* RIGHT SIDE: Scrollable Content */}
+          <div className="w-full space-y-8">
+
+            {/* Title & Basic Info */}
             <div className="space-y-6">
-              {/* Main Title with Gradient */}
               <div className="space-y-4">
-                <h1 className="text-4xl lg:text-5xl p-4 xl:text-6xl font-bold bg-gradient-to-r from-white via-blue-100 to-blue-200 bg-clip-text text-transparent leading-tight">
+                <h1 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 dark:text-white leading-tight">
                   {design.name}
                 </h1>
-                
-                {/* Categories with beautiful styling */}
+
                 {design.categories && design.categories.length > 0 && (
-                  <div className="flex flex-wrap gap-3">
+                  <div className="flex flex-wrap gap-2">
                     {design.categories.map(cat => (
                       <span 
                         key={cat.id} 
-                        className="px-4 py-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm text-blue-300 rounded-full text-sm font-semibold border border-blue-500/30 hover:border-blue-400/50 transition-all duration-300"
+                        className="px-3 py-1.5 bg-red-400/10 backdrop-blur-sm text-red-400 rounded-full text-sm font-semibold border border-red-400/30 hover:border-red-400/50 transition-all duration-300"
                       >
                         {cat.name}
                       </span>
@@ -283,32 +254,153 @@ export default function NewDesignDetail({ slug }: { slug: string }) {
                 )}
               </div>
 
-              {/* Design Overview Subtitle */}
-              <div className="pt-2">
-                {design.description && (
-                  <p className="text-gray-300 leading-relaxed text-lg">{design.description}</p>
-                )}
-              </div>
+              {design.description && (
+                <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-base lg:text-lg">
+                  {design.description}
+                </p>
+              )}
             </div>
-            
+
             {/* Price Highlight */}
             {design.price_range && (
-              <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 rounded-2xl p-6 border border-green-500/20">
+              <div className="bg-green-50 dark:bg-green-950/30 rounded-2xl p-6 border-2 border-green-400/30">
                 <div className="flex items-center gap-3 mb-2">
-                  <span className="text-green-400 text-lg font-semibold">Starting from</span>
+                  <span className="text-green-600 dark:text-green-400 text-base lg:text-lg font-semibold">Starting from</span>
                 </div>
-                <div className="text-4xl font-bold text-white mb-2">{design.price_range}</div>
-                <p className="text-green-300 text-sm">*Final cost depends on customization & materials</p>
+                <div className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-2">{design.price_range}</div>
+                <p className="text-green-600 dark:text-green-400 text-sm">*Final cost depends on customization & materials</p>
               </div>
             )}
 
-            {/* Quick CTA */}
-            <div className="flex flex-col sm:flex-row gap-4">
-                <ContactModal/>
-                <a href="tel:+919899989803"><button className="flex-1 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white py-4 px-6 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-3">
-                <Phone className="w-5 h-5" />
-                Call Now 
-              </button></a>
+            {/* Mobile CTA Buttons */}
+            <div className="lg:hidden flex flex-col gap-3">
+              <ContactModal/>
+              <a href="tel:+919899989803">
+                <button className="w-full bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 text-white py-4 px-6 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-3">
+                  <Phone className="w-5 h-5" />
+                  Call Now 
+                </button>
+              </a>
+            </div>
+
+            {/* Design Specifications Inline */}
+            {(design.location || design.area_size || design.style || design.completion_time) && (
+              <div className="grid grid-cols-2 gap-3">
+                {design.location && (
+                  <div className="bg-blue-50 dark:bg-blue-950/30 rounded-xl border-2 border-blue-400/30 p-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-blue-500/10 rounded-lg flex items-center justify-center border border-blue-500/30">
+                        <MapPin className="w-5 h-5 text-blue-500" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-gray-900 dark:text-white text-sm">Location</h4>
+                        <p className="text-blue-600 dark:text-blue-400 font-semibold text-xs">{design.location}</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {design.area_size && (
+                  <div className="bg-green-50 dark:bg-green-950/30 rounded-xl border-2 border-green-400/30 p-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-green-500/10 rounded-lg flex items-center justify-center border border-green-500/30">
+                        <Ruler className="w-5 h-5 text-green-500" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-gray-900 dark:text-white text-sm">Area</h4>
+                        <p className="text-green-600 dark:text-green-400 font-semibold text-xs">{design.area_size} sq ft</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {design.style && (
+                  <div className="bg-purple-50 dark:bg-purple-950/30 rounded-xl border-2 border-purple-400/30 p-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-purple-500/10 rounded-lg flex items-center justify-center border border-purple-500/30">
+                        <Palette className="w-5 h-5 text-purple-500" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-gray-900 dark:text-white text-sm">Style</h4>
+                        <p className="text-purple-600 dark:text-purple-400 font-semibold text-xs capitalize">{design.style}</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {design.completion_time && (
+                  <div className="bg-orange-50 dark:bg-orange-950/30 rounded-xl border-2 border-orange-400/30 p-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-orange-500/10 rounded-lg flex items-center justify-center border border-orange-500/30">
+                        <Clock3 className="w-5 h-5 text-orange-500" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-gray-900 dark:text-white text-sm">Timeline</h4>
+                        <p className="text-orange-600 dark:text-orange-400 font-semibold text-xs">{design.completion_time}</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Key Features */}
+            <div>
+              <h3 className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-white mb-4">Why Choose This Design</h3>
+              <div className="grid grid-cols-2 gap-3">
+                <div className="bg-white dark:bg-gray-900 rounded-xl border-2 border-gray-200 dark:border-gray-800 p-4 hover:border-red-400 transition-all">
+                  <div className="w-10 h-10 bg-red-400/10 rounded-lg flex items-center justify-center mb-3 border border-red-400/30">
+                    <CheckCircle className="w-5 h-5 text-red-400" />
+                  </div>
+                  <h4 className="text-sm font-bold text-gray-900 dark:text-white mb-1">Premium Materials</h4>
+                  <p className="text-gray-600 dark:text-gray-400 text-xs">High-quality finishes</p>
+                </div>
+
+                <div className="bg-white dark:bg-gray-900 rounded-xl border-2 border-gray-200 dark:border-gray-800 p-4 hover:border-green-400 transition-all">
+                  <div className="w-10 h-10 bg-green-500/10 rounded-lg flex items-center justify-center mb-3 border border-green-500/30">
+                    <Wrench className="w-5 h-5 text-green-500" />
+                  </div>
+                  <h4 className="text-sm font-bold text-gray-900 dark:text-white mb-1">Expert Installation</h4>
+                  <p className="text-gray-600 dark:text-gray-400 text-xs">Professional team</p>
+                </div>
+
+                <div className="bg-white dark:bg-gray-900 rounded-xl border-2 border-gray-200 dark:border-gray-800 p-4 hover:border-purple-400 transition-all">
+                  <div className="w-10 h-10 bg-purple-500/10 rounded-lg flex items-center justify-center mb-3 border border-purple-500/30">
+                    <Palette className="w-5 h-5 text-purple-500" />
+                  </div>
+                  <h4 className="text-sm font-bold text-gray-900 dark:text-white mb-1">Customizable</h4>
+                  <p className="text-gray-600 dark:text-gray-400 text-xs">Tailored to you</p>
+                </div>
+
+                <div className="bg-white dark:bg-gray-900 rounded-xl border-2 border-gray-200 dark:border-gray-800 p-4 hover:border-orange-400 transition-all">
+                  <div className="w-10 h-10 bg-orange-500/10 rounded-lg flex items-center justify-center mb-3 border border-orange-500/30">
+                    <Shield className="w-5 h-5 text-orange-500" />
+                  </div>
+                  <h4 className="text-sm font-bold text-gray-900 dark:text-white mb-1">3 Year Warranty</h4>
+                  <p className="text-gray-600 dark:text-gray-400 text-xs">Full coverage</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Our Process - Compact */}
+            <div>
+              <h3 className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-white mb-4">Our Process</h3>
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+                {[
+                  { num: 1, title: 'Consultation', desc: 'Understand your vision' },
+                  { num: 2, title: 'Design', desc: '3D designs & materials' },
+                  { num: 3, title: 'Execution', desc: 'Professional installation' },
+                  { num: 4, title: 'Handover', desc: 'Complete with warranty' }
+                ].map(step => (
+                  <div key={step.num} className="bg-white dark:bg-gray-900 rounded-xl border-2 border-gray-200 dark:border-gray-800 p-4 text-center hover:border-red-400 transition-all">
+                    <div className="w-10 h-10 bg-red-400/10 rounded-full flex items-center justify-center mx-auto mb-3 border border-red-400/30">
+                      <span className="text-red-400 font-bold text-lg">{step.num}</span>
+                    </div>
+                    <h4 className="text-sm font-bold text-gray-900 dark:text-white mb-1">{step.title}</h4>
+                    <p className="text-gray-600 dark:text-gray-400 text-xs">{step.desc}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -316,231 +408,50 @@ export default function NewDesignDetail({ slug }: { slug: string }) {
         {/* Fullscreen Modal */}
         {isFullscreen && (
           <div className="fixed inset-0 bg-black z-[10000] flex items-center justify-center">
-            
-            {/* Fullscreen Controls */}
             <div className="absolute top-6 left-6 right-6 flex justify-between items-center z-10">
-              
-              {/* Zoom Controls */}
               <div className="flex gap-3">
-                <button
-                  onClick={zoomOut}
-                  disabled={zoomLevel <= 0.5}
-                  className="p-3 bg-white/20 backdrop-blur-sm text-white rounded-full hover:bg-white/30 transition-all disabled:opacity-50"
-                  title="Zoom Out"
-                >
+                <button onClick={zoomOut} disabled={zoomLevel <= 0.5} className="p-3 bg-white/20 backdrop-blur-sm text-white rounded-full hover:bg-white/30 transition-all disabled:opacity-50" title="Zoom Out">
                   <Minus size={20} />
                 </button>
                 <div className="px-4 py-3 bg-white/20 backdrop-blur-sm text-white rounded-full font-bold">
                   {Math.round(zoomLevel * 100)}%
                 </div>
-                <button
-                  onClick={zoomIn}
-                  disabled={zoomLevel >= 3}
-                  className="p-3 bg-white/20 backdrop-blur-sm text-white rounded-full hover:bg-white/30 transition-all disabled:opacity-50"
-                  title="Zoom In"
-                >
+                <button onClick={zoomIn} disabled={zoomLevel >= 3} className="p-3 bg-white/20 backdrop-blur-sm text-white rounded-full hover:bg-white/30 transition-all disabled:opacity-50" title="Zoom In">
                   <Plus size={20} />
                 </button>
               </div>
-
-              {/* Close Button */}
-              <button
-                onClick={closeFullscreen}
-                className="p-3 bg-white/20 backdrop-blur-sm text-white rounded-full hover:bg-white/30 transition-all"
-                title="Close Fullscreen"
-              >
+              <button onClick={closeFullscreen} className="p-3 bg-white/20 backdrop-blur-sm text-white rounded-full hover:bg-white/30 transition-all" title="Close">
                 <X size={20} />
               </button>
             </div>
-
-            {/* Fullscreen Image */}
             <div className="w-full h-full flex items-center justify-center p-20 overflow-hidden">
-              <img
-                src={getImageUrl(imageUrl)}
-                alt={design.name}
-                className="transition-transform duration-300 ease-out select-none max-w-full max-h-full object-contain"
-                style={{
-                  transform: `scale(${zoomLevel})`,
-                }}
-              />
+              <img src={getImageUrl(imageUrl)} alt={design.name} className="transition-transform duration-300 ease-out select-none max-w-full max-h-full object-contain" style={{ transform: `scale(${zoomLevel})` }} />
             </div>
-
-            {/* Instructions */}
             <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-white/70 text-sm bg-black/50 px-4 py-2 rounded-full backdrop-blur-sm">
               Use zoom controls to magnify • ESC or X to close
             </div>
           </div>
         )}
 
-        {/* Rest of your existing sections remain the same... */}
-        
-        {/* Key Features Section */}
-        <div className="mb-20">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">Why Choose This Design</h2>
-            <p className="text-gray-400 text-lg">Premium features that make this design stand out</p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-gray-900/80 backdrop-blur-sm rounded-2xl border border-gray-800 p-6 hover:border-blue-500/30 transition-all duration-300 hover:scale-105">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-blue-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-blue-500/30">
-                  <CheckCircle className="w-8 h-8 text-blue-400" />
-                </div>
-                <h3 className="text-lg font-bold text-white mb-2">Premium Materials</h3>
-                <p className="text-gray-400 text-sm">High-quality finishes and materials for lasting beauty</p>
-              </div>
-            </div>
-
-            <div className="bg-gray-900/80 backdrop-blur-sm rounded-2xl border border-gray-800 p-6 hover:border-green-500/30 transition-all duration-300 hover:scale-105">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-green-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-green-500/30">
-                  <Wrench className="w-8 h-8 text-green-400" />
-                </div>
-                <h3 className="text-lg font-bold text-white mb-2">Expert Installation</h3>
-                <p className="text-gray-400 text-sm">Professional installation by certified craftsmen</p>
-              </div>
-            </div>
-
-            <div className="bg-gray-900/80 backdrop-blur-sm rounded-2xl border border-gray-800 p-6 hover:border-purple-500/30 transition-all duration-300 hover:scale-105">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-purple-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-purple-500/30">
-                  <Palette className="w-8 h-8 text-purple-400" />
-                </div>
-                <h3 className="text-lg font-bold text-white mb-2">Customizable</h3>
-                <p className="text-gray-400 text-sm">Tailored to your preferences and requirements</p>
-              </div>
-            </div>
-
-            <div className="bg-gray-900/80 backdrop-blur-sm rounded-2xl border border-gray-800 p-6 hover:border-orange-500/30 transition-all duration-300 hover:scale-105">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-orange-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-orange-500/30">
-                  <Shield className="w-8 h-8 text-orange-400" />
-                </div>
-                <h3 className="text-lg font-bold text-white mb-2">3 Year Warranty</h3>
-                <p className="text-gray-400 text-sm">Comprehensive warranty on workmanship</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Design Specifications */}
-        <div className="mb-20">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">Design Specifications</h2>
-            <p className="text-gray-400 text-lg">Detailed information about this project</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {design.location && (
-              <div className="bg-gradient-to-br from-blue-900/30 to-blue-800/20 rounded-2xl border border-blue-700/50 p-6">
-                <div className="text-center">
-                  <div className="w-14 h-14 bg-blue-500/20 rounded-xl flex items-center justify-center mx-auto mb-4 border border-blue-500/30">
-                    <MapPin className="w-7 h-7 text-blue-400" />
-                  </div>
-                  <h4 className="font-bold text-white mb-2">Location</h4>
-                  <p className="text-blue-300 font-semibold text-lg">{design.location}</p>
-                </div>
-              </div>
-            )}
-
-            {design.area_size && (
-              <div className="bg-gradient-to-br from-green-900/30 to-green-800/20 rounded-2xl border border-green-700/50 p-6">
-                <div className="text-center">
-                  <div className="w-14 h-14 bg-green-500/20 rounded-xl flex items-center justify-center mx-auto mb-4 border border-green-500/30">
-                    <Ruler className="w-7 h-7 text-green-400" />
-                  </div>
-                  <h4 className="font-bold text-white mb-2">Area Size</h4>
-                  <p className="text-green-300 font-semibold text-lg">{design.area_size} sq ft</p>
-                </div>
-              </div>
-            )}
-
-            {design.style && (
-              <div className="bg-gradient-to-br from-purple-900/30 to-purple-800/20 rounded-2xl border border-purple-700/50 p-6">
-                <div className="text-center">
-                  <div className="w-14 h-14 bg-purple-500/20 rounded-xl flex items-center justify-center mx-auto mb-4 border border-purple-500/30">
-                    <Palette className="w-7 h-7 text-purple-400" />
-                  </div>
-                  <h4 className="font-bold text-white mb-2">Style</h4>
-                  <p className="text-purple-300 font-semibold text-lg capitalize">{design.style}</p>
-                </div>
-              </div>
-            )}
-
-            {design.completion_time && (
-              <div className="bg-gradient-to-br from-orange-900/30 to-orange-800/20 rounded-2xl border border-orange-700/50 p-6">
-                <div className="text-center">
-                  <div className="w-14 h-14 bg-orange-500/20 rounded-xl flex items-center justify-center mx-auto mb-4 border border-orange-500/30">
-                    <Clock3 className="w-7 h-7 text-orange-400" />
-                  </div>
-                  <h4 className="font-bold text-white mb-2">Timeline</h4>
-                  <p className="text-orange-300 font-semibold text-lg">{design.completion_time}</p>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Our Process */}
-        <div className="mb-20">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">Our Design Process</h2>
-            <p className="text-gray-400 text-lg">From concept to completion in 4 simple steps</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="relative bg-gray-900 rounded-2xl border border-gray-800 p-8 text-center">
-              <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-6 border-2 border-blue-500/30">
-                <span className="text-blue-400 font-bold text-2xl">1</span>
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">Consultation</h3>
-              <p className="text-gray-400">Initial meeting to understand your vision and requirements</p>
-            </div>
-
-            <div className="relative bg-gray-900 rounded-2xl border border-gray-800 p-8 text-center">
-              <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6 border-2 border-green-500/30">
-                <span className="text-green-400 font-bold text-2xl">2</span>
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">Design</h3>
-              <p className="text-gray-400">Create detailed 3D designs and material selections</p>
-            </div>
-
-            <div className="relative bg-gray-900 rounded-2xl border border-gray-800 p-8 text-center">
-              <div className="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-6 border-2 border-purple-500/30">
-                <span className="text-purple-400 font-bold text-2xl">3</span>
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">Execution</h3>
-              <p className="text-gray-400">Professional installation with regular progress updates</p>
-            </div>
-
-            <div className="relative bg-gray-900 rounded-2xl border border-gray-800 p-8 text-center">
-              <div className="w-16 h-16 bg-orange-500/20 rounded-full flex items-center justify-center mx-auto mb-6 border-2 border-orange-500/30">
-                <span className="text-orange-400 font-bold text-2xl">4</span>
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">Handover</h3>
-              <p className="text-gray-400">Final walkthrough and project completion with warranty</p>
-            </div>
-          </div>
-        </div>
-
         {/* Contact Section */}
-        <div className="mb-20">
-          <div className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-3xl border border-gray-700 p-12 text-center">
-            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">Ready to Transform Your Space?</h2>
-            <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
+        <div className="mb-12 lg:mb-20">
+          <div className="bg-gray-50 dark:bg-gray-900 rounded-2xl lg:rounded-3xl border-2 border-gray-200 dark:border-gray-800 p-8 lg:p-12 text-center">
+            <h2 className="text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 dark:text-white mb-4">Ready to Transform Your Space?</h2>
+            <p className="text-gray-600 dark:text-gray-400 text-base lg:text-lg mb-6 lg:mb-8 max-w-2xl mx-auto">
               Get a free consultation with our design experts and bring your dream space to life.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
-            <ContactModal/>
-                <a href="tel:+919899989803"><button className="flex-1 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white py-4 px-6 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-3">
-                <Phone className="w-5 h-5" />
-                Call Now 
-              </button></a>
+              <ContactModal/>
+              <a href="tel:+919899989803">
+                <button className="w-full sm:flex-1 bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 text-white py-3 lg:py-4 px-6 rounded-xl font-bold text-base lg:text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-3">
+                  <Phone className="w-5 h-5" />
+                  Call Now 
+                </button>
+              </a>
             </div>
-            
-            <div className="flex items-center justify-center gap-2 mt-6 text-gray-400">
+
+            <div className="flex items-center justify-center gap-2 mt-6 text-gray-600 dark:text-gray-400">
               <Users className="w-4 h-4" />
               <span className="text-sm">Trusted by 500+ happy customers</span>
             </div>
@@ -549,44 +460,38 @@ export default function NewDesignDetail({ slug }: { slug: string }) {
 
         {/* Related Designs */}
         {relatedDesigns.length > 0 && (
-          <div className="mt-20">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">Similar Designs</h2>
-              <p className="text-gray-400 text-lg">Explore more designs that might inspire you</p>
+          <div>
+            <div className="text-center mb-8 lg:mb-12">
+              <h2 className="text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 dark:text-white mb-4">Similar Designs</h2>
+              <p className="text-gray-600 dark:text-gray-400 text-base lg:text-lg">Explore more designs that might inspire you</p>
             </div>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8">
               {relatedDesigns.map(related => {
                 const relatedImageUrl = related.featured_image?.url || related.images?.[0]?.url || '';
                 return (
                   <Link key={related.id} href={`/design-ideas/${related.slug}`}>
-                    <div className="group bg-gray-900 rounded-2xl border border-gray-800 overflow-hidden hover:border-gray-700 transition-all duration-500 hover:scale-105">
-                      <div className="relative aspect-[4/3] bg-gray-800 overflow-hidden">
+                    <div className="group bg-white dark:bg-gray-900 rounded-xl lg:rounded-2xl border-2 border-gray-200 dark:border-gray-800 overflow-hidden hover:border-red-400 dark:hover:border-red-400 transition-all duration-500 hover:scale-105">
+                      <div className="relative aspect-[4/3] bg-gray-100 dark:bg-gray-800 overflow-hidden">
                         {relatedImageUrl ? (
-                          <Image
-                            src={getImageUrl(relatedImageUrl)}
-                            alt={related.name}
-                            fill
-                            className="object-cover group-hover:scale-110 transition-transform duration-700"
-                          />
+                          <Image src={getImageUrl(relatedImageUrl)} alt={related.name} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
                         ) : (
                           <div className="w-full h-full flex items-center justify-center">
-                            <Eye className="w-12 h-12 text-gray-600" />
+                            <Eye className="w-12 h-12 text-gray-400" />
                           </div>
                         )}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       </div>
-                      
-                      <div className="p-6">
-                        <h3 className="font-bold text-white text-lg mb-2 line-clamp-2 group-hover:text-blue-400 transition-colors">
+
+                      <div className="p-4 lg:p-6">
+                        <h3 className="font-bold text-gray-900 dark:text-white text-sm lg:text-lg mb-2 line-clamp-2 group-hover:text-red-400 transition-colors">
                           {related.name}
                         </h3>
-                        <div className="flex items-center justify-between">
+                        <div className="flex items-center justify-between text-xs lg:text-base">
                           {related.price_range && (
-                            <p className="text-green-400 font-bold text-lg">{related.price_range}</p>
+                            <p className="text-green-600 dark:text-green-400 font-bold">{related.price_range}</p>
                           )}
                           {related.location && (
-                            <p className="text-gray-400 text-sm flex items-center gap-1">
+                            <p className="text-gray-600 dark:text-gray-400 text-xs flex items-center gap-1">
                               <MapPin className="w-3 h-3" />
                               {related.location}
                             </p>

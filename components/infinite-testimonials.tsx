@@ -50,7 +50,7 @@ export function InfiniteMovingCardsDemo() {
       </div>
 
       {/* Infinite Moving Cards */}
-      <div className="h-[20rem] flex flex-col antialiased items-center justify-center relative">
+      <div className="h-[29rem] flex flex-col antialiased items-center justify-center relative">
         <InfiniteMovingCards
           items={testimonials}
           direction="right"
