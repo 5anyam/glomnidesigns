@@ -327,9 +327,6 @@ const CategoryCarousel: React.FC<CategoryCarouselProps> = ({ category, getImageU
               {category.description}
             </p>
           )}
-          <p className="text-red-400 text-xs sm:text-sm font-medium mt-1">
-            {category.designs.length} designs
-          </p>
         </div>
 
         <Link
