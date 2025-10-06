@@ -1,4 +1,3 @@
-
 "use client"
 import Link from "next/link";
 import Image from "next/image";
@@ -7,8 +6,8 @@ import { ThemeSwitch } from "@/components/theme-switch";
 import { PlaceholdersAndVanishInputDemo } from "./search";
 import { ChevronDown, ChevronRight, Menu, X } from "lucide-react";
 
-type DropdownType = 'office' | 'more' | null;
-type MobileDropdown = 'interior' | 'more' | null;
+type DropdownType = 'services' | 'designIdeas' | 'more' | null;
+type MobileDropdown = 'services' | 'designIdeas' | 'more' | null;
 
 export const Navbar = () => {
   const [activeDropdown, setActiveDropdown] = useState<DropdownType>(null);
@@ -40,47 +39,50 @@ export const Navbar = () => {
     setExpandedCategory(expandedCategory === categoryTitle ? null : categoryTitle);
   };
 
-  const designCategories = [
+  // Menu 1 - Services
+  const servicesCategories = [
     {
-      title: "Coworking Offices",
+      title: "Office Interior Designs Ideas",
       items: [
-        { label: "Open Workspace", href: "/office-designs/coworking/open-workspace", icon: "🤝" },
-        { label: "Hot Desking", href: "/office-designs/coworking/hot-desking", icon: "💼" },
-        { label: "Private Cabins", href: "/office-designs/coworking/private-cabins", icon: "🚪" },
-        { label: "Meeting Rooms", href: "/office-designs/coworking/meeting-rooms", icon: "👥" },
-        { label: "Lounge Area", href: "/office-designs/coworking/lounge", icon: "☕" }
+        { label: "Coworking Offices Interior", href: "/services/office/coworking-offices", icon: "🤝" },
+        { label: "Open Workspace Interior", href: "/services/office/open-workspace", icon: "💼" },
+        { label: "Meeting Rooms Interior", href: "/services/office/meeting-rooms", icon: "👥" },
+        { label: "Private Cabin Interior", href: "/services/office/private-cabin", icon: "🚪" },
+        { label: "Personal Office Interior", href: "/services/office/personal-office", icon: "👔" },
+        { label: "Home Office Interior", href: "/services/office/home-office", icon: "🏠" }
       ]
     },
     {
-      title: "Personal Offices",
+      title: "Home Interior Designs Ideas",
       items: [
-        { label: "Executive Office", href: "/office-designs/personal/executive", icon: "👔" },
-        { label: "Home Office", href: "/office-designs/personal/home-office", icon: "🏠" },
-        { label: "Creative Studio", href: "/office-designs/personal/creative", icon: "🎨" },
-        { label: "Tech Workspace", href: "/office-designs/personal/tech", icon: "⚡" },
-        { label: "Medical Office", href: "/office-designs/personal/medical", icon: "🏥" }
-      ]
-    },
-    {
-      title: "Home Interiors",
-      items: [
-        { label: "Living Room", href: "/home-interiors/living-room", icon: "🛋️" },
-        { label: "Bedroom Design", href: "/home-interiors/bedroom", icon: "🛏️" },
-        { label: "Kitchen Design", href: "/home-interiors/kitchen", icon: "🍳" },
-        { label: "Dining Room", href: "/home-interiors/dining", icon: "🍽️" },
-        { label: "Bathroom Design", href: "/home-interiors/bathroom", icon: "🚿" }
-      ]
-    },
-    {
-      title: "Data Center",
-      items: [
-        { label: "Server Room", href: "/data-center/server-room", icon: "🖥️" },
-        { label: "Control Room", href: "/data-center/control-room", icon: "🎛️" },
-        { label: "Cable Management", href: "/data-center/cable-management", icon: "🔌" },
-        { label: "Cooling Systems", href: "/data-center/cooling", icon: "❄️" },
-        { label: "Power Distribution", href: "/data-center/power", icon: "⚡" }
+        { label: "Modular Kitchen Interior", href: "/services/home/modular-kitchen", icon: "🍳" },
+        { label: "Wardrobe Interior", href: "/services/home/wardrobe", icon: "👗" },
+        { label: "Bathroom Interior", href: "/services/home/bathroom", icon: "🚿" },
+        { label: "Master Bedroom Interior", href: "/services/home/master-bedroom", icon: "🛏️" },
+        { label: "Living Room Interior", href: "/services/home/living-room", icon: "🛋️" },
+        { label: "Pooja Room Interior", href: "/services/home/pooja-room", icon: "🙏" },
+        { label: "Kids Bedroom Interior", href: "/services/home/kids-bedroom", icon: "🧸" },
+        { label: "Guest Bedroom Interior", href: "/services/home/guest-bedroom", icon: "🛌" }
       ]
     }
+  ];
+
+  // Menu 2 - Design Ideas
+  const designIdeasItems = [
+    { label: "Room Ideas", href: "/design-ideas/room-ideas", icon: "🏠" },
+    { label: "Decor & Inspiration", href: "/design-ideas/decor-inspiration", icon: "✨" },
+    { label: "Home Decor", href: "/design-ideas/home-decor", icon: "🎨" },
+    { label: "Lighting Ideas", href: "/design-ideas/lighting-ideas", icon: "💡" },
+    { label: "Vastu Tips", href: "/design-ideas/vastu-tips", icon: "🧭" },
+    { label: "Home Organisation", href: "/design-ideas/home-organisation", icon: "📦" },
+    { label: "Materials Guide", href: "/design-ideas/materials-guide", icon: "🔨" },
+    { label: "Wall Design Ideas", href: "/design-ideas/wall-design", icon: "🖼️" },
+    { label: "Expert Advice", href: "/design-ideas/expert-advice", icon: "👨‍💼" },
+    { label: "Interior Advice", href: "/design-ideas/interior-advice", icon: "💬" },
+    { label: "Ceiling Design", href: "/design-ideas/ceiling-design", icon: "🏛️" },
+    { label: "Home Renovation Ideas", href: "/design-ideas/home-renovation", icon: "🔧" },
+    { label: "Commercial Designs", href: "/design-ideas/commercial-designs", icon: "🏢" },
+    { label: "Furniture Ideas", href: "/design-ideas/furniture-ideas", icon: "🪑" }
   ];
 
   const moreItems = [
@@ -88,7 +90,6 @@ export const Navbar = () => {
     { label: "Careers", href: "/careers" },
     { label: "Get Estimate", href: "/cost-estimate" },
     { label: "Contact", href: "/contact" },
-    { label: "Home Decor", href: "/home-decor" },
   ];
 
   return (
@@ -120,24 +121,23 @@ export const Navbar = () => {
               Home
             </Link>
 
-            {/* Interior Ideas Dropdown */}
+            {/* Services Dropdown (Menu 1) */}
             <div 
               className="relative"
-              onMouseEnter={() => handleMouseEnter('office')}
+              onMouseEnter={() => handleMouseEnter('services')}
               onMouseLeave={handleMouseLeave}
             >
-              <Link 
-                href="/design-ideas"
+              <button 
                 className="flex items-center gap-1.5 px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium transition-all hover:bg-gray-100 dark:hover:bg-gray-800/60 rounded-lg"
               >
-                Interior Ideas
+                Services
                 <ChevronDown className="w-4 h-4" />
-              </Link>
+              </button>
 
-              {activeDropdown === 'office' && (
+              {activeDropdown === 'services' && (
                 <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[720px] bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-800 rounded-2xl shadow-xl p-6 animate-in fade-in slide-in-from-top-2 duration-200">
-                  <div className="grid grid-cols-4 gap-2">
-                    {designCategories.map((category) => (
+                  <div className="grid grid-cols-2 gap-6">
+                    {servicesCategories.map((category) => (
                       <div key={category.title} className="space-y-3">
                         <h3 className="font-bold text-gray-900 dark:text-white text-sm uppercase tracking-wide border-b-2 border-red-400 pb-2 mb-3">
                           {category.title}
@@ -162,10 +162,54 @@ export const Navbar = () => {
 
                   <div className="border-t-2 border-gray-200 dark:border-gray-800 mt-6 pt-4">
                     <Link
+                      href="/services"
+                      className="inline-flex items-center gap-2 text-sm font-semibold text-red-400 hover:text-red-500 transition-colors group"
+                    >
+                      <span>View All Services</span>
+                      <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Design Ideas Dropdown (Menu 2) */}
+            <div 
+              className="relative"
+              onMouseEnter={() => handleMouseEnter('designIdeas')}
+              onMouseLeave={handleMouseLeave}
+            >
+              <Link 
+                href="/design-ideas"
+                className="flex items-center gap-1.5 px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium transition-all hover:bg-gray-100 dark:hover:bg-gray-800/60 rounded-lg"
+              >
+                Design Ideas
+                <ChevronDown className="w-4 h-4" />
+              </Link>
+
+              {activeDropdown === 'designIdeas' && (
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[520px] bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-800 rounded-2xl shadow-xl p-6 animate-in fade-in slide-in-from-top-2 duration-200">
+                  <div className="grid grid-cols-2 gap-2">
+                    {designIdeasItems.map((item) => (
+                      <Link
+                        key={item.label}
+                        href={item.href}
+                        className="group flex items-center gap-3 px-3 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-red-50 dark:hover:bg-red-950/20 rounded-lg transition-all duration-200"
+                      >
+                        <span className="text-xl group-hover:scale-110 transition-transform">
+                          {item.icon}
+                        </span>
+                        <span className="font-medium">{item.label}</span>
+                      </Link>
+                    ))}
+                  </div>
+
+                  <div className="border-t-2 border-gray-200 dark:border-gray-800 mt-6 pt-4">
+                    <Link
                       href="/design-ideas"
                       className="inline-flex items-center gap-2 text-sm font-semibold text-red-400 hover:text-red-500 transition-colors group"
                     >
-                      <span>View All Design Categories</span>
+                      <span>Explore All Design Ideas</span>
                       <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </Link>
                   </div>
@@ -254,19 +298,19 @@ export const Navbar = () => {
               Home
             </Link>
 
-            {/* Interior Ideas - Accordion */}
+            {/* Services - Accordion (Menu 1) */}
             <div className="space-y-1">
               <button
-                onClick={() => toggleMobileDropdown('interior')}
+                onClick={() => toggleMobileDropdown('services')}
                 className="w-full flex items-center justify-between px-4 py-3 text-gray-900 dark:text-white font-medium hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all"
               >
-                <span>Interior Ideas</span>
-                <ChevronDown className={`w-5 h-5 transition-transform duration-200 ${activeMobileDropdown === 'interior' ? 'rotate-180' : ''}`} />
+                <span>Services</span>
+                <ChevronDown className={`w-5 h-5 transition-transform duration-200 ${activeMobileDropdown === 'services' ? 'rotate-180' : ''}`} />
               </button>
 
-              {activeMobileDropdown === 'interior' && (
+              {activeMobileDropdown === 'services' && (
                 <div className="pl-2 space-y-1 animate-in slide-in-from-top-2 duration-200">
-                  {designCategories.map((category) => (
+                  {servicesCategories.map((category) => (
                     <div key={category.title} className="space-y-1">
                       <button
                         onClick={() => toggleCategory(category.title)}
@@ -295,11 +339,46 @@ export const Navbar = () => {
                   ))}
 
                   <Link
+                    href="/services"
+                    className="block px-4 py-2.5 text-sm text-red-400 hover:text-red-500 font-semibold hover:bg-red-50 dark:hover:bg-red-950/20 rounded-lg transition-all"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    View All Services →
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            {/* Design Ideas - Accordion (Menu 2) */}
+            <div className="space-y-1">
+              <button
+                onClick={() => toggleMobileDropdown('designIdeas')}
+                className="w-full flex items-center justify-between px-4 py-3 text-gray-900 dark:text-white font-medium hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all"
+              >
+                <span>Design Ideas</span>
+                <ChevronDown className={`w-5 h-5 transition-transform duration-200 ${activeMobileDropdown === 'designIdeas' ? 'rotate-180' : ''}`} />
+              </button>
+
+              {activeMobileDropdown === 'designIdeas' && (
+                <div className="pl-2 space-y-1 animate-in slide-in-from-top-2 duration-200">
+                  {designIdeasItems.map((item) => (
+                    <Link
+                      key={item.label}
+                      href={item.href}
+                      className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-red-50 dark:hover:bg-red-950/20 rounded-lg transition-all"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      <span className="text-lg">{item.icon}</span>
+                      <span className="font-medium">{item.label}</span>
+                    </Link>
+                  ))}
+
+                  <Link
                     href="/design-ideas"
                     className="block px-4 py-2.5 text-sm text-red-400 hover:text-red-500 font-semibold hover:bg-red-50 dark:hover:bg-red-950/20 rounded-lg transition-all"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    View All Categories →
+                    Explore All Design Ideas →
                   </Link>
                 </div>
               )}
