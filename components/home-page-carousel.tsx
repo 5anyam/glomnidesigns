@@ -39,8 +39,7 @@ interface APIResponse<T> {
 
 const OFFICE_CATEGORY_KEYWORDS = [
   'office', 'corporate', 'workspace', 'commercial', 'business',
-  'executive', 'conference', 'meeting', 'coworking', 'study',
-  'work-from-home', 'professional'
+  'executive', 'conference', 'meeting', 'coworking', 'study', 'professional'
 ];
 
 const designAPI = {
