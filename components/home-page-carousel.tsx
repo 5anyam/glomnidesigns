@@ -40,7 +40,7 @@ interface APIResponse<T> {
 const OFFICE_CATEGORY_KEYWORDS = [
   'office', 'corporate', 'workspace', 'commercial', 'business',
   'executive', 'conference', 'meeting', 'coworking', 'study',
-  'work-from-home', 'home-office', 'professional'
+  'work-from-home', 'professional'
 ];
 
 const designAPI = {
