@@ -162,7 +162,7 @@ export const Navbar = () => {
 
                   <div className="border-t-2 border-gray-200 dark:border-gray-800 mt-6 pt-4">
                     <Link
-                      href="/services"
+                      href="/design-ideas"
                       className="inline-flex items-center gap-2 text-sm font-semibold text-red-400 hover:text-red-500 transition-colors group"
                     >
                       <span>View All Services</span>
@@ -180,7 +180,7 @@ export const Navbar = () => {
               onMouseLeave={handleMouseLeave}
             >
               <Link 
-                href="/design-ideas"
+                href="/"
                 className="flex items-center gap-1.5 px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium transition-all hover:bg-gray-100 dark:hover:bg-gray-800/60 rounded-lg"
               >
                 Design Ideas
@@ -206,7 +206,7 @@ export const Navbar = () => {
 
                   <div className="border-t-2 border-gray-200 dark:border-gray-800 mt-6 pt-4">
                     <Link
-                      href="/design-ideas"
+                      href="/blogs"
                       className="inline-flex items-center gap-2 text-sm font-semibold text-red-400 hover:text-red-500 transition-colors group"
                     >
                       <span>Explore All Design Ideas</span>
