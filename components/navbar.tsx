@@ -105,7 +105,15 @@ export const Navbar = () => {
                   alt="Glomni Designs"
                   width={118}
                   height={118}
-                  className="object-contain group-hover:opacity-80 transition-opacity"
+                  className="object-contain block dark:hidden group-hover:opacity-80 transition-opacity"
+                  priority
+                />
+                <Image
+                  src="/logo-dark.png"
+                  alt="Glomni Designs"
+                  width={118}
+                  height={118}
+                  className="object-contain hidden dark:block group-hover:opacity-80 transition-opacity"
                   priority
                 />
               </div>
