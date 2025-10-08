@@ -179,8 +179,8 @@ export default function Footer() {
                   <Image
                     src="/logo.png"
                     alt="Glomni Designs"
-                    width={118}
-                    height={118}
+                    width={48}
+                    height={48}
                     className="object-contain group-hover:opacity-80 transition-opacity"
                     priority
                   />
