@@ -11,21 +11,21 @@ type ServicesSubMenu = 'office' | 'home' | null;
 
 export const Navbar = () => {
   const [activeDropdown, setActiveDropdown] = useState<DropdownType>(null);
-  const [activeServicesSubMenu, setActiveServicesSubMenu] = useState<ServicesSubMenu>('office'); // Default to office
+  const [activeServicesSubMenu, setActiveServicesSubMenu] = useState<ServicesSubMenu>(null); // null by default
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeMobileDropdown, setActiveMobileDropdown] = useState<DropdownType>(null);
   const [expandedMobileCategory, setExpandedMobileCategory] = useState<ServicesSubMenu>(null);
 
   const handleMouseEnter = (dropdown: Exclude<DropdownType, null>) => {
     setActiveDropdown(dropdown);
-    if (dropdown === 'services') {
-      setActiveServicesSubMenu('office'); // Set default when opening services
+    if (dropdown !== 'services') {
+      setActiveServicesSubMenu(null);
     }
   };
 
   const handleMouseLeave = () => {
     setActiveDropdown(null);
-    setActiveServicesSubMenu('office'); // Reset to default
+    setActiveServicesSubMenu(null);
   };
 
   const toggleMobileMenu = () => {
@@ -162,7 +162,7 @@ export const Navbar = () => {
                       </div>
 
                       {/* Right Side - Sub Items */}
-                      <div className="w-2/3 p-4">
+                      <div className="w-2/3 p-4 min-h-[300px]">
                         {activeServicesSubMenu === 'office' && (
                           <div className="space-y-1">
                             <h3 className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3 px-3">
@@ -196,6 +196,16 @@ export const Navbar = () => {
                                 <span className="font-medium">{item.label}</span>
                               </Link>
                             ))}
+                          </div>
+                        )}
+
+                        {/* Empty State - when no category is hovered */}
+                        {!activeServicesSubMenu && (
+                          <div className="flex items-center justify-center h-full">
+                            <div className="text-center text-gray-400 dark:text-gray-600">
+                              <div className="text-5xl mb-3">🏢</div>
+                              <p className="text-sm font-medium">Hover to explore services</p>
+                            </div>
                           </div>
                         )}
                       </div>
