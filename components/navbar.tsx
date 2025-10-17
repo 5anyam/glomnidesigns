@@ -11,7 +11,7 @@ type ServicesSubMenu = 'office' | 'home' | null;
 
 export const Navbar = () => {
   const [activeDropdown, setActiveDropdown] = useState<DropdownType>(null);
-  const [activeServicesSubMenu, setActiveServicesSubMenu] = useState<ServicesSubMenu>(null); // null by default
+  const [activeServicesSubMenu, setActiveServicesSubMenu] = useState<ServicesSubMenu>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeMobileDropdown, setActiveMobileDropdown] = useState<DropdownType>(null);
   const [expandedMobileCategory, setExpandedMobileCategory] = useState<ServicesSubMenu>(null);
@@ -128,14 +128,14 @@ export const Navbar = () => {
               </button>
 
               {activeDropdown === 'services' && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-[600px]">
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1">
                   <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl shadow-2xl overflow-hidden">
                     <div className="flex">
                       {/* Left Side - Main Categories */}
-                      <div className="w-1/3 bg-gray-50 dark:bg-gray-800/50 p-4 border-r border-gray-200 dark:border-gray-700">
+                      <div className={`bg-gray-50 dark:bg-gray-800/50 p-4 ${activeServicesSubMenu ? 'border-r border-gray-200 dark:border-gray-700' : ''}`}>
                         <button
                           onMouseEnter={() => setActiveServicesSubMenu('office')}
-                          className={`w-full text-left px-4 py-3 rounded-xl font-semibold transition-all ${
+                          className={`w-full text-left px-4 py-3 rounded-xl font-semibold transition-all whitespace-nowrap ${
                             activeServicesSubMenu === 'office'
                               ? 'bg-red-50 dark:bg-red-950/30 text-red-600 dark:text-red-400'
                               : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
@@ -143,12 +143,12 @@ export const Navbar = () => {
                         >
                           <div className="flex items-center justify-between">
                             <span>Office Spaces</span>
-                            <ChevronRight className="w-4 h-4" />
+                            <ChevronRight className="w-4 h-4 ml-2" />
                           </div>
                         </button>
                         <button
                           onMouseEnter={() => setActiveServicesSubMenu('home')}
-                          className={`w-full text-left px-4 py-3 rounded-xl font-semibold transition-all mt-2 ${
+                          className={`w-full text-left px-4 py-3 rounded-xl font-semibold transition-all mt-2 whitespace-nowrap ${
                             activeServicesSubMenu === 'home'
                               ? 'bg-red-50 dark:bg-red-950/30 text-red-600 dark:text-red-400'
                               : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
@@ -156,51 +156,51 @@ export const Navbar = () => {
                         >
                           <div className="flex items-center justify-between">
                             <span>Home Interiors</span>
-                            <ChevronRight className="w-4 h-4" />
+                            <ChevronRight className="w-4 h-4 ml-2" />
                           </div>
                         </button>
                       </div>
 
-                      {/* Right Side - Sub Items */}
-                      <div className="w-2/3 p-4 min-h-[300px]">
-                        {activeServicesSubMenu === 'office' && (
-                          <div className="space-y-1">
-                            <h3 className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3 px-3">
-                              Office Interior Solutions
-                            </h3>
-                            {officeServices.map((item) => (
-                              <Link
-                                key={item.label}
-                                href={item.href}
-                                className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-950/20 hover:text-gray-900 dark:hover:text-white transition-all group"
-                              >
-                                <span className="text-lg group-hover:scale-110 transition-transform">{item.icon}</span>
-                                <span className="font-medium">{item.label}</span>
-                              </Link>
-                            ))}
-                          </div>
-                        )}
+                      {/* Right Side - Sub Items (Only show when hovering) */}
+                      {activeServicesSubMenu && (
+                        <div className="w-[350px] p-4">
+                          {activeServicesSubMenu === 'office' && (
+                            <div className="space-y-1">
+                              <h3 className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3 px-3">
+                                Office Interior Solutions
+                              </h3>
+                              {officeServices.map((item) => (
+                                <Link
+                                  key={item.label}
+                                  href={item.href}
+                                  className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-950/20 hover:text-gray-900 dark:hover:text-white transition-all group"
+                                >
+                                  <span className="text-lg group-hover:scale-110 transition-transform">{item.icon}</span>
+                                  <span className="font-medium">{item.label}</span>
+                                </Link>
+                              ))}
+                            </div>
+                          )}
 
-                        {activeServicesSubMenu === 'home' && (
-                          <div className="space-y-1">
-                            <h3 className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3 px-3">
-                              Home Interior Solutions
-                            </h3>
-                            {homeServices.map((item) => (
-                              <Link
-                                key={item.label}
-                                href={item.href}
-                                className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-950/20 hover:text-gray-900 dark:hover:text-white transition-all group"
-                              >
-                                <span className="text-lg group-hover:scale-110 transition-transform">{item.icon}</span>
-                                <span className="font-medium">{item.label}</span>
-                              </Link>
-                            ))}
-                          </div>
-                        )}
-
-                        {/* Empty State - when no category is hovered */}
-                      </div>
+                          {activeServicesSubMenu === 'home' && (
+                            <div className="space-y-1">
+                              <h3 className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3 px-3">
+                                Home Interior Solutions
+                              </h3>
+                              {homeServices.map((item) => (
+                                <Link
+                                  key={item.label}
+                                  href={item.href}
+                                  className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-950/20 hover:text-gray-900 dark:hover:text-white transition-all group"
+                                >
+                                  <span className="text-lg group-hover:scale-110 transition-transform">{item.icon}</span>
+                                  <span className="font-medium">{item.label}</span>
+                                </Link>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      )}
                     </div>
 
                     <div className="border-t border-gray-200 dark:border-gray-700 px-6 py-3 bg-gray-50 dark:bg-gray-800/50">
@@ -320,7 +320,7 @@ export const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Same as before */}
       {isMobileMenuOpen && (
         <div className="lg:hidden border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
           <div className="max-h-[80vh] overflow-y-auto p-4 space-y-2">
@@ -332,7 +332,6 @@ export const Navbar = () => {
               Home
             </Link>
 
-            {/* Services Mobile */}
             <div>
               <button
                 onClick={() => setActiveMobileDropdown(activeMobileDropdown === 'services' ? null : 'services')}
@@ -387,7 +386,6 @@ export const Navbar = () => {
               )}
             </div>
 
-            {/* Design Ideas Mobile */}
             <div>
               <button
                 onClick={() => setActiveMobileDropdown(activeMobileDropdown === 'designIdeas' ? null : 'designIdeas')}
@@ -417,7 +415,6 @@ export const Navbar = () => {
               AI Design
             </Link>
 
-            {/* More Mobile */}
             <div>
               <button
                 onClick={() => setActiveMobileDropdown(activeMobileDropdown === 'more' ? null : 'more')}
