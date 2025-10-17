@@ -199,6 +199,10 @@ export const Navbar = () => {
                           </div>
                         )}
 
+                        {/* Empty State - when no category is hovered */}
+                      </div>
+                    </div>
+
                     <div className="border-t border-gray-200 dark:border-gray-700 px-6 py-3 bg-gray-50 dark:bg-gray-800/50">
                       <Link
                         href="/services"
