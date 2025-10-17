@@ -199,18 +199,6 @@ export const Navbar = () => {
                           </div>
                         )}
 
-                        {/* Empty State - when no category is hovered */}
-                        {!activeServicesSubMenu && (
-                          <div className="flex items-center justify-center h-full">
-                            <div className="text-center text-gray-400 dark:text-gray-600">
-                              <div className="text-5xl mb-3">🏢</div>
-                              <p className="text-sm font-medium">Hover to explore services</p>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-
                     <div className="border-t border-gray-200 dark:border-gray-700 px-6 py-3 bg-gray-50 dark:bg-gray-800/50">
                       <Link
                         href="/services"
