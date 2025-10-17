@@ -7,68 +7,56 @@ import { PlaceholdersAndVanishInputDemo } from "./search";
 import { ChevronDown, ChevronRight, Menu, X } from "lucide-react";
 
 type DropdownType = 'services' | 'designIdeas' | 'more' | null;
-type MobileDropdown = 'services' | 'designIdeas' | 'more' | null;
+type ServicesSubMenu = 'office' | 'home' | null;
 
 export const Navbar = () => {
   const [activeDropdown, setActiveDropdown] = useState<DropdownType>(null);
+  const [activeServicesSubMenu, setActiveServicesSubMenu] = useState<ServicesSubMenu>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeMobileDropdown, setActiveMobileDropdown] = useState<MobileDropdown>(null);
-  const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
+  const [activeMobileDropdown, setActiveMobileDropdown] = useState<DropdownType>(null);
+  const [expandedMobileCategory, setExpandedMobileCategory] = useState<ServicesSubMenu>(null);
 
   const handleMouseEnter = (dropdown: Exclude<DropdownType, null>) => {
     setActiveDropdown(dropdown);
+    if (dropdown !== 'services') {
+      setActiveServicesSubMenu(null);
+    }
   };
 
   const handleMouseLeave = () => {
     setActiveDropdown(null);
+    setActiveServicesSubMenu(null);
   };
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
     if (isMobileMenuOpen) {
       setActiveMobileDropdown(null);
-      setExpandedCategory(null);
+      setExpandedMobileCategory(null);
     }
   };
 
-  const toggleMobileDropdown = (dropdown: MobileDropdown) => {
-    setActiveMobileDropdown(activeMobileDropdown === dropdown ? null : dropdown);
-    setExpandedCategory(null); // Reset sub-categories when switching main menu
-  };
-
-  const toggleCategory = (categoryTitle: string) => {
-    setExpandedCategory(expandedCategory === categoryTitle ? null : categoryTitle);
-  };
-
-  // Menu 1 - Services
-  const servicesCategories = [
-    {
-      title: "Office Interior Designs Ideas",
-      items: [
-        { label: "Coworking Offices Interior", href: "/services/office/coworking-offices", icon: "🤝" },
-        { label: "Open Workspace Interior", href: "/services/office/open-workspace", icon: "💼" },
-        { label: "Meeting Rooms Interior", href: "/services/office/meeting-rooms", icon: "👥" },
-        { label: "Private Cabin Interior", href: "/services/office/private-cabin", icon: "🚪" },
-        { label: "Personal Office Interior", href: "/services/office/personal-office", icon: "👔" },
-        { label: "Home Office Interior", href: "/services/office/home-office", icon: "🏠" }
-      ]
-    },
-    {
-      title: "Home Interior Designs Ideas",
-      items: [
-        { label: "Modular Kitchen Interior", href: "/services/home/modular-kitchen", icon: "🍳" },
-        { label: "Wardrobe Interior", href: "/services/home/wardrobe", icon: "👗" },
-        { label: "Bathroom Interior", href: "/services/home/bathroom", icon: "🚿" },
-        { label: "Master Bedroom Interior", href: "/services/home/master-bedroom", icon: "🛏️" },
-        { label: "Living Room Interior", href: "/services/home/living-room", icon: "🛋️" },
-        { label: "Pooja Room Interior", href: "/services/home/pooja-room", icon: "🙏" },
-        { label: "Kids Bedroom Interior", href: "/services/home/kids-bedroom", icon: "🧸" },
-        { label: "Guest Bedroom Interior", href: "/services/home/guest-bedroom", icon: "🛌" }
-      ]
-    }
+  // Simplified Services - Only 2 main categories
+  const officeServices = [
+    { label: "Coworking Offices Interior", href: "/services/office/coworking", icon: "🤝" },
+    { label: "Open Workspace Interior", href: "/services/office/open-workspace", icon: "💼" },
+    { label: "Meeting Rooms Interior", href: "/services/office/meeting-rooms", icon: "👥" },
+    { label: "Private Cabin Interior", href: "/services/office/private-cabin", icon: "🚪" },
+    { label: "Personal Office Interior", href: "/services/office/personal-office", icon: "👔" },
+    { label: "Home Office Interior", href: "/services/office/home-office", icon: "🏠" }
   ];
 
-  // Menu 2 - Design Ideas
+  const homeServices = [
+    { label: "Modular Kitchen", href: "/services/home/kitchen", icon: "🍳" },
+    { label: "Wardrobe Design", href: "/services/home/wardrobe", icon: "👗" },
+    { label: "Bathroom Interior", href: "/services/home/bathroom", icon: "🚿" },
+    { label: "Master Bedroom", href: "/services/home/master-bedroom", icon: "🛏️" },
+    { label: "Living Room", href: "/services/home/living-room", icon: "🛋️" },
+    { label: "Pooja Room", href: "/services/home/pooja-room", icon: "🙏" },
+    { label: "Kids Bedroom", href: "/services/home/kids-bedroom", icon: "🧸" },
+    { label: "Guest Bedroom", href: "/services/home/guest-bedroom", icon: "🛌" }
+  ];
+
   const designIdeasItems = [
     { label: "Room Ideas", href: "/design-ideas/room-ideas", icon: "🏠" },
     { label: "Decor & Inspiration", href: "/design-ideas/decor-inspiration", icon: "✨" },
@@ -81,7 +69,7 @@ export const Navbar = () => {
     { label: "Expert Advice", href: "/design-ideas/expert-advice", icon: "👨‍💼" },
     { label: "Interior Advice", href: "/design-ideas/interior-advice", icon: "💬" },
     { label: "Ceiling Design", href: "/design-ideas/ceiling-design", icon: "🏛️" },
-    { label: "Home Renovation Ideas", href: "/design-ideas/home-renovation", icon: "🔧" },
+    { label: "Home Renovation", href: "/design-ideas/home-renovation", icon: "🔧" },
     { label: "Commercial Designs", href: "/design-ideas/commercial-designs", icon: "🏢" },
     { label: "Furniture Ideas", href: "/design-ideas/furniture-ideas", icon: "🪑" }
   ];
@@ -94,133 +82,186 @@ export const Navbar = () => {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/95 dark:bg-gray-950/95 backdrop-blur-xl border-b border-gray-200 dark:border-gray-800 shadow-sm transition-colors">
+    <nav className="sticky top-0 z-50 bg-white dark:bg-gray-950 backdrop-blur-xl border-b border-gray-200 dark:border-gray-800 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex items-center">
-            <Link href="/" className="flex items-center group">
-              <div className="relative w-auto h-12 transition-all duration-300 group-hover:scale-105">
-                <Image
-                  src="/logo.png"
-                  alt="Glomni Designs"
-                  width={50}
-                  height={50}
-                  className="object-contain block dark:hidden group-hover:opacity-80 transition-opacity"
-                  priority
-                />
-                <Image
-                  src="/logo-dark.png"
-                  alt="Glomni Designs"
-                  width={50}
-                  height={50}
-                  className="object-contain hidden dark:block group-hover:opacity-80 transition-opacity"
-                  priority
-                />
-              </div>
-            </Link>
-          </div>
+          <Link href="/" className="flex items-center group">
+            <div className="relative w-auto h-12 transition-transform duration-300 group-hover:scale-105">
+              <Image
+                src="/logo.png"
+                alt="Glomni Designs"
+                width={50}
+                height={50}
+                className="object-contain block dark:hidden"
+                priority
+              />
+              <Image
+                src="/logo-dark.png"
+                alt="Glomni Designs"
+                width={50}
+                height={50}
+                className="object-contain hidden dark:block"
+                priority
+              />
+            </div>
+          </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-2">
+          <div className="hidden lg:flex items-center gap-1">
             <Link
               href="/"
-              className="px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium transition-all hover:bg-gray-100 dark:hover:bg-gray-800/60 rounded-lg"
+              className="px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
             >
               Home
             </Link>
 
-            {/* Services Dropdown (Menu 1) */}
+            {/* Services Mega Menu */}
             <div 
               className="relative"
               onMouseEnter={() => handleMouseEnter('services')}
               onMouseLeave={handleMouseLeave}
             >
-              <button 
-                className="flex items-center gap-1.5 px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium transition-all hover:bg-gray-100 dark:hover:bg-gray-800/60 rounded-lg"
-              >
+              <button className="flex items-center gap-1.5 px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
                 Services
-                <ChevronDown className="w-4 h-4" />
+                <ChevronDown className={`w-4 h-4 transition-transform ${activeDropdown === 'services' ? 'rotate-180' : ''}`} />
               </button>
 
               {activeDropdown === 'services' && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[720px] bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-800 rounded-2xl shadow-xl p-6 animate-in fade-in slide-in-from-top-2 duration-200">
-                  <div className="grid grid-cols-2 gap-6">
-                    {servicesCategories.map((category) => (
-                      <div key={category.title} className="space-y-3">
-                        <h3 className="font-bold text-gray-900 dark:text-white text-sm uppercase tracking-wide border-b-2 border-red-400 pb-2 mb-3">
-                          {category.title}
-                        </h3>
-                        <div className="space-y-1.5">
-                          {category.items.map((item) => (
-                            <Link
-                              key={item.label}
-                              href={item.href}
-                              className="group flex items-center gap-3 px-3 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-red-50 dark:hover:bg-red-950/20 rounded-lg transition-all duration-200"
-                            >
-                              <span className="text-xl group-hover:scale-110 transition-transform">
-                                {item.icon}
-                              </span>
-                              <span className="font-medium">{item.label}</span>
-                            </Link>
-                          ))}
-                        </div>
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-[600px]">
+                  <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl shadow-2xl overflow-hidden">
+                    <div className="flex">
+                      {/* Left Side - Main Categories */}
+                      <div className="w-1/3 bg-gray-50 dark:bg-gray-800/50 p-4 border-r border-gray-200 dark:border-gray-700">
+                        <button
+                          onMouseEnter={() => setActiveServicesSubMenu('office')}
+                          className={`w-full text-left px-4 py-3 rounded-xl font-semibold transition-all ${
+                            activeServicesSubMenu === 'office'
+                              ? 'bg-red-50 dark:bg-red-950/30 text-red-600 dark:text-red-400'
+                              : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                          }`}
+                        >
+                          <div className="flex items-center justify-between">
+                            <span>Office Spaces</span>
+                            <ChevronRight className="w-4 h-4" />
+                          </div>
+                        </button>
+                        <button
+                          onMouseEnter={() => setActiveServicesSubMenu('home')}
+                          className={`w-full text-left px-4 py-3 rounded-xl font-semibold transition-all mt-2 ${
+                            activeServicesSubMenu === 'home'
+                              ? 'bg-red-50 dark:bg-red-950/30 text-red-600 dark:text-red-400'
+                              : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                          }`}
+                        >
+                          <div className="flex items-center justify-between">
+                            <span>Home Interiors</span>
+                            <ChevronRight className="w-4 h-4" />
+                          </div>
+                        </button>
                       </div>
-                    ))}
-                  </div>
 
-                  <div className="border-t-2 border-gray-200 dark:border-gray-800 mt-6 pt-4">
-                    <Link
-                      href="/design-ideas"
-                      className="inline-flex items-center gap-2 text-sm font-semibold text-red-400 hover:text-red-500 transition-colors group"
-                    >
-                      <span>View All Services</span>
-                      <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </Link>
+                      {/* Right Side - Sub Items */}
+                      <div className="w-2/3 p-4">
+                        {activeServicesSubMenu === 'office' && (
+                          <div className="space-y-1">
+                            <h3 className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3 px-3">
+                              Office Interior Solutions
+                            </h3>
+                            {officeServices.map((item) => (
+                              <Link
+                                key={item.label}
+                                href={item.href}
+                                className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-950/20 hover:text-gray-900 dark:hover:text-white transition-all group"
+                              >
+                                <span className="text-lg group-hover:scale-110 transition-transform">{item.icon}</span>
+                                <span className="font-medium">{item.label}</span>
+                              </Link>
+                            ))}
+                          </div>
+                        )}
+
+                        {activeServicesSubMenu === 'home' && (
+                          <div className="space-y-1">
+                            <h3 className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3 px-3">
+                              Home Interior Solutions
+                            </h3>
+                            {homeServices.map((item) => (
+                              <Link
+                                key={item.label}
+                                href={item.href}
+                                className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-950/20 hover:text-gray-900 dark:hover:text-white transition-all group"
+                              >
+                                <span className="text-lg group-hover:scale-110 transition-transform">{item.icon}</span>
+                                <span className="font-medium">{item.label}</span>
+                              </Link>
+                            ))}
+                          </div>
+                        )}
+
+                        {!activeServicesSubMenu && (
+                          <div className="flex items-center justify-center h-full text-gray-400 dark:text-gray-600">
+                            <div className="text-center">
+                              <div className="text-4xl mb-2">👈</div>
+                              <p className="text-sm">Hover on a category</p>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="border-t border-gray-200 dark:border-gray-700 px-6 py-3 bg-gray-50 dark:bg-gray-800/50">
+                      <Link
+                        href="/services"
+                        className="inline-flex items-center gap-2 text-sm font-semibold text-red-500 hover:text-red-600 transition-colors"
+                      >
+                        <span>View All Services</span>
+                        <ChevronRight className="w-4 h-4" />
+                      </Link>
+                    </div>
                   </div>
                 </div>
               )}
             </div>
 
-            {/* Design Ideas Dropdown (Menu 2) */}
+            {/* Design Ideas */}
             <div 
               className="relative"
               onMouseEnter={() => handleMouseEnter('designIdeas')}
               onMouseLeave={handleMouseLeave}
             >
               <Link 
-                href="/"
-                className="flex items-center gap-1.5 px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium transition-all hover:bg-gray-100 dark:hover:bg-gray-800/60 rounded-lg"
+                href="/design-ideas"
+                className="flex items-center gap-1.5 px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
               >
                 Design Ideas
-                <ChevronDown className="w-4 h-4" />
+                <ChevronDown className={`w-4 h-4 transition-transform ${activeDropdown === 'designIdeas' ? 'rotate-180' : ''}`} />
               </Link>
 
               {activeDropdown === 'designIdeas' && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[520px] bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-800 rounded-2xl shadow-xl p-6 animate-in fade-in slide-in-from-top-2 duration-200">
-                  <div className="grid grid-cols-2 gap-2">
-                    {designIdeasItems.map((item) => (
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-[500px]">
+                  <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl shadow-2xl p-4">
+                    <div className="grid grid-cols-2 gap-1">
+                      {designIdeasItems.map((item) => (
+                        <Link
+                          key={item.label}
+                          href={item.href}
+                          className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-950/20 hover:text-gray-900 dark:hover:text-white transition-all group"
+                        >
+                          <span className="text-base group-hover:scale-110 transition-transform">{item.icon}</span>
+                          <span className="font-medium">{item.label}</span>
+                        </Link>
+                      ))}
+                    </div>
+                    <div className="border-t border-gray-200 dark:border-gray-700 mt-4 pt-3">
                       <Link
-                        key={item.label}
-                        href={item.href}
-                        className="group flex items-center gap-3 px-3 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-red-50 dark:hover:bg-red-950/20 rounded-lg transition-all duration-200"
+                        href="/design-ideas"
+                        className="inline-flex items-center gap-2 text-sm font-semibold text-red-500 hover:text-red-600 transition-colors"
                       >
-                        <span className="text-xl group-hover:scale-110 transition-transform">
-                          {item.icon}
-                        </span>
-                        <span className="font-medium">{item.label}</span>
+                        <span>Explore All Ideas</span>
+                        <ChevronRight className="w-4 h-4" />
                       </Link>
-                    ))}
-                  </div>
-
-                  <div className="border-t-2 border-gray-200 dark:border-gray-800 mt-6 pt-4">
-                    <Link
-                      href="/blogs"
-                      className="inline-flex items-center gap-2 text-sm font-semibold text-red-400 hover:text-red-500 transition-colors group"
-                    >
-                      <span>Explore All Design Ideas</span>
-                      <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </Link>
+                    </div>
                   </div>
                 </div>
               )}
@@ -228,59 +269,57 @@ export const Navbar = () => {
 
             <Link
               href="/portfolio"
-              className="px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium transition-all hover:bg-gray-100 dark:hover:bg-gray-800/60 rounded-lg"
+              className="px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
             >
               Portfolio
             </Link>
 
             <Link
               href="/ai-designs"
-              className="px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium transition-all hover:bg-gray-100 dark:hover:bg-gray-800/60 rounded-lg"
+              className="px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
             >
-              AI Design Generator
+              AI Design
             </Link>
 
-            {/* More Dropdown */}
+            {/* More */}
             <div 
               className="relative"
               onMouseEnter={() => handleMouseEnter('more')}
               onMouseLeave={handleMouseLeave}
             >
-              <button className="flex items-center gap-1.5 px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium transition-all hover:bg-gray-100 dark:hover:bg-gray-800/60 rounded-lg">
+              <button className="flex items-center gap-1.5 px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
                 More
-                <ChevronDown className="w-4 h-4" />
+                <ChevronDown className={`w-4 h-4 transition-transform ${activeDropdown === 'more' ? 'rotate-180' : ''}`} />
               </button>
+
               {activeDropdown === 'more' && (
-                <div className="absolute top-full right-0 mt-2 w-56 bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-800 rounded-xl shadow-xl py-2 animate-in fade-in slide-in-from-top-2 duration-200">
-                  {moreItems.map((item) => (
-                    <Link
-                      key={item.label}
-                      href={item.href}
-                      className="block px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-red-50 dark:hover:bg-red-950/20 transition-all"
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
+                <div className="absolute top-full right-0 mt-1 w-48">
+                  <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl shadow-2xl py-2">
+                    {moreItems.map((item) => (
+                      <Link
+                        key={item.label}
+                        href={item.href}
+                        className="block px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-950/20 hover:text-gray-900 dark:hover:text-white transition-all"
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
           </div>
 
-          {/* Right side items */}
+          {/* Right Side */}
           <div className="flex items-center gap-3">
             <div className="hidden sm:block">
               <PlaceholdersAndVanishInputDemo />
             </div>
+            <ThemeSwitch />
 
-            <div className="flex items-center">
-              <ThemeSwitch />
-            </div>
-
-            {/* Mobile menu button */}
             <button
               onClick={toggleMobileMenu}
-              className="lg:hidden p-2.5 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800/60 rounded-lg transition-all"
-              aria-label="Toggle menu"
+              className="lg:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
             >
               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -288,188 +327,128 @@ export const Navbar = () => {
         </div>
       </div>
 
-      {/* Enhanced Mobile Menu */}
+      {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
-          <div className="max-h-[calc(100vh-4rem)] overflow-y-auto">
-            <div className="px-3 py-4 space-y-1">
+        <div className="lg:hidden border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
+          <div className="max-h-[80vh] overflow-y-auto p-4 space-y-2">
+            <div className="sm:hidden mb-4">
+              <PlaceholdersAndVanishInputDemo />
+            </div>
 
-              {/* Search on mobile */}
-              <div className="sm:hidden pb-3 mb-3 border-b border-gray-200 dark:border-gray-800">
-                <PlaceholdersAndVanishInputDemo />
-              </div>
+            <Link href="/" className="block px-4 py-3 rounded-xl font-medium hover:bg-gray-100 dark:hover:bg-gray-800" onClick={toggleMobileMenu}>
+              Home
+            </Link>
 
-              {/* Home Link */}
-              <Link
-                href="/"
-                className="flex items-center px-3 py-3 text-gray-900 dark:text-white font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl transition-all"
-                onClick={() => setIsMobileMenuOpen(false)}
+            {/* Services Mobile */}
+            <div>
+              <button
+                onClick={() => setActiveMobileDropdown(activeMobileDropdown === 'services' ? null : 'services')}
+                className="w-full flex items-center justify-between px-4 py-3 rounded-xl font-medium hover:bg-gray-100 dark:hover:bg-gray-800"
               >
-                <span>Home</span>
-              </Link>
+                Services
+                <ChevronDown className={`w-5 h-5 transition-transform ${activeMobileDropdown === 'services' ? 'rotate-180' : ''}`} />
+              </button>
 
-              {/* Services - Main Menu Item (Level 1) */}
-              <div className="space-y-1">
-                <button
-                  onClick={() => toggleMobileDropdown('services')}
-                  className="w-full flex items-center justify-between px-3 py-3 text-gray-900 dark:text-white font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl transition-all"
-                >
-                  <span>Services</span>
-                  <ChevronDown 
-                    className={`w-5 h-5 transition-transform duration-300 ${
-                      activeMobileDropdown === 'services' ? 'rotate-180 text-red-400' : ''
-                    }`} 
-                  />
-                </button>
-
-                {/* Sub-Menu (Level 2) */}
-                {activeMobileDropdown === 'services' && (
-                  <div className="space-y-1 bg-gray-50 dark:bg-gray-800/30 rounded-xl p-2 animate-in slide-in-from-top-2 duration-200">
-                    {servicesCategories.map((category) => (
-                      <div key={category.title} className="space-y-1">
-                        <button
-                          onClick={() => toggleCategory(category.title)}
-                          className="w-full flex items-center justify-between px-3 py-2.5 text-gray-800 dark:text-gray-200 text-sm font-semibold hover:bg-white dark:hover:bg-gray-800 rounded-lg transition-all"
-                        >
-                          <span className="flex items-center gap-2">
-                            <div className="w-1.5 h-1.5 rounded-full bg-red-400"></div>
-                            {category.title}
-                          </span>
-                          <ChevronRight 
-                            className={`w-4 h-4 transition-transform duration-300 ${
-                              expandedCategory === category.title ? 'rotate-90 text-red-400' : ''
-                            }`} 
-                          />
-                        </button>
-
-                        {/* Sub-Sub-Menu (Level 3) */}
-                        {expandedCategory === category.title && (
-                          <div className="space-y-0.5 bg-white dark:bg-gray-900/50 rounded-lg p-2 ml-3 border-l-2 border-red-400 animate-in slide-in-from-left-1 duration-200">
-                            {category.items.map((item) => (
-                              <Link
-                                key={item.label}
-                                href={item.href}
-                                className="flex items-center gap-2 px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-red-50 dark:hover:bg-red-950/30 rounded-lg transition-all"
-                                onClick={() => setIsMobileMenuOpen(false)}
-                              >
-                                <span className="text-base flex-shrink-0">{item.icon}</span>
-                                <span className="font-medium">{item.label}</span>
-                              </Link>
-                            ))}
-                          </div>
-                        )}
+              {activeMobileDropdown === 'services' && (
+                <div className="mt-2 space-y-2 pl-4">
+                  <div>
+                    <button
+                      onClick={() => setExpandedMobileCategory(expandedMobileCategory === 'office' ? null : 'office')}
+                      className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-gray-50 dark:bg-gray-800 font-medium text-sm"
+                    >
+                      Office Spaces
+                      <ChevronRight className={`w-4 h-4 transition-transform ${expandedMobileCategory === 'office' ? 'rotate-90' : ''}`} />
+                    </button>
+                    {expandedMobileCategory === 'office' && (
+                      <div className="mt-1 space-y-1 pl-4">
+                        {officeServices.map(item => (
+                          <Link key={item.label} href={item.href} className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm hover:bg-gray-100 dark:hover:bg-gray-800" onClick={toggleMobileMenu}>
+                            <span>{item.icon}</span>
+                            <span>{item.label}</span>
+                          </Link>
+                        ))}
                       </div>
-                    ))}
+                    )}
+                  </div>
 
-                    <Link
-                      href="/services"
-                      className="flex items-center justify-center gap-2 px-3 py-2.5 mt-2 text-sm text-red-400 hover:text-red-500 font-bold hover:bg-red-50 dark:hover:bg-red-950/30 rounded-lg transition-all"
-                      onClick={() => setIsMobileMenuOpen(false)}
+                  <div>
+                    <button
+                      onClick={() => setExpandedMobileCategory(expandedMobileCategory === 'home' ? null : 'home')}
+                      className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-gray-50 dark:bg-gray-800 font-medium text-sm"
                     >
-                      <span>View All Services</span>
-                      <ChevronRight className="w-4 h-4" />
-                    </Link>
+                      Home Interiors
+                      <ChevronRight className={`w-4 h-4 transition-transform ${expandedMobileCategory === 'home' ? 'rotate-90' : ''}`} />
+                    </button>
+                    {expandedMobileCategory === 'home' && (
+                      <div className="mt-1 space-y-1 pl-4">
+                        {homeServices.map(item => (
+                          <Link key={item.label} href={item.href} className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm hover:bg-gray-100 dark:hover:bg-gray-800" onClick={toggleMobileMenu}>
+                            <span>{item.icon}</span>
+                            <span>{item.label}</span>
+                          </Link>
+                        ))}
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
+                </div>
+              )}
+            </div>
 
-              {/* Design Ideas - Main Menu Item (Level 1) */}
-              <div className="space-y-1">
-                <button
-                  onClick={() => toggleMobileDropdown('designIdeas')}
-                  className="w-full flex items-center justify-between px-3 py-3 text-gray-900 dark:text-white font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl transition-all"
-                >
-                  <span>Design Ideas</span>
-                  <ChevronDown 
-                    className={`w-5 h-5 transition-transform duration-300 ${
-                      activeMobileDropdown === 'designIdeas' ? 'rotate-180 text-red-400' : ''
-                    }`} 
-                  />
-                </button>
-
-                {/* Sub-Menu (Level 2) - Direct links */}
-                {activeMobileDropdown === 'designIdeas' && (
-                  <div className="space-y-0.5 bg-gray-50 dark:bg-gray-800/30 rounded-xl p-2 animate-in slide-in-from-top-2 duration-200">
-                    {designIdeasItems.map((item) => (
-                      <Link
-                        key={item.label}
-                        href={item.href}
-                        className="flex items-center gap-2 px-3 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-red-50 dark:hover:bg-red-950/30 rounded-lg transition-all"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        <span className="text-base flex-shrink-0">{item.icon}</span>
-                        <span className="font-medium">{item.label}</span>
-                      </Link>
-                    ))}
-
-                    <Link
-                      href="/design-ideas"
-                      className="flex items-center justify-center gap-2 px-3 py-2.5 mt-2 text-sm text-red-400 hover:text-red-500 font-bold hover:bg-red-50 dark:hover:bg-red-950/30 rounded-lg transition-all"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      <span>Explore All Design Ideas</span>
-                      <ChevronRight className="w-4 h-4" />
-                    </Link>
-                  </div>
-                )}
-              </div>
-
-              {/* Portfolio Link */}
-              <Link
-                href="/portfolio"
-                className="flex items-center px-3 py-3 text-gray-900 dark:text-white font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl transition-all"
-                onClick={() => setIsMobileMenuOpen(false)}
+            {/* Design Ideas Mobile */}
+            <div>
+              <button
+                onClick={() => setActiveMobileDropdown(activeMobileDropdown === 'designIdeas' ? null : 'designIdeas')}
+                className="w-full flex items-center justify-between px-4 py-3 rounded-xl font-medium hover:bg-gray-100 dark:hover:bg-gray-800"
               >
-                <span>Portfolio</span>
-              </Link>
+                Design Ideas
+                <ChevronDown className={`w-5 h-5 transition-transform ${activeMobileDropdown === 'designIdeas' ? 'rotate-180' : ''}`} />
+              </button>
 
-              {/* AI Design Generator Link */}
-              <Link
-                href="/ai-designs"
-                className="flex items-center px-3 py-3 text-gray-900 dark:text-white font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl transition-all"
-                onClick={() => setIsMobileMenuOpen(false)}
+              {activeMobileDropdown === 'designIdeas' && (
+                <div className="mt-2 space-y-1 pl-4">
+                  {designIdeasItems.map(item => (
+                    <Link key={item.label} href={item.href} className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm hover:bg-gray-100 dark:hover:bg-gray-800" onClick={toggleMobileMenu}>
+                      <span>{item.icon}</span>
+                      <span>{item.label}</span>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <Link href="/portfolio" className="block px-4 py-3 rounded-xl font-medium hover:bg-gray-100 dark:hover:bg-gray-800" onClick={toggleMobileMenu}>
+              Portfolio
+            </Link>
+
+            <Link href="/ai-designs" className="block px-4 py-3 rounded-xl font-medium hover:bg-gray-100 dark:hover:bg-gray-800" onClick={toggleMobileMenu}>
+              AI Design
+            </Link>
+
+            {/* More Mobile */}
+            <div>
+              <button
+                onClick={() => setActiveMobileDropdown(activeMobileDropdown === 'more' ? null : 'more')}
+                className="w-full flex items-center justify-between px-4 py-3 rounded-xl font-medium hover:bg-gray-100 dark:hover:bg-gray-800"
               >
-                <span>AI Design Generator</span>
-              </Link>
+                More
+                <ChevronDown className={`w-5 h-5 transition-transform ${activeMobileDropdown === 'more' ? 'rotate-180' : ''}`} />
+              </button>
 
-              {/* More - Main Menu Item (Level 1) */}
-              <div className="space-y-1">
-                <button
-                  onClick={() => toggleMobileDropdown('more')}
-                  className="w-full flex items-center justify-between px-3 py-3 text-gray-900 dark:text-white font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl transition-all"
-                >
-                  <span>More</span>
-                  <ChevronDown 
-                    className={`w-5 h-5 transition-transform duration-300 ${
-                      activeMobileDropdown === 'more' ? 'rotate-180 text-red-400' : ''
-                    }`} 
-                  />
-                </button>
+              {activeMobileDropdown === 'more' && (
+                <div className="mt-2 space-y-1 pl-4">
+                  {moreItems.map(item => (
+                    <Link key={item.label} href={item.href} className="block px-4 py-2 rounded-lg text-sm hover:bg-gray-100 dark:hover:bg-gray-800" onClick={toggleMobileMenu}>
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
 
-                {/* Sub-Menu (Level 2) */}
-                {activeMobileDropdown === 'more' && (
-                  <div className="space-y-0.5 bg-gray-50 dark:bg-gray-800/30 rounded-xl p-2 animate-in slide-in-from-top-2 duration-200">
-                    {moreItems.map((item) => (
-                      <Link
-                        key={item.label}
-                        href={item.href}
-                        className="block px-3 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-red-50 dark:hover:bg-red-950/30 rounded-lg transition-all font-medium"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              {/* CTA Button */}
-              <div className="pt-3 mt-3 border-t border-gray-200 dark:border-gray-800">
-                <button className="w-full px-4 py-3.5 bg-gradient-to-r from-red-400 to-red-500 hover:from-red-500 hover:to-red-600 text-white rounded-xl font-bold transition-all shadow-lg active:scale-95 flex items-center justify-center gap-2">
-                  <span className="bg-green-500 text-white px-2 py-0.5 rounded text-xs font-bold uppercase">Free</span>
-                  <span>Get Consultation</span>
-                </button>
-              </div>
+            <div className="pt-4">
+              <button className="w-full px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-xl font-bold shadow-lg">
+                Get Free Consultation
+              </button>
             </div>
           </div>
         </div>
