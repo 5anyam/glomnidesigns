@@ -14,29 +14,29 @@ export default function Threedcardshome() {
 
   const cards = [
     {
-      title: "Interior for Homes",
-      description: "We provide modern and minimalistic interior designs tailored for homes with premium quality and attention to detail.",
+      title: "HOME INTERIORS",
+      description: "Transforming houses into homes with timeless design and thoughtful detail.",
       image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
       link: "/design-ideas?category=home-interior",
       color: "red",
     },
     {
-      title: "Data Centers",
-      description: "Professional data center design solutions with optimal cooling, security, and scalability for modern infrastructure.",
+      title: "DATA CENTER",
+      description: "At Glomni Designs, we create high-performance data centres built for reliability and innovation with multiple security levels. ",
       image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31",
       link: "/design-ideas?category=data-centers",
       color: "red",
     },
     {
-      title: "Office Designs",
-      description: "Maximize productivity with functional and aesthetic office designs that inspire creativity and collaboration.",
+      title: "OFFICE INTERIOR",
+      description: "We design offices that reflect innovation, comfort, and your company’s identity.",
       image: "https://images.unsplash.com/photo-1716703373229-b0e43de7dd5c",
       link: "/design-ideas?category=office-spaces",
       color: "red",
     },
     {
-      title: "Construction",
-      description: "Complete construction planning and management services from concept to completion with expert supervision.",
+      title: "CONSTRUCTIONS",
+      description: "Glomni Designs constructs modern, durable, and design-led spaces built to last.",
       image: "https://images.unsplash.com/photo-1591588582259-e675bd2e6088",
       link: "/portfolio",
       color: "red",
@@ -118,23 +118,13 @@ export default function Threedcardshome() {
     <div className="container mx-auto px-4 py-6 md:py-8 bg-white dark:bg-gray-950 transition-colors">
       {/* Header */}
       <div className="text-center mb-16">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="inline-block mb-4"
-        >
-          <span className="bg-red-400/10 text-red-400 px-4 py-2 rounded-full text-sm font-semibold">
-            Our Services
-          </span>
-        </motion.div>
-        
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
           className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4"
         >
-          Premium Design Solutions
+          Services
         </motion.h2>
         
         <motion.p 
@@ -143,7 +133,7 @@ export default function Threedcardshome() {
           transition={{ delay: 0.2 }}
           className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto"
         >
-          Comprehensive interior design and construction services tailored to your needs
+          Best Interior design Ideas for a data centre, office interior, constructions, & home interior.
         </motion.p>
       </div>
 

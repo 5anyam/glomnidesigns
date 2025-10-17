@@ -44,14 +44,13 @@ export function CompareDemo() {
           <div className="flex items-center justify-center gap-3 mb-6">
             <Sparkles className="w-6 h-6 md:w-8 md:h-8 text-red-400" />
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white">
-              Before & After Transformations
+            Before & After Transformation Design
             </h2>
             <Sparkles className="w-6 h-6 md:w-8 md:h-8 text-red-400" />
           </div>
           
           <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
-            Witness the incredible transformations we've achieved for our clients. 
-            Hover or slide to see the before and after of our stunning interior design projects.
+          See how we turn ideas into stunning realities. Slide to explore the before-and-after magic of our interior design projects.
           </p>
           
           <div className="mt-8 inline-flex items-center gap-2 bg-red-400/10 border-2 border-red-400/30 px-6 py-3 rounded-full">

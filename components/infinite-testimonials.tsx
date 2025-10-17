@@ -68,7 +68,7 @@ export function InfiniteMovingCardsDemo() {
         >
           <div className="bg-gray-50 dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-800 rounded-2xl p-8 md:p-12 shadow-lg">
             <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
-              Ready to Join Our Happy Clients?
+            Design solutions that work as hard as you do – Connect with us!
             </h3>
             <p className="text-gray-600 dark:text-gray-400 text-base md:text-lg mb-8 max-w-2xl mx-auto leading-relaxed">
               Experience the Glomni Designs difference. Let us transform your space into something extraordinary.

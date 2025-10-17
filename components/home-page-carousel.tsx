@@ -542,7 +542,7 @@ const HomePageCarousel: React.FC = () => {
         {/* Page Header */}
         <div className="text-center mb-8 md:mb-8">
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-3 md:mb-4">
-            Premium Office Interiors
+          Explore our Office Interior Design Ideas
           </h1>
           <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base md:text-lg lg:text-xl max-w-3xl mx-auto line-clamp-3 leading-relaxed">
             Discover our top {categoriesWithDesigns.length} office design categories. 
