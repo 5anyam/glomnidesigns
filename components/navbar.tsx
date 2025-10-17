@@ -33,6 +33,7 @@ export const Navbar = () => {
 
   const toggleMobileDropdown = (dropdown: MobileDropdown) => {
     setActiveMobileDropdown(activeMobileDropdown === dropdown ? null : dropdown);
+    setExpandedCategory(null); // Reset sub-categories when switching main menu
   };
 
   const toggleCategory = (categoryTitle: string) => {
@@ -287,161 +288,188 @@ export const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Enhanced Mobile Menu */}
       {isMobileMenuOpen && (
         <div className="lg:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
-          <div className="max-h-[calc(100vh-4rem)] overflow-y-auto px-4 py-4 space-y-2">
+          <div className="max-h-[calc(100vh-4rem)] overflow-y-auto">
+            <div className="px-3 py-4 space-y-1">
 
-            {/* Search on mobile */}
-            <div className="sm:hidden pb-4 mb-4 border-b border-gray-200 dark:border-gray-800">
-              <PlaceholdersAndVanishInputDemo />
-            </div>
+              {/* Search on mobile */}
+              <div className="sm:hidden pb-3 mb-3 border-b border-gray-200 dark:border-gray-800">
+                <PlaceholdersAndVanishInputDemo />
+              </div>
 
-            {/* Home Link */}
-            <Link
-              href="/"
-              className="block px-4 py-3 text-gray-900 dark:text-white font-medium hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Home
-            </Link>
-
-            {/* Services - Accordion (Menu 1) */}
-            <div className="space-y-1">
-              <button
-                onClick={() => toggleMobileDropdown('services')}
-                className="w-full flex items-center justify-between px-4 py-3 text-gray-900 dark:text-white font-medium hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all"
+              {/* Home Link */}
+              <Link
+                href="/"
+                className="flex items-center px-3 py-3 text-gray-900 dark:text-white font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl transition-all"
+                onClick={() => setIsMobileMenuOpen(false)}
               >
-                <span>Services</span>
-                <ChevronDown className={`w-5 h-5 transition-transform duration-200 ${activeMobileDropdown === 'services' ? 'rotate-180' : ''}`} />
-              </button>
+                <span>Home</span>
+              </Link>
 
-              {activeMobileDropdown === 'services' && (
-                <div className="pl-2 space-y-1 animate-in slide-in-from-top-2 duration-200">
-                  {servicesCategories.map((category) => (
-                    <div key={category.title} className="space-y-1">
-                      <button
-                        onClick={() => toggleCategory(category.title)}
-                        className="w-full flex items-center justify-between px-4 py-2.5 text-gray-700 dark:text-gray-300 text-sm font-semibold hover:bg-gray-50 dark:hover:bg-gray-800/50 rounded-lg transition-all"
+              {/* Services - Main Menu Item (Level 1) */}
+              <div className="space-y-1">
+                <button
+                  onClick={() => toggleMobileDropdown('services')}
+                  className="w-full flex items-center justify-between px-3 py-3 text-gray-900 dark:text-white font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl transition-all"
+                >
+                  <span>Services</span>
+                  <ChevronDown 
+                    className={`w-5 h-5 transition-transform duration-300 ${
+                      activeMobileDropdown === 'services' ? 'rotate-180 text-red-400' : ''
+                    }`} 
+                  />
+                </button>
+
+                {/* Sub-Menu (Level 2) */}
+                {activeMobileDropdown === 'services' && (
+                  <div className="space-y-1 bg-gray-50 dark:bg-gray-800/30 rounded-xl p-2 animate-in slide-in-from-top-2 duration-200">
+                    {servicesCategories.map((category) => (
+                      <div key={category.title} className="space-y-1">
+                        <button
+                          onClick={() => toggleCategory(category.title)}
+                          className="w-full flex items-center justify-between px-3 py-2.5 text-gray-800 dark:text-gray-200 text-sm font-semibold hover:bg-white dark:hover:bg-gray-800 rounded-lg transition-all"
+                        >
+                          <span className="flex items-center gap-2">
+                            <div className="w-1.5 h-1.5 rounded-full bg-red-400"></div>
+                            {category.title}
+                          </span>
+                          <ChevronRight 
+                            className={`w-4 h-4 transition-transform duration-300 ${
+                              expandedCategory === category.title ? 'rotate-90 text-red-400' : ''
+                            }`} 
+                          />
+                        </button>
+
+                        {/* Sub-Sub-Menu (Level 3) */}
+                        {expandedCategory === category.title && (
+                          <div className="space-y-0.5 bg-white dark:bg-gray-900/50 rounded-lg p-2 ml-3 border-l-2 border-red-400 animate-in slide-in-from-left-1 duration-200">
+                            {category.items.map((item) => (
+                              <Link
+                                key={item.label}
+                                href={item.href}
+                                className="flex items-center gap-2 px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-red-50 dark:hover:bg-red-950/30 rounded-lg transition-all"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                              >
+                                <span className="text-base flex-shrink-0">{item.icon}</span>
+                                <span className="font-medium">{item.label}</span>
+                              </Link>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+
+                    <Link
+                      href="/services"
+                      className="flex items-center justify-center gap-2 px-3 py-2.5 mt-2 text-sm text-red-400 hover:text-red-500 font-bold hover:bg-red-50 dark:hover:bg-red-950/30 rounded-lg transition-all"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      <span>View All Services</span>
+                      <ChevronRight className="w-4 h-4" />
+                    </Link>
+                  </div>
+                )}
+              </div>
+
+              {/* Design Ideas - Main Menu Item (Level 1) */}
+              <div className="space-y-1">
+                <button
+                  onClick={() => toggleMobileDropdown('designIdeas')}
+                  className="w-full flex items-center justify-between px-3 py-3 text-gray-900 dark:text-white font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl transition-all"
+                >
+                  <span>Design Ideas</span>
+                  <ChevronDown 
+                    className={`w-5 h-5 transition-transform duration-300 ${
+                      activeMobileDropdown === 'designIdeas' ? 'rotate-180 text-red-400' : ''
+                    }`} 
+                  />
+                </button>
+
+                {/* Sub-Menu (Level 2) - Direct links */}
+                {activeMobileDropdown === 'designIdeas' && (
+                  <div className="space-y-0.5 bg-gray-50 dark:bg-gray-800/30 rounded-xl p-2 animate-in slide-in-from-top-2 duration-200">
+                    {designIdeasItems.map((item) => (
+                      <Link
+                        key={item.label}
+                        href={item.href}
+                        className="flex items-center gap-2 px-3 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-red-50 dark:hover:bg-red-950/30 rounded-lg transition-all"
+                        onClick={() => setIsMobileMenuOpen(false)}
                       >
-                        <span>{category.title}</span>
-                        <ChevronRight className={`w-4 h-4 transition-transform duration-200 ${expandedCategory === category.title ? 'rotate-90' : ''}`} />
-                      </button>
+                        <span className="text-base flex-shrink-0">{item.icon}</span>
+                        <span className="font-medium">{item.label}</span>
+                      </Link>
+                    ))}
 
-                      {expandedCategory === category.title && (
-                        <div className="pl-4 space-y-1 animate-in slide-in-from-left-1 duration-200">
-                          {category.items.map((item) => (
-                            <Link
-                              key={item.label}
-                              href={item.href}
-                              className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-red-50 dark:hover:bg-red-950/20 rounded-lg transition-all"
-                              onClick={() => setIsMobileMenuOpen(false)}
-                            >
-                              <span className="text-lg">{item.icon}</span>
-                              <span className="font-medium">{item.label}</span>
-                            </Link>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  ))}
-
-                  <Link
-                    href="/services"
-                    className="block px-4 py-2.5 text-sm text-red-400 hover:text-red-500 font-semibold hover:bg-red-50 dark:hover:bg-red-950/20 rounded-lg transition-all"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    View All Services →
-                  </Link>
-                </div>
-              )}
-            </div>
-
-            {/* Design Ideas - Accordion (Menu 2) */}
-            <div className="space-y-1">
-              <button
-                onClick={() => toggleMobileDropdown('designIdeas')}
-                className="w-full flex items-center justify-between px-4 py-3 text-gray-900 dark:text-white font-medium hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all"
-              >
-                <span>Design Ideas</span>
-                <ChevronDown className={`w-5 h-5 transition-transform duration-200 ${activeMobileDropdown === 'designIdeas' ? 'rotate-180' : ''}`} />
-              </button>
-
-              {activeMobileDropdown === 'designIdeas' && (
-                <div className="pl-2 space-y-1 animate-in slide-in-from-top-2 duration-200">
-                  {designIdeasItems.map((item) => (
                     <Link
-                      key={item.label}
-                      href={item.href}
-                      className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-red-50 dark:hover:bg-red-950/20 rounded-lg transition-all"
+                      href="/design-ideas"
+                      className="flex items-center justify-center gap-2 px-3 py-2.5 mt-2 text-sm text-red-400 hover:text-red-500 font-bold hover:bg-red-50 dark:hover:bg-red-950/30 rounded-lg transition-all"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
-                      <span className="text-lg">{item.icon}</span>
-                      <span className="font-medium">{item.label}</span>
+                      <span>Explore All Design Ideas</span>
+                      <ChevronRight className="w-4 h-4" />
                     </Link>
-                  ))}
+                  </div>
+                )}
+              </div>
 
-                  <Link
-                    href="/design-ideas"
-                    className="block px-4 py-2.5 text-sm text-red-400 hover:text-red-500 font-semibold hover:bg-red-50 dark:hover:bg-red-950/20 rounded-lg transition-all"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    Explore All Design Ideas →
-                  </Link>
-                </div>
-              )}
-            </div>
-
-            {/* Portfolio Link */}
-            <Link
-              href="/portfolio"
-              className="block px-4 py-3 text-gray-900 dark:text-white font-medium hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Portfolio
-            </Link>
-
-            {/* AI Design Generator Link */}
-            <Link
-              href="/ai-designs"
-              className="block px-4 py-3 text-gray-900 dark:text-white font-medium hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              AI Design Generator
-            </Link>
-
-            {/* More - Accordion */}
-            <div className="space-y-1">
-              <button
-                onClick={() => toggleMobileDropdown('more')}
-                className="w-full flex items-center justify-between px-4 py-3 text-gray-900 dark:text-white font-medium hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all"
+              {/* Portfolio Link */}
+              <Link
+                href="/portfolio"
+                className="flex items-center px-3 py-3 text-gray-900 dark:text-white font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl transition-all"
+                onClick={() => setIsMobileMenuOpen(false)}
               >
-                <span>More</span>
-                <ChevronDown className={`w-5 h-5 transition-transform duration-200 ${activeMobileDropdown === 'more' ? 'rotate-180' : ''}`} />
-              </button>
+                <span>Portfolio</span>
+              </Link>
 
-              {activeMobileDropdown === 'more' && (
-                <div className="pl-2 space-y-1 animate-in slide-in-from-top-2 duration-200">
-                  {moreItems.map((item) => (
-                    <Link
-                      key={item.label}
-                      href={item.href}
-                      className="block px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-red-50 dark:hover:bg-red-950/20 rounded-lg transition-all"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
+              {/* AI Design Generator Link */}
+              <Link
+                href="/ai-designs"
+                className="flex items-center px-3 py-3 text-gray-900 dark:text-white font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl transition-all"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <span>AI Design Generator</span>
+              </Link>
 
-            {/* CTA Button */}
-            <div className="pt-4 mt-4 border-t border-gray-200 dark:border-gray-800">
-              <button className="w-full px-6 py-4 bg-red-400 hover:bg-red-500 text-white rounded-xl font-semibold transition-all shadow-lg active:scale-95 flex items-center justify-center gap-2">
-                <span className="bg-green-500 text-white px-2 py-1 rounded text-xs font-bold">FREE</span>
-                <span>Get Consultation</span>
-              </button>
+              {/* More - Main Menu Item (Level 1) */}
+              <div className="space-y-1">
+                <button
+                  onClick={() => toggleMobileDropdown('more')}
+                  className="w-full flex items-center justify-between px-3 py-3 text-gray-900 dark:text-white font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl transition-all"
+                >
+                  <span>More</span>
+                  <ChevronDown 
+                    className={`w-5 h-5 transition-transform duration-300 ${
+                      activeMobileDropdown === 'more' ? 'rotate-180 text-red-400' : ''
+                    }`} 
+                  />
+                </button>
+
+                {/* Sub-Menu (Level 2) */}
+                {activeMobileDropdown === 'more' && (
+                  <div className="space-y-0.5 bg-gray-50 dark:bg-gray-800/30 rounded-xl p-2 animate-in slide-in-from-top-2 duration-200">
+                    {moreItems.map((item) => (
+                      <Link
+                        key={item.label}
+                        href={item.href}
+                        className="block px-3 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-red-50 dark:hover:bg-red-950/30 rounded-lg transition-all font-medium"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* CTA Button */}
+              <div className="pt-3 mt-3 border-t border-gray-200 dark:border-gray-800">
+                <button className="w-full px-4 py-3.5 bg-gradient-to-r from-red-400 to-red-500 hover:from-red-500 hover:to-red-600 text-white rounded-xl font-bold transition-all shadow-lg active:scale-95 flex items-center justify-center gap-2">
+                  <span className="bg-green-500 text-white px-2 py-0.5 rounded text-xs font-bold uppercase">Free</span>
+                  <span>Get Consultation</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
