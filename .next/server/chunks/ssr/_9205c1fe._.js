@@ -30,29 +30,29 @@ function Threedcardshome() {
     const intervalRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
     const cards = [
         {
-            title: "Interior for Homes",
-            description: "We provide modern and minimalistic interior designs tailored for homes with premium quality and attention to detail.",
+            title: "HOME INTERIORS",
+            description: "Transforming houses into homes with timeless design and thoughtful detail.",
             image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
             link: "/design-ideas?category=home-interior",
             color: "red"
         },
         {
-            title: "Data Centers",
-            description: "Professional data center design solutions with optimal cooling, security, and scalability for modern infrastructure.",
+            title: "DATA CENTER",
+            description: "At Glomni Designs, we create high-performance data centres built for reliability and innovation with multiple security levels. ",
             image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31",
             link: "/design-ideas?category=data-centers",
             color: "red"
         },
         {
-            title: "Office Designs",
-            description: "Maximize productivity with functional and aesthetic office designs that inspire creativity and collaboration.",
+            title: "OFFICE INTERIOR",
+            description: "We design offices that reflect innovation, comfort, and your company’s identity.",
             image: "https://images.unsplash.com/photo-1716703373229-b0e43de7dd5c",
             link: "/design-ideas?category=office-spaces",
             color: "red"
         },
         {
-            title: "Construction",
-            description: "Complete construction planning and management services from concept to completion with expert supervision.",
+            title: "CONSTRUCTIONS",
+            description: "Glomni Designs constructs modern, durable, and design-led spaces built to last.",
             image: "https://images.unsplash.com/photo-1591588582259-e675bd2e6088",
             link: "/portfolio",
             color: "red"
@@ -119,29 +119,6 @@ function Threedcardshome() {
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "text-center mb-16",
                 children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
-                        initial: {
-                            opacity: 0,
-                            y: 20
-                        },
-                        animate: {
-                            opacity: 1,
-                            y: 0
-                        },
-                        className: "inline-block mb-4",
-                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                            className: "bg-red-400/10 text-red-400 px-4 py-2 rounded-full text-sm font-semibold",
-                            children: "Our Services"
-                        }, void 0, false, {
-                            fileName: "[project]/components/3dcard-data.tsx",
-                            lineNumber: 126,
-                            columnNumber: 11
-                        }, this)
-                    }, void 0, false, {
-                        fileName: "[project]/components/3dcard-data.tsx",
-                        lineNumber: 121,
-                        columnNumber: 9
-                    }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].h2, {
                         initial: {
                             opacity: 0,
@@ -155,10 +132,10 @@ function Threedcardshome() {
                             delay: 0.1
                         },
                         className: "text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4",
-                        children: "Premium Design Solutions"
+                        children: "Services"
                     }, void 0, false, {
                         fileName: "[project]/components/3dcard-data.tsx",
-                        lineNumber: 131,
+                        lineNumber: 121,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].p, {
@@ -174,10 +151,10 @@ function Threedcardshome() {
                             delay: 0.2
                         },
                         className: "text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto",
-                        children: "Comprehensive interior design and construction services tailored to your needs"
+                        children: "Best Interior design Ideas for a data centre, office interior, constructions, & home interior."
                     }, void 0, false, {
                         fileName: "[project]/components/3dcard-data.tsx",
-                        lineNumber: 140,
+                        lineNumber: 130,
                         columnNumber: 9
                     }, this)
                 ]
@@ -202,12 +179,12 @@ function Threedcardshome() {
                                     className: "w-6 h-6 text-gray-700 dark:text-gray-300 group-hover:text-red-400 transition-colors"
                                 }, void 0, false, {
                                     fileName: "[project]/components/3dcard-data.tsx",
-                                    lineNumber: 161,
+                                    lineNumber: 151,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/components/3dcard-data.tsx",
-                                lineNumber: 154,
+                                lineNumber: 144,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -220,18 +197,18 @@ function Threedcardshome() {
                                     className: "w-6 h-6 text-gray-700 dark:text-gray-300 group-hover:text-red-400 transition-colors"
                                 }, void 0, false, {
                                     fileName: "[project]/components/3dcard-data.tsx",
-                                    lineNumber: 171,
+                                    lineNumber: 161,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/components/3dcard-data.tsx",
-                                lineNumber: 164,
+                                lineNumber: 154,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/3dcard-data.tsx",
-                        lineNumber: 153,
+                        lineNumber: 143,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -252,17 +229,17 @@ function Threedcardshome() {
                                     slidesToShow: slidesToShow
                                 }, index, false, {
                                     fileName: "[project]/components/3dcard-data.tsx",
-                                    lineNumber: 191,
+                                    lineNumber: 181,
                                     columnNumber: 15
                                 }, this))
                         }, void 0, false, {
                             fileName: "[project]/components/3dcard-data.tsx",
-                            lineNumber: 184,
+                            lineNumber: 174,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/3dcard-data.tsx",
-                        lineNumber: 176,
+                        lineNumber: 166,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -275,18 +252,18 @@ function Threedcardshome() {
                                 className: `h-2 rounded-full transition-all duration-300 ${currentSlide === index ? 'bg-red-400 w-8' : 'bg-gray-300 dark:bg-gray-700 w-2 hover:bg-gray-400 dark:hover:bg-gray-600'}`
                             }, index, false, {
                                 fileName: "[project]/components/3dcard-data.tsx",
-                                lineNumber: 204,
+                                lineNumber: 194,
                                 columnNumber: 13
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/components/3dcard-data.tsx",
-                        lineNumber: 202,
+                        lineNumber: 192,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/3dcard-data.tsx",
-                lineNumber: 151,
+                lineNumber: 141,
                 columnNumber: 7
             }, this)
         ]
@@ -329,14 +306,14 @@ const CarouselCard = ({ card, index, slidesToShow })=>{
                             className: "object-cover group-hover:scale-105 transition-transform duration-500"
                         }, void 0, false, {
                             fileName: "[project]/components/3dcard-data.tsx",
-                            lineNumber: 249,
+                            lineNumber: 239,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-300"
                         }, void 0, false, {
                             fileName: "[project]/components/3dcard-data.tsx",
-                            lineNumber: 257,
+                            lineNumber: 247,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -344,7 +321,7 @@ const CarouselCard = ({ card, index, slidesToShow })=>{
                             children: "Featured"
                         }, void 0, false, {
                             fileName: "[project]/components/3dcard-data.tsx",
-                            lineNumber: 261,
+                            lineNumber: 251,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -357,31 +334,31 @@ const CarouselCard = ({ card, index, slidesToShow })=>{
                                         children: "View Details"
                                     }, void 0, false, {
                                         fileName: "[project]/components/3dcard-data.tsx",
-                                        lineNumber: 271,
+                                        lineNumber: 261,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$external$2d$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ExternalLink$3e$__["ExternalLink"], {
                                         size: 18
                                     }, void 0, false, {
                                         fileName: "[project]/components/3dcard-data.tsx",
-                                        lineNumber: 272,
+                                        lineNumber: 262,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/3dcard-data.tsx",
-                                lineNumber: 267,
+                                lineNumber: 257,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0))
                         }, void 0, false, {
                             fileName: "[project]/components/3dcard-data.tsx",
-                            lineNumber: 266,
+                            lineNumber: 256,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/3dcard-data.tsx",
-                    lineNumber: 248,
+                    lineNumber: 238,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0)),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -392,7 +369,7 @@ const CarouselCard = ({ card, index, slidesToShow })=>{
                             children: card.title
                         }, void 0, false, {
                             fileName: "[project]/components/3dcard-data.tsx",
-                            lineNumber: 279,
+                            lineNumber: 269,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -400,7 +377,7 @@ const CarouselCard = ({ card, index, slidesToShow })=>{
                             children: card.description
                         }, void 0, false, {
                             fileName: "[project]/components/3dcard-data.tsx",
-                            lineNumber: 283,
+                            lineNumber: 273,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -411,7 +388,7 @@ const CarouselCard = ({ card, index, slidesToShow })=>{
                                     children: "Explore More"
                                 }, void 0, false, {
                                     fileName: "[project]/components/3dcard-data.tsx",
-                                    lineNumber: 291,
+                                    lineNumber: 281,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__["ArrowRight"], {
@@ -419,37 +396,37 @@ const CarouselCard = ({ card, index, slidesToShow })=>{
                                     className: "group-hover/link:translate-x-1 transition-transform duration-200"
                                 }, void 0, false, {
                                     fileName: "[project]/components/3dcard-data.tsx",
-                                    lineNumber: 292,
+                                    lineNumber: 282,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/3dcard-data.tsx",
-                            lineNumber: 287,
+                            lineNumber: 277,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/3dcard-data.tsx",
-                    lineNumber: 278,
+                    lineNumber: 268,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0)),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "absolute bottom-0 left-0 right-0 h-1 bg-red-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
                 }, void 0, false, {
                     fileName: "[project]/components/3dcard-data.tsx",
-                    lineNumber: 297,
+                    lineNumber: 287,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0))
             ]
         }, void 0, true, {
             fileName: "[project]/components/3dcard-data.tsx",
-            lineNumber: 240,
+            lineNumber: 230,
             columnNumber: 7
         }, ("TURBOPACK compile-time value", void 0))
     }, void 0, false, {
         fileName: "[project]/components/3dcard-data.tsx",
-        lineNumber: 236,
+        lineNumber: 226,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };
@@ -1237,7 +1214,7 @@ function CompareDemo() {
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
                                     className: "text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white",
-                                    children: "Before & After Transformations"
+                                    children: "Before & After Transformation Design"
                                 }, void 0, false, {
                                     fileName: "[project]/components/compareDemo.tsx",
                                     lineNumber: 46,
@@ -1258,7 +1235,7 @@ function CompareDemo() {
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                             className: "text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed",
-                            children: "Witness the incredible transformations we've achieved for our clients. Hover or slide to see the before and after of our stunning interior design projects."
+                            children: "See how we turn ideas into stunning realities. Slide to explore the before-and-after magic of our interior design projects."
                         }, void 0, false, {
                             fileName: "[project]/components/compareDemo.tsx",
                             lineNumber: 52,
@@ -1271,7 +1248,7 @@ function CompareDemo() {
                                     className: "w-5 h-5 text-red-400"
                                 }, void 0, false, {
                                     fileName: "[project]/components/compareDemo.tsx",
-                                    lineNumber: 58,
+                                    lineNumber: 57,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1279,20 +1256,20 @@ function CompareDemo() {
                                     children: "Hover to Compare"
                                 }, void 0, false, {
                                     fileName: "[project]/components/compareDemo.tsx",
-                                    lineNumber: 59,
+                                    lineNumber: 58,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__["ArrowRight"], {
                                     className: "w-4 h-4 text-red-400"
                                 }, void 0, false, {
                                     fileName: "[project]/components/compareDemo.tsx",
-                                    lineNumber: 60,
+                                    lineNumber: 59,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/compareDemo.tsx",
-                            lineNumber: 57,
+                            lineNumber: 56,
                             columnNumber: 11
                         }, this)
                     ]
@@ -1328,19 +1305,19 @@ function CompareDemo() {
                                                     className: "w-4 h-4"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/compareDemo.tsx",
-                                                    lineNumber: 80,
+                                                    lineNumber: 79,
                                                     columnNumber: 21
                                                 }, this),
                                                 project.category
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/compareDemo.tsx",
-                                            lineNumber: 79,
+                                            lineNumber: 78,
                                             columnNumber: 19
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/compareDemo.tsx",
-                                        lineNumber: 78,
+                                        lineNumber: 77,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1357,7 +1334,7 @@ function CompareDemo() {
                                                     slideMode: "hover"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/compareDemo.tsx",
-                                                    lineNumber: 88,
+                                                    lineNumber: 87,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1365,7 +1342,7 @@ function CompareDemo() {
                                                     children: "BEFORE"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/compareDemo.tsx",
-                                                    lineNumber: 98,
+                                                    lineNumber: 97,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1373,18 +1350,18 @@ function CompareDemo() {
                                                     children: "AFTER"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/compareDemo.tsx",
-                                                    lineNumber: 101,
+                                                    lineNumber: 100,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/compareDemo.tsx",
-                                            lineNumber: 87,
+                                            lineNumber: 86,
                                             columnNumber: 19
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/compareDemo.tsx",
-                                        lineNumber: 86,
+                                        lineNumber: 85,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1395,7 +1372,7 @@ function CompareDemo() {
                                                 children: project.title
                                             }, void 0, false, {
                                                 fileName: "[project]/components/compareDemo.tsx",
-                                                lineNumber: 109,
+                                                lineNumber: 108,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1403,7 +1380,7 @@ function CompareDemo() {
                                                 children: project.description
                                             }, void 0, false, {
                                                 fileName: "[project]/components/compareDemo.tsx",
-                                                lineNumber: 112,
+                                                lineNumber: 111,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1413,49 +1390,49 @@ function CompareDemo() {
                                                         className: "w-4 h-4"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/compareDemo.tsx",
-                                                        lineNumber: 118,
+                                                        lineNumber: 117,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                         children: "View Full Project"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/compareDemo.tsx",
-                                                        lineNumber: 119,
+                                                        lineNumber: 118,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__["ArrowRight"], {
                                                         className: "w-4 h-4 group-hover:translate-x-1 transition-transform"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/compareDemo.tsx",
-                                                        lineNumber: 120,
+                                                        lineNumber: 119,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/compareDemo.tsx",
-                                                lineNumber: 117,
+                                                lineNumber: 116,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/compareDemo.tsx",
-                                        lineNumber: 108,
+                                        lineNumber: 107,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/compareDemo.tsx",
-                                lineNumber: 75,
+                                lineNumber: 74,
                                 columnNumber: 15
                             }, this)
                         }, project.id, false, {
                             fileName: "[project]/components/compareDemo.tsx",
-                            lineNumber: 67,
+                            lineNumber: 66,
                             columnNumber: 13
                         }, this))
                 }, void 0, false, {
                     fileName: "[project]/components/compareDemo.tsx",
-                    lineNumber: 65,
+                    lineNumber: 64,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -1479,7 +1456,7 @@ function CompareDemo() {
                                 children: "Ready for Your Own Transformation?"
                             }, void 0, false, {
                                 fileName: "[project]/components/compareDemo.tsx",
-                                lineNumber: 136,
+                                lineNumber: 135,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1487,7 +1464,7 @@ function CompareDemo() {
                                 children: "Let our expert designers create a stunning makeover for your space. Every project is unique, just like your vision."
                             }, void 0, false, {
                                 fileName: "[project]/components/compareDemo.tsx",
-                                lineNumber: 139,
+                                lineNumber: 138,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1498,7 +1475,7 @@ function CompareDemo() {
                                         children: "Get Free Quote"
                                     }, void 0, false, {
                                         fileName: "[project]/components/compareDemo.tsx",
-                                        lineNumber: 145,
+                                        lineNumber: 144,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1506,24 +1483,24 @@ function CompareDemo() {
                                         children: "View Portfolio"
                                     }, void 0, false, {
                                         fileName: "[project]/components/compareDemo.tsx",
-                                        lineNumber: 148,
+                                        lineNumber: 147,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/compareDemo.tsx",
-                                lineNumber: 144,
+                                lineNumber: 143,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/compareDemo.tsx",
-                        lineNumber: 135,
+                        lineNumber: 134,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/components/compareDemo.tsx",
-                    lineNumber: 129,
+                    lineNumber: 128,
                     columnNumber: 9
                 }, this)
             ]
@@ -1563,18 +1540,16 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 ;
 ;
 const OFFICE_CATEGORY_KEYWORDS = [
-    'office',
     'corporate',
     'workspace',
     'commercial',
     'business',
+    'office',
     'executive',
     'conference',
     'meeting',
     'coworking',
     'study',
-    'work-from-home',
-    'home-office',
     'professional'
 ];
 const designAPI = {
@@ -1688,7 +1663,7 @@ const DesignCard = ({ design, getImageUrl, isLiked, onToggleLike })=>{
                             className: "object-cover group-hover:scale-105 transition-transform duration-500"
                         }, void 0, false, {
                             fileName: "[project]/components/home-page-carousel.tsx",
-                            lineNumber: 151,
+                            lineNumber: 150,
                             columnNumber: 13
                         }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "w-full h-full flex items-center justify-center",
@@ -1696,12 +1671,12 @@ const DesignCard = ({ design, getImageUrl, isLiked, onToggleLike })=>{
                                 className: "w-6 h-6 md:w-8 md:h-8 lg:w-12 lg:h-12 text-gray-400"
                             }, void 0, false, {
                                 fileName: "[project]/components/home-page-carousel.tsx",
-                                lineNumber: 159,
+                                lineNumber: 158,
                                 columnNumber: 15
                             }, ("TURBOPACK compile-time value", void 0))
                         }, void 0, false, {
                             fileName: "[project]/components/home-page-carousel.tsx",
-                            lineNumber: 158,
+                            lineNumber: 157,
                             columnNumber: 13
                         }, ("TURBOPACK compile-time value", void 0)),
                         design.is_featured && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1711,7 +1686,7 @@ const DesignCard = ({ design, getImageUrl, isLiked, onToggleLike })=>{
                                     className: "w-2.5 h-2.5 md:w-3 md:h-3 fill-current"
                                 }, void 0, false, {
                                     fileName: "[project]/components/home-page-carousel.tsx",
-                                    lineNumber: 166,
+                                    lineNumber: 165,
                                     columnNumber: 15
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1719,13 +1694,13 @@ const DesignCard = ({ design, getImageUrl, isLiked, onToggleLike })=>{
                                     children: "Premium"
                                 }, void 0, false, {
                                     fileName: "[project]/components/home-page-carousel.tsx",
-                                    lineNumber: 167,
+                                    lineNumber: 166,
                                     columnNumber: 15
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/home-page-carousel.tsx",
-                            lineNumber: 165,
+                            lineNumber: 164,
                             columnNumber: 13
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1735,19 +1710,19 @@ const DesignCard = ({ design, getImageUrl, isLiked, onToggleLike })=>{
                                 className: `w-3 h-3 md:w-4 md:h-4 ${isLiked ? 'fill-current' : ''}`
                             }, void 0, false, {
                                 fileName: "[project]/components/home-page-carousel.tsx",
-                                lineNumber: 180,
+                                lineNumber: 179,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0))
                         }, void 0, false, {
                             fileName: "[project]/components/home-page-carousel.tsx",
-                            lineNumber: 172,
+                            lineNumber: 171,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"
                         }, void 0, false, {
                             fileName: "[project]/components/home-page-carousel.tsx",
-                            lineNumber: 184,
+                            lineNumber: 183,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         design.price_range && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1755,13 +1730,13 @@ const DesignCard = ({ design, getImageUrl, isLiked, onToggleLike })=>{
                             children: design.price_range
                         }, void 0, false, {
                             fileName: "[project]/components/home-page-carousel.tsx",
-                            lineNumber: 188,
+                            lineNumber: 187,
                             columnNumber: 13
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/home-page-carousel.tsx",
-                    lineNumber: 149,
+                    lineNumber: 148,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0)),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1772,7 +1747,7 @@ const DesignCard = ({ design, getImageUrl, isLiked, onToggleLike })=>{
                             children: design.name
                         }, void 0, false, {
                             fileName: "[project]/components/home-page-carousel.tsx",
-                            lineNumber: 197,
+                            lineNumber: 196,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         design.description && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1780,7 +1755,7 @@ const DesignCard = ({ design, getImageUrl, isLiked, onToggleLike })=>{
                             children: getTruncatedDescription(design.description)
                         }, void 0, false, {
                             fileName: "[project]/components/home-page-carousel.tsx",
-                            lineNumber: 203,
+                            lineNumber: 202,
                             columnNumber: 13
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1795,12 +1770,12 @@ const DesignCard = ({ design, getImageUrl, isLiked, onToggleLike })=>{
                                                 className: "w-2 h-2 md:w-3 md:h-3 text-red-400"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/home-page-carousel.tsx",
-                                                lineNumber: 213,
+                                                lineNumber: 212,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0))
                                         }, void 0, false, {
                                             fileName: "[project]/components/home-page-carousel.tsx",
-                                            lineNumber: 212,
+                                            lineNumber: 211,
                                             columnNumber: 17
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1808,13 +1783,13 @@ const DesignCard = ({ design, getImageUrl, isLiked, onToggleLike })=>{
                                             children: design.location
                                         }, void 0, false, {
                                             fileName: "[project]/components/home-page-carousel.tsx",
-                                            lineNumber: 215,
+                                            lineNumber: 214,
                                             columnNumber: 17
                                         }, ("TURBOPACK compile-time value", void 0))
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/home-page-carousel.tsx",
-                                    lineNumber: 211,
+                                    lineNumber: 210,
                                     columnNumber: 15
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 design.price_range && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1822,13 +1797,13 @@ const DesignCard = ({ design, getImageUrl, isLiked, onToggleLike })=>{
                                     children: design.price_range
                                 }, void 0, false, {
                                     fileName: "[project]/components/home-page-carousel.tsx",
-                                    lineNumber: 220,
+                                    lineNumber: 219,
                                     columnNumber: 15
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/home-page-carousel.tsx",
-                            lineNumber: 209,
+                            lineNumber: 208,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         design.area_size && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1840,7 +1815,7 @@ const DesignCard = ({ design, getImageUrl, isLiked, onToggleLike })=>{
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/home-page-carousel.tsx",
-                            lineNumber: 228,
+                            lineNumber: 227,
                             columnNumber: 13
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1850,29 +1825,29 @@ const DesignCard = ({ design, getImageUrl, isLiked, onToggleLike })=>{
                                 children: "View Design"
                             }, void 0, false, {
                                 fileName: "[project]/components/home-page-carousel.tsx",
-                                lineNumber: 235,
+                                lineNumber: 234,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0))
                         }, void 0, false, {
                             fileName: "[project]/components/home-page-carousel.tsx",
-                            lineNumber: 234,
+                            lineNumber: 233,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/home-page-carousel.tsx",
-                    lineNumber: 195,
+                    lineNumber: 194,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0))
             ]
         }, void 0, true, {
             fileName: "[project]/components/home-page-carousel.tsx",
-            lineNumber: 147,
+            lineNumber: 146,
             columnNumber: 7
         }, ("TURBOPACK compile-time value", void 0))
     }, void 0, false, {
         fileName: "[project]/components/home-page-carousel.tsx",
-        lineNumber: 146,
+        lineNumber: 145,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };
@@ -1944,7 +1919,7 @@ const CategoryCarousel = ({ category, getImageUrl })=>{
                                         className: "w-1 h-6 md:h-8 bg-red-400 rounded-full"
                                     }, void 0, false, {
                                         fileName: "[project]/components/home-page-carousel.tsx",
-                                        lineNumber: 322,
+                                        lineNumber: 321,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1952,13 +1927,13 @@ const CategoryCarousel = ({ category, getImageUrl })=>{
                                         children: category.name
                                     }, void 0, false, {
                                         fileName: "[project]/components/home-page-carousel.tsx",
-                                        lineNumber: 323,
+                                        lineNumber: 322,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/home-page-carousel.tsx",
-                                lineNumber: 321,
+                                lineNumber: 320,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             category.description && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1966,24 +1941,13 @@ const CategoryCarousel = ({ category, getImageUrl })=>{
                                 children: category.description
                             }, void 0, false, {
                                 fileName: "[project]/components/home-page-carousel.tsx",
-                                lineNumber: 326,
+                                lineNumber: 325,
                                 columnNumber: 13
-                            }, ("TURBOPACK compile-time value", void 0)),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                className: "text-red-400 text-xs sm:text-sm font-medium mt-1",
-                                children: [
-                                    category.designs.length,
-                                    " designs"
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/components/home-page-carousel.tsx",
-                                lineNumber: 330,
-                                columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/home-page-carousel.tsx",
-                        lineNumber: 320,
+                        lineNumber: 319,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -1995,7 +1959,7 @@ const CategoryCarousel = ({ category, getImageUrl })=>{
                                 children: "View More"
                             }, void 0, false, {
                                 fileName: "[project]/components/home-page-carousel.tsx",
-                                lineNumber: 339,
+                                lineNumber: 335,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2003,26 +1967,26 @@ const CategoryCarousel = ({ category, getImageUrl })=>{
                                 children: "More"
                             }, void 0, false, {
                                 fileName: "[project]/components/home-page-carousel.tsx",
-                                lineNumber: 340,
+                                lineNumber: 336,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__["ArrowRight"], {
                                 className: "w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-0.5 transition-transform duration-300"
                             }, void 0, false, {
                                 fileName: "[project]/components/home-page-carousel.tsx",
-                                lineNumber: 341,
+                                lineNumber: 337,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/home-page-carousel.tsx",
-                        lineNumber: 335,
+                        lineNumber: 331,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/home-page-carousel.tsx",
-                lineNumber: 319,
+                lineNumber: 318,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2037,12 +2001,12 @@ const CategoryCarousel = ({ category, getImageUrl })=>{
                             className: "w-5 h-5 md:w-6 md:h-6"
                         }, void 0, false, {
                             fileName: "[project]/components/home-page-carousel.tsx",
-                            lineNumber: 357,
+                            lineNumber: 353,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
                     }, void 0, false, {
                         fileName: "[project]/components/home-page-carousel.tsx",
-                        lineNumber: 347,
+                        lineNumber: 343,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2054,12 +2018,12 @@ const CategoryCarousel = ({ category, getImageUrl })=>{
                             className: "w-5 h-5 md:w-6 md:h-6"
                         }, void 0, false, {
                             fileName: "[project]/components/home-page-carousel.tsx",
-                            lineNumber: 370,
+                            lineNumber: 366,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
                     }, void 0, false, {
                         fileName: "[project]/components/home-page-carousel.tsx",
-                        lineNumber: 360,
+                        lineNumber: 356,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2085,22 +2049,22 @@ const CategoryCarousel = ({ category, getImageUrl })=>{
                                         onToggleLike: (e)=>toggleLike(design.id, e)
                                     }, void 0, false, {
                                         fileName: "[project]/components/home-page-carousel.tsx",
-                                        lineNumber: 388,
+                                        lineNumber: 384,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0))
                                 }, design.id, false, {
                                     fileName: "[project]/components/home-page-carousel.tsx",
-                                    lineNumber: 383,
+                                    lineNumber: 379,
                                     columnNumber: 15
                                 }, ("TURBOPACK compile-time value", void 0)))
                         }, void 0, false, {
                             fileName: "[project]/components/home-page-carousel.tsx",
-                            lineNumber: 374,
+                            lineNumber: 370,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
                     }, void 0, false, {
                         fileName: "[project]/components/home-page-carousel.tsx",
-                        lineNumber: 373,
+                        lineNumber: 369,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2113,12 +2077,12 @@ const CategoryCarousel = ({ category, getImageUrl })=>{
                                 className: `h-2 rounded-full transition-all duration-300 ${index === currentIndex ? 'bg-red-400 w-6' : 'bg-gray-300 dark:bg-gray-700 w-2 hover:bg-gray-400 dark:hover:bg-gray-600'}`
                             }, index, false, {
                                 fileName: "[project]/components/home-page-carousel.tsx",
-                                lineNumber: 402,
+                                lineNumber: 398,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0)))
                     }, void 0, false, {
                         fileName: "[project]/components/home-page-carousel.tsx",
-                        lineNumber: 400,
+                        lineNumber: 396,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2133,24 +2097,24 @@ const CategoryCarousel = ({ category, getImageUrl })=>{
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/home-page-carousel.tsx",
-                            lineNumber: 417,
+                            lineNumber: 413,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
                     }, void 0, false, {
                         fileName: "[project]/components/home-page-carousel.tsx",
-                        lineNumber: 416,
+                        lineNumber: 412,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/home-page-carousel.tsx",
-                lineNumber: 346,
+                lineNumber: 342,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0))
         ]
     }, void 0, true, {
         fileName: "[project]/components/home-page-carousel.tsx",
-        lineNumber: 317,
+        lineNumber: 316,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };
@@ -2209,20 +2173,20 @@ const HomePageCarousel = ()=>{
                                 className: "animate-spin w-16 h-16 md:w-20 md:h-20 border-4 border-red-400/20 border-t-red-400 rounded-full"
                             }, void 0, false, {
                                 fileName: "[project]/components/home-page-carousel.tsx",
-                                lineNumber: 488,
+                                lineNumber: 484,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "absolute inset-0 animate-ping w-16 h-16 md:w-20 md:h-20 border-4 border-red-400/10 rounded-full"
                             }, void 0, false, {
                                 fileName: "[project]/components/home-page-carousel.tsx",
-                                lineNumber: 489,
+                                lineNumber: 485,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/home-page-carousel.tsx",
-                        lineNumber: 487,
+                        lineNumber: 483,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -2230,7 +2194,7 @@ const HomePageCarousel = ()=>{
                         children: "Loading Office Collections"
                     }, void 0, false, {
                         fileName: "[project]/components/home-page-carousel.tsx",
-                        lineNumber: 491,
+                        lineNumber: 487,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2238,18 +2202,18 @@ const HomePageCarousel = ()=>{
                         children: "Discovering professional workspace designs..."
                     }, void 0, false, {
                         fileName: "[project]/components/home-page-carousel.tsx",
-                        lineNumber: 492,
+                        lineNumber: 488,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/home-page-carousel.tsx",
-                lineNumber: 486,
+                lineNumber: 482,
                 columnNumber: 9
             }, ("TURBOPACK compile-time value", void 0))
         }, void 0, false, {
             fileName: "[project]/components/home-page-carousel.tsx",
-            lineNumber: 485,
+            lineNumber: 481,
             columnNumber: 7
         }, ("TURBOPACK compile-time value", void 0));
     }
@@ -2265,12 +2229,12 @@ const HomePageCarousel = ()=>{
                             className: "w-10 h-10 md:w-12 md:h-12 text-red-400"
                         }, void 0, false, {
                             fileName: "[project]/components/home-page-carousel.tsx",
-                            lineNumber: 503,
+                            lineNumber: 499,
                             columnNumber: 13
                         }, ("TURBOPACK compile-time value", void 0))
                     }, void 0, false, {
                         fileName: "[project]/components/home-page-carousel.tsx",
-                        lineNumber: 502,
+                        lineNumber: 498,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -2278,7 +2242,7 @@ const HomePageCarousel = ()=>{
                         children: "Unable to Load"
                     }, void 0, false, {
                         fileName: "[project]/components/home-page-carousel.tsx",
-                        lineNumber: 505,
+                        lineNumber: 501,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2286,7 +2250,7 @@ const HomePageCarousel = ()=>{
                         children: error
                     }, void 0, false, {
                         fileName: "[project]/components/home-page-carousel.tsx",
-                        lineNumber: 506,
+                        lineNumber: 502,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2295,18 +2259,18 @@ const HomePageCarousel = ()=>{
                         children: "Retry Loading"
                     }, void 0, false, {
                         fileName: "[project]/components/home-page-carousel.tsx",
-                        lineNumber: 507,
+                        lineNumber: 503,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/home-page-carousel.tsx",
-                lineNumber: 501,
+                lineNumber: 497,
                 columnNumber: 9
             }, ("TURBOPACK compile-time value", void 0))
         }, void 0, false, {
             fileName: "[project]/components/home-page-carousel.tsx",
-            lineNumber: 500,
+            lineNumber: 496,
             columnNumber: 7
         }, ("TURBOPACK compile-time value", void 0));
     }
@@ -2324,12 +2288,12 @@ const HomePageCarousel = ()=>{
                                 className: "w-10 h-10 md:w-12 md:h-12 text-gray-400"
                             }, void 0, false, {
                                 fileName: "[project]/components/home-page-carousel.tsx",
-                                lineNumber: 524,
+                                lineNumber: 520,
                                 columnNumber: 15
                             }, ("TURBOPACK compile-time value", void 0))
                         }, void 0, false, {
                             fileName: "[project]/components/home-page-carousel.tsx",
-                            lineNumber: 523,
+                            lineNumber: 519,
                             columnNumber: 13
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -2337,7 +2301,7 @@ const HomePageCarousel = ()=>{
                             children: "No Office Categories Found"
                         }, void 0, false, {
                             fileName: "[project]/components/home-page-carousel.tsx",
-                            lineNumber: 526,
+                            lineNumber: 522,
                             columnNumber: 13
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2345,7 +2309,7 @@ const HomePageCarousel = ()=>{
                             children: "We're currently updating our office design collections."
                         }, void 0, false, {
                             fileName: "[project]/components/home-page-carousel.tsx",
-                            lineNumber: 527,
+                            lineNumber: 523,
                             columnNumber: 13
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -2357,29 +2321,29 @@ const HomePageCarousel = ()=>{
                                     className: "w-4 h-4 md:w-5 md:h-5"
                                 }, void 0, false, {
                                     fileName: "[project]/components/home-page-carousel.tsx",
-                                    lineNumber: 535,
+                                    lineNumber: 531,
                                     columnNumber: 15
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/home-page-carousel.tsx",
-                            lineNumber: 530,
+                            lineNumber: 526,
                             columnNumber: 13
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/home-page-carousel.tsx",
-                    lineNumber: 522,
+                    lineNumber: 518,
                     columnNumber: 11
                 }, ("TURBOPACK compile-time value", void 0))
             }, void 0, false, {
                 fileName: "[project]/components/home-page-carousel.tsx",
-                lineNumber: 521,
+                lineNumber: 517,
                 columnNumber: 9
             }, ("TURBOPACK compile-time value", void 0))
         }, void 0, false, {
             fileName: "[project]/components/home-page-carousel.tsx",
-            lineNumber: 520,
+            lineNumber: 516,
             columnNumber: 7
         }, ("TURBOPACK compile-time value", void 0));
     }
@@ -2393,10 +2357,10 @@ const HomePageCarousel = ()=>{
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                             className: "text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-3 md:mb-4",
-                            children: "Premium Office Interiors"
+                            children: "Explore our Office Interior Design Ideas"
                         }, void 0, false, {
                             fileName: "[project]/components/home-page-carousel.tsx",
-                            lineNumber: 548,
+                            lineNumber: 544,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2408,13 +2372,13 @@ const HomePageCarousel = ()=>{
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/home-page-carousel.tsx",
-                            lineNumber: 551,
+                            lineNumber: 547,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/home-page-carousel.tsx",
-                    lineNumber: 547,
+                    lineNumber: 543,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0)),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2424,12 +2388,12 @@ const HomePageCarousel = ()=>{
                             getImageUrl: getImageUrl
                         }, category.id, false, {
                             fileName: "[project]/components/home-page-carousel.tsx",
-                            lineNumber: 560,
+                            lineNumber: 556,
                             columnNumber: 13
                         }, ("TURBOPACK compile-time value", void 0)))
                 }, void 0, false, {
                     fileName: "[project]/components/home-page-carousel.tsx",
-                    lineNumber: 558,
+                    lineNumber: 554,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0)),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2443,29 +2407,29 @@ const HomePageCarousel = ()=>{
                                 className: "w-4 h-4 md:w-5 md:h-5"
                             }, void 0, false, {
                                 fileName: "[project]/components/home-page-carousel.tsx",
-                                lineNumber: 575,
+                                lineNumber: 571,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/home-page-carousel.tsx",
-                        lineNumber: 570,
+                        lineNumber: 566,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0))
                 }, void 0, false, {
                     fileName: "[project]/components/home-page-carousel.tsx",
-                    lineNumber: 569,
+                    lineNumber: 565,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0))
             ]
         }, void 0, true, {
             fileName: "[project]/components/home-page-carousel.tsx",
-            lineNumber: 545,
+            lineNumber: 541,
             columnNumber: 7
         }, ("TURBOPACK compile-time value", void 0))
     }, void 0, false, {
         fileName: "[project]/components/home-page-carousel.tsx",
-        lineNumber: 544,
+        lineNumber: 540,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };
@@ -2492,25 +2456,25 @@ const slideData = [
     {
         title: "Constructions",
         button: "Explore Layouts",
-        description: "Professional construction services with expert planning",
+        description: "Glomni Designs constructs modern, durable, and design-led spaces built to last.",
         src: "https://images.unsplash.com/photo-1599707254554-027aeb4deacd?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
         title: "Home Interiors",
         button: "Explore Designs",
-        description: "Modern and elegant interior designs for your home",
+        description: "Transforming houses into homes with timeless design and thoughtful detail.",
         src: "https://images.unsplash.com/photo-1613545325278-f24b0cae1224?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
-        title: "Office Spaces",
+        title: "Office Interiors",
         button: "Explore Designs",
-        description: "Productive workspace designs that inspire creativity",
+        description: "We design offices that reflect innovation, comfort, and your company’s identity.",
         src: "https://images.unsplash.com/photo-1716703371653-ca74beaa7a4a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
         title: "Data Centers",
         button: "Explore Centers",
-        description: "Advanced infrastructure for modern data management",
+        description: "At Glomni Designs, we create high-performance data centres built for reliability and innovation with multiple security levels.",
         src: "https://images.unsplash.com/photo-1584169417032-d34e8d805e8b?q=80&w=2209&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     }
 ];
@@ -3240,7 +3204,7 @@ function InfiniteMovingCardsDemo() {
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                                 className: "text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4",
-                                children: "Ready to Join Our Happy Clients?"
+                                children: "Design solutions that work as hard as you do – Connect with us!"
                             }, void 0, false, {
                                 fileName: "[project]/components/infinite-testimonials.tsx",
                                 lineNumber: 70,

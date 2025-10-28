@@ -6,26 +6,31 @@ import { ThemeSwitch } from "@/components/theme-switch";
 import { PlaceholdersAndVanishInputDemo } from "./search";
 import { ChevronDown, ChevronRight, Menu, X } from "lucide-react";
 
-type DropdownType = 'services' | 'designIdeas' | 'more' | null;
-type ServicesSubMenu = 'office' | 'home' | null;
+type DropdownType = 'offerings' | 'designIdeas' | 'more' | null;
+type SubMenuType = 'home' | 'office' | null;
 
 export const Navbar = () => {
   const [activeDropdown, setActiveDropdown] = useState<DropdownType>(null);
-  const [activeServicesSubMenu, setActiveServicesSubMenu] = useState<ServicesSubMenu>(null);
+  const [activeOfferingsSubMenu, setActiveOfferingsSubMenu] = useState<SubMenuType>(null);
+  const [activeDesignIdeasSubMenu, setActiveDesignIdeasSubMenu] = useState<SubMenuType>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeMobileDropdown, setActiveMobileDropdown] = useState<DropdownType>(null);
-  const [expandedMobileCategory, setExpandedMobileCategory] = useState<ServicesSubMenu>(null);
+  const [expandedMobileCategory, setExpandedMobileCategory] = useState<string | null>(null);
 
   const handleMouseEnter = (dropdown: Exclude<DropdownType, null>) => {
     setActiveDropdown(dropdown);
-    if (dropdown !== 'services') {
-      setActiveServicesSubMenu(null);
+    if (dropdown !== 'offerings') {
+      setActiveOfferingsSubMenu(null);
+    }
+    if (dropdown !== 'designIdeas') {
+      setActiveDesignIdeasSubMenu(null);
     }
   };
 
   const handleMouseLeave = () => {
     setActiveDropdown(null);
-    setActiveServicesSubMenu(null);
+    setActiveOfferingsSubMenu(null);
+    setActiveDesignIdeasSubMenu(null);
   };
 
   const toggleMobileMenu = () => {
@@ -36,35 +41,37 @@ export const Navbar = () => {
     }
   };
 
-  // Simplified Services - Only 2 main categories
-  const officeServices = [
-    { label: "Coworking Offices Interior", href: "/services/office/coworking", icon: "🤝" },
-    { label: "Open Workspace Interior", href: "/services/office/open-workspace", icon: "💼" },
-    { label: "Meeting Rooms Interior", href: "/services/office/meeting-rooms", icon: "👥" },
-    { label: "Private Cabin Interior", href: "/services/office/private-cabin", icon: "🚪" },
-    { label: "Personal Office Interior", href: "/services/office/personal-office", icon: "👔" },
-    { label: "Home Office Interior", href: "/services/office/home-office", icon: "🏠" }
+  // Offerings - Home & Office
+  const homeOfferings = [
+    { label: "Kitchen Design", href: "/offerings/kitchen", icon: "🍳" },
+    { label: "Wardrobe Design", href: "/offerings/wardrobe", icon: "👔" },
+    { label: "Living Spaces", href: "/offerings/living-spaces", icon: "🛋️" },
+    { label: "Bathroom Interior", href: "/offerings/bathroom", icon: "🚿" },
+    { label: "Bedroom Design", href: "/offerings/bedroom", icon: "🛏️" },
+    { label: "Pooja Room", href: "/offerings/pooja-room", icon: "🙏" }
   ];
 
-  const homeServices = [
-    { label: "Modular Kitchen", href: "/services/home/kitchen", icon: "🍳" },
-    { label: "Wardrobe Design", href: "/services/home/wardrobe", icon: "👗" },
-    { label: "Bathroom Interior", href: "/services/home/bathroom", icon: "🚿" },
-    { label: "Master Bedroom", href: "/services/home/master-bedroom", icon: "🛏️" },
-    { label: "Living Room", href: "/services/home/living-room", icon: "🛋️" },
-    { label: "Pooja Room", href: "/services/home/pooja-room", icon: "🙏" },
-    { label: "Kids Bedroom", href: "/services/home/kids-bedroom", icon: "🧸" },
-    { label: "Guest Bedroom", href: "/services/home/guest-bedroom", icon: "🛌" }
+  const officeOfferings = [
+    { label: "Corporate Offices", href: "/offerings/corporate-office", icon: "🏢" },
+    { label: "Coworking Spaces", href: "/offerings/coworking", icon: "🤝" },
+    { label: "Meeting Rooms", href: "/offerings/meeting-rooms", icon: "👥" },
+    { label: "Executive Cabins", href: "/offerings/executive-cabin", icon: "👔" },
+    { label: "Reception Areas", href: "/offerings/reception", icon: "🎯" },
+    { label: "Cafeteria Design", href: "/offerings/cafeteria", icon: "☕" }
   ];
 
-  const designIdeasItems = [
+  // Design Ideas - Home & Office
+  const homeDesignIdeas = [
     { label: "Room Ideas", href: "/design-ideas/room-ideas", icon: "🏠" },
     { label: "Decor & Inspiration", href: "/design-ideas/decor-inspiration", icon: "✨" },
     { label: "Home Decor", href: "/design-ideas/home-decor", icon: "🎨" },
     { label: "Lighting Ideas", href: "/design-ideas/lighting-ideas", icon: "💡" },
     { label: "Vastu Tips", href: "/design-ideas/vastu-tips", icon: "🧭" },
     { label: "Home Organisation", href: "/design-ideas/home-organisation", icon: "📦" },
-    { label: "Materials Guide", href: "/design-ideas/materials-guide", icon: "🔨" },
+    { label: "Materials Guide", href: "/design-ideas/materials-guide", icon: "🔨" }
+  ];
+
+  const officeDesignIdeas = [
     { label: "Wall Design Ideas", href: "/design-ideas/wall-design", icon: "🖼️" },
     { label: "Expert Advice", href: "/design-ideas/expert-advice", icon: "👨‍💼" },
     { label: "Interior Advice", href: "/design-ideas/interior-advice", icon: "💬" },
@@ -116,60 +123,60 @@ export const Navbar = () => {
               Home
             </Link>
 
-            {/* Services Mega Menu */}
+            {/* Offerings Mega Menu */}
             <div 
               className="relative"
-              onMouseEnter={() => handleMouseEnter('services')}
+              onMouseEnter={() => handleMouseEnter('offerings')}
               onMouseLeave={handleMouseLeave}
             >
               <button className="flex items-center gap-1.5 px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
-                Services
-                <ChevronDown className={`w-4 h-4 transition-transform ${activeDropdown === 'services' ? 'rotate-180' : ''}`} />
+                Offerings
+                <ChevronDown className={`w-4 h-4 transition-transform ${activeDropdown === 'offerings' ? 'rotate-180' : ''}`} />
               </button>
 
-              {activeDropdown === 'services' && (
+              {activeDropdown === 'offerings' && (
                 <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1">
                   <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl shadow-2xl overflow-hidden">
                     <div className="flex">
                       {/* Left Side - Main Categories */}
-                      <div className={`bg-gray-50 dark:bg-gray-800/50 p-4 ${activeServicesSubMenu ? 'border-r border-gray-200 dark:border-gray-700' : ''}`}>
+                      <div className={`bg-gray-50 dark:bg-gray-800/50 p-4 ${activeOfferingsSubMenu ? 'border-r border-gray-200 dark:border-gray-700' : ''}`}>
                         <button
-                          onMouseEnter={() => setActiveServicesSubMenu('office')}
+                          onMouseEnter={() => setActiveOfferingsSubMenu('home')}
                           className={`w-full text-left px-4 py-3 rounded-xl font-semibold transition-all whitespace-nowrap ${
-                            activeServicesSubMenu === 'office'
+                            activeOfferingsSubMenu === 'home'
                               ? 'bg-red-50 dark:bg-red-950/30 text-red-600 dark:text-red-400'
                               : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
                           }`}
                         >
                           <div className="flex items-center justify-between">
-                            <span>Office Spaces</span>
+                            <span>Home Offerings</span>
                             <ChevronRight className="w-4 h-4 ml-2" />
                           </div>
                         </button>
                         <button
-                          onMouseEnter={() => setActiveServicesSubMenu('home')}
+                          onMouseEnter={() => setActiveOfferingsSubMenu('office')}
                           className={`w-full text-left px-4 py-3 rounded-xl font-semibold transition-all mt-2 whitespace-nowrap ${
-                            activeServicesSubMenu === 'home'
+                            activeOfferingsSubMenu === 'office'
                               ? 'bg-red-50 dark:bg-red-950/30 text-red-600 dark:text-red-400'
                               : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
                           }`}
                         >
                           <div className="flex items-center justify-between">
-                            <span>Home Interiors</span>
+                            <span>Office Offerings</span>
                             <ChevronRight className="w-4 h-4 ml-2" />
                           </div>
                         </button>
                       </div>
 
-                      {/* Right Side - Sub Items (Only show when hovering) */}
-                      {activeServicesSubMenu && (
+                      {/* Right Side - Sub Items */}
+                      {activeOfferingsSubMenu && (
                         <div className="w-[350px] p-4">
-                          {activeServicesSubMenu === 'office' && (
+                          {activeOfferingsSubMenu === 'home' && (
                             <div className="space-y-1">
                               <h3 className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3 px-3">
-                                Office Interior Solutions
+                                Home Interior Offerings
                               </h3>
-                              {officeServices.map((item) => (
+                              {homeOfferings.map((item) => (
                                 <Link
                                   key={item.label}
                                   href={item.href}
@@ -182,12 +189,12 @@ export const Navbar = () => {
                             </div>
                           )}
 
-                          {activeServicesSubMenu === 'home' && (
+                          {activeOfferingsSubMenu === 'office' && (
                             <div className="space-y-1">
                               <h3 className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3 px-3">
-                                Home Interior Solutions
+                                Office Interior Offerings
                               </h3>
-                              {homeServices.map((item) => (
+                              {officeOfferings.map((item) => (
                                 <Link
                                   key={item.label}
                                   href={item.href}
@@ -205,10 +212,10 @@ export const Navbar = () => {
 
                     <div className="border-t border-gray-200 dark:border-gray-700 px-6 py-3 bg-gray-50 dark:bg-gray-800/50">
                       <Link
-                        href="/services"
+                        href="/offerings"
                         className="inline-flex items-center gap-2 text-sm font-semibold text-red-500 hover:text-red-600 transition-colors"
                       >
-                        <span>View All Services</span>
+                        <span>View All Offerings</span>
                         <ChevronRight className="w-4 h-4" />
                       </Link>
                     </div>
@@ -217,7 +224,7 @@ export const Navbar = () => {
               )}
             </div>
 
-            {/* Design Ideas */}
+            {/* Design Ideas Mega Menu */}
             <div 
               className="relative"
               onMouseEnter={() => handleMouseEnter('designIdeas')}
@@ -232,21 +239,82 @@ export const Navbar = () => {
               </Link>
 
               {activeDropdown === 'designIdeas' && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-[500px]">
-                  <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl shadow-2xl p-4">
-                    <div className="grid grid-cols-2 gap-1">
-                      {designIdeasItems.map((item) => (
-                        <Link
-                          key={item.label}
-                          href={item.href}
-                          className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-950/20 hover:text-gray-900 dark:hover:text-white transition-all group"
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1">
+                  <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl shadow-2xl overflow-hidden">
+                    <div className="flex">
+                      {/* Left Side - Main Categories */}
+                      <div className={`bg-gray-50 dark:bg-gray-800/50 p-4 ${activeDesignIdeasSubMenu ? 'border-r border-gray-200 dark:border-gray-700' : ''}`}>
+                        <button
+                          onMouseEnter={() => setActiveDesignIdeasSubMenu('home')}
+                          className={`w-full text-left px-4 py-3 rounded-xl font-semibold transition-all whitespace-nowrap ${
+                            activeDesignIdeasSubMenu === 'home'
+                              ? 'bg-red-50 dark:bg-red-950/30 text-red-600 dark:text-red-400'
+                              : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                          }`}
                         >
-                          <span className="text-base group-hover:scale-110 transition-transform">{item.icon}</span>
-                          <span className="font-medium">{item.label}</span>
-                        </Link>
-                      ))}
+                          <div className="flex items-center justify-between">
+                            <span>Home Ideas</span>
+                            <ChevronRight className="w-4 h-4 ml-2" />
+                          </div>
+                        </button>
+                        <button
+                          onMouseEnter={() => setActiveDesignIdeasSubMenu('office')}
+                          className={`w-full text-left px-4 py-3 rounded-xl font-semibold transition-all mt-2 whitespace-nowrap ${
+                            activeDesignIdeasSubMenu === 'office'
+                              ? 'bg-red-50 dark:bg-red-950/30 text-red-600 dark:text-red-400'
+                              : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                          }`}
+                        >
+                          <div className="flex items-center justify-between">
+                            <span>Office Ideas</span>
+                            <ChevronRight className="w-4 h-4 ml-2" />
+                          </div>
+                        </button>
+                      </div>
+
+                      {/* Right Side - Sub Items */}
+                      {activeDesignIdeasSubMenu && (
+                        <div className="w-[350px] p-4">
+                          {activeDesignIdeasSubMenu === 'home' && (
+                            <div className="space-y-1">
+                              <h3 className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3 px-3">
+                                Home Design Ideas
+                              </h3>
+                              {homeDesignIdeas.map((item) => (
+                                <Link
+                                  key={item.label}
+                                  href={item.href}
+                                  className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-950/20 hover:text-gray-900 dark:hover:text-white transition-all group"
+                                >
+                                  <span className="text-lg group-hover:scale-110 transition-transform">{item.icon}</span>
+                                  <span className="font-medium">{item.label}</span>
+                                </Link>
+                              ))}
+                            </div>
+                          )}
+
+                          {activeDesignIdeasSubMenu === 'office' && (
+                            <div className="space-y-1">
+                              <h3 className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3 px-3">
+                                Office Design Ideas
+                              </h3>
+                              {officeDesignIdeas.map((item) => (
+                                <Link
+                                  key={item.label}
+                                  href={item.href}
+                                  className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-950/20 hover:text-gray-900 dark:hover:text-white transition-all group"
+                                >
+                                  <span className="text-lg group-hover:scale-110 transition-transform">{item.icon}</span>
+                                  <span className="font-medium">{item.label}</span>
+                                </Link>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      )}
                     </div>
-                    <div className="border-t border-gray-200 dark:border-gray-700 mt-4 pt-3">
+
+                    <div className="border-t border-gray-200 dark:border-gray-700 px-6 py-3 bg-gray-50 dark:bg-gray-800/50">
                       <Link
                         href="/design-ideas"
                         className="inline-flex items-center gap-2 text-sm font-semibold text-red-500 hover:text-red-600 transition-colors"
@@ -268,10 +336,10 @@ export const Navbar = () => {
             </Link>
 
             <Link
-              href="/ai-designs"
+              href="/blogs"
               className="px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
             >
-              AI Design
+              Blogs
             </Link>
 
             {/* More */}
@@ -320,7 +388,7 @@ export const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu - Same as before */}
+      {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div className="lg:hidden border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
           <div className="max-h-[80vh] overflow-y-auto p-4 space-y-2">
@@ -332,28 +400,29 @@ export const Navbar = () => {
               Home
             </Link>
 
+            {/* Offerings Mobile */}
             <div>
               <button
-                onClick={() => setActiveMobileDropdown(activeMobileDropdown === 'services' ? null : 'services')}
+                onClick={() => setActiveMobileDropdown(activeMobileDropdown === 'offerings' ? null : 'offerings')}
                 className="w-full flex items-center justify-between px-4 py-3 rounded-xl font-medium hover:bg-gray-100 dark:hover:bg-gray-800"
               >
-                Services
-                <ChevronDown className={`w-5 h-5 transition-transform ${activeMobileDropdown === 'services' ? 'rotate-180' : ''}`} />
+                Offerings
+                <ChevronDown className={`w-5 h-5 transition-transform ${activeMobileDropdown === 'offerings' ? 'rotate-180' : ''}`} />
               </button>
 
-              {activeMobileDropdown === 'services' && (
+              {activeMobileDropdown === 'offerings' && (
                 <div className="mt-2 space-y-2 pl-4">
                   <div>
                     <button
-                      onClick={() => setExpandedMobileCategory(expandedMobileCategory === 'office' ? null : 'office')}
+                      onClick={() => setExpandedMobileCategory(expandedMobileCategory === 'offerings-home' ? null : 'offerings-home')}
                       className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-gray-50 dark:bg-gray-800 font-medium text-sm"
                     >
-                      Office Spaces
-                      <ChevronRight className={`w-4 h-4 transition-transform ${expandedMobileCategory === 'office' ? 'rotate-90' : ''}`} />
+                      Home Offerings
+                      <ChevronRight className={`w-4 h-4 transition-transform ${expandedMobileCategory === 'offerings-home' ? 'rotate-90' : ''}`} />
                     </button>
-                    {expandedMobileCategory === 'office' && (
+                    {expandedMobileCategory === 'offerings-home' && (
                       <div className="mt-1 space-y-1 pl-4">
-                        {officeServices.map(item => (
+                        {homeOfferings.map(item => (
                           <Link key={item.label} href={item.href} className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm hover:bg-gray-100 dark:hover:bg-gray-800" onClick={toggleMobileMenu}>
                             <span>{item.icon}</span>
                             <span>{item.label}</span>
@@ -365,15 +434,15 @@ export const Navbar = () => {
 
                   <div>
                     <button
-                      onClick={() => setExpandedMobileCategory(expandedMobileCategory === 'home' ? null : 'home')}
+                      onClick={() => setExpandedMobileCategory(expandedMobileCategory === 'offerings-office' ? null : 'offerings-office')}
                       className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-gray-50 dark:bg-gray-800 font-medium text-sm"
                     >
-                      Home Interiors
-                      <ChevronRight className={`w-4 h-4 transition-transform ${expandedMobileCategory === 'home' ? 'rotate-90' : ''}`} />
+                      Office Offerings
+                      <ChevronRight className={`w-4 h-4 transition-transform ${expandedMobileCategory === 'offerings-office' ? 'rotate-90' : ''}`} />
                     </button>
-                    {expandedMobileCategory === 'home' && (
+                    {expandedMobileCategory === 'offerings-office' && (
                       <div className="mt-1 space-y-1 pl-4">
-                        {homeServices.map(item => (
+                        {officeOfferings.map(item => (
                           <Link key={item.label} href={item.href} className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm hover:bg-gray-100 dark:hover:bg-gray-800" onClick={toggleMobileMenu}>
                             <span>{item.icon}</span>
                             <span>{item.label}</span>
@@ -386,6 +455,7 @@ export const Navbar = () => {
               )}
             </div>
 
+            {/* Design Ideas Mobile */}
             <div>
               <button
                 onClick={() => setActiveMobileDropdown(activeMobileDropdown === 'designIdeas' ? null : 'designIdeas')}
@@ -396,13 +466,46 @@ export const Navbar = () => {
               </button>
 
               {activeMobileDropdown === 'designIdeas' && (
-                <div className="mt-2 space-y-1 pl-4">
-                  {designIdeasItems.map(item => (
-                    <Link key={item.label} href={item.href} className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm hover:bg-gray-100 dark:hover:bg-gray-800" onClick={toggleMobileMenu}>
-                      <span>{item.icon}</span>
-                      <span>{item.label}</span>
-                    </Link>
-                  ))}
+                <div className="mt-2 space-y-2 pl-4">
+                  <div>
+                    <button
+                      onClick={() => setExpandedMobileCategory(expandedMobileCategory === 'ideas-home' ? null : 'ideas-home')}
+                      className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-gray-50 dark:bg-gray-800 font-medium text-sm"
+                    >
+                      Home Ideas
+                      <ChevronRight className={`w-4 h-4 transition-transform ${expandedMobileCategory === 'ideas-home' ? 'rotate-90' : ''}`} />
+                    </button>
+                    {expandedMobileCategory === 'ideas-home' && (
+                      <div className="mt-1 space-y-1 pl-4">
+                        {homeDesignIdeas.map(item => (
+                          <Link key={item.label} href={item.href} className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm hover:bg-gray-100 dark:hover:bg-gray-800" onClick={toggleMobileMenu}>
+                            <span>{item.icon}</span>
+                            <span>{item.label}</span>
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  <div>
+                    <button
+                      onClick={() => setExpandedMobileCategory(expandedMobileCategory === 'ideas-office' ? null : 'ideas-office')}
+                      className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-gray-50 dark:bg-gray-800 font-medium text-sm"
+                    >
+                      Office Ideas
+                      <ChevronRight className={`w-4 h-4 transition-transform ${expandedMobileCategory === 'ideas-office' ? 'rotate-90' : ''}`} />
+                    </button>
+                    {expandedMobileCategory === 'ideas-office' && (
+                      <div className="mt-1 space-y-1 pl-4">
+                        {officeDesignIdeas.map(item => (
+                          <Link key={item.label} href={item.href} className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm hover:bg-gray-100 dark:hover:bg-gray-800" onClick={toggleMobileMenu}>
+                            <span>{item.icon}</span>
+                            <span>{item.label}</span>
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 </div>
               )}
             </div>
@@ -411,10 +514,11 @@ export const Navbar = () => {
               Portfolio
             </Link>
 
-            <Link href="/ai-designs" className="block px-4 py-3 rounded-xl font-medium hover:bg-gray-100 dark:hover:bg-gray-800" onClick={toggleMobileMenu}>
-              AI Design
+            <Link href="/blogs" className="block px-4 py-3 rounded-xl font-medium hover:bg-gray-100 dark:hover:bg-gray-800" onClick={toggleMobileMenu}>
+              Blogs
             </Link>
 
+            {/* More Mobile */}
             <div>
               <button
                 onClick={() => setActiveMobileDropdown(activeMobileDropdown === 'more' ? null : 'more')}
