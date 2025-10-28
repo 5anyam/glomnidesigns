@@ -40,7 +40,7 @@ export default function SimpleSlider() {
 
   return (
     <div 
-      className="relative w-full bg-white dark:bg-gray-900 rounded-2xl shadow-xl overflow-hidden border border-gray-200 dark:border-gray-800 transition-colors"
+      className="relative w-screen bg-white dark:bg-gray-900 rounded-2xl shadow-xl overflow-hidden border border-gray-200 dark:border-gray-800 transition-colors"
       onMouseEnter={() => setIsAutoPlaying(false)}
       onMouseLeave={() => setIsAutoPlaying(true)}
     >
@@ -69,14 +69,6 @@ export default function SimpleSlider() {
               <div className="max-w-4xl">
                 {/* Badge */}
               
-
-                {/* Button */}
-                <button className="px-8 py-4 bg-red-400 hover:bg-red-500 text-white rounded-xl text-base font-semibold transition-all duration-200 shadow-lg hover:shadow-xl active:scale-95 inline-flex items-center gap-2">
-                  {slide.button}
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </button>
               </div>
             </div>
 

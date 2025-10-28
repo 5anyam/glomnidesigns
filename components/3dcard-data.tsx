@@ -16,14 +16,14 @@ export default function Threedcardshome() {
     {
       title: "HOME INTERIORS",
       description: "Transforming houses into homes with timeless design and thoughtful detail.",
-      image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
+      image: "https://elegant-charity-710d3644d3.media.strapiapp.com/home_interior_aae5d2b62e.png",
       link: "/design-ideas?category=home-interior",
       color: "red",
     },
     {
       title: "DATA CENTER",
-      description: "At Glomni Designs, we create high-performance data centres built for reliability and innovation with multiple security levels. ",
-      image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31",
+      description: "At Glomni Designs, we create high-performance data centres built for reliability and innovation with multiple security levels.",
+      image: "https://elegant-charity-710d3644d3.media.strapiapp.com/data_center_64673acdd0.png",
       link: "/design-ideas?category=data-centers",
       color: "red",
     },
@@ -32,13 +32,6 @@ export default function Threedcardshome() {
       description: "We design offices that reflect innovation, comfort, and your company’s identity.",
       image: "https://images.unsplash.com/photo-1716703373229-b0e43de7dd5c",
       link: "/design-ideas?category=office-spaces",
-      color: "red",
-    },
-    {
-      title: "CONSTRUCTIONS",
-      description: "Glomni Designs constructs modern, durable, and design-led spaces built to last.",
-      image: "https://images.unsplash.com/photo-1591588582259-e675bd2e6088",
-      link: "/portfolio",
       color: "red",
     }
   ];

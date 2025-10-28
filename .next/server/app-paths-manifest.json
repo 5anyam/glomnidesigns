@@ -1,9 +1,4 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
-  "/about-us/page": "app/about-us/page.js",
-  "/design-ideas/[slug]/page": "app/design-ideas/[slug]/page.js",
   "/offerings/kitchen/page": "app/offerings/kitchen/page.js",
-  "/offerings/page": "app/offerings/page.js",
-  "/offerings/wardrobe/page": "app/offerings/wardrobe/page.js",
   "/page": "app/page.js"
 }

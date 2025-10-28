@@ -36,14 +36,14 @@ function Threedcardshome() {
         {
             title: "HOME INTERIORS",
             description: "Transforming houses into homes with timeless design and thoughtful detail.",
-            image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
+            image: "https://elegant-charity-710d3644d3.media.strapiapp.com/home_interior_aae5d2b62e.png",
             link: "/design-ideas?category=home-interior",
             color: "red"
         },
         {
             title: "DATA CENTER",
-            description: "At Glomni Designs, we create high-performance data centres built for reliability and innovation with multiple security levels. ",
-            image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31",
+            description: "At Glomni Designs, we create high-performance data centres built for reliability and innovation with multiple security levels.",
+            image: "https://elegant-charity-710d3644d3.media.strapiapp.com/data_center_64673acdd0.png",
             link: "/design-ideas?category=data-centers",
             color: "red"
         },
@@ -52,13 +52,6 @@ function Threedcardshome() {
             description: "We design offices that reflect innovation, comfort, and your company’s identity.",
             image: "https://images.unsplash.com/photo-1716703373229-b0e43de7dd5c",
             link: "/design-ideas?category=office-spaces",
-            color: "red"
-        },
-        {
-            title: "CONSTRUCTIONS",
-            description: "Glomni Designs constructs modern, durable, and design-led spaces built to last.",
-            image: "https://images.unsplash.com/photo-1591588582259-e675bd2e6088",
-            link: "/portfolio",
             color: "red"
         }
     ];
@@ -157,7 +150,7 @@ function Threedcardshome() {
                         children: "Services"
                     }, void 0, false, {
                         fileName: "[project]/components/3dcard-data.tsx",
-                        lineNumber: 121,
+                        lineNumber: 114,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].p, {
@@ -176,13 +169,13 @@ function Threedcardshome() {
                         children: "Best Interior design Ideas for a data centre, office interior, constructions, & home interior."
                     }, void 0, false, {
                         fileName: "[project]/components/3dcard-data.tsx",
-                        lineNumber: 130,
+                        lineNumber: 123,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/3dcard-data.tsx",
-                lineNumber: 120,
+                lineNumber: 113,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -201,12 +194,12 @@ function Threedcardshome() {
                                     className: "w-6 h-6 text-gray-700 dark:text-gray-300 group-hover:text-red-400 transition-colors"
                                 }, void 0, false, {
                                     fileName: "[project]/components/3dcard-data.tsx",
-                                    lineNumber: 151,
+                                    lineNumber: 144,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/components/3dcard-data.tsx",
-                                lineNumber: 144,
+                                lineNumber: 137,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -219,18 +212,18 @@ function Threedcardshome() {
                                     className: "w-6 h-6 text-gray-700 dark:text-gray-300 group-hover:text-red-400 transition-colors"
                                 }, void 0, false, {
                                     fileName: "[project]/components/3dcard-data.tsx",
-                                    lineNumber: 161,
+                                    lineNumber: 154,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/components/3dcard-data.tsx",
-                                lineNumber: 154,
+                                lineNumber: 147,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/3dcard-data.tsx",
-                        lineNumber: 143,
+                        lineNumber: 136,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -251,17 +244,17 @@ function Threedcardshome() {
                                     slidesToShow: slidesToShow
                                 }, index, false, {
                                     fileName: "[project]/components/3dcard-data.tsx",
-                                    lineNumber: 181,
+                                    lineNumber: 174,
                                     columnNumber: 15
                                 }, this))
                         }, void 0, false, {
                             fileName: "[project]/components/3dcard-data.tsx",
-                            lineNumber: 174,
+                            lineNumber: 167,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/3dcard-data.tsx",
-                        lineNumber: 166,
+                        lineNumber: 159,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -274,24 +267,24 @@ function Threedcardshome() {
                                 className: "h-2 rounded-full transition-all duration-300 ".concat(currentSlide === index ? 'bg-red-400 w-8' : 'bg-gray-300 dark:bg-gray-700 w-2 hover:bg-gray-400 dark:hover:bg-gray-600')
                             }, index, false, {
                                 fileName: "[project]/components/3dcard-data.tsx",
-                                lineNumber: 194,
+                                lineNumber: 187,
                                 columnNumber: 13
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/components/3dcard-data.tsx",
-                        lineNumber: 192,
+                        lineNumber: 185,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/3dcard-data.tsx",
-                lineNumber: 141,
+                lineNumber: 134,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/3dcard-data.tsx",
-        lineNumber: 118,
+        lineNumber: 111,
         columnNumber: 5
     }, this);
 }
@@ -331,14 +324,14 @@ const CarouselCard = (param)=>{
                             className: "object-cover group-hover:scale-105 transition-transform duration-500"
                         }, void 0, false, {
                             fileName: "[project]/components/3dcard-data.tsx",
-                            lineNumber: 239,
+                            lineNumber: 232,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-300"
                         }, void 0, false, {
                             fileName: "[project]/components/3dcard-data.tsx",
-                            lineNumber: 247,
+                            lineNumber: 240,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -346,7 +339,7 @@ const CarouselCard = (param)=>{
                             children: "Featured"
                         }, void 0, false, {
                             fileName: "[project]/components/3dcard-data.tsx",
-                            lineNumber: 251,
+                            lineNumber: 244,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -359,31 +352,31 @@ const CarouselCard = (param)=>{
                                         children: "View Details"
                                     }, void 0, false, {
                                         fileName: "[project]/components/3dcard-data.tsx",
-                                        lineNumber: 261,
+                                        lineNumber: 254,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$external$2d$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ExternalLink$3e$__["ExternalLink"], {
                                         size: 18
                                     }, void 0, false, {
                                         fileName: "[project]/components/3dcard-data.tsx",
-                                        lineNumber: 262,
+                                        lineNumber: 255,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/3dcard-data.tsx",
-                                lineNumber: 257,
+                                lineNumber: 250,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0))
                         }, void 0, false, {
                             fileName: "[project]/components/3dcard-data.tsx",
-                            lineNumber: 256,
+                            lineNumber: 249,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/3dcard-data.tsx",
-                    lineNumber: 238,
+                    lineNumber: 231,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0)),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -394,7 +387,7 @@ const CarouselCard = (param)=>{
                             children: card.title
                         }, void 0, false, {
                             fileName: "[project]/components/3dcard-data.tsx",
-                            lineNumber: 269,
+                            lineNumber: 262,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -402,7 +395,7 @@ const CarouselCard = (param)=>{
                             children: card.description
                         }, void 0, false, {
                             fileName: "[project]/components/3dcard-data.tsx",
-                            lineNumber: 273,
+                            lineNumber: 266,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -413,7 +406,7 @@ const CarouselCard = (param)=>{
                                     children: "Explore More"
                                 }, void 0, false, {
                                     fileName: "[project]/components/3dcard-data.tsx",
-                                    lineNumber: 281,
+                                    lineNumber: 274,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__["ArrowRight"], {
@@ -421,37 +414,37 @@ const CarouselCard = (param)=>{
                                     className: "group-hover/link:translate-x-1 transition-transform duration-200"
                                 }, void 0, false, {
                                     fileName: "[project]/components/3dcard-data.tsx",
-                                    lineNumber: 282,
+                                    lineNumber: 275,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/3dcard-data.tsx",
-                            lineNumber: 277,
+                            lineNumber: 270,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/3dcard-data.tsx",
-                    lineNumber: 268,
+                    lineNumber: 261,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0)),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "absolute bottom-0 left-0 right-0 h-1 bg-red-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
                 }, void 0, false, {
                     fileName: "[project]/components/3dcard-data.tsx",
-                    lineNumber: 287,
+                    lineNumber: 280,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0))
             ]
         }, void 0, true, {
             fileName: "[project]/components/3dcard-data.tsx",
-            lineNumber: 230,
+            lineNumber: 223,
             columnNumber: 7
         }, ("TURBOPACK compile-time value", void 0))
     }, void 0, false, {
         fileName: "[project]/components/3dcard-data.tsx",
-        lineNumber: 226,
+        lineNumber: 219,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };
@@ -2612,25 +2605,13 @@ const slideData = [
         title: "Constructions",
         button: "Explore Layouts",
         description: "Glomni Designs constructs modern, durable, and design-led spaces built to last.",
-        src: "https://images.unsplash.com/photo-1599707254554-027aeb4deacd?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        src: "https://elegant-charity-710d3644d3.media.strapiapp.com/1_a19e5ff7c7.jpg"
     },
     {
         title: "Home Interiors",
         button: "Explore Designs",
         description: "Transforming houses into homes with timeless design and thoughtful detail.",
-        src: "https://images.unsplash.com/photo-1613545325278-f24b0cae1224?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-    },
-    {
-        title: "Office Interiors",
-        button: "Explore Designs",
-        description: "We design offices that reflect innovation, comfort, and your company’s identity.",
-        src: "https://images.unsplash.com/photo-1716703371653-ca74beaa7a4a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-    },
-    {
-        title: "Data Centers",
-        button: "Explore Centers",
-        description: "At Glomni Designs, we create high-performance data centres built for reliability and innovation with multiple security levels.",
-        src: "https://images.unsplash.com/photo-1584169417032-d34e8d805e8b?q=80&w=2209&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        src: "https://elegant-charity-710d3644d3.media.strapiapp.com/2_8895d45ef0.jpg"
     }
 ];
 function SimpleSlider() {
@@ -2656,7 +2637,7 @@ function SimpleSlider() {
         isAutoPlaying
     ]);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "relative w-full bg-white dark:bg-gray-900 rounded-2xl shadow-xl overflow-hidden border border-gray-200 dark:border-gray-800 transition-colors",
+        className: "relative w-screen bg-white dark:bg-gray-900 rounded-2xl shadow-xl overflow-hidden border border-gray-200 dark:border-gray-800 transition-colors",
         onMouseEnter: ()=>setIsAutoPlaying(false),
         onMouseLeave: ()=>setIsAutoPlaying(true),
         children: [
@@ -2673,76 +2654,28 @@ function SimpleSlider() {
                                 priority: index === 0
                             }, void 0, false, {
                                 fileName: "[project]/components/home-slider.tsx",
-                                lineNumber: 68,
+                                lineNumber: 56,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"
                             }, void 0, false, {
                                 fileName: "[project]/components/home-slider.tsx",
-                                lineNumber: 77,
+                                lineNumber: 65,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "absolute bottom-0 left-0 right-0 p-8 md:p-12 text-white",
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "max-w-4xl",
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                            className: "text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg",
-                                            children: slide.title
-                                        }, void 0, false, {
-                                            fileName: "[project]/components/home-slider.tsx",
-                                            lineNumber: 86,
-                                            columnNumber: 17
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                            className: "text-lg md:text-xl text-gray-200 mb-6 max-w-2xl",
-                                            children: slide.description
-                                        }, void 0, false, {
-                                            fileName: "[project]/components/home-slider.tsx",
-                                            lineNumber: 91,
-                                            columnNumber: 17
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                            className: "px-8 py-4 bg-red-400 hover:bg-red-500 text-white rounded-xl text-base font-semibold transition-all duration-200 shadow-lg hover:shadow-xl active:scale-95 inline-flex items-center gap-2",
-                                            children: [
-                                                slide.button,
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                                    className: "w-5 h-5",
-                                                    fill: "none",
-                                                    stroke: "currentColor",
-                                                    viewBox: "0 0 24 24",
-                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
-                                                        strokeLinecap: "round",
-                                                        strokeLinejoin: "round",
-                                                        strokeWidth: 2,
-                                                        d: "M17 8l4 4m0 0l-4 4m4-4H3"
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/components/home-slider.tsx",
-                                                        lineNumber: 99,
-                                                        columnNumber: 21
-                                                    }, this)
-                                                }, void 0, false, {
-                                                    fileName: "[project]/components/home-slider.tsx",
-                                                    lineNumber: 98,
-                                                    columnNumber: 19
-                                                }, this)
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "[project]/components/home-slider.tsx",
-                                            lineNumber: 96,
-                                            columnNumber: 17
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
+                                    className: "max-w-4xl"
+                                }, void 0, false, {
                                     fileName: "[project]/components/home-slider.tsx",
-                                    lineNumber: 81,
+                                    lineNumber: 69,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/components/home-slider.tsx",
-                                lineNumber: 80,
+                                lineNumber: 68,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2754,18 +2687,18 @@ function SimpleSlider() {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/home-slider.tsx",
-                                lineNumber: 106,
+                                lineNumber: 76,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, index, true, {
                         fileName: "[project]/components/home-slider.tsx",
-                        lineNumber: 62,
+                        lineNumber: 50,
                         columnNumber: 11
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/components/home-slider.tsx",
-                lineNumber: 60,
+                lineNumber: 48,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2777,12 +2710,12 @@ function SimpleSlider() {
                     className: "text-gray-700 dark:text-gray-300 group-hover:text-red-400 transition-colors"
                 }, void 0, false, {
                     fileName: "[project]/components/home-slider.tsx",
-                    lineNumber: 119,
+                    lineNumber: 89,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/home-slider.tsx",
-                lineNumber: 114,
+                lineNumber: 84,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2794,12 +2727,12 @@ function SimpleSlider() {
                     className: "text-gray-700 dark:text-gray-300 group-hover:text-red-400 transition-colors"
                 }, void 0, false, {
                     fileName: "[project]/components/home-slider.tsx",
-                    lineNumber: 127,
+                    lineNumber: 97,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/home-slider.tsx",
-                lineNumber: 122,
+                lineNumber: 92,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2810,12 +2743,12 @@ function SimpleSlider() {
                         className: "h-2 rounded-full transition-all duration-300 ".concat(index === current ? 'bg-red-400 w-8' : 'bg-white/60 hover:bg-white/80 w-2')
                     }, index, false, {
                         fileName: "[project]/components/home-slider.tsx",
-                        lineNumber: 133,
+                        lineNumber: 103,
                         columnNumber: 11
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/components/home-slider.tsx",
-                lineNumber: 131,
+                lineNumber: 101,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2827,18 +2760,18 @@ function SimpleSlider() {
                     }
                 }, void 0, false, {
                     fileName: "[project]/components/home-slider.tsx",
-                    lineNumber: 148,
+                    lineNumber: 118,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/home-slider.tsx",
-                lineNumber: 147,
+                lineNumber: 117,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/home-slider.tsx",
-        lineNumber: 54,
+        lineNumber: 42,
         columnNumber: 5
     }, this);
 }
