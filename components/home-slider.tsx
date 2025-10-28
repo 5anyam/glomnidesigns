@@ -9,26 +9,14 @@ const slideData = [
     title: "Constructions",
     button: "Explore Layouts",
     description: "Glomni Designs constructs modern, durable, and design-led spaces built to last.",
-    src: "https://images.unsplash.com/photo-1599707254554-027aeb4deacd?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    src: "https://elegant-charity-710d3644d3.media.strapiapp.com/1_a19e5ff7c7.jpg",
   },
   {
     title: "Home Interiors",
     button: "Explore Designs",
     description: "Transforming houses into homes with timeless design and thoughtful detail.",
-    src: "https://images.unsplash.com/photo-1613545325278-f24b0cae1224?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-  {
-    title: "Office Interiors",
-    button: "Explore Designs",
-    description: "We design offices that reflect innovation, comfort, and your company’s identity.",
-    src: "https://images.unsplash.com/photo-1716703371653-ca74beaa7a4a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-  {
-    title: "Data Centers",
-    button: "Explore Centers",
-    description: "At Glomni Designs, we create high-performance data centres built for reliability and innovation with multiple security levels.",
-    src: "https://images.unsplash.com/photo-1584169417032-d34e8d805e8b?q=80&w=2209&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
+    src: "https://elegant-charity-710d3644d3.media.strapiapp.com/2_8895d45ef0.jpg",
+  }
 ];
 
 export default function SimpleSlider() {
@@ -80,17 +68,7 @@ export default function SimpleSlider() {
             <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12 text-white">
               <div className="max-w-4xl">
                 {/* Badge */}
-                
-
-                {/* Title */}
-                <h2 className="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg">
-                  {slide.title}
-                </h2>
-
-                {/* Description */}
-                <p className="text-lg md:text-xl text-gray-200 mb-6 max-w-2xl">
-                  {slide.description}
-                </p>
+              
 
                 {/* Button */}
                 <button className="px-8 py-4 bg-red-400 hover:bg-red-500 text-white rounded-xl text-base font-semibold transition-all duration-200 shadow-lg hover:shadow-xl active:scale-95 inline-flex items-center gap-2">
