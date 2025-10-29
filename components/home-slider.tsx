@@ -9,13 +9,13 @@ const slideData = [
     title: "Constructions",
     button: "Explore Layouts",
     description: "Glomni Designs constructs modern, durable, and design-led spaces built to last.",
-    src: "https://elegant-charity-710d3644d3.media.strapiapp.com/1_a19e5ff7c7.jpg",
+    src: "https://elegant-charity-710d3644d3.media.strapiapp.com/banner_2_c15677e247.jpg",
   },
   {
     title: "Home Interiors",
     button: "Explore Designs",
     description: "Transforming houses into homes with timeless design and thoughtful detail.",
-    src: "https://elegant-charity-710d3644d3.media.strapiapp.com/2_8895d45ef0.jpg",
+    src: "https://elegant-charity-710d3644d3.media.strapiapp.com/banner_1_4fea9328bb.jpg",
   }
 ];
 
