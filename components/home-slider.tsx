@@ -15,7 +15,7 @@ const slideData = [
     title: "Home Interiors",
     button: "Explore Designs",
     description: "Transforming houses into homes with timeless design and thoughtful detail.",
-    src: "https://elegant-charity-710d3644d3.media.strapiapp.com/banner_1_4fea9328bb.jpg",
+    src: "https://elegant-charity-710d3644d3.media.strapiapp.com/banner_1_de9a4048ee.jpg",
   }
 ];
 
