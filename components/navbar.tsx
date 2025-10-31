@@ -62,23 +62,23 @@ export const Navbar = () => {
 
   // Design Ideas - Home & Office
   const homeDesignIdeas = [
-    { label: "Room Ideas", href: "/design-ideas/room-ideas", icon: "🏠" },
-    { label: "Decor & Inspiration", href: "/design-ideas/decor-inspiration", icon: "✨" },
-    { label: "Home Decor", href: "/design-ideas/home-decor", icon: "🎨" },
-    { label: "Lighting Ideas", href: "/design-ideas/lighting-ideas", icon: "💡" },
-    { label: "Vastu Tips", href: "/design-ideas/vastu-tips", icon: "🧭" },
-    { label: "Home Organisation", href: "/design-ideas/home-organisation", icon: "📦" },
-    { label: "Materials Guide", href: "/design-ideas/materials-guide", icon: "🔨" }
+    { label: "Room Ideas", href: "/category/room-ideas", icon: "🏠" },
+    { label: "Decor & Inspiration", href: "/category/decor-inspiration", icon: "✨" },
+    { label: "Home Decor", href: "/category/home-decor", icon: "🎨" },
+    { label: "Lighting Ideas", href: "/category/lighting-ideas", icon: "💡" },
+    { label: "Vastu Tips", href: "/category/vastu-tips", icon: "🧭" },
+    { label: "Home Organisation", href: "/category/home-organisation", icon: "📦" },
+    { label: "Materials Guide", href: "/category/materials-guide", icon: "🔨" }
   ];
 
   const officeDesignIdeas = [
-    { label: "Wall Design Ideas", href: "/design-ideas/wall-design", icon: "🖼️" },
-    { label: "Expert Advice", href: "/design-ideas/expert-advice", icon: "👨‍💼" },
-    { label: "Interior Advice", href: "/design-ideas/interior-advice", icon: "💬" },
-    { label: "Ceiling Design", href: "/design-ideas/ceiling-design", icon: "🏛️" },
-    { label: "Home Renovation", href: "/design-ideas/home-renovation", icon: "🔧" },
-    { label: "Commercial Designs", href: "/design-ideas/commercial-designs", icon: "🏢" },
-    { label: "Furniture Ideas", href: "/design-ideas/furniture-ideas", icon: "🪑" }
+    { label: "Wall Design Ideas", href: "/category/wall-design", icon: "🖼️" },
+    { label: "Expert Advice", href: "/category/expert-advice", icon: "👨‍💼" },
+    { label: "Interior Advice", href: "/category/interior-advice", icon: "💬" },
+    { label: "Ceiling Design", href: "/category/ceiling-design", icon: "🏛️" },
+    { label: "Home Renovation", href: "/category/home-renovation", icon: "🔧" },
+    { label: "Commercial Designs", href: "/category/commercial-designs", icon: "🏢" },
+    { label: "Furniture Ideas", href: "/category/furniture-ideas", icon: "🪑" }
   ];
 
   const moreItems = [
