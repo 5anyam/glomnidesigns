@@ -1167,16 +1167,16 @@ function CompareDemo() {
             title: "Living Room Makeover",
             description: "Classic to Modern Living Space",
             category: "Living Room",
-            beforeImage: "https://5.imimg.com/data5/ANDROID/Default/2023/3/FG/UU/HU/5310916/product-jpeg-500x500.jpg",
-            afterImage: "https://media.designcafe.com/wp-content/uploads/2019/12/23134656/interior-firms-in-bangalore.jpg"
+            beforeImage: "/liv-before.jpeg",
+            afterImage: "/liv-after.jpg"
         },
         {
             id: 3,
             title: "Bedroom Redesign",
             description: "Simple to Luxurious Bedroom",
             category: "Bedroom",
-            beforeImage: "https://5.imimg.com/data5/ANDROID/Default/2023/3/FG/UU/HU/5310916/product-jpeg-500x500.jpg",
-            afterImage: "https://media.designcafe.com/wp-content/uploads/2019/12/23134656/interior-firms-in-bangalore.jpg"
+            beforeImage: "/bed-before.jpg",
+            afterImage: "bed-after.webp"
         }
     ];
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2450,13 +2450,13 @@ const slideData = [
         title: "Constructions",
         button: "Explore Layouts",
         description: "Glomni Designs constructs modern, durable, and design-led spaces built to last.",
-        src: "https://elegant-charity-710d3644d3.media.strapiapp.com/1_a19e5ff7c7.jpg"
+        src: "https://elegant-charity-710d3644d3.media.strapiapp.com/banner_2_c15677e247.jpg"
     },
     {
         title: "Home Interiors",
         button: "Explore Designs",
         description: "Transforming houses into homes with timeless design and thoughtful detail.",
-        src: "https://elegant-charity-710d3644d3.media.strapiapp.com/2_8895d45ef0.jpg"
+        src: "https://elegant-charity-710d3644d3.media.strapiapp.com/banner_1_de9a4048ee.jpg"
     }
 ];
 function SimpleSlider() {

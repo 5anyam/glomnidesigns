@@ -19,16 +19,16 @@ export function CompareDemo() {
       title: "Living Room Makeover",
       description: "Classic to Modern Living Space",
       category: "Living Room",
-      beforeImage: "https://5.imimg.com/data5/ANDROID/Default/2023/3/FG/UU/HU/5310916/product-jpeg-500x500.jpg",
-      afterImage: "https://media.designcafe.com/wp-content/uploads/2019/12/23134656/interior-firms-in-bangalore.jpg"
+      beforeImage: "/liv-before.jpeg",
+      afterImage: "/liv-after.jpg"
     },
     {
       id: 3,
       title: "Bedroom Redesign",
       description: "Simple to Luxurious Bedroom",
       category: "Bedroom",
-      beforeImage: "https://5.imimg.com/data5/ANDROID/Default/2023/3/FG/UU/HU/5310916/product-jpeg-500x500.jpg",
-      afterImage: "https://media.designcafe.com/wp-content/uploads/2019/12/23134656/interior-firms-in-bangalore.jpg"
+      beforeImage: "/bed-before.jpg",
+      afterImage: "bed-after.webp"
     }
   ];
 

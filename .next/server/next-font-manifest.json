@@ -1,15 +1,6 @@
 {
-  "app": {
-    "[project]/app/offerings/kitchen/page": [
-      "static/media/06ba6ef833b337bc-s.p.0faac26c.woff2",
-      "static/media/d6a3bca80e8ab876-s.p.28a63e83.woff2"
-    ],
-    "[project]/app/page": [
-      "static/media/06ba6ef833b337bc-s.p.0faac26c.woff2",
-      "static/media/d6a3bca80e8ab876-s.p.28a63e83.woff2"
-    ]
-  },
-  "appUsingSizeAdjust": true,
+  "app": {},
+  "appUsingSizeAdjust": false,
   "pages": {},
   "pagesUsingSizeAdjust": false
 }
