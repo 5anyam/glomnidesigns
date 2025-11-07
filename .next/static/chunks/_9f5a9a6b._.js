@@ -2031,74 +2031,74 @@ const Navbar = ()=>{
     const homeDesignIdeas = [
         {
             label: "Room Ideas",
-            href: "/design-ideas/room-ideas",
+            href: "/category/room-ideas",
             icon: "🏠"
         },
         {
             label: "Decor & Inspiration",
-            href: "/design-ideas/decor-inspiration",
+            href: "/category/decor-inspiration",
             icon: "✨"
         },
         {
             label: "Home Decor",
-            href: "/design-ideas/home-decor",
+            href: "/category/home-decor",
             icon: "🎨"
         },
         {
             label: "Lighting Ideas",
-            href: "/design-ideas/lighting-ideas",
+            href: "/category/lighting-ideas",
             icon: "💡"
         },
         {
             label: "Vastu Tips",
-            href: "/design-ideas/vastu-tips",
+            href: "/category/vastu-tips",
             icon: "🧭"
         },
         {
             label: "Home Organisation",
-            href: "/design-ideas/home-organisation",
+            href: "/category/home-organisation",
             icon: "📦"
         },
         {
             label: "Materials Guide",
-            href: "/design-ideas/materials-guide",
+            href: "/category/materials-guide",
             icon: "🔨"
         }
     ];
     const officeDesignIdeas = [
         {
             label: "Wall Design Ideas",
-            href: "/design-ideas/wall-design",
+            href: "/category/wall-design",
             icon: "🖼️"
         },
         {
             label: "Expert Advice",
-            href: "/design-ideas/expert-advice",
+            href: "/category/expert-advice",
             icon: "👨‍💼"
         },
         {
             label: "Interior Advice",
-            href: "/design-ideas/interior-advice",
+            href: "/category/interior-advice",
             icon: "💬"
         },
         {
             label: "Ceiling Design",
-            href: "/design-ideas/ceiling-design",
+            href: "/category/ceiling-design",
             icon: "🏛️"
         },
         {
             label: "Home Renovation",
-            href: "/design-ideas/home-renovation",
+            href: "/category/home-renovation",
             icon: "🔧"
         },
         {
             label: "Commercial Designs",
-            href: "/design-ideas/commercial-designs",
+            href: "/category/commercial-designs",
             icon: "🏢"
         },
         {
             label: "Furniture Ideas",
-            href: "/design-ideas/furniture-ideas",
+            href: "/category/furniture-ideas",
             icon: "🪑"
         }
     ];
