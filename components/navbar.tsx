@@ -181,7 +181,7 @@ export const Navbar = () => {
                                   href={item.href}
                                   className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-950/20 hover:text-gray-900 dark:hover:text-white transition-all group"
                                 >
-                                  <span className="text-lg group-hover:scale-110 transition-transform">{item.icon}</span>
+                                  
                                   <span className="font-medium">{item.label}</span>
                                 </Link>
                               ))}
@@ -199,7 +199,7 @@ export const Navbar = () => {
                                   href={item.href}
                                   className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-950/20 hover:text-gray-900 dark:hover:text-white transition-all group"
                                 >
-                                  <span className="text-lg group-hover:scale-110 transition-transform">{item.icon}</span>
+                                  
                                   <span className="font-medium">{item.label}</span>
                                 </Link>
                               ))}
@@ -285,7 +285,7 @@ export const Navbar = () => {
                                   href={item.href}
                                   className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-950/20 hover:text-gray-900 dark:hover:text-white transition-all group"
                                 >
-                                  <span className="text-lg group-hover:scale-110 transition-transform">{item.icon}</span>
+                                 
                                   <span className="font-medium">{item.label}</span>
                                 </Link>
                               ))}
@@ -303,7 +303,7 @@ export const Navbar = () => {
                                   href={item.href}
                                   className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-950/20 hover:text-gray-900 dark:hover:text-white transition-all group"
                                 >
-                                  <span className="text-lg group-hover:scale-110 transition-transform">{item.icon}</span>
+                                  
                                   <span className="font-medium">{item.label}</span>
                                 </Link>
                               ))}
@@ -423,7 +423,7 @@ export const Navbar = () => {
                       <div className="mt-1 space-y-1 pl-4">
                         {homeOfferings.map(item => (
                           <Link key={item.label} href={item.href} className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm hover:bg-gray-100 dark:hover:bg-gray-800" onClick={toggleMobileMenu}>
-                            <span>{item.icon}</span>
+                            
                             <span>{item.label}</span>
                           </Link>
                         ))}
@@ -443,7 +443,7 @@ export const Navbar = () => {
                       <div className="mt-1 space-y-1 pl-4">
                         {officeOfferings.map(item => (
                           <Link key={item.label} href={item.href} className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm hover:bg-gray-100 dark:hover:bg-gray-800" onClick={toggleMobileMenu}>
-                            <span>{item.icon}</span>
+                           
                             <span>{item.label}</span>
                           </Link>
                         ))}
@@ -478,7 +478,7 @@ export const Navbar = () => {
                       <div className="mt-1 space-y-1 pl-4">
                         {homeDesignIdeas.map(item => (
                           <Link key={item.label} href={item.href} className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm hover:bg-gray-100 dark:hover:bg-gray-800" onClick={toggleMobileMenu}>
-                            <span>{item.icon}</span>
+                           
                             <span>{item.label}</span>
                           </Link>
                         ))}
@@ -498,7 +498,7 @@ export const Navbar = () => {
                       <div className="mt-1 space-y-1 pl-4">
                         {officeDesignIdeas.map(item => (
                           <Link key={item.label} href={item.href} className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm hover:bg-gray-100 dark:hover:bg-gray-800" onClick={toggleMobileMenu}>
-                            <span>{item.icon}</span>
+                           
                             <span>{item.label}</span>
                           </Link>
                         ))}
