@@ -62,22 +62,22 @@ export const Navbar = () => {
 
   // Design Ideas - Home & Office
   const homeDesignIdeas = [
-    { label: "Room Ideas", href: "/category/master-bedroom-designs", icon: "🏠" },
-    { label: "Decor & Inspiration", href: "/category/living-room-designs", icon: "✨" },
-    { label: "Home Decor", href: "/category/guest-bedroom-designs", icon: "🎨" },
-    { label: "Lighting Ideas", href: "/category/kitchen-designs", icon: "💡" },
-    { label: "Vastu Tips", href: "/category/kids-bedroom-designs", icon: "🧭" },
-    { label: "Home Organisation", href: "/category/washroom-room-designs", icon: "📦" },
-    { label: "Materials Guide", href: "/category/wardrobe-designs", icon: "🔨" }
+    { label: "Master Bed Room Designs", href: "/category/master-bedroom-designs", icon: "🏠" },
+    { label: "Living Room Designs", href: "/category/living-room-designs", icon: "✨" },
+    { label: "Guest Bedroom Designs", href: "/category/guest-bedroom-designs", icon: "🎨" },
+    { label: "Modular Kitchen Designs", href: "/category/modular-kitchen-designs", icon: "💡" },
+    { label: "Kids Bedroom Designs", href: "/category/kids-bedroom-designs", icon: "🧭" },
+    { label: "Washroom Designs", href: "/category/washroom-designs", icon: "📦" },
+    { label: "Wardrobe Designs", href: "/category/wardrobe-designs", icon: "🔨" }
   ];
 
   const officeDesignIdeas = [
-    { label: "Wall Design Ideas", href: "/category/meeting-room-designs", icon: "🖼️" },
-    { label: "Expert Advice", href: "/category/cabin-room-designs", icon: "👨‍💼" },
-    { label: "Interior Advice", href: "/category/reception-area-designs", icon: "💬" },
-    { label: "Ceiling Design", href: "/category/open-workspace-designs", icon: "🏛️" },
-    { label: "Home Renovation", href: "/category/cafeteria-designs", icon: "🔧" },
-    { label: "Commercial Designs", href: "/category/waiting-room-designs", icon: "🏢" }
+    { label: "Meeting Room Designs", href: "/category/meeting-room-designs", icon: "🖼️" },
+    { label: "Cabin Designs", href: "/category/cabin-designs", icon: "👨‍💼" },
+    { label: "Reception Area Designs", href: "/category/reception-area-designs", icon: "💬" },
+    { label: "Open Workspace Designs", href: "/category/open-workspace-designs", icon: "🏛️" },
+    { label: "Canteen Designs", href: "/category/canteen-designs", icon: "🔧" },
+    { label: "Waiting Area Designs", href: "/category/waiting-area-designs", icon: "🏢" }
   ];
 
   const moreItems = [
