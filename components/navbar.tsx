@@ -52,7 +52,7 @@ export const Navbar = () => {
   ];
 
   const officeOfferings = [
-    { label: "Corporate Offices", href: "/offerings/corporate-office", icon: "🏢" },
+    { label: "Corporate Offices", href: "/offerings/office-space", icon: "🏢" },
     { label: "Coworking Spaces", href: "/offerings/coworking", icon: "🤝" },
     { label: "Meeting Rooms", href: "/offerings/meeting-rooms", icon: "👥" },
     { label: "Executive Cabins", href: "/offerings/executive-cabin", icon: "👔" },
