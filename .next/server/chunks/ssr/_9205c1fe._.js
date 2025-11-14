@@ -2437,6 +2437,8 @@ __turbopack_context__.s({
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/image.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/render/components/motion/proxy.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tabler$2f$icons$2d$react$2f$dist$2f$esm$2f$icons$2f$IconChevronLeft$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__IconChevronLeft$3e$__ = __turbopack_context__.i("[project]/node_modules/@tabler/icons-react/dist/esm/icons/IconChevronLeft.mjs [app-ssr] (ecmascript) <export default as IconChevronLeft>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tabler$2f$icons$2d$react$2f$dist$2f$esm$2f$icons$2f$IconChevronRight$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__IconChevronRight$3e$__ = __turbopack_context__.i("[project]/node_modules/@tabler/icons-react/dist/esm/icons/IconChevronRight.mjs [app-ssr] (ecmascript) <export default as IconChevronRight>");
 "use client";
@@ -2444,18 +2446,22 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tabler$2f$
 ;
 ;
 ;
-// Slide data
+;
+;
+// Slide data with URLs
 const slideData = [
     {
-        title: "Constructions",
+        title: "Design your office, Define your success",
         button: "Explore Layouts",
-        description: "Glomni Designs constructs modern, durable, and design-led spaces built to last.",
+        description: "Glomni Designs constructs modern, durable, and designled spaces built to last.",
+        url: "/category/office-spaces",
         src: "https://elegant-charity-710d3644d3.media.strapiapp.com/banner_2_c15677e247.jpg"
     },
     {
-        title: "Home Interiors",
+        title: "Turning every corner into comfort",
         button: "Explore Designs",
         description: "Transforming houses into homes with timeless design and thoughtful detail.",
+        url: "/home-interiors",
         src: "https://elegant-charity-710d3644d3.media.strapiapp.com/banner_1_de9a4048ee.jpg"
     }
 ];
@@ -2476,6 +2482,7 @@ function SimpleSlider() {
     }, [
         isAutoPlaying
     ]);
+    const currentSlide = slideData[current];
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "relative w-screen bg-white dark:bg-gray-900 rounded-2xl shadow-xl overflow-hidden border border-gray-200 dark:border-gray-800 transition-colors",
         onMouseEnter: ()=>setIsAutoPlaying(false),
@@ -2494,124 +2501,223 @@ function SimpleSlider() {
                                 priority: index === 0
                             }, void 0, false, {
                                 fileName: "[project]/components/home-slider.tsx",
-                                lineNumber: 56,
+                                lineNumber: 62,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"
+                                className: "absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80"
                             }, void 0, false, {
                                 fileName: "[project]/components/home-slider.tsx",
-                                lineNumber: 65,
-                                columnNumber: 13
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "absolute bottom-0 left-0 right-0 p-8 md:p-12 text-white",
-                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "max-w-4xl"
-                                }, void 0, false, {
-                                    fileName: "[project]/components/home-slider.tsx",
-                                    lineNumber: 69,
-                                    columnNumber: 15
-                                }, this)
-                            }, void 0, false, {
-                                fileName: "[project]/components/home-slider.tsx",
-                                lineNumber: 68,
-                                columnNumber: 13
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "absolute top-6 right-6 bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-semibold border border-white/30",
-                                children: [
-                                    index + 1,
-                                    " / ",
-                                    slideData.length
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/components/home-slider.tsx",
-                                lineNumber: 76,
+                                lineNumber: 71,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, index, true, {
                         fileName: "[project]/components/home-slider.tsx",
-                        lineNumber: 50,
+                        lineNumber: 56,
                         columnNumber: 11
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/components/home-slider.tsx",
-                lineNumber: 48,
+                lineNumber: 54,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
+                initial: {
+                    y: -100,
+                    opacity: 0
+                },
+                animate: {
+                    y: 0,
+                    opacity: 1
+                },
+                exit: {
+                    y: -100,
+                    opacity: 0
+                },
+                transition: {
+                    duration: 0.8,
+                    ease: "easeOut"
+                },
+                className: "absolute inset-0 flex items-center justify-center p-8 md:p-12 text-white z-10",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "max-w-4xl mx-auto text-center w-full",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].h2, {
+                            initial: {
+                                y: -20,
+                                opacity: 0,
+                                scale: 0.95
+                            },
+                            animate: {
+                                y: 0,
+                                opacity: 1,
+                                scale: 1
+                            },
+                            transition: {
+                                delay: 0.2,
+                                duration: 0.6
+                            },
+                            className: "text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-red-300 via-white to-red-300 bg-clip-text text-transparent drop-shadow-2xl leading-tight",
+                            children: currentSlide.title
+                        }, void 0, false, {
+                            fileName: "[project]/components/home-slider.tsx",
+                            lineNumber: 87,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].p, {
+                            initial: {
+                                y: -20,
+                                opacity: 0
+                            },
+                            animate: {
+                                y: 0,
+                                opacity: 1
+                            },
+                            transition: {
+                                delay: 0.4,
+                                duration: 0.6
+                            },
+                            className: "text-lg md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed font-light tracking-wide",
+                            children: currentSlide.description
+                        }, void 0, false, {
+                            fileName: "[project]/components/home-slider.tsx",
+                            lineNumber: 97,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
+                            initial: {
+                                y: -20,
+                                opacity: 0,
+                                scale: 0.95
+                            },
+                            animate: {
+                                y: 0,
+                                opacity: 1,
+                                scale: 1
+                            },
+                            transition: {
+                                delay: 0.6,
+                                duration: 0.6
+                            },
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                href: currentSlide.url,
+                                className: "inline-flex items-center px-8 md:px-10 py-4 bg-red-400/90 backdrop-blur-sm hover:bg-red-500/90 text-white font-bold rounded-2xl shadow-2xl transition-all duration-300 hover:shadow-red-500/25 hover:scale-105 border border-white/20",
+                                children: [
+                                    currentSlide.button,
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tabler$2f$icons$2d$react$2f$dist$2f$esm$2f$icons$2f$IconChevronRight$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__IconChevronRight$3e$__["IconChevronRight"], {
+                                        size: 20,
+                                        className: "ml-3 transition-transform group-hover:translate-x-1"
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/home-slider.tsx",
+                                        lineNumber: 117,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/components/home-slider.tsx",
+                                lineNumber: 112,
+                                columnNumber: 13
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "[project]/components/home-slider.tsx",
+                            lineNumber: 107,
+                            columnNumber: 11
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/components/home-slider.tsx",
+                    lineNumber: 85,
+                    columnNumber: 9
+                }, this)
+            }, current, false, {
+                fileName: "[project]/components/home-slider.tsx",
+                lineNumber: 77,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "absolute top-6 right-6 bg-black/40 backdrop-blur-md text-white px-4 py-2 rounded-full text-sm font-semibold border border-white/30 z-20 shadow-lg",
+                children: [
+                    current + 1,
+                    " / ",
+                    slideData.length
+                ]
+            }, void 0, true, {
+                fileName: "[project]/components/home-slider.tsx",
+                lineNumber: 124,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                 onClick: prevSlide,
                 "aria-label": "Previous slide",
-                className: "absolute left-4 md:left-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-800 hover:border-red-400 rounded-full flex items-center justify-center transition-all duration-200 shadow-lg hover:shadow-xl group z-10",
+                className: "absolute left-4 md:left-6 top-1/2 -translate-y-1/2 w-14 h-14 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-2 border-gray-200/50 dark:border-gray-800/50 hover:border-red-400 rounded-full flex items-center justify-center transition-all duration-300 shadow-xl hover:shadow-red-500/20 group z-20 hover:scale-110",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tabler$2f$icons$2d$react$2f$dist$2f$esm$2f$icons$2f$IconChevronLeft$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__IconChevronLeft$3e$__["IconChevronLeft"], {
                     size: 24,
                     className: "text-gray-700 dark:text-gray-300 group-hover:text-red-400 transition-colors"
                 }, void 0, false, {
                     fileName: "[project]/components/home-slider.tsx",
-                    lineNumber: 89,
+                    lineNumber: 134,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/home-slider.tsx",
-                lineNumber: 84,
+                lineNumber: 129,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                 onClick: nextSlide,
                 "aria-label": "Next slide",
-                className: "absolute right-4 md:right-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-800 hover:border-red-400 rounded-full flex items-center justify-center transition-all duration-200 shadow-lg hover:shadow-xl group z-10",
+                className: "absolute right-4 md:right-6 top-1/2 -translate-y-1/2 w-14 h-14 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-2 border-gray-200/50 dark:border-gray-800/50 hover:border-red-400 rounded-full flex items-center justify-center transition-all duration-300 shadow-xl hover:shadow-red-500/20 group z-20 hover:scale-110",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tabler$2f$icons$2d$react$2f$dist$2f$esm$2f$icons$2f$IconChevronRight$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__IconChevronRight$3e$__["IconChevronRight"], {
                     size: 24,
                     className: "text-gray-700 dark:text-gray-300 group-hover:text-red-400 transition-colors"
                 }, void 0, false, {
                     fileName: "[project]/components/home-slider.tsx",
-                    lineNumber: 97,
+                    lineNumber: 142,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/home-slider.tsx",
-                lineNumber: 92,
+                lineNumber: 137,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 bg-black/30 backdrop-blur-sm px-4 py-3 rounded-full border border-white/20",
+                className: "absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 bg-black/40 backdrop-blur-md px-6 py-3 rounded-full border border-white/20 z-20 shadow-2xl",
                 children: slideData.map((_, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                         onClick: ()=>setCurrent(index),
                         "aria-label": `Go to slide ${index + 1}`,
-                        className: `h-2 rounded-full transition-all duration-300 ${index === current ? 'bg-red-400 w-8' : 'bg-white/60 hover:bg-white/80 w-2'}`
+                        className: `h-3 rounded-full transition-all duration-400 ${index === current ? 'bg-red-400 w-10 shadow-lg' : 'bg-white/50 hover:bg-white/70 w-3'}`
                     }, index, false, {
                         fileName: "[project]/components/home-slider.tsx",
-                        lineNumber: 103,
+                        lineNumber: 148,
                         columnNumber: 11
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/components/home-slider.tsx",
-                lineNumber: 101,
+                lineNumber: 146,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "absolute bottom-0 left-0 right-0 h-1 bg-gray-200 dark:bg-gray-800",
+                className: "absolute bottom-0 left-0 right-0 h-2 bg-gray-200/50 dark:bg-gray-800/50 z-20",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "h-full bg-red-400 transition-all duration-300",
+                    className: "h-full bg-gradient-to-r from-red-400 to-red-600 transition-all duration-500 shadow-lg",
                     style: {
                         width: `${(current + 1) / slideData.length * 100}%`
                     }
                 }, void 0, false, {
                     fileName: "[project]/components/home-slider.tsx",
-                    lineNumber: 118,
+                    lineNumber: 163,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/home-slider.tsx",
-                lineNumber: 117,
+                lineNumber: 162,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/home-slider.tsx",
-        lineNumber: 42,
+        lineNumber: 48,
         columnNumber: 5
     }, this);
 }

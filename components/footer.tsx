@@ -9,6 +9,60 @@ import Image from 'next/image';
 
 type KeywordsPosition = 'inside' | 'below';
 
+// Original SEO-rich keywords for pre-footer (KeywordsSection)
+const designCategories = {
+  office: [
+    { name: "Best Office Space Designs", href: "/design-ideas?category=office" },
+    { name: "Corporate Office Interiors", href: "/design-ideas?category=corporate" },
+    { name: "Modern Workspace Design", href: "/design-ideas?category=workspace" },
+    { name: "Executive Office Design", href: "/design-ideas?category=executive-office" },
+    { name: "Open Office Layout", href: "/design-ideas?category=open-office" },
+    { name: "Coworking Space Design", href: "/design-ideas?category=coworking" },
+  ],
+  commercial: [
+    { name: "Retail Store Design", href: "/design-ideas?category=retail" },
+    { name: "Restaurant Interior Design", href: "/design-ideas?category=restaurant" },
+    { name: "Hotel Interior Design", href: "/design-ideas?category=hotel" },
+    { name: "Cafe Design Ideas", href: "/design-ideas?category=cafe" },
+    { name: "Showroom Design", href: "/design-ideas?category=showroom" },
+    { name: "Commercial Space Planning", href: "/design-ideas?category=commercial" },
+  ],
+  residential: [
+    { name: "Luxury Home Interiors", href: "/design-ideas?category=luxury-home" },
+    { name: "Modern Apartment Design", href: "/design-ideas?category=apartment" },
+    { name: "Villa Interior Design", href: "/design-ideas?category=villa" },
+    { name: "Kitchen Design Ideas", href: "/design-ideas?category=kitchen" },
+    { name: "Bedroom Interior Design", href: "/design-ideas?category=bedroom" },
+    { name: "Living Room Design", href: "/design-ideas?category=living-room" },
+  ]
+} as const;
+
+// New offerings links for main footer
+const homeOfferings = [
+  { label: "Kitchen Design", href: "/offerings/kitchen" },
+  { label: "Wardrobe Design", href: "/offerings/wardrobe" },
+  { label: "Living Spaces", href: "/offerings/living-spaces" },
+  { label: "Bathroom Interior", href: "/offerings/bathroom" },
+  { label: "Bedroom Design", href: "/offerings/bedroom" },
+  { label: "Pooja Room", href: "/offerings/pooja-room" }
+] as const;
+
+const officeOfferings = [
+  { label: "Corporate Offices", href: "/offerings/corporate-office" },
+  { label: "Coworking Spaces", href: "/offerings/coworking" },
+  { label: "Meeting Rooms", href: "/offerings/meeting-rooms" },
+  { label: "Executive Cabins", href: "/offerings/executive-cabin" },
+  { label: "Reception Areas", href: "/offerings/reception" },
+  { label: "Cafeteria Design", href: "/offerings/cafeteria" }
+] as const;
+
+const moreItems = [
+  { label: "About Us", href: "/about-us" },
+  { label: "Careers", href: "/careers" },
+  { label: "Get Estimate", href: "/cost-estimate" },
+  { label: "Contact", href: "/contact" },
+] as const;
+
 export default function Footer({ position = 'inside' }: { position?: KeywordsPosition }) {
   const [email, setEmail] = useState('');
 
@@ -20,43 +74,6 @@ export default function Footer({ position = 'inside' }: { position?: KeywordsPos
   };
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
-
-  // SEO-rich keywords organized by category
-  const designCategories = {
-    office: [
-      { name: "Best Office Space Designs", href: "/design-ideas?category=office" },
-      { name: "Corporate Office Interiors", href: "/design-ideas?category=corporate" },
-      { name: "Modern Workspace Design", href: "/design-ideas?category=workspace" },
-      { name: "Executive Office Design", href: "/design-ideas?category=executive-office" },
-      { name: "Open Office Layout", href: "/design-ideas?category=open-office" },
-      { name: "Coworking Space Design", href: "/design-ideas?category=coworking" },
-    ],
-    commercial: [
-      { name: "Retail Store Design", href: "/design-ideas?category=retail" },
-      { name: "Restaurant Interior Design", href: "/design-ideas?category=restaurant" },
-      { name: "Hotel Interior Design", href: "/design-ideas?category=hotel" },
-      { name: "Cafe Design Ideas", href: "/design-ideas?category=cafe" },
-      { name: "Showroom Design", href: "/design-ideas?category=showroom" },
-      { name: "Commercial Space Planning", href: "/design-ideas?category=commercial" },
-    ],
-    residential: [
-      { name: "Luxury Home Interiors", href: "/design-ideas?category=luxury-home" },
-      { name: "Modern Apartment Design", href: "/design-ideas?category=apartment" },
-      { name: "Villa Interior Design", href: "/design-ideas?category=villa" },
-      { name: "Kitchen Design Ideas", href: "/design-ideas?category=kitchen" },
-      { name: "Bedroom Interior Design", href: "/design-ideas?category=bedroom" },
-      { name: "Living Room Design", href: "/design-ideas?category=living-room" },
-    ]
-  } as const;
-
-  const services = [
-    { name: "Interior Design Consultation", href: "/services/consultation" },
-    { name: "3D Visualization Services", href: "/services/3d-visualization" },
-    { name: "Turnkey Projects", href: "/services/turnkey" },
-    { name: "Space Planning", href: "/services/space-planning" },
-    { name: "Custom Furniture Design", href: "/services/custom-furniture" },
-    { name: "Material Sourcing", href: "/services/material-sourcing" },
-  ] as const;
 
   const locations = [
     { name: "Delhi NCR", href: "/locations/delhi-ncr" },
@@ -80,7 +97,7 @@ export default function Footer({ position = 'inside' }: { position?: KeywordsPos
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-          {/* Office Designs */}
+          {/* Office Designs - Original */}
           <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 hover:border-red-400 dark:hover:border-red-400 transition-all">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-10 h-10 bg-red-400/10 rounded-lg flex items-center justify-center">
@@ -103,7 +120,7 @@ export default function Footer({ position = 'inside' }: { position?: KeywordsPos
             </ul>
           </div>
 
-          {/* Commercial Designs */}
+          {/* Commercial Designs - Original */}
           <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 hover:border-red-400 dark:hover:border-red-400 transition-all">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-10 h-10 bg-red-400/10 rounded-lg flex items-center justify-center">
@@ -126,7 +143,7 @@ export default function Footer({ position = 'inside' }: { position?: KeywordsPos
             </ul>
           </div>
 
-          {/* Residential Designs */}
+          {/* Residential Designs - Original */}
           <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 hover:border-red-400 dark:hover:border-red-400 transition-all">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-10 h-10 bg-red-400/10 rounded-lg flex items-center justify-center">
@@ -156,12 +173,12 @@ export default function Footer({ position = 'inside' }: { position?: KeywordsPos
   return (
     <>
       <footer className="bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-white border-t border-gray-200 dark:border-gray-800 transition-colors">
-        {/* Show keywords section at top of footer if 'inside' */}
+        {/* Pre-footer: Original KeywordsSection */}
         {position === 'inside' && <KeywordsSection />}
 
-        {/* Main Footer Content */}
+        {/* Main Footer Content - Updated grid to 6 columns for Home/Office Offerings */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-8">
             {/* Company Info - Spans 2 columns on large screens */}
             <div className="lg:col-span-2">
               <div className="flex items-center gap-3 mb-6">
@@ -256,34 +273,44 @@ export default function Footer({ position = 'inside' }: { position?: KeywordsPos
             <div>
               <h4 className="text-base font-semibold mb-4 text-gray-900 dark:text-white">Quick Links</h4>
               <ul className="space-y-2">
-                {[
-                  { name: 'Home', href: '/' },
-                  { name: 'Design Ideas', href: '/design-ideas' },
-                  { name: 'AI Design Generator', href: '/ai-designs' },
-                  { name: 'Portfolio', href: '/portfolio' },
-                  { name: 'About Us', href: '/about' },
-                  { name: 'Contact', href: '/contact' },
-                ].map((it) => (
-                  <li key={it.name}>
-                    <Link href={it.href} className="text-sm text-gray-600 dark:text-gray-400 hover:text-red-400 transition-colors">
-                      {it.name}
+                {moreItems.map((item) => (
+                  <li key={item.label}>
+                    <Link href={item.href} className="text-sm text-gray-600 dark:text-gray-400 hover:text-red-400 transition-colors">
+                      {item.label}
                     </Link>
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* Our Services */}
+            {/* Home Offerings - New links in main footer */}
             <div>
-              <h4 className="text-base font-semibold mb-4 text-gray-900 dark:text-white">Our Services</h4>
+              <h4 className="text-base font-semibold mb-4 text-gray-900 dark:text-white">Home Offerings</h4>
               <ul className="space-y-2">
-                {services.map((service) => (
-                  <li key={service.name}>
+                {homeOfferings.map((offering, idx) => (
+                  <li key={idx}>
                     <Link 
-                      href={service.href}
-                      className="text-sm text-gray-600 dark:text-gray-400 hover:text-red-400 transition-colors"
+                      href={offering.href}
+                      className="text-sm text-gray-600 dark:text-gray-400 hover:text-red-400 transition-colors block"
                     >
-                      {service.name}
+                      {offering.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Office Offerings - New links in main footer */}
+            <div>
+              <h4 className="text-base font-semibold mb-4 text-gray-900 dark:text-white">Office Offerings</h4>
+              <ul className="space-y-2">
+                {officeOfferings.map((offering, idx) => (
+                  <li key={idx}>
+                    <Link 
+                      href={offering.href}
+                      className="text-sm text-gray-600 dark:text-gray-400 hover:text-red-400 transition-colors block"
+                    >
+                      {offering.label}
                     </Link>
                   </li>
                 ))}
@@ -291,7 +318,7 @@ export default function Footer({ position = 'inside' }: { position?: KeywordsPos
             </div>
 
             {/* Service Locations + Newsletter */}
-            <div>
+            <div className="md:col-span-2 lg:col-span-1">
               <h4 className="text-base font-semibold mb-4 text-gray-900 dark:text-white">Service Locations</h4>
               <ul className="space-y-2 mb-6">
                 {locations.map((location) => (
