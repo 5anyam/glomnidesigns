@@ -2610,14 +2610,14 @@ const slideData = [
         button: "Explore Layouts",
         description: "Glomni Designs constructs modern, durable, and designled spaces built to last.",
         url: "/category/office-spaces",
-        src: "https://elegant-charity-710d3644d3.media.strapiapp.com/banner_2_c15677e247.jpg"
+        src: "https://elegant-charity-710d3644d3.media.strapiapp.com/office_interior_banner_04ac0bff06.jpg"
     },
     {
         title: "Turning every corner into comfort",
         button: "Explore Designs",
         description: "Transforming houses into homes with timeless design and thoughtful detail.",
         url: "/home-interiors",
-        src: "https://elegant-charity-710d3644d3.media.strapiapp.com/banner_1_de9a4048ee.jpg"
+        src: "https://elegant-charity-710d3644d3.media.strapiapp.com/home_interior_banner_c519c62925.jpg"
     }
 ];
 function SimpleSlider() {

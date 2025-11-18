@@ -1953,7 +1953,7 @@ const Navbar = ()=>{
     const officeOfferings = [
         {
             label: "Corporate Offices",
-            href: "/offerings/corporate-office",
+            href: "/offerings/office-space",
             icon: "🏢"
         },
         {

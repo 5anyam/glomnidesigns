@@ -1,6 +1,7 @@
 import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
 import clsx from "clsx";
+import Script from "next/script";
 
 import { Providers } from "./providers";
 import Footer from "@/components/footer";
@@ -9,7 +10,6 @@ import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
 import Whatsapp from "@/components/Whatsapp";
 import MobileBottomNav from "@/components/bottom-nav";
-
 
 export const metadata: Metadata = {
   title: {
@@ -20,7 +20,11 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.ico",
   },
+  verification: {
+    google: "vkjKXPVsw2gB_sOt84rzFAtxBge-py5YBLIdS9Z8s3E",
+  },
 };
+
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "white" },
@@ -35,7 +39,21 @@ export default function RootLayout({
 }) {
   return (
     <html suppressHydrationWarning lang="en">
-      <head />
+      <head>
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-5C4RNNR375"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-5C4RNNR375');
+          `}
+        </Script>
+      </head>
       <body
         className={clsx(
           "bg-white dark:bg-black font-sans antialiased",
@@ -48,9 +66,9 @@ export default function RootLayout({
             <main className="mx-auto max-w-screen pt-6 flex-grow">
               {children}
             </main>
-            <Footer/>
-            <MobileBottomNav/>
-            <Whatsapp/>
+            <Footer />
+            <MobileBottomNav />
+            <Whatsapp />
           </div>
         </Providers>
       </body>
